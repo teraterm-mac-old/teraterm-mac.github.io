@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Unicode</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Unicode settings</span><a class="ttw-lang" href="../../ja/usage/unicode.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Unicode Settings</h1>
+
+To use Unicode, set the character encoding to "UTF-8" on the <a href="../menu/setup-additional-coding.html">"Encoding" tab of [Setup] Additional settings...</a> or in the [KanjiCode] menu. UTF-8 is the default in Tera Term Mac.
+
+    <h2>Character Display</h2>
+
+    <ul>
+      <li>
+        There are three types of character display widths:<br>
+        <ul>
+          <li>The character width expected by the remote host (or its program)</li>
+          <li>The character width used by Tera Term to render</li>
+          <li>The character width defined by the font design</li>
+        </ul>
+      </li>
+      <li>
+        Some applications on the remote host take character width into account when rendering.<br>
+        Examples include certain programs and libraries.
+        <ul>
+          <li>Text editor (Vim, Emacs, nano etc)</li>
+          <li>viewer (more, less, lv etc)</li>
+          <li>readline library linked to bash, etc.</li>
+          <li>curses library linked to aptitude, etc.</li>
+        </ul>
+      </li>
+      <li>
+        Tera Term allows you to configure the character width used by Tera Term for rendering through settings
+        <a href="../menu/setup-additional-coding.html#AmbiguousCharactersWidth">Ambiguous Characters width</a>,
+        <a href="../menu/setup-additional-coding.html#UnicodeEmojiOverride">Override Emoji Characters width</a>,
+        and <a href="../menu/setup-additional-coding.html">Override Character width Per Character</a>.<br>
+        If "the width expected by the remote host" differs from "the width used by Tera Term for rendering",
+        display misalignment is more likely to occur.
+      </li>
+      <li>
+        The font used by Tera Term for rendering assumes each character is either 1 cell (half-width) or 2 cells (full-width).<br>
+        There may be cases where "the width used by Tera Term to render"
+        does not match "the width defined by the font design."<br>
+        If "the width used by Tera Term to render" is aligned with "the width defined by the font design",
+        characters are displayed as designed.
+        However, if this width does not match "width expected by the remote host",
+        display misalignment is more likely to occur.<br>
+        When the widths do not match, the font is either scaled to fit the rendering
+        width or displayed within the rendering width as-is.
+        Refer to <a href="../menu/setup-additional-font.html#ResizedFont">Drawing resized font to fit cell width</a>.
+      </li>
+      <li>The character to be displayed may not exist in the selected font.<br>
+        macOS automatically draws such characters with another font (font fallback).
+        Characters that no font has are shown as a replacement symbol (such as a box).
+      </li>
+    </ul>
+
+    <p>
+      Some text files in the Tera Term repository can be displayed and checked (curl comes with macOS).
+    <p>
+    <ul>
+      <li>
+        Unicode (Kanji) width<br>
+        "curl -L https://github.com/TeraTermProject/teraterm/raw/main/tests/unicodebuf-east_asian_width.txt"
+      </li>
+      <li>
+        Unicode Emoji width<br>
+        "curl -L https://raw.githubusercontent.com/TeraTermProject/teraterm/main/tests/unicodebuf-text-emoji.txt"
+      </li>
+    </ul>
+
+    <h2>Character width (cells)</h2>
+
+    <p>
+      Character width for <a href="../about/glossary.html#SBCS">single-byte character code</a> such as Latin-1 is 1 cell.
+    </p>
+
+    <p>
+      Character width for <a href="../about/glossary.html#DBCS">double-byte character code</a> such as Shift_JIS is 1 cell for 1-byte characters and 2 cells for 2-byte characters.
+    </p>
+
+    <p>
+      In Unicode, character width of a single character changes case-by-case.
+    </p>
+
+    <p>
+      Example, "&#x00A7;" (section sign, section mark)
+    </p>
+<pre>
+| code               | character code(code point) | cell   |
+|--------------------|----------------------------|--------|
+| ISO8859-1(Latin-1) | 0xA7                       | 1      |
+| Shift_JIS(CP932)   | 0x8198                     | 2      |
+| KS5601(CP949)      | 0xA1D7                     | 2      |
+| Big5(CP950)        | 0xA1B1                     | 2      |
+| BG2312(CP936)      | 0xA1EC                     | 2      |
+| Unicode            | 0xA7 (U+00A7)              | 1 or 2 |
+</pre>
+
+    <p>
+      In a multibyte character code environment (<a href="../about/glossary.html#CJK">CJK</a>), character width should be 2 cell, and in other environments it should be 1 cell for natural use.
+      Type of character whose width changes are called Ambiguous.
+
+      Refer to <a href="#EastAsianWidth">East_Asian_Width and width (cells)</a> for detail.
+    </p>
+
+    <h2 id="EastAsianWidth">East_Asian_Width and width (cells)</h2>
+
+    <p>
+      In Unicode, characters are classified into 6 categories of display width,
+      defined by the East_Asian_Width property.
+    </p>
+
+    <p>
+      In addition, there are two types of interpretation of character width
+      <ol>
+        <li>In an East Asian context</li>
+        <li>in a non-East Asian context</li>
+      </ol>
+    </p>
+
+    <p>
+      The following table
+    </p>
+
+<pre>
+cells(2=full/1=half)
+|              | East Asian | non-East Asian |
+| property     | context    | context        |
+| F(Fullwidth) | 2          | 2              |
+| H(Halfwidth) | 1          | 1              |
+| W(Wide)      | 2          | 2              |
+| Na(Narrow)   | 1          | 1              |
+| A(Ambiguous) | 2          | 1              |
+| N(Neutral)   | 1          | 1              |
+</pre>
+
+    <p>
+      Tera Term determines the character width used for rendering based on the properties of the following data.<br>
+      <a href="https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt" target="_blank">https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt</a><br>
+      Setting <a href="../menu/setup-additional-coding.html#AmbiguousCharactersWidth">Ambiguous Characters width</a> allows you to specify the width of ambiguous characters.
+    </p>
+
+    <p>
+      When the remote host program is in a <a href="../about/glossary.html#CJK">CJK</a> environment,
+      it is generally assumed that ambiguous characters have a width of 2.<br>
+      Example in Vim:<br>
+      When ambiwidth=single, ambiguous characters have a width of 1.<br>
+      When ambiwidth=double, ambiguous characters have a width of 2.<br>
+      If you want to customize the width of certain characters,
+      such as setting some characters (e.g., umlauted letters) to width 1 like in Emacs,
+      you can use setcellwidths().<br>
+      Example in Emacs:<br>
+      By default, ambiguous characters in Emacs have a width of 1.<br>
+      Calling (set-language-environment "Japanese") executes use-cjk-char-width-table.<br>
+      This changes the width of some ambiguous characters to 2 (for example,
+      umlauted letters remain 1, while Greek and Cyrillic characters become 2).
+    </p>
+
+
+    <p>
+      If "the width used by Tera Term for rendering" is adjusted to match "the width expected by the remote host", display misalignment is less likely to occur.
+    </p>
+
+    <h2 id="emoji">About Emoji width (cells)</h2>
+
+    <p>
+      The Emoji property is a separate property from East_Asian_Width.
+      Even characters with the Emoji property set to Yes also have a value for the East_Asian_Width property.
+    </p>
+
+    <p>
+      Tera Term determines whether a character is an emoji based on the Extended_Pictographic property of the data below.<br>
+      <a href="https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-data.txt" target="_blank">https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-data.txt</a>
+    </p>
+
+    <p>
+      The character width expected by the remote host may differ from the width defined by the font design.
+      For example, an emoji with the East_Asian_Width property set to Neutral may be designed as 2 cells in the font.<br>
+      By specifying a width of 2 cells for emoji using the
+      <a href="../menu/setup-additional-coding.html#UnicodeEmojiOverride">Override Emoji Characters Width</a> setting,
+      characters can be rendered according to the font design.
+
+      However, this may cause display misalignment, and even Neutral emoji will be rendered as 2 cells.
+    </p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/character_encoding.html">‹ Character encodings</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-coding.html">Encoding settings ›</a></nav>
+</body>
+</HTML>

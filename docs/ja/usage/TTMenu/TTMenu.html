@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<title>TeraTerm Menu Tutorial</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>TeraTerm Menu</span><a class="ttw-lang" href="../../../en/usage/TTMenu/TTMenu.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>TeraTerm Menu Tutorial</h1>
+
+<h2 id="whatis">1. TeraTerm Menuとは</h2>
+
+<p>
+TeraTerm Menu とは、登録した接続先にボタン一発で接続できるランチャーツールです (原作: 早川信平氏、TeraTerm Project によりメンテナンス)。
+</p>
+
+<p>
+TeraTerm Menu は Tera Term Mac に組み込まれています。別のアプリを起動する必要はありません。
+接続先を選ぶと、Tera Term Mac の新しいウィンドウで接続します。ユーザ名やパスワードをコマンドラインで渡すことはありません。
+</p>
+
+<h2 id="registry">2. 設定の保存場所</h2>
+
+<p>
+接続先の一覧は macOS の環境設定 (net.satoru.teramac) に、パスワードは <b>macOS のキーチェーン</b>に暗号化して保存します。
+</p>
+
+<p>
+リスト編集の左下の「読み込み…」「書き出し…」ボタンで、ttpmenu.ini を読み書きできます。
+</p>
+<ul>
+  <li>読み込み: Windows 版の ttpmenu.ini (UTF-16 / UTF-8 / Shift_JIS、<a href="https://github.com/TeraTermProject/teraterm/tree/main/installer/ttpmenu" target="_blank">変換スクリプト</a>でレジストリから書き出した形式も可) から、接続先とパスワードを読み込みます。LockBox で暗号化されたパスワードは読めないので、入れ直してください。</li>
+  <li>書き出し: Windows 版でそのまま読める形式 (UTF-16, CRLF) で書き出します。パスワードも書き出すかは選べます (簡易な暗号化なので、取り扱いには注意してください)。</li>
+</ul>
+
+
+<h2 id="launch">3. 起動方法</h2>
+
+<p>
+Tera Term Mac を起動すると、まずリスト編集のウィンドウが開きます (ホスト名や /M= を付けて起動したときは、直接接続します)。<br>
+TeraTerm Menu は<b>メニューバーの Tera Term アイコン</b>に常駐します。ウィンドウを全部閉じてもメニューバーに残ります。
+</p>
+
+<ul>
+  <li>左クリック: 登録した接続先の一覧を表示します。選ぶと新しいウィンドウで接続します。</li>
+  <li>右クリック: リスト編集 / 大きいアイコンで表示 / フォントを指定 / 左クリックでリスト表示 / ホットキー (&#8963;&#8997;M) で一覧を表示 / Mac にログインしたら Tera Term Mac を起動 / バージョン情報 / 実行 (新しい接続) / 終了</li>
+  <li>ホットキー &#8963;&#8997;M を押すと、マウスの位置に一覧を表示します。</li>
+  <li>一覧は、Dock の Tera Term Mac のアイコンの右クリックからも開けます。リスト編集は、アプリのメニューの「TeraTerm Menu のリスト編集…」からも開けます。</li>
+  <li>終了するには、メニューバーのアイコンの右クリック →「終了」か、&#8984;Q を押します。</li>
+</ul>
+
+
+<h2 id="configuration">4. 設定</h2>
+
+<p>
+初めて使う場合、何も接続先が登録されていないので、まずはリスト編集で一覧を作ります。右側の設定内容に項目を入力して「登録」を押すと、左側の一覧に登録されます。同じ名前のときは上書きします。
+一覧の右クリックやドラッグで、接続先をフォルダに分けることもできます。
+</p>
+
+<dl>
+  <dt>名前 / ホスト名</dt>
+  <dd>ホスト名は「ホスト名:ポート番号」の形でポート番号も指定できます。</dd>
+
+  <dt>自動ログイン</dt>
+  <dd>ユーザ名・パスワード・sshを使用・鍵ファイルを指定します。SSH 接続する場合は「sshを使用」にチェックを入れます。公開鍵認証を行いたい場合は、鍵ファイルに秘密鍵ファイルを指定します。Telnet では、プロンプトを待ってユーザ名とパスワードを送ります。</dd>
+
+  <dt>マクロファイルを指定して実行</dt>
+  <dd>接続してから TTL マクロを実行します。</dd>
+
+  <dt>起動のみ</dt>
+  <dd>接続だけ行います。</dd>
+
+  <dt>詳細設定</dt>
+  <dd>ログファイル (%Y%m%d などで日時を入れられます)、ユーザ名プロンプト、パスワードプロンプト、オプションを指定します。<br>
+    オプションは Tera Term の<a href="../../commandline/teraterm.html">コマンドライン</a>と同じ書き方です。例えば "/KT=UTF8 /KR=UTF8" で文字コード、"/C= /BAUD=" でシリアル接続、"/T=0" で生 TCP を指定します。</dd>
+
+  <dt>起動時に実行</dt>
+  <dd>Tera Term Mac の起動時に、自動で接続します。</dd>
+</dl>
+
+<p>
+一覧の登録が完了すると、メニューバーのアイコンを左クリックすることで一覧が表示され、すぐに接続できるようになります。
+</p>
+
+<p>
+アンインストールするときに接続先を残したい場合は、先に「書き出し…」で ttpmenu.ini に保存しておいてください。
+</p>
+
+
+<h2 id="contact">5. 連絡先</h2>
+
+<p>
+Tera Term Mac の TeraTerm Menu については、<a href="https://github.com/satorunet/teraterm_macos/issues" target="_blank">Tera Term Mac の GitHub Issues</a> へお願いします (TeraTerm Project ではありません)。
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../menu/setup-proxy.html">‹ プロキシの設定</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../commandline/teraterm.html">コマンドライン ›</a></nav>
+</body>
+</html>

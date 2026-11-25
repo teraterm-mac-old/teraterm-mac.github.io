@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>TTSSH known_hosts ファイル</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>known_hosts ファイル</span><a class="ttw-lang" href="../../en/setup/knownfiles.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>TTSSH known_hosts ファイル</h1>
+
+<p>
+SSH は macOS の ssh (OpenSSH) を使うので、known_hosts も OpenSSH のものを使います。既定は <code>~/.ssh/known_hosts</code> です (Windows で作った TERATERM.INI の KnownHostsFiles が ssh_known_hosts のときも、こちらとして扱います)。書式は OpenSSH の known_hosts と同じで、ハッシュされたホスト名も使えます。
+</p>
+
+<p>
+known_hostsファイルの書式は以下のとおりです。
+</p>
+
+<pre>
+  書式:
+    ホスト名  キー種別  ホスト公開鍵
+    
+    #  コメント
+    !  否定
+
+   例:
+    192.168.1.2 ssh-rsa AAAAB3NzaC1...nXIDE=
+    192.168.1.2 ssh-dss AAAAB3NzaC1...nXIDE=
+    #192.168.1.3 ssh-rsa AAAAB3NzaC1...nXIDE=
+    *.example.com,!mail.example.com ssh-rsa AAAAB3NzaC1...nXIDE=
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-sshkeygenerator.html">‹ SSH 鍵の生成</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-tcpip.html">telnet と TCP/IP の設定 ›</a></nav>
+</body>
+</HTML>

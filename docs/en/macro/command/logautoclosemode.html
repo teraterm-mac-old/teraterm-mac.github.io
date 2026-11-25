@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>logautoclosemode</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>logautoclosemode</span><a class="ttw-lang" href="../../../ja/macro/command/logautoclosemode.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>logautoclosemode</h1>
+
+<p>
+Closes a log file automatically when macro ends.
+</p>
+
+<pre class="macro-syntax">
+logautoclosemode &lt;flag&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+When the value of &lt;flag&gt; is 1, a log file will be closed after the macro is finished.<br>
+When the value of &lt;flag&gt; is 0, a log file will not be closed after the macro is finished.
+</p>
+
+<p>
+NOTICE: When the macro script is terminated, the configuration value is set to default. In other words, 
+a log file is not always closed after the macro is finished.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+logautoclosemode 1
+logopen '/Users/user/Documents/teraterm_sample.log' 0 0
+
+; do something...
+
+end
+</pre>
+
+
+<h2>See also</h2>
+<ul>
+  <li><a href="logopen.html">logopen</a></li>
+  <li><a href="logclose.html">logclose</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/loadkeymap.html">‹ loadkeymap</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/logclose.html">logclose ›</a></nav>
+</body>
+</html>

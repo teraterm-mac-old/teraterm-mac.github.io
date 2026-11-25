@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ライセンス・著作権</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>ライセンス・著作権</span><a class="ttw-lang" href="../../en/about/copyright.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>ライセンス・著作権</h1>
+
+<h2 id="license_teraterm_mac">Tera Term Mac</h2>
+
+<p>
+Tera Term Mac は、Tera Term を macOS 用に移植したものです。
+TeraTerm Project とは関係のない個人の移植 (非公式版) で、TeraTerm Project の公認・支援を受けたものではありません。
+</p>
+
+<p>
+Tera Term Mac で新しく書いたコードは MIT License です。
+Tera Term から受け継いだ部分 (アイコン、TTL マクロの処理系、ファイル転送) は、元の Tera Term のライセンス (三条項BSDライセンス) のままです。
+ライセンスの全文は、メニューの [Tera Term Mac] &gt; [謝辞とライセンス…] でも見られます。
+</p>
+
+<h3>Tera Term Mac が使っているもの</h3>
+<ul>
+  <li><a href="#license_teraterm">Tera Term</a> ... アイコン、TTL マクロの処理系、ファイル転送 (XMODEM / YMODEM / ZMODEM / Kermit / B-Plus / Quick-VAN)。三条項BSDライセンス</li>
+  <li><a href="https://github.com/kkos/oniguruma/" target="_blank">鬼車 (Oniguruma) 6.9.10</a> ... TTL マクロの正規表現。<a href="../reference/Oniguruma-LICENSE.txt">二条項BSDライセンス</a></li>
+  <li><a href="https://sparkle-project.org/" target="_blank">Sparkle 2.9</a> ... 自動アップデート。MIT ライセンス (Copyright (c) 2006-2013 Andy Matuschak ほか Sparkle の開発者)</li>
+  <li><a href="https://www.openssh.com/" target="_blank">OpenSSH</a> ... SSH 接続。アプリには含まず、macOS に入っている ssh コマンドを使います</li>
+</ul>
+
+<h3>ライセンス</h3>
+<p>Tera Term の著作者は T. Teranishi (寺西 高) 氏です。satorunet は Tera Term Mac (Mac 版への移植) の開発者で、下の MIT License は Mac 版で追加したコードに対するものです。</p>
+<pre>
+MIT License
+
+Copyright (c) 2026 satorunet (Tera Term Mac)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</pre>
+
+<p>
+以下は、Tera Term Mac が受け継いでいる Tera Term と、Tera Term Mac に機能を組み込んでいるモジュールのライセンス・著作権です。
+プロキシ接続は TTProxy のコードをもとにしています。
+</p>
+
+<h2>概要</h2>
+<h3>構成モジュール</h3>
+<ul>
+  <li><a href="#license_teraterm">Tera Term</a> ... 三条項BSDライセンス</li>
+  <li><a href="#license_ttproxy">TTProxy</a> ... 三条項BSDライセンス</li>
+  <li><a href="#license_ttmenu">TeraTerm Menu</a> ... 三条項BSDライセンス</li>
+  <li><a href="#license_kanjimenu">TTX KanjiMenu</a> ... 三条項BSDライセンス</li>
+</ul>
+
+
+<h2>Tera Term</h2>
+
+<h3 id="license_teraterm">ライセンス</h3>
+<pre>
+Copyright (C) 1994-1998 T. Teranishi
+(C) 2004-2026 TeraTerm Project
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+  1. Redistributions of source code must retain the above copyright notice,
+     this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright notice,
+     this list of conditions and the following disclaimer in the documentation
+     and/or other materials provided with the distribution.
+  3. The name of the author may not be used to endorse or promote products derived
+     from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+</pre>
+
+<h3 id="copyright_teraterm">著作権</h3>
+<pre>
+  本プログラムはフリーソフトウェアです。BSDライセンスのもとに配布されています。
+
+  Tera Term Proは寺西高氏の著作物です。
+  ANSIカラー色変更＆行連結パッチは多賀奈由太氏に著作権があります。
+  UTF-8化およびSSH2化のコードについては、著作権は平田豊にあります。
+  IPv6版Tera Term Proは加藤淳也氏の著作物です。
+  CygtermはNSym氏の著作物です。
+  TTSSHはRobert O'Callahan氏の著作物です。
+  TeraTerm Menuは早川信平氏の著作物です。
+  Eterm風透過ウィンドウ機能はAKASI氏に著作権があります。
+  TTProxyは蛭子屋双六氏の著作物です。
+  日本語版Tera Termは高橋靖英氏および橋井健人氏に著作権があります。
+  クリッカブルURLパッチはmonkey magic氏に著作権があります。
+  マルチディスプレイ対応パッチは安藤弦彦氏に著作権があります。
+  鬼車はK.Kosako氏の著作物です。ライセンス情報については同梱の<a href="../reference/Oniguruma-LICENSE.txt">Oniguruma-LICENSE.txt</a>をご覧下さい。
+    本プログラムは、鬼車と静的リンクしています。
+  SFMT は斎藤睦夫氏と松本眞氏の著作物です。ライセンス情報については同梱のSFMT-LICENSE.txtをご覧下さい。
+    本プログラムは、SFMT のソースコードを使用しています。
+  Tera Termに関するパッチの一部は永田真也に著作権があります。
+  Tera Termのアイコンは坂本龍彦氏に著作権があります。
+  HTMLヘルプの一部は市村光康氏、桑田政輝氏、橋井健人氏、平田豊に著作権があります。
+  TTX KanjiMenu Pluginは原直氏の著作物です。
+
+  本プログラムは商用利用問わず無償で利用できますが、作者は本プログラムの使用にあたり
+  生じる障害や問題に対して一切の責任を負いません。
+
+  URL: https://teratermproject.github.io/
+  Project: https://github.com/TeraTermProject/teraterm
+
+  Tera Term Pro(オリジナル): https://www.vector.co.jp/soft/win95/net/se067018.html
+  ANSIカラー色変更＆行連結パッチ: http://www.sakurachan.org/ml/teraterm/msg00264.html
+  IPv6版Tera Term Pro: http://win6.jp/TeraTerm/index.html
+  Eterm風透過ウィンドウ機能パッチ：http://www.geocities.co.jp/SiliconValley-PaloAlto/4954/av.html
+  Oniguruma: https://github.com/kkos/oniguruma
+
+  Special thanks to ... (敬称略)
+  ・寺西高 (T.Teranishi) - オリジナルの Tera Term Pro の作者
+  ・平田豊 (Yutaka Hirata) - UTF-8対応 &amp; SSH2対応
+</pre>
+
+
+<h2>TTProxy</h2>
+
+<h3 id="license_ttproxy">ライセンス</h3>
+<pre>
+Copyright (C) 2003-2006 蛭子屋本舗
+(C) 2004-2026 TeraTerm Project
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+  1. Redistributions of source code must retain the above copyright notice,
+     this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright notice,
+     this list of conditions and the following disclaimer in the documentation
+     and/or other materials provided with the distribution.
+  3. The name of the author may not be used to endorse or promote products derived
+     from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+</pre>
+
+<h3 id="copyright_ttproxy">著作権</h3>
+<pre>
+  本プログラムはフリーソフトウェアです。BSDライセンスのもとに配布されています。
+
+  TTProxyは、蛭子屋双六氏の著作物です。
+  機能拡張パッチは、各パッチ作成者の著作物です。
+
+  本プログラムは無償で利用できますが、作者は本プログラムの使用にあたり
+  生じる障害や問題に対して一切の責任を負いません。
+
+  URL: https://teratermproject.github.io/
+  Project: https://github.com/TeraTermProject/teraterm
+
+  Special thanks to ... (敬称略)
+  ・蛭子屋双六 - オリジナルの TTProxy の作者
+    URL: http://yebisuya.dip.jp/Software/TTProxy/
+</pre>
+
+
+<h2>TeraTerm Menu</h2>
+
+<h3 id="license_ttmenu">ライセンス</h3>
+<pre>
+Copyright(C) 1997-2003 S.Hayakawa
+(C) 2004-2026 TeraTerm Project
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+  1. Redistributions of source code must retain the above copyright notice,
+     this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright notice,
+     this list of conditions and the following disclaimer in the documentation
+     and/or other materials provided with the distribution.
+  3. The name of the author may not be used to endorse or promote products derived
+     from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+</pre>
+
+<h3 id="copyright_ttmenu">著作権</h3>
+<pre>
+  本プログラムはフリーソフトウェアです。BSDライセンスのもとに配布されています。
+
+  TeraTerm Menuは、早川信平氏の著作物です。
+
+  本プログラムは無償で利用できますが、作者は本プログラムの使用にあたり
+  生じる障害や問題に対して一切の責任を負いません。
+
+  URL: https://teratermproject.github.io/
+  Project: https://github.com/TeraTermProject/teraterm
+
+  Special thanks to ... (敬称略)
+  ・S.Hayakawa - TeraTerm Menu の作者
+    URL: http://park11.wakwak.com/~shinpei/freesoft/
+</pre>
+
+
+<h2>TTX KanjiMenu</h2>
+
+<h3 id="license_kanjimenu">ライセンス</h3>
+<pre>
+Copyright (C) 2007 Sunao HARA
+(C) 2004-2026 TeraTerm Project
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+  1. Redistributions of source code must retain the above copyright notice,
+     this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright notice,
+     this list of conditions and the following disclaimer in the documentation
+     and/or other materials provided with the distribution.
+  3. The name of the author may not be used to endorse or promote products derived
+     from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+</pre>
+
+<h3 id="copyright_kanjimenu">著作権</h3>
+<pre>
+  本プログラムはフリーソフトウェアです。BSDライセンスのもとに配布されています。
+
+  TTX KanjiMenuは原直氏の著作物です。
+
+  本プログラムは無償で利用できますが、作者は本プログラムの使用にあたり
+  生じる障害や問題に対して一切の責任を負いません。
+
+  URL: https://teratermproject.github.io/
+  Project: https://github.com/TeraTermProject/teraterm
+
+  Special thanks to ... (敬称略)
+  ・原直 (Sunao HARA) - オリジナルの TTX KanjiMenu の作者
+    URL: http://naoh16.seesaa.net/article/35220277.html
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/help.html">‹ ヘルプメニュー</a><a href="../index.html">目次</a><a class="ttw-next" href="../about/contacts.html">連絡先 ›</a></nav>
+</body>
+</html>

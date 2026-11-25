@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>sendbreak</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>sendbreak</span><a class="ttw-lang" href="../../../ja/macro/command/sendbreak.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>sendbreak</h1>
+
+<p>
+Causes Tera Term to send a break signal to the host.
+</p>
+
+<pre class="macro-syntax">
+sendbreak
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Raises the break interrupt(Break interrupt indicator) to the host system on the serial console. This macro sends IAC BREAK(255 243) to the host system on the TELNET console. Also, sends SSH2_MSG_CHANNEL_REQUEST("break") to the host system on the SSH2 console.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; Calls the help message of Magic SysRq(Linux).
+sendbreak
+send 'h'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/sendbinary.html">‹ sendbinary</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/sendbroadcast.html">sendbroadcast ›</a></nav>
+</body>
+</html>

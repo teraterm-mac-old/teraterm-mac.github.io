@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH Authentication([Setup] Menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>SSH authentication</span><a class="ttw-lang" href="../../ja/menu/setup-sshauth.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH Authentication ([Setup] menu)</h1>
+
+    <h2>"TTSSH: Authentication Setup" dialog box</h2>
+    <p>
+      These settings become the initial user name and private key in the <a href="file-new.html">New connection</a> dialog, and the order of authentication methods passed to ssh (PreferredAuthentications).
+      Authentication itself is done by OpenSSH (/usr/bin/ssh).
+    </p>
+    <dl id="DefaultUserType">
+      <dt id="DefaultUserName">User name</dt>
+      <dd>
+		Specifies the user name used when none is given.
+
+		<dl>
+		  <dt>Do not enter username</dt>
+		  <dd>
+			No user name is entered.
+		  </dd>
+
+		  <dt>Use default username</dt>
+		  <dd>
+			Uses the default user name entered in the edit box.
+			If it is empty, nothing is entered.
+		  </dd>
+
+		  <dt>Use logon username</dt>
+		  <dd>
+			Uses the name of the user logged in to the Mac.
+		  </dd>
+		</dl>
+
+      </dd>
+
+      <dt id="DefaultAuthMethod">Sets the default authentication method.</dt>
+      <dd>
+
+        <dl>
+          <dt>Use plain password to log in</dt>
+          <dd>
+            Use password authentication. ssh's default order is kept (you are asked for the password if public keys do not work).
+          </dd>
+          
+          <dt>Use RSA/DSA/ECDSA/ED25519 key to login</dt>
+          <dd>
+            Use authentication with an RSA/DSA/ECDSA/ED25519 key you created beforehand. Public key authentication is tried first.
+            <dl>
+              <dt id="DefaultRSAPrivateKeyFile">Private key file</dt>
+              <dd>
+                Specifies the private key file (you can choose it with the [Private key...] button). It is passed with ssh's -i option.<br />
+                Use a key in a format OpenSSH can read. PuTTY format keys (.ppk) cannot be used.
+              </dd>
+            </dl>
+          </dd>
+          
+          <dt>SSH2:Use keyboard-interactive to log in</dt>
+          <dd>
+            Use keyboard-interactive authentication.
+            Use this to log in with a password to a server where password authentication is disabled.<br>
+            What you type is sent to the server encrypted.
+          </dd>
+          
+          <dt>Use ssh-agent</dt>
+          <dd>
+            Authenticate with keys added to ssh-agent. Public key authentication is tried first.
+          </dd>
+        </dl>
+
+      </dd>
+
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-ssh.html">‹ SSH settings</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-sshforward.html">SSH port forwarding ›</a></nav>
+</body>
+</html>

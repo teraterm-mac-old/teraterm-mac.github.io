@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>strlen</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>strlen</span><a class="ttw-lang" href="../../../en/macro/command/strlen.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>strlen</h1>
+
+<p>
+文字列の長さを返す。
+</p>
+
+<h2>形式</h2>
+
+<pre class="macro-syntax">
+strlen &lt;string&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+文字列 &lt;string&gt; の長さをシステム変数 result に格納する。<br>
+長さはバイト単位でカウントされる。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+strlen Txcnt
+if result&gt;0 then
+	logwrite Txcnt
+else
+	messagebox 'Txcnt is NULL' 'error'
+endif
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/strjoin.html">‹ strjoin</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/strmatch.html">strmatch ›</a></nav>
+</body>
+</html>

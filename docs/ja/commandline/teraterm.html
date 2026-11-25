@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tera Term Mac コマンドライン</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>コマンドライン</span><a class="ttw-lang" href="../../en/commandline/teraterm.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>Tera Term Mac コマンドライン</h1>
+
+<p>
+Tera Term Mac はコマンドラインで起動できます。ターミナル.app などから、次のどちらかの方法で起動します。
+</p>
+
+<pre class="syntax">
+open -a "Tera Term Mac" --args [ &lt;host&gt;[[:]&lt;TCP port#&gt;] | telnet://&lt;host&gt;[:&lt;TCP port#&gt;][/] | ssh://... ]
+         [/B] [/BAUD=&lt;speed&gt;] [/C=&lt;serial port#&gt;|&lt;device&gt;]
+         [/KR=&lt;kanji code (receive)&gt;] [/KT=&lt;kanji code (transmit)&gt;]
+         [/M=&lt;macro file&gt;] [/P=&lt;TCP port#&gt;] [/SPEED=&lt;speed&gt;] [/T=&lt;telnet flag&gt;]
+         [/SHELL] [;&lt;comment&gt;]
+
+"/Applications/Tera Term Mac.app/Contents/MacOS/TeraMac" [同じオプション]
+</pre>
+
+<ul>
+  <li><code>open -a</code> を使うときは、オプションを <code>--args</code> の後に書きます。アプリがすでに起動しているときは、macOS の決まりで <code>--args</code> の引数は渡されません。そのときは <code>open -n -a</code> で新しく起動するか、アプリの実行ファイル (<code>Tera Term Mac.app/Contents/MacOS/TeraMac</code>) を直接起動してください。</li>
+  <li>引数なしで起動すると、接続先一覧 (TeraTerm Menu) を開きます。ホスト名などを付けて起動すると、新しいウィンドウで接続します。オプションが読めないときは、新しい接続ダイアログを開きます。</li>
+  <li>コマンドラインで指定した /B /KR= /KT= は、起動して最初に開くウィンドウだけに使います。保存はしません。</li>
+  <li>マクロファイル (.ttl) は <code>open -a "Tera Term Mac" macro.ttl</code> や Finder でのダブルクリックでも実行できます。こちらはアプリが起動していても使えます。</li>
+  <li>ssh:// で始まる URL と /ssh などの SSH のオプションは「<a href="ttssh.html">TTSSH コマンドライン</a>」、プロキシは「<a href="ttproxy.html">TTProxy コマンドライン</a>」を参照してください。</li>
+</ul>
+
+
+<h2 id="options">オプション</h2>
+
+<dl>
+  <dt id="host">&lt;host&gt;</dt>
+  <dd>ホスト名または IP アドレス<br>
+	  IPv6アドレスは角括弧（大括弧）で囲みます（<a href="https://datatracker.ietf.org/doc/html/rfc3986" target="_blank">RFC3986</a> / <a href="https://datatracker.ietf.org/doc/html/rfc5952#section-6" target="_blank">RFC5952</a> 参照）。<br>
+	  SSH か Telnet かを指定しないときは、ポート番号が 22 か指定なしなら SSH、それ以外のポート番号 (23 など) なら Telnet で接続します。</dd>
+
+  <dt>&lt;host&gt;:&lt;TCP port#&gt;</dt>
+  <dd>TCP ポート番号つき &lt;host&gt;<br>
+      &lt;host&gt; と &lt;TCP port#&gt; の間に":"が置かれる。</dd>
+
+  <dt>&lt;host&gt; &lt;TCP port#&gt;</dt>
+  <dd>TCP ポート番号つき &lt;host&gt;<br>
+      &lt;host&gt; と &lt;TCP port#&gt; の間に1個以上の空白文字が置かれる。<br>
+      &lt;host&gt; のすぐ後にくる数字は TCP ポート番号とみなされる。</dd>
+
+  <dt>telnet://&lt;host&gt;[:&lt;TCP port#&gt;][/]</dt>
+  <dd>URL形式<br>
+      TCP ポート番号および末尾の / は省略可能。<br>
+      TCP ポート番号が省略された場合は23となる。<br>
+      コマンドラインの引数として使えます。Tera Term Mac は telnet:// の URL を開くアプリとしては登録されません。
+  </dd>
+
+  <dt id="b">/B</dt>
+  <dd>Telnet バイナリオプション</dd>
+
+  <dt id="baud">/BAUD=&lt;speed&gt;</dt>
+  <dd>
+    シリアルポートのスピードを指定します。<a href="#speed">/SPEED=</a> と同じ動作です。
+    指定した値が実際に反映されるかは、シリアルポートのチップ・ドライバの仕様によります。
+  </dd>
+
+  <dt id="c">/C=&lt;serial port#&gt;</dt>
+  <dd>シリアルポート<br>
+      次のように指定します。
+      <ul>
+        <li><span class="syntax">/C=/dev/cu.usbserial-XXXX</span> デバイスを直接指定する</li>
+        <li><span class="syntax">/C=1</span> 見つかったシリアルポート (/dev/cu.*、名前の順) の 1 番目</li>
+        <li><span class="syntax">/C=2</span> 2 番目</li>
+        <li>:</li>
+      </ul>
+      番号が範囲外のときは、最初のシリアルポートを使います。
+      </dd>
+
+  <dt id="cdatabit">/CDATABIT=&lt;value&gt;</dt>
+  <dd>シリアルポートのデータビット
+      <ul>
+        <li><span class="syntax">/CDATABIT=7</span> 7bit</li>
+        <li><span class="syntax">/CDATABIT=8</span> 8bit</li>
+      </ul>
+      </dd>
+
+  <dt id="cparity">/CPARITY=&lt;value&gt;</dt>
+  <dd>シリアルポートのパリティ
+      <ul>
+        <li><span class="syntax">/CPARITY=none</span> none</li>
+        <li><span class="syntax">/CPARITY=odd</span> odd</li>
+        <li><span class="syntax">/CPARITY=even</span> even</li>
+        <li><span class="syntax">/CPARITY=mark</span> mark</li>
+        <li><span class="syntax">/CPARITY=space</span> space</li>
+      </ul>
+      </dd>
+
+  <dt id="cstopbit">/CSTOPBIT=&lt;value&gt;</dt>
+  <dd>シリアルポートのストップビット
+      <ul>
+        <li><span class="syntax">/CSTOPBIT=1</span> 1bit</li>
+        <li><span class="syntax">/CSTOPBIT=2</span> 2bit</li>
+      </ul>
+      1 以外は 2bit になります。
+      </dd>
+
+  <dt id="cflowctrl">/CFLOWCTRL=&lt;value&gt;</dt>
+  <dd>シリアルポートのフロー制御
+      <ul>
+        <li><span class="syntax">/CFLOWCTRL=x</span> Xon/Xoff</li>
+        <li><span class="syntax">/CFLOWCTRL=hard</span> RTS/CTS</li>
+        <li><span class="syntax">/CFLOWCTRL=rtscts</span> RTS/CTS</li>
+        <li><span class="syntax">/CFLOWCTRL=none</span> none</li>
+        <li><span class="syntax">/CFLOWCTRL=dsrdtr</span> DSR/DTR</li>
+      </ul>
+      </dd>
+
+  <dt id="fd">/FD=&lt;file transfer directory&gt;</dt>
+  <dd>ファイル転送用ディレクトリ<br>
+      起動時のコマンドラインでは使いません。connect マクロコマンドでは使えます。</dd>
+
+  <dt id="kr">/KR=&lt;kanji code (receive)&gt;</dt>
+  <dd>漢字コード (受信)<br>
+    使用可能文字コードは<a href="../usage/character_encoding.html">文字コードページ</a>を参照ください。</dd>
+
+  <dt id="kt">/KT=&lt;kanji code (transmit)&gt;</dt>
+  <dd>漢字コード (送信)<br>
+    使用可能文字コードは<a href="../usage/character_encoding.html">文字コードページ</a>を参照ください。</dd>
+
+  <dt id="m">/M=&lt;macro file&gt;</dt>
+  <dd>起動時にマクロを実行<br>
+      絶対パスで指定してください (~ で始まるパスも使えます)。ホスト名なども指定したときは、接続を始めてからマクロを実行します。</dd>
+
+  <dt id="p">/P=&lt;TCP port#&gt;</dt>
+  <dd>TCP ポート番号</dd>
+
+  <dt id="speed">/SPEED=&lt;speed&gt;</dt>
+  <dd>
+    シリアルポートのスピードを指定します。<a href="#baud">/BAUD=</a> と同じ動作です。
+    指定した値が実際に反映されるかは、シリアルポートのチップ・ドライバの仕様によります。
+  </dd>
+
+  <dt id="t">/T=&lt;telnet flag&gt;</dt>
+  <dd><ul>
+        <li><span class="syntax">/T=1</span> Telnet プロトコルを使用</li>
+        <li><span class="syntax">/T=0</span> Telnet プロトコルを不使用 (TCP でそのまま接続)</li>
+      </ul>
+      どちらも SSH は使いません。ポート番号を指定しないときは 23 になります。</dd>
+
+  <dt id="timeout">/TIMEOUT=&lt;connecting timeout value&gt;</dt>
+  <dd>接続中の処理をキャンセルするまでの時間（秒単位）<br>
+      起動時のコマンドラインでは使いません。connect マクロコマンドでは使えます。</dd>
+
+  <dt id="w">/W=&lt;window title&gt;</dt>
+  <dd>ウィンドウのタイトル<br>
+      起動時のコマンドラインでは使いません。connect マクロコマンドでは使えます。</dd>
+
+  <dt id="shell">/SHELL</dt>
+  <dd>ローカルシェルに接続する。[ファイル]-[ローカルシェル接続] と同じです。</dd>
+
+  <dt id="comment">;&lt;comment&gt;</dt>
+  <dd>コメント。コマンドラインの最後に置く必要がある。<br>
+      シェルから指定するときは、; をシェルに解釈されないよう引用符で囲んでください。</dd>
+</dl>
+
+
+<h2 id="example">例</h2>
+
+<pre>
+open -a "Tera Term Mac"
+open -a "Tera Term Mac" --args myhost.example.com
+open -a "Tera Term Mac" --args myhost.example.com:23
+open -a "Tera Term Mac" --args myhost.example.com 23
+open -a "Tera Term Mac" --args 192.0.2.1
+open -a "Tera Term Mac" --args "[2001:db8:1:2:8401:2ff:fe03:405]"
+open -a "Tera Term Mac" --args telnet://myhost.example.com
+open -a "Tera Term Mac" --args /C=1
+open -a "Tera Term Mac" --args /C=/dev/cu.usbserial-XXXX /SPEED=115200
+
+open -a "Tera Term Mac" --args myhost.example.com /T=0 /P=7
+open -a "Tera Term Mac" --args myhost /B /KR=UTF8 /KT=UTF8
+open -a "Tera Term Mac" --args /M=~/macro/login.ttl
+open -a "Tera Term Mac" ~/macro/login.ttl
+"/Applications/Tera Term Mac.app/Contents/MacOS/TeraMac" myhost.example.com /telnet
+</pre>
+
+
+<h2 id="default">省略時の値</h2>
+
+<p>
+省略時の値は、設定画面の設定 (環境設定に保存されたもの) です。シリアルポートで指定しなかった項目は、9600bps・8bit・パリティなし・1 ストップビット・フロー制御なしになります。
+</p>
+
+
+<h2 id="notes">注</h2>
+
+<p id="note1">
+[1] &lt;telnet flag&gt; が 1 で、かつ &lt;TCP port#&gt; が 23 のときだけ、Tera Term から自発的に telnet の option negotiation を開始します。それ以外の場合でも Tera Term はホストから送られてきた telnet コマンドに応答することができます。
+</p>
+
+<p id="note2">
+[2] パラメータの値にスペースや `"' を含めるためには、値全体を `"' で囲んでください。<br />
+値に " を含めるためには、連続した `"'("") を指定してください。<br />
+シェルから起動するときは、シェルの引用符の規則も合わせて考えてください。空白を含む 1 つの引数は、そのまま 1 つの値として扱います。
+</p>
+
+<pre>
+open -a "Tera Term Mac" --args '/M=/Users/user/My Macros/login.ttl'
+</pre>
+
+<h2 id="refs">参照</h2>
+
+<p>
+<a href="../usage/tips/not_port23.html">Telnet 用ポート番号 / 非 telnet 接続用の端末設定</a>
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/TTMenu/TTMenu.html">‹ TeraTerm Menu</a><a href="../index.html">目次</a><a class="ttw-next" href="../commandline/ttssh.html">SSH のコマンドライン ›</a></nav>
+</body>
+</html>

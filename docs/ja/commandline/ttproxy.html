@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>TTProxy コマンドライン</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>プロキシのコマンドライン</span><a class="ttw-lang" href="../../en/commandline/ttproxy.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>TTProxy コマンドライン</h1>
+
+<h2>形式</h2>
+<p>
+プロキシ (TTProxy) の指定には、以下のパラメータが使用できます。起動時のコマンドライン (起動して最初に開くウィンドウ) と connect マクロコマンドで使えます。SSH 接続では、ssh がこのプロキシを通って接続します。
+</p>
+
+<pre class="syntax">
+-proxy=protocol://&lt;user&lt;:password&gt;@&gt;proxyserver:proxyport
+protocol://&lt;user&lt;:password&gt;@&gt;proxyserver:proxyport/realhost
+-noproxy
+</pre>
+
+<dl>
+  <dt id="protocol">protocol</dt>
+  <dd>プロキシのプロトコル<br>以下の種類が使用可能です。
+    <ul>
+      <li>http</li>
+      <li>telnet</li>
+      <li>socks4</li>
+      <li>socks5</li>
+      <li>none</li>
+      <!--li>ssl</li>
+      <li>http+ssl</li>
+      <li>telnet+ssl</li>
+      <li>socks4+ssl</li>
+      <li>socks5+ssl</li-->
+    </ul></dd>
+
+  <dt id="proxyserver">proxyserver</dt>
+  <dd>プロキシサーバ</dd>
+
+  <dt id="proxyport">proxyport</dt>
+  <dd>プロキシサーバのポート番号</dd>
+
+  <dt id="realhost">realhost</dt>
+  <dd>実際に接続したいサーバ</dd>
+
+  <dt id="user">user</dt>
+  <dd>プロキシで認証が必要な場合のユーザ名</dd>
+
+  <dt id="password">password</dt>
+  <dd>プロキシで認証が必要な場合のパスワード</dd>
+
+  <dt id="noproxy">-noproxy</dt>
+  <dd>プロキシ設定を無効化する。-proxy=none:// と同じ。</dd>
+</dl>
+
+<h2 id="example">使用例</h2>
+<pre>
+open -a "Tera Term Mac" --args -proxy=socks5://user:pass@proxy:1080 sshserver /ssh
+open -a "Tera Term Mac" --args -proxy=telnet://proxy:8023 telnetserver:23 /nossh
+open -a "Tera Term Mac" --args -proxy=none:// sshserver /ssh
+open -a "Tera Term Mac" --args -noproxy sshserver /ssh
+</pre>
+
+<h2 id="notes">注意</h2>
+<p>
+以下の形式は使用できません。
+</p>
+<pre>
+protocol://&lt;user&lt;:password&gt;@&gt;proxyserver:proxyport/realhost:ポート番号
+</pre>
+
+<p>
+Tera Term が処理する telnet://server&lt;:port&gt; 形式のパラメータと競合するため、プロキシサーバを指定するために以下の形式を使用することはできません。
+</p>
+<pre>
+protocol://&lt;user&lt;:password&gt;@&gt;proxyserver:proxyport
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../commandline/ttssh.html">‹ SSH のコマンドライン</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/file.html">切断する ›</a></nav>
+</body>
+</html>

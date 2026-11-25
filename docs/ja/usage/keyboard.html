@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>キーボード</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>キーボードとショートカット</span><a class="ttw-lang" href="../../en/usage/keyboard.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>キーボード</h1>
+
+<p>
+キーボードに関するいくつかの設定は <A HREF="../menu/setup-keyboard.html">[設定] キーボード...</A> でできます。
+</p>
+
+<p>
+キーボード設定ファイル (KEYBOARD.CNF) を書きかえることで自由にキー設定を変更することができます。Tera Term Mac は設定フォルダ (~/Library/Application Support/Tera Term Mac) の KEYBOARD.CNF を読み込みます。Windows 版 Tera Term で使っていた KEYBOARD.CNF もそのまま使えます。詳しくは、<A HREF="../setup/keyboard.html">設定ファイル/キーボード設定 概要</A> を読んでください。
+</p>
+
+<p>
+Mac のキーは、PC のキーの同じ位置・同じ刻印のキーとして扱います。Mac のキーボードにない Home / End / PageUp / PageDown は fn+←/→/↑/↓、テンキーの NumLock は clear キーです。
+</p>
+
+<h2>ショートカット・キー</h2>
+
+<h3>VT window</h3>
+
+<p>
+ショートカット・キーには &#8984; (Command キー) を使います。&#8984; を使うキーはすべてメニューのショートカットで、接続先には送りません。<br>
+ヒント: <A HREF="tips/user-shortcutkey.html">「ユーザー・ショートカット・キー」</A>
+</p>
+
+<dl>
+
+<dt>&#8984;B</dt>
+<dd>ブレーク信号を送出します。(シリアル接続と Telnet のとき。SSH では送れません)</dd>
+
+<dt>&#8984;C, Ctrl+Insert</dt>
+<dd>マウスで選択した文字列をクリップボードへコピーします。
+<a href="../menu/setup-additional-copy-and-paste.html#AutoTextCopy">AutoTextCopy</a> が有効な場合は、マウスで選択した時点でコピーされています。</dd>
+
+<dt>&#8984;D</dt>
+<dd>セッションを複製します。</dd>
+
+<dt>&#8984;G</dt>
+<dd>ローカルシェル接続 (この Mac のシェル) を新しいウィンドウで開きます。</dd>
+
+<dt>&#8984;I</dt>
+<dd>接続を切断します。</dd>
+
+<dt>&#8984;N</dt>
+<dd>新しいホストまたはシリアルポートに接続します。</dd>
+
+<dt>&#8984;P</dt>
+<dd>現在の画面または、マウスで選択された文字を印刷します。</dd>
+
+<dt>&#8984;W</dt>
+<dd>このウィンドウを閉じます。</dd>
+
+<dt>&#8984;Q</dt>
+<dd>Tera Term Mac を終了します。接続中のウィンドウがあるときは確認します。</dd>
+
+<dt>&#8984;R</dt>
+<dd>クリップボードの中の文字列をホストへ送出し、続いて改行コードも送出します。</dd>
+
+<dt>&#8984;T</dt>
+<dd>Telnet の AYT (Are You There) コマンドを送出します。通常ホストはこれに呼応して何等かのメッセージを送り返してきます。Telnet 接続のときだけ使用できます。</dd>
+
+<dt>&#8984;V, Shift+Insert</dt>
+<dd>クリップボードの中の文字列をホストへ送出します。
+マウス右クリックでも同じです。
+<a href="../setup/teraterm-misc.html#DisablePasteMouseMButton">DisablePasteMouseMButton</a> を off にしている場合は、マウス中ボタンクリックでも同じです。
+</dd>
+
+<dt>&#8984;A</dt>
+<dd>バッファ全体を選択します。</dd>
+
+<dt>&#8984;,</dt>
+<dd><a href="../menu/setup-terminal.html">端末の設定</a>を開きます。</dd>
+
+<dt>Ctrl+Tab, Ctrl+Shift+Tab</dt>
+<dd>Tera Term Mac のウィンドウを切り替えます。Mac の &#8984;` でも切り替えられます。タブにまとめたウィンドウは &#8984;&#8679;[ / &#8984;&#8679;] で前・次のタブに移ります。</dd>
+
+<dt>Ctrl+Up/Down cursor</dt>
+<dd>上下方向へ一行スクロールします。(macOS の設定で Mission Control などに割り当てられていると使えません)</dd>
+
+<dt>Ctrl+PageUp/PageDown, Shift+PageUp/PageDown</dt>
+<dd>上下方向へページ単位スクロールします。Mac のキーボードでは fn+↑/↓ が PageUp/PageDown です。</dd>
+
+<dt>Ctrl+Home</dt>
+<dd>バッファの先頭へ移動します。</dd>
+
+<dt>Ctrl+End</dt>
+<dd>バッファの末尾へ移動します。</dd>
+
+<dt>Option+F / E / S / O / W / K / H</dt>
+<dd>ウィンドウ内のメニューバーを表示しているとき、[ファイル] [編集] [設定] [コントロール] [ウィンドウ] [漢字コード] [ヘルプ] の各メニューを開きます。Option キーをメタ・キーにしているときは使えません。</dd>
+
+<dt>F1 key</dt>
+<dd>Num pad NumLockキー押下。</dd>
+
+<dt>F2 key</dt>
+<dd>Num pad '/' キー押下。</dd>
+
+<dt>F3 key</dt>
+<dd>Num pad '*' キー押下。</dd>
+
+<dt>F4 key</dt>
+<dd>Num pad '-' キー押下。</dd>
+
+</dl>
+
+<p>
+F1 などのファンクションキーは、macOS の設定によっては fn キーと一緒に押す必要があります。
+</p>
+
+<h3>TEK window</h3>
+
+<p>
+TEK window のショートカット・キーには Option キーを使います。
+</p>
+
+<dl>
+<dt>Option+C</dt>
+<dd>マウスで選択された領域の画像をクリップボードへコピーします。</dd>
+
+<dt>Option+O</dt>
+<dd>VT window に移動します。</dd>
+
+<dt>Option+P</dt>
+<dd>画面全体または、マウスで選択された領域の画像を印刷します。</dd>
+
+<dt>Option+Q</dt>
+<dd>TEK window を閉じます。</dd>
+
+<dt>Option+R</dt>
+<dd>VT window の &#8984;R と同じ。</dd>
+
+<dt>Option+V</dt>
+<dd>VT window の &#8984;V と同じ。</dd>
+
+</dl>
+
+<h2>メタ・キー (Meta key)</h2>
+
+<p>
+<A HREF="../menu/setup-keyboard.html">[設定] キーボード...</A> で <b>Meta キー</b> を選択すると、VT window で Option キーをメタ・キーとして使うことができます。例えば Option+A を押すと、ESC A を送出します。左右の Option キーのどちらか一方だけをメタ・キーにすることもできます (left / right)。<br>
+メタ・キーにしていても、&#8984; を使うショートカット・キーはそのまま使えます。
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-copy-and-paste.html">‹ コピーと貼り付けの設定</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-keyboard.html">キーボードの設定 ›</a></nav>
+</body>
+</HTML>

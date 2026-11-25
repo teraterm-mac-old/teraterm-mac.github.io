@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>開発者向け (Mac 版) - 画面の言語とヘルプ</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>画面の言語とヘルプ</span><a class="ttw-lang" href="../../en/reference/mac-develop-i18n.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>画面の言語とヘルプ (Mac 版)</h1>
+
+<ul>
+  <li><a href="mac-develop.html">ソースの構成</a></li>
+  <li><a href="mac-develop-build.html">ビルド・テスト・リリース</a></li>
+  <li>画面の言語とヘルプ (このページ)</li>
+</ul>
+
+<h2 id="lang">画面の言語 (Lang.swift)</h2>
+
+<p>
+画面の文言は <code>Sources/TeraCore/Lang.swift</code> の <code>Lang</code> で引きます。言語ファイルは 2 種類あります。
+</p>
+
+<table border="1">
+<tr><th>引き方</th><th>言語ファイル</th><th>使うところ</th></tr>
+<tr><td><code>Lang.t("Tera Term", "MENU_FILE_NEW", "新しい接続...")</code></td><td>本家の <code>installer/release/lang_utf8/&lt;言語&gt;.lng</code> (節とキーは本家と同じ)</td><td>本家と同じ文言</td></tr>
+<tr><td><code>Lang.m("MENU_TOGGLE_MENUBAR", "メニューバーを開く")</code></td><td><code>macos/Resources/lang/mac_&lt;言語&gt;.lng</code> の <code>[Tera Term Mac]</code> 節</td><td>Mac 版だけの文言</td></tr>
+</table>
+
+<p>
+最後の引数は、見つからないときの既定の文言 (日本語) です。<code>%s</code> <code>%d</code> などを含む文言には、後ろに値を渡せます (<code>Lang.m("SETUP_INI_LOADED", "%s を読み込みました", name)</code>)。
+返す文字列からは Windows のアクセスキー (<code>(&amp;F)</code> <code>&amp;F</code>) とショートカットの表示 (<code>\tAlt+N</code>) を外し、<code>\n</code> を改行にします。手を加えない値が要るときは <code>Lang.raw</code> を使います。
+</p>
+
+<h3 id="lookup">探す順</h3>
+
+<ol>
+  <li>選んだ言語の本家の言語ファイル (例 <code>ja_JP.lng</code>)</li>
+  <li>選んだ言語の Mac 版の言語ファイル (例 <code>mac_ja_JP.lng</code>)</li>
+  <li>英語の本家の言語ファイル (<code>en_US.lng</code>)</li>
+  <li>英語の Mac 版の言語ファイル (<code>mac_en_US.lng</code>)</li>
+  <li>引数の既定の文言</li>
+</ol>
+
+<p>
+節名とキー名は大文字小文字を区別しません。言語ファイルは、アプリでは <code>Contents/Resources/lang</code>、開発中 (<code>swift build</code>) はソースの <code>macos/Resources/lang</code> と <code>installer/release/lang_utf8</code> から読みます。
+</p>
+
+<h3 id="auto">言語の選び方</h3>
+
+<p>
+使う言語は UserDefaults の <code>UILanguageFile</code> (本家の TERATERM.INI と同じ名前。例 <code>ja_JP.lng</code>) です。本家の <code>lang_utf8\ja_JP.lng</code> のような書き方でも、ファイル名だけを使います。
+空のとき (自動) は macOS の言語設定を優先順に見て、いちばん近い言語ファイルを選びます。地域まで合うもの (例 <code>pt-BR</code> → <code>pt_BR.lng</code>)、なければ同じ言語のもの、中国語は繁体字 (Hant・TW・HK・MO) なら <code>zh_TW.lng</code>、それ以外は <code>zh_CN.lng</code> です。どれもなければ英語にします。
+言語を変えると <code>Lang.didChange</code> の通知が出て、メニューなどを作り直します。
+</p>
+
+<h3 id="add-string">文言を足すには</h3>
+
+<ol>
+  <li>本家の言語ファイルに同じ意味の文言があれば、<code>Lang.t</code> で本家の節とキーを使います。</li>
+  <li>なければ <code>Lang.m("キー", "日本語の文言")</code> と書き、<code>Resources/lang/mac_ja_JP.lng</code> と <code>mac_en_US.lng</code> の <code>[Tera Term Mac]</code> 節にキーを足します。ほかの言語の <code>mac_*.lng</code> にも足してください (ない言語では英語が出ます)。</li>
+  <li>言語ファイルの値は前後の空白が落ちます。前後に空白や記号が要るときはコードの側で付けてください。</li>
+</ol>
+
+<h3 id="add-language">言語を足すには</h3>
+
+<p>
+選べる言語は、本家の <code>lang_utf8</code> にある言語ファイル (<code>Default.lng</code> と <code>mac_*.lng</code> を除く) です。名前は各ファイルの <code>[Info] language=</code> を使います。
+本家にある言語なら、<code>Resources/lang/mac_&lt;言語&gt;.lng</code> を作って (<code>mac_en_US.lng</code> を写して訳します。UTF-8) <code>[Info] language=</code> と <code>[Tera Term Mac]</code> 節を書けば、<code>scripts/bundle.sh</code> がアプリに入れます。
+本家にない言語は、まず本家の言語ファイルが必要です。
+</p>
+
+<h2 id="help">ヘルプ</h2>
+
+<p>
+ヘルプは <code>macos/Resources/help-mac/{ja,en}</code> にあります。本家の <code>doc/ja</code>・<code>doc/en</code> を元に Mac 向けに書き直したもので、本家と同じ BSD ライセンスです。
+画面の言語が日本語のときは ja、それ以外の言語では en を見ます (<code>HelpViewer.language</code>)。その言語のヘルプがないときはもう一方を使います。
+</p>
+
+<table border="1">
+<tr><th>ファイル</th><th>中身</th></tr>
+<tr><td>html/</td><td>ヘルプのページ。従来の目次は html/index.html</td></tr>
+<tr><td>teraterm.hhp</td><td>本家の CHM と同じ hhp。<code>[ALIAS]</code> の <code>HlpXxx=html\menu\xxx.html</code> を、ヘルプ ID からページを引くのに使います (Shift_JIS)</td></tr>
+<tr><td>modern-toc.json</td><td>モダン表示の左の目次 (やりたいこと別)</td></tr>
+<tr><td>html/modern.html</td><td>モダン表示のトップページ</td></tr>
+</table>
+
+<p>
+アプリでは <code>scripts/bundle.sh</code> が <code>Contents/Resources/help/{ja,en}</code> にコピーし、本家の <code>teraterm/common/helpid.h</code> を <code>Contents/Resources/help/helpid.h</code> に入れます。開発中はソースの help-mac (なければ本家の doc) を読みます。
+</p>
+
+<h3 id="helpid">ヘルプ ID</h3>
+
+<p>
+ダイアログの「ヘルプ」ボタンなどは、本家と同じヘルプ ID でページを開きます。
+</p>
+
+<pre>
+HelpViewer.openIndex()                                 // 目次 (モダン表示では modern.html)
+HelpViewer.open(topic: "HlpMenuSetupAdditionalTheme")  // helpid.h の名前
+HelpViewer.open(id: 43024)                             // helpid.h の番号
+HelpViewer.open(relativePath: "html/menu/setup-font.html#xxx")
+</pre>
+
+<p>
+名前から teraterm.hhp の <code>[ALIAS]</code> でページを、番号から helpid.h の <code>#define</code> で名前を引きます。知らない名前のときは目次 (HlpIndex) を開きます。
+ページを足して ID から開きたいときは、teraterm.hhp の <code>[ALIAS]</code> に行を足します。
+</p>
+
+<h3 id="images">ヘルプの画像</h3>
+
+<p>
+アプリを小さくするため、ヘルプの画像 (*.png) はアプリに入れていません。ページを表示したとき、手元に画像がなければ、本家が公開している Web 版のマニュアル (<code>https://teratermproject.github.io/manual/5/&lt;言語&gt;/</code>) の同じパスから読みます。ネットにつながっていないときは画像だけが出ません。
+そのため、Mac 版で書き直したページでも、画像のパスは本家と同じにしておく必要があります。
+</p>
+
+<h3 id="modern">モダン表示 (HelpModernStyle.swift)</h3>
+
+<p>
+ヘルプのウインドウでは「クラシック」と「モダン」を切り替えられます (既定はモダン。UserDefaults の <code>HelpStyleModern</code>)。モダン表示でもページの HTML はそのままで、表示するときにスクリプトで新しい見た目 (システムのフォント、広めの行間、ダークモード、左の目次と検索) をかぶせます。
+</p>
+
+<ul>
+  <li>左の目次は <code>&lt;言語&gt;/modern-toc.json</code> です。形は <code>[{"t": 見出し, "items": [{"t": 題, "p": html/ からのパス}]}]</code> で、<code>p</code> には <code>#</code> 付きのアンカーも書けます。ファイルがないときは、従来の目次 (html/index.html の <code>div.topic</code> とその下のリンク) から作ります。</li>
+  <li>トップページは html/modern.html です (なければ html/index.html)。</li>
+  <li>ページを足したら、html/index.html、modern-toc.json、必要なら modern.html の 3 か所に載せてください。</li>
+</ul>
+
+<h3 id="encoding">ページの文字コード</h3>
+
+<p>
+本家から来たページの多くは Shift_JIS (日本語) / ASCII (英語) で、改行は CRLF です。書き直すときは元の文字コードと改行のままにしてください。Mac 版で新しく作るページは UTF-8 (<code>&lt;meta charset="utf-8"&gt;</code>) にしています。モダン表示はページの meta charset を見て読みます (ないときは UTF-8、だめなら Shift_JIS)。
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../reference/mac-develop-build.html">‹ ビルド・テスト・リリース</a><a href="../index.html">目次</a><span></span></nav>
+</body>
+</html>

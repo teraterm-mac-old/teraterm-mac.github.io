@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Notes on Using Non-ASCII Characters in User Names or Passwords</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>Non-ASCII user names</span><a class="ttw-lang" href="../../../ja/usage/tips/login_nonascii.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Notes on Using Non-ASCII Characters in User Names or Passwords</h1>
+
+<h3>SSH Connection</h3>
+<a href="https://datatracker.ietf.org/doc/html/rfc4252" target="_blank">RFC 4252</a> specifies that both the user name and password are transmitted in UTF-8 in the SSH protocol.<br>
+Tera Term Mac uses the macOS ssh command for SSH connections, and passes user names and passwords containing non-ASCII characters to it in UTF-8.<br>
+However, if the SSH server does not correctly handle UTF-8, SSH authentication may fail.<br>
+Furthermore, depending on the implementation of processing related to SSH authentication (such as PAM, SSSD, or LDAP), passwords may be handled using a locale-dependent character encoding.<br>
+In such cases, a password containing non-ASCII characters may not be interpreted correctly.
+
+<h3>Telnet Connection</h3>
+The Telnet protocol is fundamentally based on ASCII, and the use of non-ASCII characters in user names or passwords is not assumed.<br>
+When Tera Term Mac sends user names or passwords containing non-ASCII characters, they are encoded according to the configured transmit character encoding.<br>
+If the Telnet server uses a different character encoding, authentication may fail.
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../usage/tips/data_drop.html">‹ Dropped data</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../usage/tips/vt100_wrap.html">VT100 line wrapping ›</a></nav>
+</body>
+</HTML>

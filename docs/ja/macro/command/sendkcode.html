@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>sendkcode</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>sendkcode</span><a class="ttw-lang" href="../../../en/macro/command/sendkcode.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>sendkcode</h1>
+
+<p>
+キーコードを送信する。
+</p>
+
+<pre class="macro-syntax">
+sendkcode &lt;key code&gt; &lt;repeat count&gt;
+</pre>
+
+
+<h2>解説</h2>
+
+<p>
+あるキーまたはキーの組み合わせを押すことに対して割り当てられた機能を実行させる。<br>
+そのキーまたはキーの組み合わせはキーコード &lt;key code&gt; (キーボード設定ファイルと同じ、IBM PC キーボードのキーコード) で指定される。その機能は &lt;repeat count&gt; 回繰り返して実行される。<br>
+キーボード設定ファイル (KEYBOARD.CNF) で割り当てのあるキーは、その内容を送る。割り当てがないときは、よく使うキー (矢印キー、ファンクションキー、テンキーなど) だけ送れる。送れないキーコードでは、画面に「対応していません」と出す。
+</p>
+
+<p>
+通常、その機能とは文字または文字列をホストへ送出するということ。その機能はキーボード設定ファイルによって定義することができる。<br>
+<a href="../../setup/keyboard.html">キーボード設定ファイル</a> 参照。
+</p>
+
+<p>
+sendkcode を用いて <a href="../../setup/keyboard.html">キーボード設定ファイル</a>の [User keys] セクション &lt;制御フラグ&gt; 2 マクロファイルの実行はできません。<br>
+sendkcode を用いた <a href="../../setup/keyboard.html">キーボード設定ファイル</a>の [User keys] セクション &lt;制御フラグ&gt; 3 メニューコマンドの実行は未サポートです。<br>
+メニューコマンドの実行は<a href="callmenu.html">callmenu</a>コマンドを使用して下さい。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; ↓キーが3回押された場合と同じ動作をさせる。
+; ↓キーのキーコードは IBM PC キーボードの場合336。
+sendkcode 336 3
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/sendfile.html">‹ sendfile</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/sendln.html">sendln ›</a></nav>
+</body>
+</html>

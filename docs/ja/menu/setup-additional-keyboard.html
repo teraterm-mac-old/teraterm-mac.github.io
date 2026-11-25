@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Keyboard" タブ ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>キーボードタブ</span><a class="ttw-lang" href="../../en/menu/setup-additional-keyboard.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Keyboard" タブ ([Setup] メニュー)</h1>
+
+    <dl>
+      <dt>Transmit DEL by:</dt>
+      <dd>
+	<dl>
+	  <dt id="BSKey">Backspace key</dt>
+	  <dd>
+	    このオプションが選択されると delete キーを押した時に DEL 文字
+	    (ASCII $7F) が送出されます。
+	    選択されないと BS 文字 (ASCII $08) が送出されます。<br>
+	    また、このオプションが選択された(選択されない)時でも
+	    Control+delete で BS (DEL) 文字を送出できます。
+	  </dd>
+
+	  <dt id="DeleteKey">Delete key</dt>
+	  <dd>
+	    このオプションが選択されると前方削除キー (fn+delete、拡張キーボードの &#x2326; キー) を押した時に
+	    DEL 文字が送出されます。
+	    このオプションが選択されない場合、このキーの機能は
+	    <a href="../setup/keyboard.html">キーボード設定ファイル</a>
+	    により決定されます。
+	  </dd>
+	</dl>
+      </dd>
+
+      <dt id="MetaKey">Meta key</dt>
+      <dd>
+	Option キーをメタ・キー (meta key) として使います。
+	例えば、Option+A を押すと、ESC A を送出します。<br>
+	off は使わない、on は左右どちらの Option キーも、left は左の Option キーだけ、right は右の Option キーだけをメタ・キーにします。
+	メタ・キーにしない側の Option キーは、ふつうの文字入力 (Option との組み合わせで入力する記号など) に使えます。<br>
+	メニューのショートカットは &#x2318; キーなので、メタ・キーモードでも使えます。
+      </dd>
+
+      <dt>Disabled mode:</dt>
+      <dd>
+	<dl>
+	  <dt id="DisableAppKeypad">Application Keypad</dt>
+	  <dd>
+	    アプリケーションキーパッドモードを無効にします。<br>
+	    アプリケーションキーパッドモードを無効にすると、
+	    なにかの拍子でアプリケーションキーパッドモードに移行してしまい
+	    数値キーパッドが使えなくなるというトラブルを防ぐ事ができます。
+	    しかし、アプリケーションキーパッドモードを使用している
+	    アプリケーションでは不具合が起きるかもしれません。
+	  </dd>
+
+	  <dt id="DisableAppCursor">Application Cursor</dt>
+	  <dd>
+	    アプリケーションカーソルモードを無効にします。
+	  </dd>
+	</dl>
+      </dd>
+    </dl>
+
+    <p>
+      <A HREF="../setup/keyboard.html">キーボード設定ファイル</A>
+      を書きかえることで自由にキー設定を変更することができます。
+    </p>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-ctrlseq.html">‹ 制御シーケンスタブ</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-additional-mouse.html">マウスタブ ›</a></nav>
+</body>
+</html>

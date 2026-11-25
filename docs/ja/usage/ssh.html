@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH 接続</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>SSH で接続する</span><a class="ttw-lang" href="../../en/usage/ssh.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH 接続</h1>
+
+    <p>
+      Tera Term Mac の SSH 接続について解説します。Tera Term Mac は macOS に入っている OpenSSH の ssh コマンド (/usr/bin/ssh) を使って、SSH2 プロトコルで接続します。SSH の設定は、できるかぎり ssh のオプションに直して渡します。
+    </p>
+
+    <h2 id="prerequisite">前提知識</h2>
+
+    <p>
+      SSH の認証方式には
+    </p>
+      <ul>
+        <li>パスワード認証</li>
+        <li>公開鍵（と秘密鍵のペアによる）認証
+          <ul>
+            <li>認証エージェントを利用する (macOS の ssh-agent を使います)</li>
+          </ul>
+        </li>
+        <li>keyboard-interactive 認証</li>
+      </ul>
+    <p>
+      があります。ここでは需要が多いと思われる認証方法について触れたいと思います。
+    </p>
+
+    <h2 id="connproc">接続の手順</h2>
+
+    <p>
+      <a href="../menu/file-new.html">[ファイル] メニューの「新しい接続...」</a>(&#8984;N) を選ぶと、接続ダイアログが開きます。
+      「ホスト」に接続先を入れ、「サービス」で SSH を選んで「接続」を押します。
+    </p>
+
+    <p id="ssh_auth_dialog">
+      認証は接続ダイアログの内容と、ssh コマンドのやりとりで行います。<br />
+      どの認証方式を先に試すかは <a href="../menu/setup-sshauth.html">[設定] メニューの「SSH認証...」</a>で設定できます (ssh の PreferredAuthentications として渡します)。
+      ssh はひとつの認証方式に失敗すると、サーバが許している次の方式を続けて試します。
+    </p>
+    <ul>
+      <li>パスワード認証を使用する場合は、「ユーザー名」と「パスワード」を入力します。「パスワード」を空にすると、ssh が端末にパスワードを聞いてくるので、そこで入力します。パスワードを入れておくと、パスワードの入力を求められたときに Tera Term Mac が自動で送ります。<br>
+          ※パスワード送信時の SSH パケットは暗号化されているので、TELNET のようにパスワードが平文で送信されることはありません。</li>
+      <li>公開鍵認証を用いる場合は、「秘密鍵」の「選ぶ…」ボタンで秘密鍵のファイルを指定します (ssh の -i)。空のときは ~/.ssh にある鍵など、ssh の標準の鍵を使います。パスフレーズは端末で聞かれます。<br>
+          ※使える秘密鍵の形式は OpenSSH が読めるものだけです。PuTTY 形式 (.ppk) の鍵は、PuTTYgen などで OpenSSH 形式に変換してください。</li>
+      <li>keyboard-interactive 認証では、サーバからのプロンプトが端末に表示されるので、そこで入力します。</li>
+      <li>認証エージェントを用いる場合は、ssh-agent に鍵を登録しておきます (ssh-add)。macOS では、パスフレーズをキーチェーンに保存しておくこともできます (ssh-add --apple-use-keychain)。</li>
+    </ul>
+
+    <h3 id="username_input">ユーザ名入力</h3>
+	<p>
+	  接続ダイアログには、<a href="../menu/setup-sshauth.html#DefaultUserName">設定</a>によってあらかじめユーザ名が入力されます。
+	  「ログオンユーザ名を使用」を選ぶと、この Mac にログインしているユーザ名が入ります。
+	</p>
+        <p>
+          漢字などの非ASCII文字を入力できます(<a href="https://datatracker.ietf.org/doc/html/rfc4252" target="_blank">RFC 4252</a>)。サーバーも対応している必要があります。<br>
+          参照: <a href="../usage/tips/login_nonascii.html">ユーザ名またはパスワードに非 ASCII 文字を使用する場合の注意</a>
+        </p>
+
+    <h3 id="passwd_input">パスワード / パスフレーズ入力</h3>
+    <p>
+      ssh が端末でパスワードやパスフレーズを聞いてきたときは、そのまま端末に入力します。入力した文字は表示されません。
+    </p>
+    <ul>
+      <li>&#8984;V で貼り付けることもできます。</li>
+    </ul>
+
+    <h2 id="securitywarning">セキュリティ警告</h2>
+
+    <h3 id="known_hosts">ssh_known_hosts ファイル</h3>
+
+    <p>SSH 接続時には、ssh がサーバのホスト鍵を known_hosts ファイルと照らし合わせます。既定は ~/.ssh/known_hosts で、macOS のターミナルで ssh を使うときと同じファイルです。ファイルは <a href="../menu/setup-ssh.html">[設定] メニューの「SSH...」</a>で変えられます。<br />
+       結果によって、ssh は端末に次のように表示します。</p>
+
+    <ul>
+      <li>接続中のホストの鍵が登録されていない: 「The authenticity of host ... can't be established.」と指紋が表示され、続けるか聞かれます。yes と入力すると鍵を登録して接続します。</li>
+      <li>登録されている鍵と違う: 「REMOTE HOST IDENTIFICATION HAS CHANGED!」と表示され、接続しません。</li>
+      <li>登録されている鍵と同じ: 警告は表示されません。</li>
+    </ul>
+
+    <p>警告が表示された場合には、意図しないサーバに接続しているか中間者攻撃に遭っている可能性があります。<br />
+       しかし、始めてサーバに接続するときや、サーバの再インストールなどにより SSH サーバのホスト鍵が変更された場合にもこの警告が表示されます。「警告に表示されている、接続中の SSH サーバのホスト鍵の指紋」と「接続しようとしている SSH サーバのホスト鍵の正確な指紋」を比較してください。<br />
+       ホスト鍵が正しく変わったことを確かめたら、ローカルシェル (&#8984;G) で ssh-keygen -R ホスト名 を実行して古い鍵を消し、接続し直します。</p>
+
+    <p>OpenSSH の場合、サーバ管理者は以下のようなコマンドでサーバのホスト鍵の指紋を取得できます。</p>
+
+    <pre>ssh-keygen -l -f /etc/ssh/ssh_host_rsa_key.pub</pre>
+
+    <h3 id="VerifyHostKeyDNS">SSHFP RR</h3>
+
+    <p>SSH 接続時に、RFC 4255 に規定されている SSHFP RR (Secure SHell FingerPrint Resource Record) による検証が可能です。<a href="../menu/setup-ssh.html">[設定] メニューの「SSH...」</a>の設定を、ssh の VerifyHostKeyDNS オプションとして渡します。</p>
+
+    <p>ドメインの所有者であれば DNS の SSHFP レコードに SSH サーバホスト鍵の指紋を登録することが可能です。ssh は SSHFP レコードを取得し、接続中のサーバホスト鍵と比較します。</p>
+
+    <p>SSHFP に関して規定している RFC 4255 には「DNSSEC 認証されていない SSHFP RR を信頼してはならない」とあります。DNSSEC で検証できないときは、ssh は一致したことを表示するだけで、known_hosts にない鍵はこれまでどおり確認を求めます。</p>
+
+    <h2 id="generate">キーの生成</h2>
+
+    <p>
+      ここで、公開鍵認証に用いる公開鍵・秘密鍵ペアの生成方法を説明します。鍵ファイルを生成するには <a href="../menu/setup-sshkeygenerator.html">[設定] メニューから「SSH鍵生成...」</a>を選択します。鍵は macOS の ssh-keygen コマンドで作ります。
+    </p>
+    <p>
+      「鍵の種類」で RSA、DSA、ECDSA-256/384/521、ED25519 から選べます。鍵のパスフレーズ（パスワードのようなもの。ただし空白を含んでもいいし、一般にパスワードよりも長い物が指定可能）とコメントを入力して「生成」を押します。その後、「公開鍵の保存」ボタン、「秘密鍵の保存」ボタンを押してキーを保存します。保存先は ~/.ssh フォルダが一般的です。保存が終わったら「閉じる」で終了します。
+    </p>
+
+    <p>
+      このキー・ファイルの使用方法ですが、拡張子が「pub」となっているファイル（「公開鍵」）の内容を、サーバの指定の場所に保管します。（一般的には (home dir)/.ssh/authorized_keys に内容を追加します。ローカルシェルで ssh-copy-id コマンドを使うこともできます。）また、拡張子が付いていないファイルは「秘密鍵」となり、ログイン時に指定する事となります。
+    </p>
+
+    <p>
+      <em>注意</em>：秘密鍵（private key）は第三者に絶対に知られてはいけないため、管理を厳重に行うようにしてください。また、誤ってサーバへ転送してしまわないようにしてください。<br>
+    </p>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-tcpip_edithistory.html">‹ ホストリストの編集</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-ssh.html">SSH の設定 ›</a></nav>
+</body>
+</html>

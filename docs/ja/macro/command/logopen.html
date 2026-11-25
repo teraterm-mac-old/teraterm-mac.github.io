@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>logopen</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>logopen</span><a class="ttw-lang" href="../../../en/macro/command/logopen.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>logopen</h1>
+
+<p>
+ログを開始する。
+</p>
+
+<pre class="macro-syntax">
+logopen &lt;filename&gt; &lt;binary flag&gt; &lt;append flag&gt; [&lt;plain text flag&gt; [&lt;timestamp flag&gt; [&lt;hide dialog flag&gt; [&lt;include screen buffer flag&gt; [&lt;timestamp type&gt;]]]]]
+</pre>
+
+
+<h2>解説</h2>
+
+<p>
+  ファイル &lt;filename&gt; に受信した文字が書き込まれる。ファイル名は<a href="../../menu/setup-additional-log.html">ログの設定</a>の書式が利用できる。<br>
+  ログを開始したあとも次のコマンドは実行される。
+</p>
+
+<p>
+  ファイル名にフォルダを書かないときは、<a href="../../menu/setup-additional-log.html">ログの設定</a>の既定のフォルダにログは作成される。ログの既定のフォルダを決めていなければ、<a href="changedir.html">changedir</a> で決めたフォルダ、それもなければ「書類」フォルダに作成される。<br>
+  フォルダの区切りは '/' と '\' のどちらでもかまわない。
+</p>
+
+<p>
+&lt;binary flag&gt; の値が0のとき、受信した漢字、改行文字は変換されてファイルに書き込まれ、エスケープシーケンスは書き込まれない。<br>
+&lt;binary flag&gt; の値が0以外のとき、受信した文字をすべてそのままファイルに書き込む。
+</p>
+
+<p>
+&lt;append flag&gt; の値が0以外で、ファイル &lt;filename&gt; がすでに存在する場合、そのファイルに追加して書き込む。<br>
+&lt;append flag&gt; の値が0で、ファイル &lt;filename&gt; がすでに存在する場合、そのファイルは上書きされる。
+</p>
+
+<p>
+&lt;plain text flag&gt; が 0 以外の場合、ASCII 非表示文字をログに書き込まない。<br>
+&lt;timestamp flag&gt; が 0 以外の場合、ログの行頭に時刻を追加する。<br>
+ただし、&lt;binary flag&gt; が 0 以外の場合、&lt;plain text flag&gt;, &lt;timestamp flag&gt; は両方とも無視される。バイナリログは<a href="../../menu/file.html">ログ再生</a>に利用可能。
+</p>
+
+<p>
+&lt;hide dialog flag&gt; が 0 以外の場合、ログ転送のダイアログを表示しない。
+</p>
+
+<p>
+&lt;include screen buffer flag&gt; が 0 以外の場合、現在の端末バッファすべてを先にファイルに書き込む。
+</p>
+
+<p>
+&lt;timestamp type&gt; は timestamp の形式を指定する。以下の値が指定出来る。
+</p>
+
+<table>
+  <tr>
+    <th>値</th>
+    <th>意味</th>
+  </tr>
+
+  <tr>
+    <td>0</td>
+    <td>ローカルタイム</td>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td>UTC</td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td>経過時間 (Logging)</td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td>経過時間 (Connection)</td>
+  </tr>
+</table>
+
+<p>
+ログファイルを開けた場合、result に 0 が格納される。開けなかった場合は 1 が格納される。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+connect '/C=1'
+
+; ユーザ名を取得
+getenv 'USER' username
+; 日時を取得
+gettime timestr "%Y%m%d-%H%M%S"
+
+; ログファイル名に日時とユーザ名を入れる。
+sprintf2 filename 'console_%s_%s.log' username timestr
+
+; カレントディレクトリを変更する
+changedir '/Users/user/Desktop'
+
+logopen filename 0 0
+logwrite 'Log start'#13#10
+logwrite '*****************************************************'#13#10
+logclose
+
+end
+</pre>
+
+<pre class="macro-example">
+;
+; ログ採取をしながら、定型処理を連続実行させる。
+;
+
+getenv 'USER' username
+gettime timestr "%Y%m%d-%H%M%S"
+getdir mdir
+sprintf2 filename '%s/console_%s_%s.log' mdir username timestr
+
+logopen filename 0 0
+
+step = 0
+while 1
+  call show_step
+  sendln 'echo do something'
+  wait '$'
+  pause 2
+endwhile
+
+logclose
+end
+
+:show_step
+step = step + 1
+gettime timestr
+sprintf2 str '[%d] %s' step timestr
+statusbox str 'counter'
+return
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="logwrite.html">logwrite</a></li>
+  <li><a href="logclose.html">logclose</a></li>
+  <li><a href="statusbox.html">statusbox</a></li>
+  <li><a href="gettime.html">gettime</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/loginfo.html">‹ loginfo</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/logpause.html">logpause ›</a></nav>
+</body>
+</html>

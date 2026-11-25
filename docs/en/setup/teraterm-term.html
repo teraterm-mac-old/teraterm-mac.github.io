@@ -1,0 +1,153 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Terminal emulation (Tera Term setup file)</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>INI: Terminal</span><a class="ttw-lang" href="../../ja/setup/teraterm-term.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<p>
+To use these items, edit TERATERM.INI and read it with [Setup]-[Restore setup...]. See "<a href="teraterm-ini.html#mac">How Tera Term Mac uses this file</a>".
+</p>
+
+<h1 id="beep">The motion receiving BEL character</h1>
+
+<p>
+Tera Term will sound the beep when the BEL character(ASCII $07) receives.
+</p>
+
+<p>
+You can disable the beep sound for the BEL character by editing the Beep line in the [Tera Term] section of the setup file like the following:
+</p>
+
+<pre>
+Beep=off
+</pre>
+
+<p>
+Also, the terminal screen will flush instead of sounding the beep in the following configuration.
+</p>
+
+<pre>
+Beep=visual
+</pre>
+
+<pre>
+Default:
+Beep=on
+</pre>
+
+
+<h1 id="tekgin">Mouse code in TEK GIN report</h1>
+
+<p>
+In TEK GIN mode, the cross hair cursor appears in the TEK window. When you press a key or click the left mouse button, the key code (ASCII code) is sent with the coordinate of the cursor.
+</p>
+
+<p>
+You can change the key code for the left mouse button by editing the TEKGINMouseCode line in the [Tera Term] section of the setup file like the following:
+</p>
+
+<pre>
+TEKGINMouseCode=&lt;key code&gt;
+</pre>
+
+<pre>
+Default:
+TEKGINMouseCode=32
+(ASCII code 32 corresponds to the space character.)
+</pre>
+
+
+<h1 id="UnicodeDecSpMapping">Mapping of Unicode to DEC special character</h1>
+
+<p>
+  This section describes the settings.
+<p>
+
+<p>
+  See next pages.
+  <ul>
+    <li><a href="../about/emulations_dec_special.html">DEC Special Graphics</a></li>
+    <li><a href="../menu/setup-additional-coding.html#DecSpecial">Additional settings / "Encoding" tab, DEC Special Graphics</a></li>
+    <li><a href="../about/qanda.html#dec_special_graphic">Frequently asked questions</a></li>
+  </ul>
+</p>
+
+<p>
+Some mapping characters are categorized into several groups and you can specify each group to be converted or not.<br>
+If a user configures this option, please specify the sum value of the converting character at UnicodeToDecSpMapping entry.
+</p>
+
+<pre>
+Type A: Rule marks
+Value: 1
+  Box drawings (U+2500-U+257F)
+</pre>
+
+<pre>
+Type B: Symbols
+(it includes undisplayed characters in English environment).
+
+Value: 2
+  Bullet (U+2022)
+  Hyphenation point (U+2027)
+  Light shade (25%) (U+2591)
+  Medium shade (50%) (U+2592)
+  Dark shade (75%) (U+2593)
+  Black small square (U+25AA)
+  Black vertical rectangle (U+25AE)
+  Black very small square (U+2B1D)
+</pre>
+
+<pre>
+Type C: The character that is displayed as bullet(wide character)
+in Japanese environment, and is displayed as Middle dot in English environment.<br>
+NOTICE: A user is recommended to not specifying this option unless in Japanese environment.
+
+Value: 4
+  Middle dot (U+00B7)
+  One dot leader (U+2024)
+  Bullet operator (U+2219)
+</pre>
+
+<pre>
+Default:
+# Type A and B
+UnicodeToDecSpMapping=3
+</pre>
+
+
+<h1 id="BeepVBellWait">Flash time when Beep is Visual Bell</h1>
+<p>
+When the BEL character(ASCII $07) is sent from the host server, Tera Term can blink a screen.
+</p>
+
+<p>
+Blinking is inpremented by reverse terminal and wait for a certain time, and revser terminal again.<br>
+A user can configure the wait time.
+</p>
+
+<pre>
+; Wait time (ms) when Beep is Visual Bell
+BeepVBellWait=100
+</pre>
+
+<pre>
+Default:
+BeepVBellWait=10
+</pre>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../setup/teraterm-ssh.html">‹ Log Level</a><a href="../index.html">Contents</a><a class="ttw-next" href="../setup/teraterm-win.html">INI: Window ›</a></nav>
+</body>
+</HTML>

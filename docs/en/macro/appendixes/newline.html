@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>About new-line characters</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>Newline characters</span><a class="ttw-lang" href="../../../ja/macro/appendixes/newline.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>About new-line characters</h1>
+
+<p>
+New-line characters (CR or CR+LF) received from the host are converted to CR+LF pairs and then passed to the macro.<br>
+You should use the pair (CR+LF) as a new-line character to send from a macro.<br>
+ASCII code 13 (decimal) is for CR, and 10 is for LF.
+</p>
+
+<p>Example:</p>
+<table>
+  <tr>
+    <td><code class="syntax">send 'abc'#13#10</code></td>
+    <td>Same as the statement "<code>sendln 'abc'</code>". The actual new-line character to be sent to the host is determined by the transmit new-line setting.</td>
+  </tr>
+
+  <tr>
+    <td><code class="syntax">wait #10'abc' 'def'#13</code></td>
+    <td>Waits for a line beginning with "abc" or a line ending with "def".</td>
+  </tr>
+
+  <tr>
+    <td><code class="syntax">logwrite 'abc'#13#10</code></td>
+    <td>Writes line "abc" to the log file.</td>
+  </tr>
+</table>
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/appendixes/errormessages.html">‹ Error messages</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/appendixes/ascii.html">ASCII code table ›</a></nav>
+</body>
+</html>

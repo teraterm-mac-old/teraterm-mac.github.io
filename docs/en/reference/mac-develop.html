@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>For developers (Mac version) - Source layout</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Source layout</span><a class="ttw-lang" href="../../ja/reference/mac-develop.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>For developers (Mac version)</h1>
+
+<p>
+This page is about developing Tera Term Mac. For development of the original Tera Term (Windows), see <a href="https://teratermproject.github.io/manual/5/en/reference/develop.html" target="_blank">For developers (Windows Tera Term)</a>.
+</p>
+
+<ul>
+  <li>Source layout (this page)</li>
+  <li><a href="mac-develop-build.html">Build, test and release</a></li>
+  <li><a href="mac-develop-i18n.html">UI languages and help</a></li>
+</ul>
+
+<h2 id="repository">Repository</h2>
+
+<p>
+The source is at <a href="https://github.com/satorunet/teraterm_macos" target="_blank">https://github.com/satorunet/teraterm_macos</a>.
+The repository is a fork of <a href="https://github.com/TeraTermProject/teraterm" target="_blank">TeraTermProject/teraterm</a>, and all of the Mac source lives in the <code>macos/</code> folder.
+Everything outside <code>macos/</code> is a copy of the upstream source. Changes made there do not go upstream; if you want to fix upstream Tera Term, send the change to the TeraTerm Project.
+</p>
+
+<p>
+Tera Term Mac is an unofficial port and is not affiliated with the TeraTerm Project. Please send bug reports, requests and pull requests to this repository's Issues / Discussions / Pull Requests, not to upstream (see also CONTRIBUTING.md in the repository).
+</p>
+
+<h2 id="package">Swift package layout</h2>
+
+<p>
+<code>macos/Package.swift</code> is a Swift Package Manager package (swift-tools-version 5.5, macOS 11 or later). There is no Xcode project file. The targets are:
+</p>
+
+<table border="1">
+<tr><th>Target</th><th>Location</th><th>Contents</th></tr>
+<tr><td>TeraCore</td><td>Sources/TeraCore</td><td>Terminal emulator, character encodings, character widths, TTL macros, file transfer, reading and writing settings files. Does not depend on AppKit (this is what the tests cover)</td></tr>
+<tr><td>TeraMac</td><td>Sources/TeraMac</td><td>The application (executable TeraMac): AppKit windows, menus, dialogs, connections, help and automatic updates</td></tr>
+<tr><td>CTeraFile</td><td>Sources/CTeraFile</td><td>Compiles upstream <code>teraterm/ttpfile</code> C sources (XMODEM / YMODEM / ZMODEM / Kermit / B-Plus / Quick-VAN / raw) as they are. <code>glue/</code> and <code>compat/</code> stand in for the Windows APIs</td></tr>
+<tr><td>COniguruma</td><td>Sources/COniguruma</td><td>The Oniguruma regular expression library (6.9.10), the same one Tera Term macros use</td></tr>
+<tr><td>TeraUninstall</td><td>Sources/TeraUninstall</td><td>Uninstaller (removes the application, settings and connection list, and passwords saved in the keychain)</td></tr>
+<tr><td>TeraCoreTests</td><td>Tests/TeraCoreTests</td><td>Tests for TeraCore (XCTest)</td></tr>
+</table>
+
+<p>
+The only external package is <a href="https://sparkle-project.org/" target="_blank">Sparkle</a> for automatic updates. It is pinned to 2.9.x because Sparkle 2.10 requires macOS 12 or later.
+</p>
+
+<h2 id="core">Main files in TeraCore</h2>
+
+<table border="1">
+<tr><th>File</th><th>Contents</th></tr>
+<tr><td>Terminal.swift</td><td>The terminal emulator (VT100 / xterm compatible escape sequences, screen and scrollback, attributes and colors)</td></tr>
+<tr><td>TTL/</td><td>The TTL macro interpreter, a Swift port of upstream <code>teraterm/ttpmacro</code> (ttmparse.cpp, ttmbuff.c, ttl.cpp, ttl_gui.cpp and others). TTLReserved.swift is the reserved word table generated from ttmparse.h / ttmparse.cpp</td></tr>
+<tr><td>FileTransfer/</td><td>File transfer. The protocols themselves are CTeraFile (upstream ttpfile); file name and folder rules follow upstream</td></tr>
+<tr><td>TEK/</td><td>TEK window (Tektronix 4010/4014) parser, ported from upstream ttptek</td></tr>
+<tr><td>Encoding.swift</td><td>Character encodings (Kanji code). Single-byte code tables are in SBCSTables.swift</td></tr>
+<tr><td>CharWidth.swift / CharWidthTables.swift</td><td>Display width of characters (combining, half width, full width, emoji). The tables are generated from upstream *.tbl files</td></tr>
+<tr><td>SBCSTables.swift</td><td>Tables for ISO8859-x / CPxxx / KOI8-R and others, generated from upstream <code>teraterm/teraterm/mapping/*.map</code></td></tr>
+<tr><td>Lang.swift</td><td>UI languages (upstream language files plus Mac-only strings). See <a href="mac-develop-i18n.html">UI languages and help</a></td></tr>
+<tr><td>IniFile.swift / IniBackup.swift</td><td>Reading and writing .ini files such as TERATERM.INI, and backups</td></tr>
+<tr><td>TTCommandLine.swift</td><td>The Tera Term command line (also used for connect macro parameters)</td></tr>
+<tr><td>TTKeyMap.swift</td><td>KEYBOARD.CNF key maps</td></tr>
+<tr><td>ProxyCommandLine.swift / ProxyHandshake.swift</td><td>TTProxy command line and the handshake with HTTP / SOCKS4 / SOCKS5 / telnet proxies</td></tr>
+<tr><td>TeraLog.swift</td><td>Log files</td></tr>
+<tr><td>Others</td><td>IDN.swift (internationalized domain names), SerialLineMode.swift (serial data bits and parity), TitleFormat.swift (window title), TermLimits.swift (terminal size limits) and more</td></tr>
+</table>
+
+<h2 id="app">Main files in TeraMac (the application)</h2>
+
+<table border="1">
+<tr><th>File</th><th>Contents</th></tr>
+<tr><td>main.swift</td><td>Startup (command line, opening .ttl files, self tests)</td></tr>
+<tr><td>SessionWindowController*.swift</td><td>One window = one connection. Menu actions, logging, file transfer, setup, switching to TEK</td></tr>
+<tr><td>TerminalView.swift</td><td>Drawing the terminal, keyboard, mouse and input methods</td></tr>
+<tr><td>Connection.swift</td><td>Connections. SSH runs macOS's <code>/usr/bin/ssh</code>; telnet and raw TCP use Network.framework; serial ports use termios; the local shell uses forkpty</td></tr>
+<tr><td>SSHSetup.swift / ProxyRelay.swift</td><td>Translate TTSSH / TTProxy settings into ssh options. With a proxy, the application runs itself with <code>--proxy-connect</code> as ssh's ProxyCommand</td></tr>
+<tr><td>Settings.swift</td><td>Terminal settings (stored in UserDefaults; the equivalent of TERATERM.INI). Defaults are read from the upstream TERATERM.INI bundled in the app</td></tr>
+<tr><td>IniImport.swift</td><td>Importing and exporting Windows TERATERM.INI</td></tr>
+<tr><td>MenuBar.swift / InWindowMenuBar.swift</td><td>The menu bar and the menu bar inside the window</td></tr>
+<tr><td>SetupSheet.swift / Dialogs.swift</td><td>The Additional settings sheet and the base class for dialogs</td></tr>
+<tr><td>TeraMenu.swift</td><td>Mac version of TeraTerm Menu (ttpmenu), a connection list in the menu bar</td></tr>
+<tr><td>MacroRunner.swift</td><td>Runs TTL macros on a separate thread and connects them to the terminal window (replaces upstream ttpmacro and DDE)</td></tr>
+<tr><td>HelpViewer.swift / HelpModernStyle.swift</td><td>The help viewer (classic and modern views)</td></tr>
+<tr><td>Updater.swift</td><td>Automatic updates (Sparkle)</td></tr>
+<tr><td>Others</td><td>TEKWindowController.swift, ThemeFile.swift (themes), ColorSchemes.swift, Broadcast.swift, FileDrop.swift, TransferDialogs.swift, Credits.swift (acknowledgements and licenses) and more</td></tr>
+</table>
+
+<h2 id="upstream">Relation to upstream</h2>
+
+<p>
+Upstream Tera Term is written with the Win32 API, so it does not run on the Mac as is. Tera Term Mac is a rewrite in Swift / AppKit that follows upstream behavior.
+</p>
+
+<ul>
+  <li><strong>Upstream source used as is</strong>: the file transfer protocols (C sources of <code>teraterm/ttpfile</code> copied into CTeraFile) and Oniguruma</li>
+  <li><strong>Upstream files used at build time</strong>: <code>installer/release/TERATERM.INI</code> (default settings), <code>installer/release/lang_utf8/*.lng</code> (UI languages), <code>installer/release/theme</code> (sample themes), <code>teraterm/common/helpid.h</code> (help IDs). <code>scripts/bundle.sh</code> copies them into the app</li>
+  <li><strong>Generated from upstream files</strong>: the character width tables and single-byte code tables (<a href="mac-develop-build.html#generators">generators</a>)</li>
+  <li><strong>Ported to Swift</strong>: TTL macros (ttpmacro), TEK, logging, command line, key maps, the TTProxy handshake and more. The comment at the top of each source file names the upstream file or function it is based on</li>
+  <li><strong>Rewritten for the Mac</strong>: windows, menus and dialogs; connections (SSH uses macOS's OpenSSH instead of TTSSH); settings storage (UserDefaults); password storage (keychain)</li>
+  <li><strong>Help</strong>: based on upstream <code>doc/ja</code> and <code>doc/en</code>, rewritten for the Mac, in <code>macos/Resources/help-mac</code></li>
+</ul>
+
+<p>
+What the macro interpreter matches with upstream and what was changed for the Mac is listed in <code>macos/docs/マクロ互換性.md</code> (in Japanese) in the repository.
+Where behavior differs between operating systems, Tera Term Mac follows the macOS way rather than the Windows way.
+</p>
+
+<h2 id="license">License</h2>
+
+<ul>
+  <li>The source in <code>macos/</code> is under the MIT License (<code>macos/LICENSE</code>). Contributions are also published under the MIT License.</li>
+  <li>Parts derived from upstream (the application icon, the TTL macro interpreter, the CTeraFile file transfer code and the tables generated from upstream tables) are under Tera Term's BSD 3-Clause License.</li>
+  <li>Oniguruma is under the BSD 2-Clause License, Sparkle under the MIT License.</li>
+</ul>
+
+<p>
+The full texts are in <code>macos/LICENSE</code>, in the app's Acknowledgements and Licenses window, and in <a href="../about/copyright.html">License and copyright</a>.
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../about/emulations_dec_special.html">‹ DEC Special Graphics</a><a href="../index.html">Contents</a><a class="ttw-next" href="../reference/mac-develop-build.html">Build, test and release ›</a></nav>
+</body>
+</html>

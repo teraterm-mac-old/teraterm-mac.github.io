@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>strspecial</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>strspecial</span><a class="ttw-lang" href="../../../ja/macro/command/strspecial.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>strspecial</h1>
+
+<p>
+Converts special characters.
+</p>
+
+<h2>Format</h2>
+
+<pre class="macro-syntax">
+strspecial &lt;strvar&gt; [&lt;strval&gt;]
+</pre>
+
+<h2>Parameters</h2>
+
+<dl>
+	<dt class="macro">string variable &lt;strvar&gt;</dt>
+	<dd>The specified string is converted.<br />
+	    When the second argument(&lt;strval&gt;) is given, the result converting the argument stores into the string variable &lt;strvar&gt;.</dd>
+	
+	<dt class="macro">string &lt;strval&gt; (optional)</dt>
+	<dd>When this argument is given,  the result converting the argument stores into the string variable &lt;strvar&gt;.</dd>
+
+</dl>
+
+<h2>Remarks</h2>
+
+<p>
+Converts the following characters in the string to special characters.
+</p>
+
+<table border="2">
+ <tr>
+  <th>input</th>
+  <th>output</th>
+ </tr>
+ <tr>
+  <td>\\</td>
+  <td>"\"</td>
+ </tr>
+ <tr>
+  <td>\n</td>
+  <td>line feed</td>
+ </tr>
+ <tr>
+  <td>\t</td>
+  <td>tab</td>
+ </tr>
+</table>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+str = "AB\tCD\nEF\\nGH"
+strspecial str
+messagebox str "special"
+</pre>
+
+<pre class="macro-example">
+strspecial str "AB\tCD\nEF\\nGH"
+messagebox str "special"
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/strscan.html">‹ strscan</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/strsplit.html">strsplit ›</a></nav>
+</body>
+</html>

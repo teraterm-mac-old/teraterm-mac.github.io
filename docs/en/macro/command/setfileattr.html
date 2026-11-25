@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>setfileattr</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>setfileattr</span><a class="ttw-lang" href="../../../ja/macro/command/setfileattr.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>setfileattr</h1>
+
+<p>
+Sets attributes of a file or directory.
+</p>
+
+<pre class="macro-syntax">
+setfileattr &lt;filename&gt; &lt;attributes&gt;
+</pre>
+
+
+<h2>Parameters</h2>
+
+<dl>
+	<dt class="macro">string &lt;filename&gt;</dt>
+	<dd>The file name or directory name</dd>
+
+	<dt class="macro">integer &lt;attributes&gt;</dt>
+	<dd>A user can specify an attribute value combined from the following (the same values as on Windows). Other values are ignored.<br>
+	    <table border="2">
+	      <tr>
+	        <th>Value</th>
+	        <th>Meaning</th>
+	      </tr>
+	      <tr>
+	        <td>$1</td>
+	        <td>Read-only (removes the write permission)</td>
+	      </tr>
+	      <tr>
+	        <td>$2</td>
+	        <td>Hidden file or directory (the Finder hidden flag)</td>
+	      </tr>
+	    </table>
+	</dd>
+</dl>
+
+<h2>Return Value</h2>
+
+<dl>
+	<dt class="macro">System variable &lt;result&gt;</dt>
+	<dd>When the command fails, 0 is stored.<br>
+	    When the command succeeds, 1 is stored.</dd>
+</dl>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; add readonly attribute
+file = '/Users/user/test.txt'
+getfileattr file
+attr = result | $1 ; keep current attributes
+setfileattr file attr
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="getfileattr.html">getfileattr</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-setfileattributesw" target="_blank">SetFileAttributesW (Microsoft Learn)</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/win32/fileio/file-attribute-constants" target="_blank">File Attribute Constants (Microsoft Learn)</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/setexitcode.html">‹ setexitcode</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/setflowctrl.html">setflowctrl ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>New connection ([File] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>New connection</span><a class="ttw-lang" href="../../ja/menu/file-new.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1>New connection ([File] menu)</h1>
+    <p>
+      Connects to a new host, a serial port or the local shell (&#x2318;N).
+      If the connection is already open, a new window is opened for the connection.<br>
+      To replay a log file, use [Replay log...] in the [File] menu.
+    </p>
+
+    <h2>"New connection" dialog box</h2>
+    <p>
+      Choose TCP/IP, Serial or Local shell (the shell of this Mac) and click [Connect].
+      The dialog starts with the type and values you used last time.
+    </p>
+
+    <h3>TCP/IP</h3>
+    <dl>
+      <dt id="Host">Host</dt>
+      <dd>
+	Enter the host name or IP address.<br>
+	If you write user@myhost.example.com, the part before @ is used as the user name.<br>
+	For Telnet, "myhost.example.com /B" connects in Telnet binary mode.<br>
+	Enter the port number in [TCP port#]. Other <a href="../commandline/teraterm.html">command line</a> options written in the host field are not used.
+      </dd>
+
+    <dl>
+      <dt id="HostList">Host List</dt>
+      <dd>
+        You can choose a host from the host list with the drop-down.
+        The saved user name, port, service and private key are filled in.<br>
+        The host list can be edited in the following ways:
+        <ul>
+          <li><a href="setup-additional-tcpip.html#EditHistory">[Setup] Additional settings, TCP/IP tab, Edit host list</a></li>
+          <li>Select "&lt;Edit host list...&gt;" from the drop-down</li>
+        </ul>
+        The host list is saved in the app's preferences. [Save setup...] in the [Setup] menu also writes it to the <a href="../setup/teraterm-ini.html#HostList">Hosts section of TERATERM.INI</a>.<br>
+        Up to 20 hosts can be saved.<br>
+      </dd>
+      <dt id="keybind">keybind</dt>
+      <dd>
+        The standard macOS text editing keys can be used in this edit control, for example:
+        <dl>
+          <dt>Ctrl+a</dt>
+          <dd>Move caret to the beginning</dd>
+          <dt>Ctrl+e</dt>
+          <dd>Move caret to the end</dd>
+          <dt>Ctrl+b</dt>
+          <dd>Move caret back one character</dd>
+          <dt>Ctrl+f</dt>
+          <dd>Move caret forward one character</dd>
+          <dt>Ctrl+d</dt>
+          <dd>Delete one character</dd>
+          <dt>Ctrl+k</dt>
+          <dd>Delete to the end of the line</dd>
+        </dl>
+      </dd>
+    </dl>
+
+      <dt>Add host list</dt>
+      <dd>
+        If checked, the host you entered is added to the top of the host list when you connect.<br>
+        If it is already in the list, it is moved to the top.<br>
+        <a href="setup-additional-tcpip.html#HistoryList">Add host list when new connection</a> in <a href="setup-additional-tcpip.html">Additional settings / "TCP/IP" tab</a> is the initial value of this checkbox.
+      </dd>
+
+      <dt>Telnet</dt>
+      <dd>
+        Uses the Telnet protocol.<br>
+        See also: <a href="../usage/tips/login_nonascii.html">Notes on using non-ASCII characters in user name or password</a>
+      </dd>
+
+      <dt>SSH</dt>
+      <dd>
+        Uses the SSH protocol, connecting with the macOS ssh (/usr/bin/ssh).<br>
+        See also: <a href="../usage/ssh.html">SSH connection</a>
+      </dd>
+
+      <dt>Other</dt>
+      <dd>
+        Uses a protocol other than Telnet / SSH (plain TCP).
+      </dd>
+
+      <dt>TCP port#</dt>
+      <dd>
+        Specify the port number for the selected service.<br>
+        Choosing Telnet or SSH fills in the following default.<br>
+        <table border="1">
+          <tr>
+           <th>Service</th>
+           <th>TCP port#</th>
+           <th>Note</th>
+          </tr>
+
+          <tr>
+           <td>Telnet</td>
+           <td>23</td>
+           <td>well-known ports</td>
+          </tr>
+
+          <tr>
+           <td>SSH</td>
+           <td>22</td>
+           <td>well-known ports</td>
+          </tr>
+
+          <tr>
+           <td>Other</td>
+           <td>(any)</td>
+           <td></td>
+          </tr>
+
+        </table>
+      </dd>
+
+      <dt>User name / Password</dt>
+      <dd>
+        The user name and password for SSH.
+        The user name starts with the one used last time, or the <a href="setup-sshauth.html">SSH Authentication</a> setting.
+        If the password is empty, ssh asks for it in the terminal.<br>
+        See also <a href="../commandline/ttssh.html#passwd_specify">notes on specifying a password</a> on the command line.
+      </dd>
+
+      <dt>Private key</dt>
+      <dd>
+        The private key file for SSH public key authentication. [Choose...] lets you pick it from ~/.ssh. It is passed with ssh's -i option.
+      </dd>
+
+    </dl>
+    <p class="indent1">
+      Note:<br>
+      Only if Telnet is selected and &lt;TCP port#&gt; is 23,
+      Tera Term Mac starts spontaneously sending telnet commands to the host
+      for the option negotiation when the TCP/IP connection is established.
+      In any cases, Tera Term Mac can respond to telnet commands sent by the host.
+    </p>
+
+    <p class="indent1">
+      See also:<br>
+      <a href="../usage/tips/not_port23.html">Telnet port number / Terminal setup for non-telnet connection</a>
+    </p>
+
+    <h3>Serial</h3>
+    <dl>
+      <dt id="SerialPort">Port</dt>
+      <dd>
+        Select a port from the list. The list shows /dev/cu.* devices (USB serial adapters and so on).
+        If no port is available, "(no serial port found)" is shown.
+        Click [Rescan] after plugging in a device.<br>
+        Speed, data bits, parity, stop bits and flow control can also be set here.
+      </dd>
+    </dl>
+
+    <h3>Local shell</h3>
+    <p>
+      Connects to the shell of this Mac. By default your login shell ($SHELL) is started; you can change it on the <a href="setup-additional-cygwin.html">Local shell tab of Additional settings</a>.
+      It can also be opened with [Local shell connection] (&#x2318;G) in the [File] menu.
+    </p>
+
+    <h2>See also</h2>
+    <ul>
+      <li><a href="../setup/teraterm-com.html">Disabling "Line at a time" mode</a>
+    </ul>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/tips/teraterm_config_howto.html">‹ How to configure</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-tcpip_edithistory.html">Editing the host list ›</a></nav>
+</body>
+</html>

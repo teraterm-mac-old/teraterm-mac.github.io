@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tera Term Mac command line</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Command line</span><a class="ttw-lang" href="../../ja/commandline/teraterm.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>Tera Term Mac command line</h1>
+
+<p>
+Tera Term Mac can be started with a command line. Start it from Terminal.app or a script in one of these ways:
+</p>
+
+<pre class="syntax">
+open -a "Tera Term Mac" --args [ &lt;host&gt;[[:]&lt;TCP port#&gt;] | telnet://&lt;host&gt;[:&lt;TCP port#&gt;][/] | ssh://... ]
+         [/B] [/BAUD=&lt;speed&gt;] [/C=&lt;serial port#&gt;|&lt;device&gt;]
+         [/KR=&lt;kanji code (receive)&gt;] [/KT=&lt;kanji code (transmit)&gt;]
+         [/M=&lt;macro file&gt;] [/P=&lt;TCP port#&gt;] [/SPEED=&lt;speed&gt;] [/T=&lt;telnet flag&gt;]
+         [/SHELL] [;&lt;comment&gt;]
+
+"/Applications/Tera Term Mac.app/Contents/MacOS/TeraMac" [same options]
+</pre>
+
+<ul>
+  <li>With <code>open -a</code>, put the options after <code>--args</code>. If the app is already running, macOS does not pass the <code>--args</code> arguments to it. In that case use <code>open -n -a</code> to start a new instance, or run the app's executable (<code>Tera Term Mac.app/Contents/MacOS/TeraMac</code>) directly.</li>
+  <li>Without arguments, the connection list (TeraTerm Menu) opens. With a host name or other options, a new window opens and connects. If the options cannot be understood, the New connection dialog opens.</li>
+  <li>/B, /KR= and /KT= given on the command line apply only to the first window opened at launch. They are not saved.</li>
+  <li>A macro file (.ttl) can also be run with <code>open -a "Tera Term Mac" macro.ttl</code> or by double-clicking it in the Finder. This works even when the app is already running.</li>
+  <li>For ssh:// URLs and SSH options such as /ssh, see "<a href="ttssh.html">TTSSH command line</a>". For proxies, see "<a href="ttproxy.html">TTProxy command line</a>".</li>
+</ul>
+
+
+<h2 id="options">Options</h2>
+
+<dl>
+  <dt id="host">&lt;host&gt;</dt>
+  <dd>Host name or IP address<br>
+	  Enclose an IPv6 address in square brackets (see <a href="https://datatracker.ietf.org/doc/html/rfc3986" target="_blank">RFC3986</a> / <a href="https://datatracker.ietf.org/doc/html/rfc5952#section-6" target="_blank">RFC5952</a>).<br>
+	  When neither SSH nor Telnet is specified, port 22 or no port means SSH, and any other port (such as 23) means Telnet.</dd>
+
+  <dt>&lt;host&gt;:&lt;TCP port#&gt;</dt>
+  <dd>&lt;host&gt; with TCP port number<br>
+      ":" is placed between &lt;host&gt; and &lt;TCP port#&gt;.</dd>
+
+  <dt>&lt;host&gt; &lt;TCP port#&gt;</dt>
+  <dd>&lt;host&gt; with TCP port number<br>
+      One or more spaces are placed between &lt;host&gt; and &lt;TCP port#&gt;.<br>
+      A number just after &lt;host&gt; is regarded as the TCP port number.</dd>
+
+  <dt>telnet://&lt;host&gt;[:&lt;TCP port#&gt;][/]</dt>
+  <dd>URL format<br>
+      The TCP port number and the trailing / can be omitted.<br>
+      When the TCP port number is omitted, 23 is used.<br>
+      Works as a command line argument. Tera Term Mac is not registered as the handler of telnet:// URLs.
+  </dd>
+
+  <dt id="b">/B</dt>
+  <dd>Telnet binary option</dd>
+
+  <dt id="baud">/BAUD=&lt;speed&gt;</dt>
+  <dd>
+    Specifies the speed of the serial port. Same as <a href="#speed">/SPEED=</a>.
+    Whether the value is really used depends on the chip and driver of the serial port.
+  </dd>
+
+  <dt id="c">/C=&lt;serial port#&gt;</dt>
+  <dd>Serial port<br>
+      Specify it as follows:
+      <ul>
+        <li><span class="syntax">/C=/dev/cu.usbserial-XXXX</span> specifies the device directly</li>
+        <li><span class="syntax">/C=1</span> the first serial port found (/dev/cu.*, in name order)</li>
+        <li><span class="syntax">/C=2</span> the second one</li>
+        <li>:</li>
+      </ul>
+      When the number is out of range, the first serial port is used.
+      </dd>
+
+  <dt id="cdatabit">/CDATABIT=&lt;value&gt;</dt>
+  <dd>Data bits of the serial port
+      <ul>
+        <li><span class="syntax">/CDATABIT=7</span> 7bit</li>
+        <li><span class="syntax">/CDATABIT=8</span> 8bit</li>
+      </ul>
+      </dd>
+
+  <dt id="cparity">/CPARITY=&lt;value&gt;</dt>
+  <dd>Parity of the serial port
+      <ul>
+        <li><span class="syntax">/CPARITY=none</span> none</li>
+        <li><span class="syntax">/CPARITY=odd</span> odd</li>
+        <li><span class="syntax">/CPARITY=even</span> even</li>
+        <li><span class="syntax">/CPARITY=mark</span> mark</li>
+        <li><span class="syntax">/CPARITY=space</span> space</li>
+      </ul>
+      </dd>
+
+  <dt id="cstopbit">/CSTOPBIT=&lt;value&gt;</dt>
+  <dd>Stop bits of the serial port
+      <ul>
+        <li><span class="syntax">/CSTOPBIT=1</span> 1bit</li>
+        <li><span class="syntax">/CSTOPBIT=2</span> 2bit</li>
+      </ul>
+      Any value other than 1 means 2 bits.
+      </dd>
+
+  <dt id="cflowctrl">/CFLOWCTRL=&lt;value&gt;</dt>
+  <dd>Flow control of the serial port
+      <ul>
+        <li><span class="syntax">/CFLOWCTRL=x</span> Xon/Xoff</li>
+        <li><span class="syntax">/CFLOWCTRL=hard</span> RTS/CTS</li>
+        <li><span class="syntax">/CFLOWCTRL=rtscts</span> RTS/CTS</li>
+        <li><span class="syntax">/CFLOWCTRL=none</span> none</li>
+        <li><span class="syntax">/CFLOWCTRL=dsrdtr</span> DSR/DTR</li>
+      </ul>
+      </dd>
+
+  <dt id="fd">/FD=&lt;file transfer directory&gt;</dt>
+  <dd>File transfer directory<br>
+      Not used on the startup command line. It works with the connect macro command.</dd>
+
+  <dt id="kr">/KR=&lt;kanji code (receive)&gt;</dt>
+  <dd>Kanji code (receive)<br>
+    For the available codes, see the <a href="../usage/character_encoding.html">character encoding page</a>.</dd>
+
+  <dt id="kt">/KT=&lt;kanji code (transmit)&gt;</dt>
+  <dd>Kanji code (transmit)<br>
+    For the available codes, see the <a href="../usage/character_encoding.html">character encoding page</a>.</dd>
+
+  <dt id="m">/M=&lt;macro file&gt;</dt>
+  <dd>Run a macro at startup<br>
+      Give an absolute path (a path starting with ~ also works). When a host or other connection options are also given, the macro runs after the connection is started.</dd>
+
+  <dt id="p">/P=&lt;TCP port#&gt;</dt>
+  <dd>TCP port number</dd>
+
+  <dt id="speed">/SPEED=&lt;speed&gt;</dt>
+  <dd>
+    Specifies the speed of the serial port. Same as <a href="#baud">/BAUD=</a>.
+    Whether the value is really used depends on the chip and driver of the serial port.
+  </dd>
+
+  <dt id="t">/T=&lt;telnet flag&gt;</dt>
+  <dd><ul>
+        <li><span class="syntax">/T=1</span> Use the Telnet protocol</li>
+        <li><span class="syntax">/T=0</span> Do not use the Telnet protocol (plain TCP)</li>
+      </ul>
+      Neither uses SSH. When no port is given, 23 is used.</dd>
+
+  <dt id="timeout">/TIMEOUT=&lt;connecting timeout value&gt;</dt>
+  <dd>Time (in seconds) until a connection attempt is cancelled<br>
+      Not used on the startup command line. It works with the connect macro command.</dd>
+
+  <dt id="w">/W=&lt;window title&gt;</dt>
+  <dd>Window title<br>
+      Not used on the startup command line. It works with the connect macro command.</dd>
+
+  <dt id="shell">/SHELL</dt>
+  <dd>Connect to a local shell. Same as [File]-[Local Shell Connection].</dd>
+
+  <dt id="comment">;&lt;comment&gt;</dt>
+  <dd>Comment. It must be placed at the end of the command line.<br>
+      From a shell, quote the ; so that the shell does not interpret it.</dd>
+</dl>
+
+
+<h2 id="example">Examples</h2>
+
+<pre>
+open -a "Tera Term Mac"
+open -a "Tera Term Mac" --args myhost.example.com
+open -a "Tera Term Mac" --args myhost.example.com:23
+open -a "Tera Term Mac" --args myhost.example.com 23
+open -a "Tera Term Mac" --args 192.0.2.1
+open -a "Tera Term Mac" --args "[2001:db8:1:2:8401:2ff:fe03:405]"
+open -a "Tera Term Mac" --args telnet://myhost.example.com
+open -a "Tera Term Mac" --args /C=1
+open -a "Tera Term Mac" --args /C=/dev/cu.usbserial-XXXX /SPEED=115200
+
+open -a "Tera Term Mac" --args myhost.example.com /T=0 /P=7
+open -a "Tera Term Mac" --args myhost /B /KR=UTF8 /KT=UTF8
+open -a "Tera Term Mac" --args /M=~/macro/login.ttl
+open -a "Tera Term Mac" ~/macro/login.ttl
+"/Applications/Tera Term Mac.app/Contents/MacOS/TeraMac" myhost.example.com /telnet
+</pre>
+
+
+<h2 id="default">Default values</h2>
+
+<p>
+The default values are the settings of the setup dialogs (saved in the preferences). Serial port items that are not given are 9600 bps, 8 bits, no parity, 1 stop bit and no flow control.
+</p>
+
+
+<h2 id="notes">Notes</h2>
+
+<p id="note1">
+[1] Only when &lt;telnet flag&gt; is 1 and &lt;TCP port#&gt; is 23 does Tera Term start the telnet option negotiation by itself. In other cases Tera Term can still answer telnet commands sent from the host.
+</p>
+
+<p id="note2">
+[2] To include spaces or `"' in a parameter value, enclose the whole value in `"'.<br />
+To include " in a value, write two `"' characters ("").<br />
+When starting from a shell, also take the shell's quoting rules into account. One argument that contains spaces is treated as one value.
+</p>
+
+<pre>
+open -a "Tera Term Mac" --args '/M=/Users/user/My Macros/login.ttl'
+</pre>
+
+<h2 id="refs">Reference</h2>
+
+<p>
+<a href="../usage/tips/not_port23.html">Telnet port number / terminal settings for non-telnet connections</a>
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/TTMenu/TTMenu.html">‹ TeraTerm Menu</a><a href="../index.html">Contents</a><a class="ttw-next" href="../commandline/ttssh.html">SSH command line ›</a></nav>
+</body>
+</html>

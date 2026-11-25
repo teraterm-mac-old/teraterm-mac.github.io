@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>開発者向け (Mac 版) - ビルド・テスト・リリース</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>ビルド・テスト・リリース</span><a class="ttw-lang" href="../../en/reference/mac-develop-build.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>ビルド・テスト・リリース (Mac 版)</h1>
+
+<ul>
+  <li><a href="mac-develop.html">ソースの構成</a></li>
+  <li>ビルド・テスト・リリース (このページ)</li>
+  <li><a href="mac-develop-i18n.html">画面の言語とヘルプ</a></li>
+</ul>
+
+<h2 id="requirements">必要なもの</h2>
+
+<ul>
+  <li>Mac と、Xcode またはそのコマンドラインツール (Swift 5.5 以上。<code>Package.swift</code> は swift-tools-version 5.5)</li>
+  <li>できたアプリは macOS 11 以上で動きます (<code>Package.swift</code> の platforms と、Info.plist の LSMinimumSystemVersion が 11.0)。</li>
+  <li>macOS 11 で動くように、Sparkle は 2.9 系にしています (2.10 からは macOS 12 以上)。また、SDK に <code>NS_SWIFT_SENDABLE</code> がないときのために、TeraMac ターゲットでは空の定義を渡しています (注釈だけなので動きは変わりません)。</li>
+  <li>リポジトリ全体 (<code>macos/</code> の外の本家のファイルも) が必要です。<code>scripts/bundle.sh</code> は <code>../installer/release</code> と <code>../teraterm/common/helpid.h</code> を読みます。</li>
+</ul>
+
+<h2 id="build">ビルドと実行</h2>
+
+<p>コマンドはどれも <code>macos/</code> で実行します。</p>
+
+<pre>
+cd macos
+swift build                        # デバッグビルド (.build/debug/TeraMac)
+./scripts/bundle.sh                # "build/Tera Term Mac.app" を作る (この Mac 用。速い)
+open "build/Tera Term Mac.app"
+./scripts/bundle.sh --universal    # Apple Silicon と Intel の両対応
+./scripts/bundle.sh --dmg          # 両対応でビルドし、配布用の DMG を作って公証まで行う
+</pre>
+
+<p>
+<code>swift build</code> だけで動かしたときは、画面の言語とヘルプはソースのフォルダ (<code>macos/Resources</code> と本家の <code>installer/release/lang_utf8</code>) から読みます。自動アップデートは、Info.plist に SUFeedURL があるとき (bundle.sh で作ったアプリ) だけ動きます。
+</p>
+
+<h3 id="bundle">bundle.sh がすること</h3>
+
+<ol>
+  <li><code>swift build -c release</code> (<code>--universal</code> / <code>--dmg</code> では <code>--arch arm64 --arch x86_64</code>) でビルドし、実行ファイルを <code>strip -x</code> で小さくします。</li>
+  <li><code>build/Tera Term Mac.app</code> を作り、次のものを入れます。
+    <ul>
+      <li>Sparkle.framework (ヘッダーと XPC サービスは外す)</li>
+      <li>アイコン (Resources/AppIcon.icns) と LICENSE</li>
+      <li>本家の <code>installer/release/TERATERM.INI</code> (設定の初期値)</li>
+      <li>本家の <code>installer/release/lang_utf8/*.lng</code> と <code>Resources/lang/mac_*.lng</code> (画面の言語)</li>
+      <li>本家の <code>installer/release/theme</code> (テーマの見本)</li>
+      <li><code>Resources/help-mac/{ja,en}</code> のヘルプ (html/、teraterm.hhp、modern-toc.json) と本家の <code>teraterm/common/helpid.h</code>。画像 (*.png) は入れません (<a href="mac-develop-i18n.html#images">ヘルプの画像</a>)</li>
+    </ul>
+  </li>
+  <li>Info.plist を書きます。版は bundle.sh の <code>VERSION</code> (環境変数 <code>VERSION</code> でも変えられます)、バンドル ID は <code>BUNDLE_ID</code> で変えられます。.ttl ファイルの関連付けと Sparkle の設定 (SUFeedURL、公開鍵など) もここに入ります。</li>
+  <li>署名します。キーチェーンに「Developer ID Application」の証明書があればそれで (Sparkle の中身から順に、hardened runtime とタイムスタンプ付き)、なければ ad-hoc 署名です。環境変数 <code>SIGN_ID</code> で使う証明書を指定できます。</li>
+  <li><code>--dmg</code> のときは、アプリと「アプリケーション」へのリンクを入れた DMG (<code>build/TeraTermMac-&lt;版&gt;.dmg</code>) を作ります。背景は <code>scripts/make_dmg_bg.swift</code> で描き、Finder で窓の大きさとアイコンの位置を設定します。</li>
+  <li>Developer ID で署名したときは DMG も署名し、<code>xcrun notarytool</code> で公証して <code>stapler</code> で公証の結果を付けます。notarytool の資格情報は、あらかじめ <code>xcrun notarytool store-credentials</code> でキーチェーンに保存しておき、そのプロファイル名を環境変数 <code>NOTARY_PROFILE</code> で渡します。保存した資格情報がないときや <code>SKIP_NOTARY=1</code> のときは公証をとばします。</li>
+</ol>
+
+<h2 id="test">テスト</h2>
+
+<pre>
+swift test                                  # すべてのテスト
+swift test --filter TTLTests                # 1 つのテストクラスだけ
+swift test --filter TerminalTests/testXxx   # 1 つのテストだけ
+</pre>
+
+<p>
+テストは <code>Tests/TeraCoreTests</code> にあり、TeraCore (端末エミュレータ、TTL マクロ、ファイル転送、TEK、キーマップ、INI ファイル、接続の設定など) を対象にしています。
+</p>
+
+<ul>
+  <li><code>TTLUpstreamTests</code>: 本家の <code>tests/*.ttl</code> を画面なしでまとめて動かし、どの行でどんなエラーになったかを一覧にします。対話や接続が要るものが多いので、環境変数 <code>TERAMAC_UPSTREAM_REPORT</code> に結果のファイルを指定したときだけ動きます。
+<pre>TERAMAC_UPSTREAM_REPORT=結果.txt swift test --filter TTLUpstreamTests</pre></li>
+  <li><code>TTLBenchTests</code>: マクロの速さを測ります。デバッグビルドではとばすので、リリースビルドで動かします。
+<pre>swift build -c release -Xswiftc -enable-testing --build-tests</pre></li>
+</ul>
+
+<h2 id="selftest">自己テスト用の環境変数</h2>
+
+<p>
+アプリの実行ファイル (<code>"build/Tera Term Mac.app/Contents/MacOS/TeraMac"</code>) に環境変数を付けて起動すると、見た目や動きを確かめるための動きをします。
+</p>
+
+<table border="1">
+<tr><th>環境変数</th><th>動き</th></tr>
+<tr><td>TERAMAC_SNAPSHOT=&lt;フォルダ&gt;</td><td>画面・ダイアログを PNG に書き出して終わります (term.png、about.png、credits.png、connect.png、setup.png、schemes.png、menu_editor.png、menu_details.png など)。途中でマクロ (test.ttl) を動かしてローカルシェルにつなぎ、画面の文字を shell.txt に書きます。TeraTerm Menu の画面は見本の接続先で写し、終わったら登録内容を元に戻します。自動アップデートとアプリケーションフォルダへの移動の案内は出しません</td></tr>
+<tr><td>TERAMAC_TCPPORT=&lt;ポート&gt;</td><td>TERAMAC_SNAPSHOT のマクロで、127.0.0.1 のそのポートに生の TCP でつなぎ、送った文字が返ってくるか確かめます (相手はエコーするサーバーを用意します)</td></tr>
+<tr><td>TERAMAC_SERIAL=&lt;デバイス&gt;</td><td>TERAMAC_SNAPSHOT のマクロで、そのシリアルポートに 115200bps でつなぎ、<code>serial-ping</code> を送って <code>serial-pong</code> を待ちます</td></tr>
+<tr><td>TERAMAC_LOGINPORT=&lt;ポート&gt;</td><td>TERAMAC_SNAPSHOT で、TeraTerm Menu の自動ログイン (127.0.0.1 のそのポートに /T=0 で接続) を実際に動かし、画面の文字を menu_login.txt に書きます</td></tr>
+<tr><td>TERAMAC_TABSNAP=1</td><td>TERAMAC_SNAPSHOT と一緒に使います。タブを 2 つにしてウインドウ全体を写し (tabs.png)、設定のシート、フォントを変えたときのその場の反映、キャンセルで戻るかを写します</td></tr>
+<tr><td>TERAMAC_SETUP_SNAPSHOT=&lt;フォルダ&gt;</td><td>その他の設定のシートを開いたとき、すべてのタブを setup-&lt;番号&gt;-&lt;名前&gt;.png に書き、TTSSH / TTProxy のダイアログも写します</td></tr>
+<tr><td>TERAMAC_DEBUG_WINDOWS=&lt;ファイル&gt;</td><td>起動して 2 秒後に、見えているウインドウ (クラス・題・大きさ) とアプリのメニューの項目をファイルに書きます</td></tr>
+<tr><td>TERAMAC_MENUBAR_TEST=&lt;ログ&gt;</td><td>ウインドウの中のメニューバーを開いてマウスを隣の題へ動かし、メニューが切り替わるかをログに書きます</td></tr>
+<tr><td>TERAMAC_INI_DRYRUN=&lt;ini&gt;</td><td>TERATERM.INI を読み込んだ結果 (反映する設定・しない設定・ホストの一覧・フォントなど) を書き出して終わります。設定は変えません。書き出し先は TERAMAC_INI_OUT (既定は標準出力)</td></tr>
+<tr><td>TERAMAC_TTMENU_TEST=&lt;ttpmenu.ini&gt;</td><td>ttpmenu.ini を読んで書き出し (&lt;ini&gt;.written.ini)、もう一度読んだ結果を &lt;ini&gt;.out.txt に書いて終わります。保存はしません</td></tr>
+<tr><td>TERAMAC_FEED_URL=&lt;URL&gt;</td><td>自動アップデートが見に行く appcast.xml を変えます (file:// も使えます)</td></tr>
+<tr><td>TERAMAC_UPDATE_TEST=&lt;ログ&gt;</td><td>画面を出さずに、アップデートの確認 → ダウンロード → 入れ替えまで行い、経過をログに書きます</td></tr>
+</table>
+
+<p>
+このほか、<code>TERAMAC_PROXY_*</code> はプロキシを使うときにアプリが ssh の ProxyCommand (<code>TeraMac --proxy-connect &lt;ホスト&gt; &lt;ポート&gt;</code>) に設定を渡すための環境変数です。<code>--purge-keychain</code> はアンインストーラーが使う引数で、保存したパスワードを消して終わります。
+</p>
+
+<h2 id="generators">生成スクリプト</h2>
+
+<table border="1">
+<tr><th>スクリプト</th><th>作るもの</th></tr>
+<tr><td>scripts/gen_charwidth_tables.py</td><td>本家の <code>teraterm/teraterm</code> の unicode_asian_width.tbl・unicode_combine.tbl・unicode_emoji.tbl から <code>Sources/TeraCore/CharWidthTables.swift</code> を作ります。<br><code>python3 scripts/gen_charwidth_tables.py [teraterm/teraterm のフォルダ]</code></td></tr>
+<tr><td>scripts/gen_sbcs_tables.py</td><td>本家の <code>teraterm/teraterm/mapping/*.map</code> から <code>Sources/TeraCore/SBCSTables.swift</code> を作ります。<br><code>python3 scripts/gen_sbcs_tables.py [mapping のフォルダ]</code></td></tr>
+<tr><td>scripts/notes2html.py</td><td>リリースノート (GitHub Releases と同じ Markdown) を、更新の画面 (Sparkle) に出す HTML にします。使えるのは段落・見出し・箇条書き・コード・太字・リンクだけです。appcast.sh が呼びます。<br><code>python3 scripts/notes2html.py notes.md &gt; notes.html</code></td></tr>
+<tr><td>scripts/make_icon.swift</td><td>本家のアイコン (teraterm/common/teraterm.ico) から AppIcon.iconset を作ります</td></tr>
+<tr><td>scripts/make_dmg_bg.swift</td><td>DMG の背景の絵を描きます (bundle.sh が呼びます)</td></tr>
+</table>
+
+<p>
+生成された .swift ファイルは手で直さず、スクリプトを動かし直してください。
+</p>
+
+<h2 id="release">リリースの手順</h2>
+
+<ol>
+  <li><code>scripts/bundle.sh</code> の <code>VERSION</code> を上げます。</li>
+  <li><code>./scripts/bundle.sh --dmg</code> で DMG を作ります (署名・公証まで)。</li>
+  <li>GitHub Releases に <code>v&lt;版&gt;</code> を作り、<code>TeraTermMac-&lt;版&gt;.dmg</code> を上げます。</li>
+  <li><code>./scripts/appcast.sh &lt;版&gt; build/TeraTermMac-&lt;版&gt;.dmg [リリースノート.md]</code> で <code>macos/appcast.xml</code> を書き直し、main に push します。アプリはこの appcast.xml (Info.plist の SUFeedURL) を見て新しい版に気づきます。</li>
+</ol>
+
+<p>
+<code>appcast.sh</code> は Sparkle の <code>sign_update</code> (既定は <code>tools/sparkle/sign_update</code>。Sparkle のリリースの <code>bin/</code> から置きます。環境変数 <code>SIGN_UPDATE</code> で変えられます) で、DMG に EdDSA (ed25519) の署名をします。秘密鍵はキーチェーンではなく鍵ファイルから読み、場所は環境変数 <code>SPARKLE_KEY</code> で指定できます。この鍵の公開鍵が Info.plist の SUPublicEDKey に入っているので、鍵をなくすと今のアプリに更新を届けられなくなります。安全な場所にバックアップしておいてください。
+</p>
+
+<p>
+appcast.xml には最新の版 1 つだけを書きます。リリースノートを渡すと、更新の画面に「更新内容」として出ます (.md は notes2html.py で HTML にします。.html はそのまま使います)。
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../reference/mac-develop.html">‹ ソースの構成</a><a href="../index.html">目次</a><a class="ttw-next" href="../reference/mac-develop-i18n.html">画面の言語とヘルプ ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>改行文字について</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>改行文字</span><a class="ttw-lang" href="../../../en/macro/appendixes/newline.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>改行文字について</h1>
+
+<p>
+ホストから送られてくる改行文字 (CR または CR+LF) は CR+LF に変換されてマクロに渡される。<br>
+マクロから送る改行文字は CR+LF を用いる。<br>
+CR、LF の ASCII コードはそれぞれ13、10(10進数)。
+</p>
+
+<p>例:</p>
+<table>
+  <tr>
+    <td><code class="syntax">send 'abc'#13#10</code></td>
+    <td>"<code>sendln 'abc'</code>" と同じ。実際にホストへ送られる改行文字は送信の改行コードの設定により決まる。</td>
+  </tr>
+
+  <tr>
+    <td><code class="syntax">wait #10'abc' 'def'#13</code></td>
+    <td>行頭の "abc"、行末の "def" を待つ。</td>
+  </tr>
+
+  <tr>
+    <td><code class="syntax">logwrite 'abc'#13#10</code></td>
+    <td>ログファイルに改行文字を書き込む場合は必ずCR+LFにする。</td>
+  </tr>
+</table>
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/appendixes/errormessages.html">‹ エラーメッセージ</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/appendixes/ascii.html">ASCII コード表 ›</a></nav>
+</body>
+</html>

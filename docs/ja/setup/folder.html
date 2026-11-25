@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tera Term Mac が使用するフォルダ</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>使うフォルダ</span><a class="ttw-lang" href="../../en/setup/folder.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>Tera Term Mac が使用するフォルダ</h1>
+
+<p>
+<a href="../menu/setup-directory.html">[設定]-[設定フォルダ..]</a>で確認できます。
+</p>
+
+<table border="1">
+  <tr>
+    <th></th>
+    <th>Tera Term Mac</th>
+  </tr>
+  <tr>
+    <th id="HomeDir">設定ファイル</th>
+    <td><code>~/Library/Application Support/Tera Term Mac</code><br>
+      TERATERM.INI (設定の保存の既定)・KEYBOARD.CNF・broadcast.log・TTSSH.LOG・theme フォルダを置きます。</td>
+  </tr>
+  <tr>
+    <th>環境設定</th>
+    <td><code>~/Library/Preferences/net.satoru.teramac.plist</code><br>
+      設定画面で変えた設定はここに保存されます。macOS が管理するファイルなので、直接編集しないでください。</td>
+  </tr>
+  <tr>
+    <th id="LogDir">SSH ログ</th>
+    <td>SSH のログ (TTSSH.LOG) は設定ファイルのフォルダに書きます。</td>
+  </tr>
+  <tr>
+    <th id="FileDir">ファイル転送*</th>
+    <td>
+      <a href="../menu/setup-additional-general.html#FileFolder">ファイル転送用フォルダ</a><br>
+      <code>~/Downloads</code>
+    </td>
+  </tr>
+  <tr>
+    <th id="TermLogDir">端末ログ*</th>
+    <td>
+      <a href="../menu/setup-additional-log.html#LogDefaultPath">標準ログ保存先フォルダ</a><br>
+      <a href="../menu/setup-additional-general.html#FileFolder">ファイル転送用フォルダ</a><br>
+      <code>~/Downloads</code>
+    </td>
+  </tr>
+</table>
+
+* 優先順,未設定の時一つ下が使用される
+
+<h1>アプリとアンインストール</h1>
+
+<ul>
+  <li>アプリ本体は <code>/Applications/Tera Term Mac.app</code> です。ディスクイメージやダウンロードフォルダから起動すると、アプリケーションフォルダへの移動をすすめます。</li>
+  <li>アプリに同梱の TERATERM.INI・言語ファイル・テーマ・ヘルプは <code>Tera Term Mac.app/Contents/Resources</code> にあります。初めて起動したときの設定は、同梱の TERATERM.INI から作ります。</li>
+  <li>アンインストールのメニューで、アプリと環境設定 (接続リストを含む) を消せます。設定ファイルのフォルダは消さないので、要らなければ Finder で削除してください。</li>
+</ul>
+
+<h2>ファイルを指定した場合</h2>
+
+<p>TERATERM.INI と KEYBOARD.CNF は、メニューで別のファイルを選べます。</p>
+
+<ul>
+  <li>TERATERM.INI: <a href="../menu/setup-save.html">[設定]-[設定の保存...]</a> / <a href="../menu/setup-restore.html">[設定]-[設定の読み込み...]</a>で選んだファイルを、次からの既定にします。</li>
+  <li>KEYBOARD.CNF: <a href="../menu/setup-loadkeymap.html">[設定]-[キーマップ読み込み...]</a>で選んだファイルを、次からも使います。</li>
+</ul>
+
+<h2>設定ファイルがない場合</h2>
+
+<ul>
+  <li>設定ファイルのフォルダがなければ作ります。</li>
+  <li>KEYBOARD.CNF がないときは、標準のキー設定 (IBMKEYB.CNF と同じ内容) を使います。ファイルはコピーしません。</li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-directory.html">‹ 設定フォルダを開く</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-general.html">全般の設定 ›</a></nav>
+</body>
+</html>

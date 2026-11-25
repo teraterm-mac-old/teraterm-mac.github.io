@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH Keygenerator ([Setup] Menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Generating SSH keys</span><a class="ttw-lang" href="../../ja/menu/setup-sshkeygenerator.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH Keygenerator ([Setup] menu)</h1>
+
+    <h2>"TTSSH: Key Generator" dialog box</h2>
+    <p>
+      For details, see "<a href="../usage/ssh.html#generate">Generating keys</a>" in
+      <a href="../usage/ssh.html">SSH connection</a>.<br>
+      Keys are generated with the macOS ssh-keygen (/usr/bin/ssh-keygen).
+    </p>
+
+    <dl>
+      <dt id="type">Key type</dt>
+      <dd>Specifies the type of key to generate.
+        <dl>
+          <dt id="rsa">RSA</dt>
+          <dd>Generates an RSA key for SSH2.</dd>
+
+          <dt id="dsa">DSA</dt>
+          <dd>Generates a DSA key for SSH2. The key length is fixed at 1024 bits.<br />
+          A DSA key longer than 1024 bits would not be more secure. For a stronger key, use RSA, ECDSA or ED25519.<br />
+          Recent versions of ssh on macOS may not accept DSA keys.</dd>
+
+          <dt id="ecdsa256">ECDSA-256</dt>
+          <dd>Generates an ECDSA (256-bit) key for SSH2.</dd>
+
+          <dt id="ecdsa384">ECDSA-384</dt>
+          <dd>Generates an ECDSA (384-bit) key for SSH2.</dd>
+
+          <dt id="ecdsa521">ECDSA-521</dt>
+          <dd>Generates an ECDSA (521-bit) key for SSH2.</dd>
+
+          <dt id="ed25519">ED25519</dt>
+          <dd>Generates an ED25519 key for SSH2.</dd>
+        </dl>
+      </dd>
+
+      <dt id="bits">Key Bits</dt>
+      <dd>Specifies the key length. It can be changed only for RSA.</dd>
+
+      <dt id="kdf">bcrypt KDF</dt>
+      <dd>Saves the private key in OpenSSH format (bcrypt KDF). You can also set the number of rounds.<br />
+      When unchecked, the key is saved in PEM format.</dd>
+
+      <dt id="generate">Generate</dt>
+      <dd>Generates the key. It stays in a temporary folder until you save it.</dd>
+
+      <dt id="passphrase">Key passphrase</dt>
+      <dd>Specifies the passphrase for the private key.</dd>
+
+      <dt id="confirm_pass">Confirm passphrase</dt>
+      <dd>
+        Enter the same passphrase again for confirmation.
+      </dd>
+
+      <dt>Comment</dt>
+      <dd>Specifies the comment for the key.</dd>
+
+      <dt id="save_public">Save public key</dt>
+      <dd>Saves the public key. The save panel opens in ~/.ssh with the file name id_&lt;type&gt;.pub.</dd>
+
+      <dt id="save_private">Save private key</dt>
+      <dd>Saves the private key. The save panel opens in ~/.ssh with the file name id_&lt;type&gt;.
+      The file permission is set to 600 (readable and writable only by you).<br />
+      Encryption with the passphrase is done by ssh-keygen.</dd>
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-sshforward.html">‹ SSH port forwarding</a><a href="../index.html">Contents</a><a class="ttw-next" href="../setup/knownfiles.html">known_hosts file ›</a></nav>
+</body>
+</html>

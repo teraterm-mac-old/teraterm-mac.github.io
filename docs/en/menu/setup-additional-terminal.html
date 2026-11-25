@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Terminal" tab ([Setup] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Terminal tab</span><a class="ttw-lang" href="../../ja/menu/setup-additional-terminal.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Terminal" tab ([Setup] menu)</h1>
+
+    <dl>
+      <dt id="TerminalSize">Terminal size</dt>
+      <dd>
+	The logical size of the terminal (numbers of columns and lines).
+	Note that the window size (real screen size) is not necessarily
+	equal to the terminal size.
+      </dd>
+
+      <dt id="TermIsWin">Term size = win size</dt>
+      <dd>
+	Forces the terminal size to be always equal to the window size.
+      </dd>
+
+      <dt id="AutoWinResize">Auto window resize</dt>
+      <dd>
+	When the terminal size is changed, resizes the window to the
+	terminal size.
+      </dd>
+
+      <dt id="CRReceive">New-line (Receive)</dt>
+      <dd>
+        <dl>
+          <dt>CR</dt>
+          <dd>Tera Term doesn't convert it.</dd>
+
+          <dt>CR+LF</dt>
+          <dd>Received CR ($0D) character is converted to CR+LF ($0D $0A) pairs.<br>
+              e.g.) If "CR LF" is received, it is converted to "CR LF LF."</dd>
+
+          <dt>LF</dt>
+          <dd>Received LF ($0A) character is converted to CR+LF ($0D $0A) pairs.<br>
+              e.g.) If "CR LF" is received, it is converted to "CR CR LF."</dd>
+
+          <dt>AUTO</dt>
+          <dd>Received CR ($0D) or LF ($0A) character is converted to CR+LF ($0D $0A) pairs.<br>
+              e.g.) If "CR+LF" are received, it is not converted.<br>
+                    If "CR" is received, it is converted to "CR LF."<br>
+                    If "LF" is received, it is converted to "CR LF."</dd>
+        </dl>
+      </dd>
+
+      <dt id="CRSend">New-line (Transmit)</dt>
+      <dd>
+        <dl>
+          <dt>CR</dt>
+          <dd>Tera Term doesn't convert it.</dd>
+
+          <dt>CR+LF</dt>
+          <dd>CR ($0D) character to be sent is converted to CR+LF ($0D $0A) pairs before it is actually sent.</dd>
+
+          <dt>LF</dt>
+          <dd>CR ($0D) character to be sent is converted to LF ($0A) before it is actually sent.</dd>
+        </dl>
+      </dd>
+
+      <dt id="TerminalID">Terminal ID:</dt>
+      <dd>
+        Specify terminal to emulate in VT window.
+        <dl>
+          <dt>VT100...VT525</dt>
+          <dd>
+            Emulates <a href="../about/glossary.html#VT100">DEC's VT terminal</a>.<br>
+            <a href="../about/ctrlseq.html#TerminalID">Terminal ID</a> to be reported to the host when the host requests it.
+          </dd>
+          <dt>dumb</dt>
+          <dd>
+            Emulates <a href="../about/glossary.html#dumb">dumb terminal</a>.<br>
+            log <a href="setup-additional-log.html#LogTimestamp">Timestamp</a> is output to VT window and log file.
+          </dd>
+        </dl>
+
+	      <p>
+          Change notification type to the Telnet/SSH server
+          using <a href="setup-additional-tcpip.html#TermType">Terminal type in [Setup] Additional Setting "TCP/IP" tab</a>.
+        </p>
+      </dd>
+
+      <dt id="LocalEcho">Local echo</dt>
+      <dd>
+	Enables local echoing of characters sent.
+      </dd>
+
+      <dt id="Answerback">Answerback:</dt>
+      <dd>
+	The string to be answered back to the host, when the ENQ ($05)
+	character is received. Each non-printable character in the string
+	can be expressed as a "$" and ASCII code in two-character hex number.
+	For example, the string "ABC&lt;CR&gt;&lt;LF&gt;" is expressed as
+	the following:
+	<p class="indent1">
+	  ABC$0D$0A
+	</p>
+      </dd>
+
+      <dt id="AutoWinSwitch">Auto switch (VT&lt;-&gt;TEK)</dt>
+      <dd>
+	Enables auto switching between VT and TEK emulations.
+      </dd>
+
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-theme.html">‹ Theme tab</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-ctrlseq.html">Control sequence tab ›</a></nav>
+</body>
+</html>

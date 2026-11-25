@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH connection</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Connecting with SSH</span><a class="ttw-lang" href="../../ja/usage/ssh.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH connection</h1>
+
+    <p>
+      This page describes SSH connections in Tera Term Mac. Tera Term Mac connects with the OpenSSH ssh command that comes with macOS (/usr/bin/ssh), using the SSH2 protocol. SSH settings are converted to ssh options wherever possible.
+    </p>
+
+    <h2 id="prerequisite">Prerequisite</h2>
+
+    <p>
+      SSH has the following authentication methods:
+    </p>
+      <ul>
+        <li>Password authentication</li>
+        <li>Public key (and private key pair) authentication
+          <ul>
+            <li>Using an authentication agent (macOS ssh-agent)</li>
+          </ul>
+        </li>
+        <li>keyboard-interactive authentication</li>
+      </ul>
+    <p>
+      This page describes the most commonly used methods.
+    </p>
+
+    <h2 id="connproc">Connection procedure</h2>
+
+    <p>
+      Choose <a href="../menu/file-new.html">[File] New connection...</a> (&#8984;N) to open the connection dialog.
+      Enter the host in "Host", choose SSH as "Service" and click "Connect".
+    </p>
+
+    <p id="ssh_auth_dialog">
+      Authentication uses the contents of the connection dialog and the prompts of the ssh command.<br />
+      Which method is tried first can be set in <a href="../menu/setup-sshauth.html">[Setup] SSH Authentication...</a> (passed to ssh as PreferredAuthentications).
+      When one method fails, ssh goes on to the next method the server allows.
+    </p>
+    <ul>
+      <li>For password authentication, enter "User name" and "Password". If "Password" is left empty, ssh asks for the password in the terminal; type it there. If you enter the password, Tera Term Mac sends it automatically when the password prompt appears.<br>
+          Note: the SSH packet that carries the password is encrypted, so the password is not sent in clear text as with TELNET.</li>
+      <li>For public key authentication, choose the private key file with the "Choose..." button next to "Private key file" (ssh -i). When empty, ssh uses its standard keys, such as the ones in ~/.ssh. The passphrase is asked in the terminal.<br>
+          Note: only private key formats that OpenSSH can read are supported. Convert PuTTY (.ppk) keys to OpenSSH format with PuTTYgen or similar.</li>
+      <li>For keyboard-interactive authentication, the prompts from the server appear in the terminal; answer them there.</li>
+      <li>To use an authentication agent, add your key to ssh-agent (ssh-add). On macOS you can also store the passphrase in the keychain (ssh-add --apple-use-keychain).</li>
+    </ul>
+
+    <h3 id="username_input">User name</h3>
+	<p>
+	  The connection dialog is filled in with the user name according to the <a href="../menu/setup-sshauth.html#DefaultUserName">settings</a>.
+	  With "Use logon username", the name of the user logged in to this Mac is used.
+	</p>
+        <p>
+          Non-ASCII characters such as Kanji can be used (<a href="https://datatracker.ietf.org/doc/html/rfc4252" target="_blank">RFC 4252</a>). The server must also support them.<br>
+          See also: <a href="../usage/tips/login_nonascii.html">Notes on using non-ASCII characters in user name or password</a>
+        </p>
+
+    <h3 id="passwd_input">Password / passphrase</h3>
+    <p>
+      When ssh asks for a password or passphrase in the terminal, just type it into the terminal. The characters are not displayed.
+    </p>
+    <ul>
+      <li>You can also paste with &#8984;V.</li>
+    </ul>
+
+    <h2 id="securitywarning">Security warning</h2>
+
+    <h3 id="known_hosts">ssh_known_hosts file</h3>
+
+    <p>When connecting, ssh checks the server's host key against the known_hosts file. The default is ~/.ssh/known_hosts, the same file used by ssh in the macOS Terminal. The file can be changed in <a href="../menu/setup-ssh.html">[Setup] SSH...</a>.<br />
+       Depending on the result, ssh shows the following in the terminal.</p>
+
+    <ul>
+      <li>No key of the host is registered: "The authenticity of host ... can't be established." with the fingerprint, and you are asked whether to continue. Typing yes registers the key and connects.</li>
+      <li>The key differs from the registered one: "REMOTE HOST IDENTIFICATION HAS CHANGED!" is shown and ssh does not connect.</li>
+      <li>The key matches the registered one: no warning is shown.</li>
+    </ul>
+
+    <p>A warning may mean that you are connecting to an unintended server or that you are under a man-in-the-middle attack.<br />
+       However, it also appears when you connect to a server for the first time, or when the server's host key has changed (for example after reinstalling the server). Compare the fingerprint shown in the warning with the correct fingerprint of the SSH server's host key.<br />
+       After confirming that the host key really changed, run ssh-keygen -R hostname in the local shell (&#8984;G) to remove the old key, and connect again.</p>
+
+    <p>With OpenSSH, the server administrator can get the fingerprint of the host key with a command like:</p>
+
+    <pre>ssh-keygen -l -f /etc/ssh/ssh_host_rsa_key.pub</pre>
+
+    <h3 id="VerifyHostKeyDNS">SSHFP RR</h3>
+
+    <p>Host keys can be verified with SSHFP RR (Secure SHell FingerPrint Resource Record) defined in RFC 4255. The setting in <a href="../menu/setup-ssh.html">[Setup] SSH...</a> is passed to ssh as the VerifyHostKeyDNS option.</p>
+
+    <p>The owner of a domain can register the fingerprint of the SSH server's host key as an SSHFP record in DNS. ssh fetches the SSHFP record and compares it with the host key of the server.</p>
+
+    <p>RFC 4255 says "SSHFP RRs not authenticated by DNSSEC must not be trusted". When the record cannot be verified with DNSSEC, ssh only reports the match and still asks for confirmation of a key that is not in known_hosts.</p>
+
+    <h2 id="generate">Generating keys</h2>
+
+    <p>
+      This section explains how to generate a public/private key pair for public key authentication. Choose <a href="../menu/setup-sshkeygenerator.html">[Setup] SSH KeyGenerator...</a>. Keys are generated with the macOS ssh-keygen command.
+    </p>
+    <p>
+      In "Key type", choose RSA, DSA, ECDSA-256/384/521 or ED25519. Enter a key passphrase (like a password, but it may contain spaces and can usually be longer) and a comment, then click "Generate". Then click "Save public key" and "Save private key" to save the keys. The ~/.ssh folder is the usual place. Click "Close" when done.
+    </p>
+
+    <p>
+      Put the contents of the file with the "pub" extension (the public key) in the designated place on the server (usually append it to (home dir)/.ssh/authorized_keys; you can also use the ssh-copy-id command in the local shell). The file without an extension is the private key, which you specify when logging in.
+    </p>
+
+    <p>
+      <em>Caution</em>: never let anyone else know your private key, and manage it strictly. Be careful not to copy it to the server by mistake.<br>
+    </p>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-tcpip_edithistory.html">‹ Editing the host list</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-ssh.html">SSH settings ›</a></nav>
+</body>
+</html>

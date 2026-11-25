@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Glossary</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Glossary</span><a class="ttw-lang" href="../../ja/about/glossary.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Glossary</h1>
+
+<dl>
+<dt>B-Plus</dt>
+<dd>File transfer protocol developed for CompuServe. In Japan This was used by NIFTY-Serve.</dd>
+
+<dt>Kermit</dt>
+<dd>File transfer protocol developed at Columbia University in the United States.
+Software supporting Kermit protocol has been developed for many PC and OS.</dd>
+<!--
+Tera Term ‚Ì Kermit ‚Í�¡‚Ì‚Æ‚±‚ëŠî–{“I‹@”\‚µ‚©Ž�‚Á‚Ä‚¢‚È‚¢‚Ì‚Å�A–{‰Æ‚Ì Kermit ‚É”ä‚×‚é‚Æ“]‘—‘¬“x‚ª‚ ‚Ü‚è‘¬‚­‚ ‚è‚Ü‚¹‚ñ�B
+-->
+
+<dt>Quick-VAN</dt>
+<dd>File transfer protocol developed for Japanese BBS, PC-VAN.</dd>
+<!--
+XMODEM ƒvƒ�ƒgƒRƒ‹‚ðƒx�[ƒX‚É‚µ‚Ä‚é‚æ‚¤‚Å‚·‚ª�A
+“]‘—‘¬“x‚ð‚ ‚°‚é‚½‚ß‚Ì�H•v“™‚ª‚È‚³‚ê‚Ä‚¢‚Ü‚·�B
+-->
+
+
+<dt>XMODEM</dt>
+<dd>File transfer protocol developed by Ward Christensen in 1977.</dd>
+<!--
+‚»‚ÌŒã XMODEM/CRC, XMODEM-1k ‚È‚Ç‚ÌŠg’£ƒvƒ�ƒgƒRƒ‹‚ªŠJ”­‚³‚ê‚Ü‚µ‚½�B
+“]‘—‘¬“x‚ª’x‚¢�A8-bit ƒR�[ƒh‚·‚×‚Ä‚ð’Ê‚·’Ê�M‰ñ�ü‚Å‚È‚¯‚ê‚ÎŽg—p‚Å‚«‚È‚¢‚È‚Ç‚Ì�§ŒÀ‚ª‚ ‚è‚Ü‚·�B
+-->
+
+<dt>YMODEM</dt>
+<dd>File transfer protocol extends XMODEM.</dd>
+
+<dt>ZMODEM</dt>
+<dd>File transfer protocol extends XMODEM and YMODEM.</dd>
+<!--
+<dd>XMODEM, YMODEM ‚ð(‚»‚ê‚ç‚ÌŒ´Œ`‚ð‚Æ‚Ç‚ß‚È‚¢‚Ù‚Ç‚É)‰ü—Ç‚µ‚½ƒtƒ@ƒCƒ‹“]‘—ƒvƒ�ƒgƒRƒ‹�BƒGƒ‰�[’ù�³‹@”\‚ª‹­‰»‚³‚ê�A�§Œä•¶Žš‚Ìˆê•”‚ð’Ê‚³‚È‚¢‰ñ�ü‚É‚à‘Î‰ž‚µ�A“]‘—‘¬“x‚ð‚ ‚°‚é‚½‚ß‚Ì�H•v‚ª‚È‚³‚ê‚Ä‚¢‚Ü‚·�B
+-->
+
+</dl>
+
+<h2>Terminal/Control Sequence</h2>
+
+About Terminal/Control Sequence.
+
+<dl>
+<dt id="Bracketed">Bracketed Paste Mode</dt>
+<dd>
+  The bracketed paste mode is the xterm extension feature. When this feature is enabled, the pasted text is bracketed with control sequences.<br>
+  Specifically, it is enabled by <a href="../about/ctrlseq.html#Bracketed">DECSET 2004(&lt;CSI&gt;?2004h)</a> sequence, the program will receive: ESC [ 200 ~, followed by the pasted text, followed by ESC [ 201 ~.<br>
+  Bracketed paste is a mode which allows programs running in the terminal such as sh to treat pasted text differently from text typed normally.<br>
+
+  For example, a pasted characters can be treated as undecided, highlighted, and confirmed by pressing the Enter key, etc.
+On the other hand, when pasted characters is overwritten again to remove the highlight, it will be recorded twice in the log.<br>
+  <br>
+  Related Pages
+  <ul>
+    <li><a href="../usage/tips/vim.html#Bracketed">Vim Control Sequence Examples / Auto indent can be disabled on pasting from clipboard</a>
+    <li><a href="../setup/teraterm-misc.html#BracketedSupport">Tera Term setup file / Miscellaneous / Supports bracketed paste</a>
+    <li><a href="../setup/teraterm-misc.html#BracketedControlOnly">Tera Term setup file / Miscellaneous / Limit bracketed pasting to cases containing control characters</a>
+
+  </ul>
+</dd>
+
+<dt id="dumb">dumb terminal</dt>
+<dd>This terminal can only use line feed (0x0d (\r, ^J), 0x0a (\n, ^M)) and bell (0x07 (^G)).</dd>
+
+<dt>TEK4010</dt>
+<dd>Name of Tektronix terminal. This can display diagrams and graphemes, and was used widely in scientific and technical fields.</dd>
+<!--
+Œ»�Ý‚Í�AX Window ŠÂ‹«‚È‚Ç‚ÉŽæ‚Á‚Ä‘Ö‚í‚ç‚ê‚Â‚Â‚ ‚è‚Ü‚·‚ª�ATEK ƒGƒ~ƒ…ƒŒ�[ƒ^�[‚ðŽg—p‚µ‚Ä‚¢‚é�l‚Í‚Ü‚¾‚Ü‚¾‚¢‚Ü‚·(�ìŽÒ‚àŠÜ‚ß‚Ä)�B<br>
+‘å•”•ª‚Ìƒ†�[ƒU�[‚Í Tera Term ‚Ì TEK ƒGƒ~ƒ…ƒŒ�[ƒVƒ‡ƒ“‹@”\‚ðŽg‚¤‚±‚Æ‚Í‚È‚¢‚Å‚µ‚å‚¤�B</dd>
+-->
+
+<dt>TEK window</dt>
+<dd>The window that emulates TEK terminal.
+"TEK" is displayed to right of window title string.
+This window is not displayed when Tera Term is started.
+[Control]-[Open TEK] command opens TEK window.
+</dd>
+
+<dt id="VT100">VT100</dt>
+<dd>Name of DEC(Digital Equipment Corporation)'s terminal.
+The terminal was used widely for Unix, VAX/VMS, and other computers.
+<!--
+Œ»�Ý‚Í�A VT100 ‚»‚Ì‚à‚Ì‚Í‚Ù‚Æ‚ñ‚ÇŽg—p‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ‚ª�A‚»‚ÌŽd—l‚ªŽ–ŽÀ�ã‚Ì•W�€‚Æ‚È‚Á‚Ä‚¢‚é‚½‚ß�APC ‚â ƒ��[ƒNƒXƒe�[ƒVƒ‡ƒ“‚Å“®‚­ VT100 ƒGƒ~ƒ…ƒŒ�[ƒ^�[‚ª‘½‚­�ì‚ç‚ê‚Ä‚¢‚Ü‚·�B
+-->
+<br>
+VT220 and VT382 are names of upwardly compatible terminals of VT100.
+</dd>
+
+<dt>VT window</dt>
+<dd>The main window of Tera Term.
+This window is displayed when Tera Term start.
+"VT" is displayed to right of window title string.<br>
+Window for VT terminal emulation.</dd>
+
+</dl>
+
+<h2>Character code</h2>
+
+Glossary related to character codes.
+
+<dl>
+  <dt id="Cell">Cell</dt>
+
+  <dd>
+    The Unit for drawing characters.
+  </dd>
+
+  <dt id="CJK">CJK, CJKV, East Asian characters</dt>
+
+  <dd>
+    <p>
+      Languages with a writing system that includes Kanji characters.
+      CJK(CJKV) = Chinese, Japanese, Korean, (Vietnamese).
+    </p>
+
+    <p>
+      CJK(CJKV) environment, <a href="#DBCS">Double-byte characters</a> are used
+      to represent a character with two bytes,
+      since not all characters used can be represented with one byte.<br>
+      Before Unicode became popular, character codes were developed for each environment.
+    </p>
+
+    <p>
+      Major DBCS
+<pre>
+| Language                      | Code(CodePage)     |
+|-------------------------------|--------------------|
+| Chinese (Simplified Chinese)  | GB2312(CP936)      |
+| Chinese (Traditional Chinese) | Big5(CP950)        |
+| Japanese                      | `Shift_JIS(CP932)` |
+|                               | EUC(EUC-JP,CP51932)|
+| Korean                        | KS5601(CP949)      |
+</pre>
+
+<!--
+      Tera Term‚Íƒxƒgƒiƒ€ŒêŠ¿Žš(ƒ`ƒ…ƒmƒ€)“ÆŽ©‚Ì•¶ŽšƒR�[ƒh‚ðƒTƒ|�[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñ�B<br>
+      Unicode‚ðŽg—p‚µ‚½•\Ž¦‚É‚Í‘Î‰ž‚µ‚Ä‚µ‚Ü‚·�B
+-->
+
+    </p>
+  </dd>
+
+  <dt id="SBCS">SBCS</dt>
+  <dd>
+    Single-byte character set.<br>
+    Up to 256 types of characters can be represented.<br>
+    1character uses 1<a href="#Cell">cell</a>.
+  </dd>
+
+  <dt id="DBCS">DBCS</dt>
+  <dd>
+    Double-byte character set.<br>
+    DBCS is a character set that extends SBCS and can represent characters including Kanji characters.<br>
+    Mixed 1-byte and 2-byte characters.<br>
+    Shift_jis is one example of DBCS.<br>
+    1-byte character uses 1<a href="#Cell">cell</a>, 2-byte character uses 2 cell.
+  </dd>
+
+  <dt id="MBCS">MBCS</dt>
+  <dd>
+    Multi-byte Character Set.<br>
+    Characters of 3 bytes or more are used.<br>
+    JIS, UTF-8, etc.
+  </dd>
+
+<dt id="UTF-8">UTF-8, UTF-8m</dt>
+<dd>
+  Character code encoded Unicode with MBCS from 1 byte to 4 bytes.
+
+  <p>
+    A single character to be displayed can be created from multiple Unicode characters.
+    ex. U+0061 + U+0302 ( a+ ^ -> &#x00E2; ).
+    This representation, used in the macOS file system HFS+, is sometimes called the character code "UTF-8m".
+  </p>
+
+  <p>
+    Tera Term Mac treats "UTF-8m" as "UTF-8" (UTF-8m specified in TERATERM.INI or on the command line also becomes UTF-8).
+  </p>
+</dd>
+
+  <dt>wide character</dt>
+  <dd>
+    A character representation in which smallest character unit is two or more bytes.<br>
+    In C language, wchar_t type.
+  </dd>
+</dl>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/tips/zmodem.html">‹ ZMODEM tips</a><a href="../index.html">Contents</a><a class="ttw-next" href="../usage/tips/b-plus.html">Tips on B-Plus ›</a></nav>
+</body>
+</HTML>

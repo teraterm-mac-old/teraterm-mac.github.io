@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>filenamebox</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>filenamebox</span><a class="ttw-lang" href="../../../en/macro/command/filenamebox.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>filenamebox</h1>
+
+<p>
+ファイル名を選択するダイアログボックス (Mac のファイル選択パネル) を開く。
+</p>
+
+<pre class="macro-syntax">
+filenamebox &lt;title&gt; [&lt;dialogtype&gt; [&lt;initialdir&gt;]]
+</pre>
+
+
+<h2>パラメータ</h2>
+
+<dl>
+	<dt class="macro">文字列 &lt;title&gt;</dt>
+	<dd>ダイアログボックスのタイトル</dd>
+
+	<dt class="macro">整数 &lt;dialogtype&gt; (オプション デフォルト=0)</dt>
+	<dd>ダイアログボックスの種類を指定する。<br>
+	    0を指定すると［ファイルを開く］ダイアログボックスを開く。<br>
+	    0以外の値を指定すると［ファイル名を付けて保存］ダイアログボックスを開く。</dd>
+
+	<dt class="macro">文字列 &lt;initialdir&gt; (オプション デフォルト="")</dt>
+	<dd>ダイアログボックスの初期ディレクトリを指定する。<br>
+	    空文字列を指定すると、ファイル選択パネルがふだん開くフォルダ (前に使ったフォルダなど) になる。</dd>
+</dl>
+
+<h2>返り値</h2>
+
+<dl>
+	<dt class="macro">システム変数 &lt;result&gt;</dt>
+	<dd>ユーザがファイル名を入力してOKボタンを押すと0以外の値が格納され、inputstrにファイル名が格納される。<br>
+	    ユーザがダイアログをキャンセルしたり閉じたりすると0が格納される。</dd>
+
+	<dt class="macro">システム変数 &lt;inputstr&gt;</dt>
+	<dd>入力されたファイル名</dd>
+</dl>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+connect '/C=1'
+filenamebox 'File selection' 0
+if result&lt;&gt;0 then
+	messagebox inputstr 'title' 0
+	sendfile inputstr 1
+endif
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/filemarkptr.html">‹ filemarkptr</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/fileopen.html">fileopen ›</a></nav>
+</body>
+</html>

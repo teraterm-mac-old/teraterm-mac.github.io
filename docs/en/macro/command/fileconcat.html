@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>fileconcat</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>fileconcat</span><a class="ttw-lang" href="../../../ja/macro/command/fileconcat.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>fileconcat</h1>
+
+<p>
+Appends a copy of file to other file.
+</p>
+
+<pre class="macro-syntax">
+fileconcat &lt;file1&gt; &lt;file2&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Appends a copy of file &lt;file2&gt; to the end of file &lt;file1&gt;.<br>
+&lt;file1&gt; and &lt;file2&gt; must not be same.<br>
+If &lt;file2&gt; is added successfully, the system variable "result" is set to 0. Otherwise, "result" is set to non-zero.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+fileconcat 'test.dat' test2.dat'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/fileclose.html">‹ fileclose</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/filecopy.html">filecopy ›</a></nav>
+</body>
+</html>

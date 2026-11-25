@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>通信 (Tera Term 設定ファイル)</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>INI: 通信</span><a class="ttw-lang" href="../../en/setup/teraterm-com.html">English</a></nav>
+<main class="ttw-main">
+
+
+<p>
+これらの設定は、TERATERM.INI を編集したあと [設定]-[設定の読み込み...] で読み込むと使われます。扱いの詳細は「<a href="teraterm-ini.html#mac">Tera Term Mac での扱い</a>」を参照してください。
+</p>
+
+<h1 id="confirm">TCP/IP 回線切断の確認をしない</h1>
+
+<p>
+Unix 等のホストに telnet でログインしている状態で、回線を強制的に切断すると、プロセスが残ったままになることがあります。やむを得ない場合を除き、正しい方法でログアウトするようにしてください。
+</p>
+
+<p>
+Tera Term の初期設定では TCP/IP 接続 (SSH を含む) のとき、ウィンドウを閉じるか [File] メニューの Disconnect コマンドで回線を強制的に切断するときに、"Disconnect ?" というメッセージを表示してユーザーに確認をします。
+</p>
+
+<p>
+設定ファイルの [Tera Term] セクションの ConfirmDisconnect 行を、
+</p>
+
+<pre>
+ConfirmDisconnect=off
+</pre>
+
+<p>
+のように変更すると、回線を強制切断するときにユーザーに確認をしません。
+</p>
+
+<pre>
+省略時:
+ConfirmDisconnect=on
+</pre>
+
+
+<h1 id="telbin">Telnet のバイナリオプション</h1>
+
+<p>
+ホストに telnet 接続し、ファイル転送 (XMODEM 等)で CR 文字を送出する場合、Tera Term の初期設定では CR+NUL ($0D $00) に変換してから送出します。バイナリオプションで telnet 接続すると、このような変換はおこないません。
+</p>
+
+<p>
+設定ファイルの [Tera Term] セクションの TelBin 行を、
+</p>
+
+<pre>
+TelBin=on
+</pre>
+
+<p>
+のように変更すると、Telnet 接続するときバイナリオプションを用います(ホストが対応していれば)。
+</p>
+
+<p>
+また、設定ファイルは書き換えずに、<a href="../commandline/teraterm.html">コマンドライン</a>に /B オプションをつけても、バイナリオプションを指定できます。
+</p>
+
+<pre>
+省略時:
+TelBin=off
+</pre>
+
+
+<h1 id="SendBreakTime">シリアルポートでブレーク信号を送出する時間の長さ</h1>
+
+<p>
+シリアルポートでブレーク信号を送信する場合、デフォルトの送出時間は 1000 ミリ秒です。<br>
+この送出時間を変更するには、設定ファイルの [Tera Term] セクションの SendBreakTime 行を変更します。
+</p>
+
+<pre>
+SendBreakTime=2000
+</pre>
+
+<pre>
+省略時:
+SendBreakTime=1000
+</pre>
+
+
+<h1 id="AutoComPortReconnect">シリアルポートの切断・再接続を検出する</h1>
+
+<p>
+接続中の USB シリアルケーブルが抜かれて USB シリアル変換器のデバイス (/dev/cu.* など) が消えたことを検出するとシリアル接続を切断し、
+同じ名前のデバイスが戻ったら再接続します。
+</p>
+
+<p>
+この機能を使用しないようにするためには、設定ファイルの [Tera Term] セクションの AutoComPortReconnect 行を下記のように変更してください。
+</p>
+
+<pre>
+AutoComPortReconnect=off
+</pre>
+
+<pre>
+省略時:
+AutoComPortReconnect=on
+</pre>
+
+<h3>再接続動作</h3>
+再接続時の動作を次の図に示します。<br>
+<img src="https://teratermproject.github.io/manual/5/ja/setup/serial_reconnect.png" width=200><br>
+(clickで拡大します)
+
+<h3>再接続パラメータ</h3>
+
+USBシリアルケーブルが利用できるようになってから次の時間(ms)経過後再接続します。
+<pre id="AutoComPortReconnectDelayNormal">
+省略時:
+AutoComPortReconnectDelayNormal=300
+</pre>
+
+再接続時できなかった場合、次の指定回数、指定時間(ms)経過後再試行します。
+<pre id="AutoComPortReconnectRetryCount">
+省略時:
+AutoComPortReconnectRetryCount=3
+AutoComPortReconnectRetryInterval=1000
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../reference/menu_id.html">‹ メニュー ID</a><a href="../index.html">目次</a><a class="ttw-next" href="../setup/teraterm-misc.html">INI: その他 ›</a></nav>
+</body>
+</HTML>

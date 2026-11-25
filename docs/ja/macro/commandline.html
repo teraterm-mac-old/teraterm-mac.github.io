@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>コマンドライン</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>マクロのコマンドライン</span><a class="ttw-lang" href="../../en/macro/commandline.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>コマンドライン</h1>
+
+<pre>
+<span class="syntax">"/Applications/Tera Term Mac.app/Contents/MacOS/TeraMac" /M=&lt;macro file&gt; [&lt;接続先とオプション&gt;...]</span>
+</pre>
+
+<p>
+マクロは Tera Term Mac の /M= オプションで実行します。<br>
+Finder や open コマンドで .ttl ファイルを開いても実行できます (<a href="howtorun.html">マクロの実行方法</a>)。
+</p>
+
+
+<h2>オプション</h2>
+
+<dl>
+  <dt>/M=&lt;macro file&gt;</dt>
+  <dd>マクロファイル名<br>
+      ファイル名が絶対パスでないときは、カレントフォルダからの相対パスと見なされる。'~' はホームフォルダ。<br>
+      拡張子がないときは ".TTL" (または ".ttl") を付けて探す。<br>
+      ファイル名（パスを除く）はシステム変数 param1 および params[1] に格納される。
+  </dd>
+
+  <dt>&lt;接続先とオプション&gt;</dt>
+  <dd>Tera Term Mac のコマンドラインと同じ書式の接続先。指定すると、接続を始めてからマクロを実行する。</dd>
+</dl>
+
+<h2>システム変数</h2>
+<p>
+以下の<a href="syntax/variables.html">システム変数</a>が設定される。
+</p>
+<dl>
+  <dt>params</dt>
+  <dd>パラメータが格納される文字列型配列。<br>
+      params[0] には「アプリの実行ファイル マクロファイルのパス」が格納され、params[1] にはマクロファイル名が格納される。
+  </dd>
+
+  <dt>param1</dt>
+  <dd>params[1] と同じ。マクロファイル名が格納される。</dd>
+
+  <dt>param2 ～ param9 </dt>
+  <dd>いつも空。</dd>
+
+  <dt>paramcnt</dt>
+  <dd>params に格納されたパラメータの数。いつも 1 (マクロファイル名の分)。</dd>
+</dl>
+<p>
+params 配列の各要素と、param1～param9 は文字列型なので、最長 511 文字までが格納される。
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../macro/howtoassoc.html">‹ .ttl ファイルを開く</a><a href="../index.html">目次</a><a class="ttw-next" href="../macro/syntax/index.html">TTL の文法 ›</a></nav>
+</body>
+</html>

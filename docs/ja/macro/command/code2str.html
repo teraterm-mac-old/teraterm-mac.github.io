@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>code2str</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>code2str</span><a class="ttw-lang" href="../../../en/macro/command/code2str.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>code2str</h1>
+
+<p>
+ASCII コード値を文字列に変換する。
+</p>
+
+<pre class="macro-syntax">
+code2str &lt;strvar&gt; &lt;ASCII code&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+整数値 &lt;ASCII code&gt; が 1～255 の場合、ASCII コード &lt;ASCII code&gt; に対応する文字を文字列変数  &lt;strvar&gt; に格納する。<br>
+このコマンドは &lt;ASCII code&gt; で表される ASCII コード列を文字列に変換し、それを  &lt;strvar&gt; に格納する。<br>
+&lt;ASCII code&gt; の0でない最上位バイトがASCII コード列の1バイト目とみなされる。<br>
+&lt;ASCII code&gt; が0の場合、 &lt;strvar&gt; には ""(空文字列) が格納される。文字列の最大長は 4。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; 文字 "A" が変数"str" に格納される。
+; "A" の　ASCII コードは$41。
+code2str str $41
+
+; 文字列 "AB" が変数 "str" に格納される。
+; $41 は "A" の、$42は "B" のASCII コード。
+code2str str $4142
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/closett.html">‹ closett</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/connect.html">connect ›</a></nav>
+</body>
+</html>

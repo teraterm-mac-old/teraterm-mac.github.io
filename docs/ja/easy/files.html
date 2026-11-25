@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ファイルを送る・受け取る</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>ファイルを送る・受け取る</span><a class="ttw-lang" href="../../en/easy/files.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1 id="top">ファイルを送る・受け取る</h1>
+
+<h2 id="drop">ドラッグ&amp;ドロップで送る (いちばん簡単)</h2>
+<ol>
+ <li>Finder から、送りたいファイルを端末のウィンドウにドラッグします。</li>
+ <li>どうするかを聞くダイアログが出ます。
+  <ul>
+   <li>SSH でつないでいるときは「SCP」を選ぶと、ファイルをそのままサーバーへコピーします。「送信先:」でサーバーのフォルダを指定できます (空ならホームディレクトリ)。</li>
+   <li>「ファイル送信（ファイルの内容を貼り付け）」は、ファイルの中身を打ち込んだのと同じように送ります。</li>
+   <li>「ファイル名を貼り付け」は、ファイルの名前 (パス) を貼り付けます。</li>
+  </ul>
+ </li>
+ <li>「OK」を押します。</li>
+</ol>
+
+<h2 id="scp">SCP で送る・受け取る (SSH のとき)</h2>
+<ol>
+ <li>SSH でつないだウィンドウで、[ファイル] &gt; [SSH SCP...] を選びます。</li>
+ <li>送るときは、上の「From:」で Mac のファイルを選び (ダイアログにドラッグしてもかまいません)、「To:」に送り先を入れて「送信」を押します。</li>
+ <li>受け取るときは、下の「From:」にサーバーのファイルの名前を入れ、「To:」で Mac の保存先を選んで「受信」を押します。</li>
+</ol>
+
+<h2 id="sendfile">ファイルの中身を送る</h2>
+<p>設定ファイルの中身を機器に流し込むときなどに使います。</p>
+<ol>
+ <li>[ファイル] &gt; [ファイル送信...] を選びます。</li>
+ <li>「...」ボタンで送るファイルを選びます。</li>
+ <li>機器の受け取りが遅いときは、「Delay type」で 1 行ごとに少し待つようにできます。</li>
+ <li>「OK」を押すと送り始めます。</li>
+</ol>
+
+<p><img src="img/sendfile.jpg" alt="ファイル送信のダイアログ" width="458"><br>
+<small>[ファイル] &gt; [ファイル送信...] のダイアログ (ファイル名は例です)</small></p>
+
+<h2 id="xmodem">XMODEM・ZMODEM など</h2>
+<p>
+シリアルでつないだ機器のファームウェアを書き込むときなどは、[ファイル] &gt; [転送] の中の XMODEM・YMODEM・ZMODEM・Kermit などを使います。
+機器の説明書に書かれている方式を選び、「送信...」でファイルを選びます。
+</p>
+
+<h2 id="detail">くわしくは</h2>
+<ul>
+ <li><a href="../usage/mouse.html#dragdropwindow">ドラッグ&amp;ドロップ</a></li>
+ <li><a href="../menu/file-ssh-scp.html">SSH SCP</a></li>
+ <li><a href="../menu/file-sendfile.html">ファイル送信</a></li>
+ <li><a href="../menu/file-transfer.html">ファイル転送プロトコル</a> (<a href="../menu/file-transfer-xmodem.html">XMODEM</a>、<a href="../menu/file-transfer-zmodem.html">ZMODEM</a> など)</li>
+</ul>
+
+<p><a href="index.html">かんたんマニュアルの目次へ</a> | 次: <a href="settings.html">見た目を変える・言語を変える</a></p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../easy/log.html">‹ ログを取る</a><a href="../index.html">目次</a><a class="ttw-next" href="../easy/settings.html">見た目を変える・言語を変える ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>var2clipb</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>var2clipb</span><a class="ttw-lang" href="../../../ja/macro/command/var2clipb.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>var2clipb</h1>
+
+<p>
+Copies the text data to clipboard.
+</p>
+
+<pre class="macro-syntax">
+var2clipb &lt;string&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Copies &lt;string&gt; to clipboard.<br>
+The "var2clipb" command returns one of the following values in the system variable "result":
+</p>
+
+<table>
+ <tr>
+  <th>Value</th>
+  <th>Meaning</th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>Could not open the clipboard.</td>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>Copying to clipboard is successful.</td>
+ </tr>
+</table>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+var2clipb 'Tera Term 4.46'
+clipb2var data
+messagebox data 'clipboard data'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/uptime.html">‹ uptime</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/wait.html">wait ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "font" タブ ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>フォントタブ</span><a class="ttw-lang" href="../../en/menu/setup-additional-font.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Font" タブ ([Setup] メニュー)</h1>
+
+    <dl>
+      <dt id="VTFont">VTウィンドウフォント</dt>
+      <dd>
+        VTWinのフォントを指定します。今のフォントの名前とサイズが表示されます。
+        <dl>
+          <dt>選択 ボタン</dt>
+          <dd>
+            macOS のフォントパネルが開き、使用するフォントとサイズを選択できます。<br>
+            選んだフォントはその場で端末に反映されます。
+          </dd>
+
+          <dt>デフォルトのフォントに戻す ボタン</dt>
+          <dd>
+            フォントを Tera Term Mac の既定のフォントとサイズに戻します。既定のフォントのときは表示されません。
+          </dd>
+
+
+          <dt id="Windows_Fonts">フォント設定/フォントフォルダを開く ボタン</dt>
+          <dd>
+            Finder でユーザのフォントフォルダ (~/Library/Fonts) を開きます。
+            フォントの追加や管理には macOS の「Font Book」も使えます。
+          </dd>
+        </dl>
+      </dd>
+
+      <dt id="ResizedFont">描画幅に合わせてリサイズしたフォントを描画</dt>
+      <dd>
+        「Tera Term が描画する文字幅」と「フォントデザインの文字幅」が一致しない場合があります。
+        描画幅に合わせると文字全体が表示幅に描画されますが、
+        描画速度が遅くなったり、デザインがフォント開発者の意図と異なってしまうという欠点があります。<br>
+        <dl>
+          <dt>ON</dt>
+          <dd>
+            表示する幅と描画するフォントの幅が異なっているとき、
+            フォントをセル幅に合わせて拡大・縮小して文字を描画します。
+            <div style="margin-top:1ex; overflow:hidden;">
+              <img src="https://teratermproject.github.io/manual/5/ja/menu/DrawingResizedFont-greek_on.png" style="float:left; margin-right:1ex;">
+              <img src="https://teratermproject.github.io/manual/5/ja/menu/DrawingResizedFont-checkmark_on.png" style="float:left;">
+            </div>
+          </dd>
+          <dt>OFF</dt>
+          <dd>
+            フォントファイルのデザインのまま表示します。
+            <ul>
+              <li>Tera Term が全角,2Cellとして表示、フォントデザインが半角,1Cellの場合、
+                半角の後ろにスペースが入ってるように表示されます。
+              <li>Tera Term が半角,1Cellとして表示、フォントデザインが全角,2Cellの場合、
+                全角の左半分が表示されます。
+            </ul>
+            <div style="margin-top:1ex; overflow:hidden;">
+              <img src="https://teratermproject.github.io/manual/5/ja/menu/DrawingResizedFont-greek_off.png" style="float:left; margin-right:1ex;">
+              <img src="https://teratermproject.github.io/manual/5/ja/menu/DrawingResizedFont-checkmark_off.png" style="float:left;">
+            </div>
+          </dd>
+        </dl>
+      </dd>
+
+
+      <dt id="CharSpace">文字間スペース</dt>
+      <dd>
+        <p>
+          文字間スペースが0の時、フォントの外枠と<a href="../about/glossary.html#Cell">セル</a>(文字)の外枠は同一です。<br>
+          文字間スペースを設定すると、フォントの外枠にスペースを追加(削除)できます。<br>
+          <img width=30% src="https://teratermproject.github.io/manual/5/ja/menu/char_space.png">
+        </p>
+
+        <p>
+          上下左右の 4 つの欄に値を入れるか、矢印ボタンで増減します。
+          既定値と違うときは「デフォルトに戻す」ボタンで既定値に戻せます。
+        </p>
+
+        <p>
+          設定については、<a href="../setup/teraterm-win.html#space">文字(行)間のすきまを調整する</a>を参照ください。
+        </p>
+      </dd>
+
+    </dl>
+
+    <h1>注</h1>
+    <ul>
+      <li>
+	<a href="../about/emulations_dec_special.html">DEC Special Graphics</a>は、専用のフォントを使わず、同じ形の文字を 1 セルの幅に描いて表示します。
+      </li>
+    </ul>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-mouse.html">‹ マウスタブ</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-additional-ui.html">UI タブ (表示言語) ›</a></nav>
+</body>
+</html>

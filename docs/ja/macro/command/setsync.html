@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>setsync</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>setsync</span><a class="ttw-lang" href="../../../en/macro/command/setsync.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>setsync</h1>
+
+<p>
+同期モードを設定する。
+</p>
+
+<pre class="macro-syntax">
+setsync &lt;sync flag&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+&lt;sync flag&gt; が0以外ならば同期通信モードに入る。<br>
+&lt;sync flag&gt; が0ならば非同期通信モードに入る。
+</p>
+
+<p>
+ホストから受信した文字はマクロへ転送される。<br>
+マクロはそれらの文字をバッファに保存し、受信文字を処理するコマンド("<a href="wait.html">wait</a>" コマンド等)がバッファから文字を取り出す。
+</p>
+
+<p>
+マクロは初期状態が「非同期モード」である。このモードでは、受信文字を処理するコマンドが長い間実行されない場合、または受信速度が速すぎる場合はバッファがあふれる可能性がある。<br>
+同期モードでは、バッファは決してあふれない。バッファがいっぱいになった場合、ホストからの文字受信とマクロへの文字転送を停止する。バッファに再び空きができると文字受信と転送を再開する。<br>
+必要な時に限り同期モードに入り、必要でなくなったら非同期モードに戻るようにした方が良い。
+</p>
+
+<p>
+複数行にわたる受信した文字を、一文字も失うことなく処理する、というような信頼性が要求されるマクロ処理の場合、同期モードに入る必要がある。<br>
+しかし、同期モードでは Tera Term の文字受信速度が遅くなり、また受信文字を処理するコマンドが長い間実行されない場合は、Tera Term の文字受信が停止したままになってしまう。<br>
+一方、単純なマクロ処理(例えば自動ログイン)ならば非同期モードでもほとんど問題なく動作する。この場合、バッファサイズは十分大きく(16Kバイト)、受信したすべての文字はバッファがあふれる前にコマンドによって処理される。
+</p>
+
+<div align="center">
+<img src="https://teratermproject.github.io/manual/5/ja/macro/command/image/setsync.png" width=720 height=540>
+</div>
+
+
+<h2>例</h2>
+
+<pre class="macro-example">
+connect server
+; 同期モードに入る
+setsync 1
+timeout = 60
+waitln '+OK' '-ERR'
+
+; 非同期モードに入る
+setsync 0
+
+end
+</pre>
+
+
+<pre class="macro-example">
+connect '/C=1'
+
+setsync 1
+
+while 1
+  ; Request data
+  sendln  'REQ'
+
+  ; Delay for 1 second
+  pause 1
+
+  flushrecv
+endwhile
+</pre>
+
+
+<h2>参照</h2>
+<ul>
+  <li><a href="flushrecv.html">flushrecv</a></li>
+</ul>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/setspeed.html">‹ setspeed</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/settime.html">settime ›</a></nav>
+</body>
+</html>

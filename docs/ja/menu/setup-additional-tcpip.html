@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "TCP/IP" タブ ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>TCP/IP の詳細設定</span><a class="ttw-lang" href="../../en/menu/setup-additional-tcpip.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "TCP/IP" タブ ([Setup] メニュー)</h1>
+
+    <dl>
+
+      <dt id="HistoryList">Add host list when new connection</dt>
+      <dd>
+        このオプションを選択すると、<a href="file-new.html">[File] New connection</a>
+        ダイアログボックスで入力されたホスト名がホストリストの先頭に追加されます。
+      </dd>
+
+      <dt id="EditHistory">Edit host list</dt>
+      <dd>
+        ホストリストを<a href="setup-additional-tcpip_edithistory.html">編集</a>します。
+      </dd>
+
+      <dt id="Telnet">Telnet</dt>
+      <dd>
+        Telnet プロトコル を使用する時選択します。<br>
+        SSH で接続するときは使用されません (SSH には macOS の ssh コマンドを使います)。
+      </dd>
+
+      <dt id="TCPPort">Port#:</dt>
+      <dd>
+        TCP/IP ポート番号。<br>
+        22: SSH<br>
+        23: Telnet
+      </dd>
+
+      <dt id="TelKeepAliveInterval">Keep alive on Telnet</dt>
+      <dd>
+  一定間隔で Telnet サーバに対して、NOP(IAC NOP: 255 241)を送信します。キープアライブ(ハートビート)機能とも呼ばれます。0で当該機能は無効となります。デフォルトは300秒(5分)です。
+      </dd>
+
+      <dt id="AutoWinClose">Auto window close</dt>
+      <dd>
+  このオプションを選択すると、ホストとの接続が切れたとき自動的に
+  そのウィンドウを閉じます。
+      </dd>
+
+      <dt id="TermType">Term type:</dt>
+      <dd>
+  Telnet プロトコルで接続したときホストに報告する terminal type。<br>
+  TermTypeを"xterm"に設定することにより、ANSIカラーに対応しているvim6などでカラー表示をさせることができます。<br>
+    Windows の Telnet サーバに接続するときは、"xterm" を正しく受け付けないので、"vt100" か "ANSI" を指定してください。
+      </dd>
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-tcpip.html">‹ telnet と TCP/IP の設定</a><a href="../index.html">目次</a><a class="ttw-next" href="../usage/tips/not_port23.html">23 番以外のポートで接続する ›</a></nav>
+</body>
+</html>

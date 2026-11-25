@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Encoding" タブ ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>文字コードの詳細設定</span><a class="ttw-lang" href="../../en/menu/setup-additional-coding.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Encoding" タブ ([Setup] メニュー)</h1>
+
+    <h2>Encoding</h2>
+
+    <dl>
+      <dt id="KanjiReceive">Receive</dt>
+      <dd>
+        ホストから送られてくる漢字コード。<br>
+        使用可能文字コードは<a href="../usage/character_encoding.html">文字コードページ</a>を参照ください。</dd>
+      </dd>
+      <dt id="KanjiSend">Transmit (Use different code)</dt>
+      <dd>
+        送出する漢字コード。<br>
+        使用可能文字コードは<a href="../usage/character_encoding.html">文字コードページ</a>を参照ください。</dd>
+      </dd>
+    </dl>
+
+    <h2>Unicode</h2>
+
+    <p>
+      Unicode(UTF-8)使用時の "Tera Term が描画する文字幅" を設定します。<br>
+      Tera Term の接続先が意図している文字幅を指定すると、画面崩れが少なくなります。
+    </p>
+    <p>
+      描画する文字幅に対して Tera Term がフォントをどのように描画するかについては、
+      <a href="setup-additional-font.html#ResizedFont">描画幅に合わせてリサイズしたフォントを描画</a>
+      を参照ください。<br>
+    </p>
+
+    <h3 id="AmbiguousCharactersWidth">Ambiguous Characters width</h3>
+
+    <p>
+      East_Asian_Width プロパティの値が Ambiguous(曖昧) の文字の文字幅を、1 Cell または 2 Cell から選択します。<br>
+      各プロパティ値については <a href="../usage/unicode.html#EastAsianWidth">East_Asian_Widthプロパティと文字幅(セル数)について</a> を参照ください。<br>
+    </p>
+
+    <h3 id="UnicodeEmojiOverride">Override Emoji Characters width</h3>
+
+    <p>
+      絵文字プロパティが Yes の文字の文字幅を設定します。<br>
+      このプロパティについては <a href="../usage/unicode.html#emoji">絵文字の文字幅(セル数)について</a> を参照ください。
+    </p>
+
+    <p>
+      チェックしないと、East_Asian_Width プロパティの値に基づいて文字幅が決定されます。<br>
+      チェックすると、East_Asian_Width プロパティの値（W, N, A）にかかわらず一律に文字幅を設定します。<br>
+    </p>
+
+    <ul>
+      <li>コードポイント U+1F000 以上の絵文字は常に 2 Cell (全角) として扱います。
+      <li>コードポイント U+1F000 未満の絵文字は
+        <dl>
+          <dt>2 Cell が選択されたとき</dt>
+          <dd>2 Cell (全角) として扱う</dd>
+          <dt>1 Cell が選択されたとき</dt>
+          <dd>1 Cell (半角) として扱う</dd>
+        </dl>
+    </ul>
+
+    <h3 id="width_decision">文字幅の決定フロー</h3>
+
+    <p>
+      ここまでに挙げたように、Tera Term には描画する文字幅を指定する設定が複数あります。
+      設定の優先順位がどうなっているのか以下に図示します。
+    </p>
+
+    <img src="https://teratermproject.github.io/manual/5/ja/menu/cell_width.png">
+
+    <h2 id="DecSpecial">DEC Special Graphics</h2>
+
+    <p>DEC Special Graphics は、専用のフォントを使わず、同じ形の文字を 1 cell (半角) の幅に描いて表示します。</p>
+
+    <a href="../about/emulations_dec_special.html">DEC Special Graphics(DEC特殊グラフィック)</a>の
+    表示方法を指定します。
+
+    <dl>
+      <dt>UnicodeをDEC Special Graphicsへマッピングする</dt>
+      <dd>
+        UnicodeをDEC Special Graphicsへ置き換えて表示します。<br>
+        DEC Special Graphicの文字幅は1cell(half-width)となります。<br>
+        変換する文字種を指定できます。
+        <a href="../setup/teraterm-term.html#UnicodeDecSpMapping">UnicodeからDEC Special Graphicsへのマッピングを設定する</a>も参照してください
+        <dl>
+          <dt>罫線素片(U+2500-U+257F)</dt>
+          <dt>Punctuation, Block Elements, Shade</dt>
+          <dt>中点(U+00B7,U+2024,U+2219)</dt>
+        </dl>
+      </dd>
+      <dt>DEC Special GraphicsをUnicodeへマッピングする</dt>
+      <dd>
+        DEC Special GraphicをUnicodeへ置き換え、VTウィンドウのフォントを使用して表示します。<br>
+        Unicodeで表示する文字の文字幅は、文字毎に異なり
+        Ambiguous Characters width 設定で変化します。
+      </dd>
+      <dt>DEC Special Graphicsをマッピングしない</dt>
+      <dd>
+        DEC Special Graphicsは 1 cell の幅で表示し、
+        Unicodeの置き換えは行いません。
+      </dd>
+    </dl>
+
+    <h2 id="JIS">JIS</h2>
+
+    <h3>Receive</h3>
+
+    <dl>
+      <dt id="KatakanaReceive">Half-width kana</dt>
+      <dd>
+        ホストから送られてくる"半角"片仮名コードが 7 bit で表現されている
+        (SO/SI を用いたシフト制御を用いている)場合に選択してください。
+        Kanji (receive) が JIS の場合のみ有効です。
+      </dd>
+    </dl>
+
+    <h3>Transmit</h3>
+
+    <dl>
+      <dt id="KatakanaSend">Half-width kana transmit</dt>
+      <dd>
+        送出する"半角"片仮名コードを7bitで表現する
+        (SO/SI を用いたシフト制御を用いる)場合に選択してください。
+        Kanji (transmit) が JIS の場合のみ有効です。
+      </dd>
+      <dt id="KanjiIn">Kanji-in</dt>
+      <dd>
+        Kanji (transmit) が JIS のときに使用するエスケープシーケンス
+        (漢字コードを G0 に指示するシーケンス。
+        ^[$@ または ^[$B )。
+        ホストから送られてくるエスケープシーケンスはどちらでも構いません。
+      </dd>
+      <dt id="KanjiOut">Kanji-out</dt>
+      <dd>
+        Kanji (transmit) が JIS のときに使用するエスケープシーケンス
+        (ASCII または JIS ローマ字コードを G0 に指示するシーケンス。
+        ^[(B または ^[(J )。
+        ホストから送られてくるエスケープシーケンスはどちらでも構いません。
+        <p>
+          注意: ^[(H は初期設定では選択できません。<br>
+          → ^[(H を選択可能にする。
+        </p>
+      </dd>
+    </dl>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/unicode.html">‹ Unicode の設定</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-font.html">フォント ›</a></nav>
+</body>
+</html>

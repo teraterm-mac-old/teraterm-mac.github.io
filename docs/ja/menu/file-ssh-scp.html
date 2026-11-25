@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH SCP ([File] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>SCP でファイルを送る</span><a class="ttw-lang" href="../../en/menu/file-ssh-scp.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH SCP ([File] メニュー)</h1>
+
+    SCP プロトコルでファイルを転送します。<br>
+    SSH で接続しているときだけ使えます。macOS の scp (/usr/bin/scp) が、いまの SSH 接続を共有して転送します (もう一度ログインする必要はありません)。<br>
+    転送中は進み具合のウィンドウが表示されます。
+
+    <h2 id="send">送信</h2>
+    <dl>
+      <dt>From:</dt>
+      <dd>
+        送信するファイル。[...] ボタンで選ぶか、このウィンドウに Finder からファイルをドラッグできます。
+      </dd>
+
+      <dt>TO:</dt>
+      <dd>
+        送信先を指定します。<br>
+        空白の場合はホームディレクトリになります。<br>
+        注意："~" は送信先の OS やシェルによって使えないことがあります。
+      </dd>
+
+      <dt>送信ボタン</dt>
+      <dd>
+        送信を開始
+      </dd>
+    </dl>
+
+    <h3>See also</h3>
+    <ul>
+      <li><a href="../usage/mouse.html#scp">droped action</a></li>
+    </ul>
+
+    <h2 id="receive">受信</h2>
+    <dl>
+      <dt>From:</dt>
+      <dd>
+        受信するファイル
+      </dd>
+
+      <dt>TO:</dt>
+      <dd>
+        保存先を指定します。<br>
+        ダウンロードフォルダ、またはダウンロードファイルを指定できます。<br>
+        空白の場合は "<a href="../setup/folder.html#FileDir">ファイル転送</a>" の設定が使用されます。<br>
+      </dd>
+
+      <dt>受信ボタン</dt>
+      <dd>
+        受信を開始
+      </dd>
+    </dl>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/file-transfer-qv.html">‹ Quick-VAN</a><a href="../index.html">目次</a><a class="ttw-next" href="../setup/teraterm-trans.html">ドロップ時の確認 ›</a></nav>
+</body>
+</html>

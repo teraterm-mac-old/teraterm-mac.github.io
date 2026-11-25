@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>setsync</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>setsync</span><a class="ttw-lang" href="../../../ja/macro/command/setsync.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>setsync</h1>
+
+<p>
+Sets the synchronous mode.
+</p>
+
+<pre class="macro-syntax">
+setsync &lt;sync flag&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Enters the synchronous communication mode if &lt;sync flag&gt; is non-zero, or enters the asynchronous communication mode if &lt;sync flag&gt; is zero.
+</p>
+
+<p>
+Received characters from the host are transferred to the macro. The macro stores the characters in the buffer.<br>
+The character-reading commands, such as the "<a href="wait.html">wait</a>" command, read out the characters from the buffer.
+</p>
+
+<p>
+Initially, the macro is in the asynchronous mode. In this mode, the buffer may overflow if no character-reading command is executed for a long time, or the receiving speed is too fast.<br>
+In the synchronous mode, the buffer never overflows. If the buffer becomes full, receiving characters from the host and transferring them to the macro are stopped. When the buffer regains enough space,Tera Term restarts receiving and transferring.<br>
+Enter the synchronous mode only when it is necessary and re-enter the asynchronous mode when the synchronous operation is no longer needed.
+</p>
+
+<p>
+For a macro operation, which requires reliability, something like processing lines of received characters without loss of data, you need to enter the synchronous mode. However, the synchronous mode makes Tera Term slow in speed of receiving characters and causes Tera Term freeze if no character-reading command is executed for a long time.<br>
+On the other hand, a simple macro operation, such as auto login, works with almost no problem in the asynchronous mode, because the buffer size is large enough (16K bytes) and all received characters are processed by character-reading commands before the buffer overflows.
+</p>
+
+<div align="center">
+<img src="https://teratermproject.github.io/manual/5/en/macro/command/image/setsync.png" width=720 height=540>
+</div>
+
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+connect server
+; enter the synchronous mode
+setsync 1
+timeout = 60
+waitln '+OK' '-ERR'
+
+; enter the asynchronous mode
+setsync 0
+
+end
+</pre>
+
+
+<pre class="macro-example">
+connect '/C=1'
+
+setsync 1
+
+while 1
+  ; Request data
+  sendln  'REQ'
+
+  ; Delay for 1 second
+  pause 1
+
+  flushrecv
+endwhile
+</pre>
+
+
+<h2>See also</h2>
+<ul>
+  <li><a href="flushrecv.html">flushrecv</a></li>
+</ul>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/setspeed.html">‹ setspeed</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/settime.html">settime ›</a></nav>
+</body>
+</html>

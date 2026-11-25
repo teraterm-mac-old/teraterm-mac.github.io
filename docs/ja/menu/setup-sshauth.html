@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH Authentication ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>SSH の認証</span><a class="ttw-lang" href="../../en/menu/setup-sshauth.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH Authentication ([Setup] メニュー)</h1>
+
+    <h2>"TTSSH: Authentication Setup" ダイアログボックス</h2>
+    <p>
+      ここで設定した内容は、<a href="file-new.html">新しい接続</a>ダイアログのユーザー名と秘密鍵の初期値、および ssh に渡す認証方式の順序 (PreferredAuthentications) になります。
+      認証そのものは OpenSSH (/usr/bin/ssh) が行います。
+    </p>
+    <dl id="DefaultUserType">
+      <dt id="DefaultUserName">User name</dt>
+      <dd>
+		ユーザ名の指定がないときに使用するユーザ名を指定します。
+
+		<dl>
+		  <dt>Do not enter username</dt>
+		  <dd>
+			入力しません。
+		  </dd>
+
+		  <dt>Use default username</dt>
+		  <dd>
+			選択するとデフォルトユーザ名を使用します。<br />
+			デフォルトユーザ名はエディットボックスで設定します。
+			デフォルトユーザ名が空の場合は何も入力されません。
+		  </dd>
+
+		  <dt>Use logon username</dt>
+		  <dd>
+			Mac にログインしているユーザ名を使用します。
+		  </dd>
+		</dl>
+
+      </dd>
+
+      <dt id="DefaultAuthMethod">デフォルトで使用する認証方法を設定します。</dt>
+      <dd>
+
+        <dl>
+          <dt>Use plain password to log in</dt>
+          <dd>
+            パスワード認証を用いる場合に指定します。ssh の標準の順序のまま接続します (公開鍵が使えなければパスワードを聞かれます)。
+          </dd>
+          
+          <dt>Use RSA/DSA/ECDSA/ED25519 key to login</dt>
+          <dd>
+            あらかじめ作成した RSA/DSA/ECDSA/ED25519 鍵を用いた認証方法を選択します。公開鍵認証を先に試します。
+            <dl>
+              <dt id="DefaultRSAPrivateKeyFile">Private key file</dt>
+              <dd>
+                秘密鍵ファイルを指定します ([Private key...] ボタンで選べます)。ssh の -i オプションで渡します。<br />
+                OpenSSH が読める形式の鍵を指定してください。PuTTY 形式 (.ppk) の鍵は使えません。
+              </dd>
+            </dl>
+          </dd>
+          
+          <dt>SSH2:Use keyboard-interactive to log in</dt>
+          <dd>
+            キーボード・インタラクティブ認証を用いる場合に指定します。
+            パスワード認証を無効に設定したサーバへ、パスワードを使ってログインする場合は、
+            この認証方式を使います。<br>
+            この認証方式では、入力した内容が暗号化された状態でサーバへ送られます。
+          </dd>
+          
+          <dt>Use ssh-agent</dt>
+          <dd>
+            ssh-agent に登録した鍵で認証する場合に指定します。公開鍵認証を先に試します。
+          </dd>
+        </dl>
+
+      </dd>
+
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-ssh.html">‹ SSH の設定</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-sshforward.html">SSH ポート転送 ›</a></nav>
+</body>
+</html>

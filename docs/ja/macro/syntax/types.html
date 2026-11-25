@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>データ型</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>データ型</span><a class="ttw-lang" href="../../../en/macro/syntax/types.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>データ型</h1>
+
+<p>
+TTL が扱えるデータの型は4種類。
+</p>
+
+<h2 id="Integer">1) 整数</h2>
+<p>
+符号付き 32 bit、-2147483648から2147483647まで。<br />
+浮動小数点は未サポート。
+</p>
+
+<h2 id="String">2) 文字列</h2>
+<p>
+NUL 文字を除くすべての文字を含むことができる。最大長は511文字。<br />
+文字列リテラル、マクロコマンドの文字コードはUTF-8なので、文字列変数の文字コードはUTF-8で扱うのが自然となる。
+</p>
+
+<h2 id="IntegerArray">3) 整数配列</h2>
+<p>
+<a href="../command/intdim.html">intdim</a> マクロコマンドであらかじめ要素数を宣言することで整数の配列を扱うことができる。要素数は最大65536。<br />
+各要素で扱えるデータは整数と同じ。<br />
+</p>
+
+<h2 id="StringArray">4) 文字列配列</h2>
+<p>
+<a href="../command/strdim.html">strdim</a> マクロコマンドであらかじめ要素数を宣言することで文字列の配列を扱うことができる。要素数は最大65536。<br />
+各要素で扱えるデータは文字列と同じ。
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/syntax/parameter.html">‹ 引数の形式</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/basename.html">basename ›</a></nav>
+</body>
+</HTML>
+

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Communication (Tera Term setup file)</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>INI: Communication</span><a class="ttw-lang" href="../../ja/setup/teraterm-com.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<p>
+To use these items, edit TERATERM.INI and read it with [Setup]-[Restore setup...]. See "<a href="teraterm-ini.html#mac">How Tera Term Mac uses this file</a>".
+</p>
+
+<h1 id="confirm">Disabling the warning on TCP/IP disconnection</h1>
+
+<p>
+In the default setup, Tera Term displays the warning message "Disconnect ?" when you try to close a TCP/IP connection (including SSH) by closing the window or by the [File] Disconnect command.
+</p>
+
+<p>
+To disable this warning message, edit the ConfirmDisconnect line in the [Tera Term] section of the setup file like the following:
+</p>
+
+<pre>
+ConfirmDisconnect=off
+</pre>
+
+<pre>
+Default:
+ConfirmDisconnect=on
+</pre>
+
+
+<h1 id="telbin">Telnet binary option</h1>
+
+<p>
+To enable the telnet binary option, edit the TelBin line in the [Tera Term] section of the setup file like the following:
+</p>
+
+<pre>
+TelBin=on
+</pre>
+
+<p>
+You can also specify the binary option on the <a href="../commandline/teraterm.html">command line</a> (/B option).
+</p>
+
+<pre>
+Default:
+TelBin=off
+</pre>
+
+
+<h1 id="SendBreakTime">Pause time while the break signal is sending to the serial port</h1>
+
+<p>
+When the break signal is sent to the serial port, the default pause time is 1000 msec.<br>
+To change the pause time, edit change the SendBreakTime entry in the [Tera Term] of the setup file.
+</p>
+
+<pre>
+SendBreakTime=2000
+</pre>
+
+<pre>
+Default:
+SendBreakTime=1000
+</pre>
+
+
+<h1 id="AutoComPortReconnect">Automatic COM port Reconnection</h1>
+
+<p>
+When the device of a USB serial adapter (/dev/cu.* and so on) disappears because the cable is extracted, the serial connection is closed, and it is reconnected when a device with the same name comes back.
+</p>
+
+<p>
+If this feature is not used, please change the AutoComPortReconnect entry of the [Tera Term] section in the teraterm.ini file.
+</p>
+
+<pre>
+AutoComPortReconnect=off
+</pre>
+
+<pre>
+Default:
+AutoComPortReconnect=on
+</pre>
+
+<h3>Reconnect sequence</h3>
+The following figure shows reconnecting sequence.<br>
+<img src="https://teratermproject.github.io/manual/5/en/setup/serial_reconnect.png" width=200><br>
+(click to enlarge)
+
+<h3>Reconnection Parameters</h3>
+
+Reconnect after the following time(ms) ,after the USB serial cable is available.
+<pre id="AutoComPortReconnectDelayNormal">
+Default:
+AutoComPortReconnectDelayNormal=300
+</pre>
+
+If reconnection fails, retries after the next specified number of times and time (ms).
+<pre id="AutoComPortReconnectRetryCount">
+Default:
+AutoComPortReconnectRetryCount=3
+AutoComPortReconnectRetryInterval=1000
+</pre>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../reference/menu_id.html">‹ Menu IDs</a><a href="../index.html">Contents</a><a class="ttw-next" href="../setup/teraterm-misc.html">INI: Miscellaneous ›</a></nav>
+</body>
+</HTML>

@@ -1,0 +1,1270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tera Term 設定ファイルの全項目一覧</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>TERATERM.INI の全項目</span><a class="ttw-lang" href="../../en/setup/teraterm-ini.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>Tera Term 設定ファイルの全項目一覧</h1>
+
+<h2 id="mac">設定ファイルの使われ方</h2>
+
+<p>
+Tera Term Mac は設定を macOS の環境設定 (net.satoru.teramac) に保存します。TERATERM.INI を使うのは次のときです。
+</p>
+
+<ul>
+  <li><a href="../menu/setup-save.html">[設定]-[設定の保存...]</a>: 今の設定を TERATERM.INI の形で書き出します。既定のファイルは <code>~/Library/Application Support/Tera Term Mac/TERATERM.INI</code> です。文字コードは UTF-16 (LE BOM 付き) です。すでにあるファイルに書くときは、Tera Term Mac が使わないキーやセクションはそのまま残します。</li>
+  <li><a href="../menu/setup-restore.html">[設定]-[設定の読み込み...]</a>: 選んだ TERATERM.INI を読み込み、今のウィンドウに使い、環境設定に保存します。Windows の Tera Term で作った TERATERM.INI (UTF-16 / UTF-8 / Shift_JIS) もそのまま読めます。</li>
+  <li>ファイル転送・ドラッグ&amp;ドロップ・TEK の一部の設定 (XMODEM/ZMODEM などの項目、FileSendFilter、ConfirmFileDragAndDrop、TEKColor など) は、最後に読み込んだか保存した TERATERM.INI から直接読みます。そのファイルがないときは <code>~/Library/Application Support/Tera Term Mac/TERATERM.INI</code> を読みます。</li>
+  <li>マクロの <a href="../macro/command/restoresetup.html">restoresetup</a> も TERATERM.INI を読みます。</li>
+</ul>
+
+<p>
+初めて起動したときの設定は、アプリに入っている TERATERM.INI のとおりです。ただし TermType=xterm-256color、BSKey=DEL (delete キーで DEL を送る)、Title=Tera Term Mac、VTFontSpace=0,0,1,0 に変えています。
+</p>
+
+<p>
+下の表には Tera Term Mac が読む項目だけを載せています。ほかのキーは読み込まず、設定の保存でも書きません (すでにファイルにある値はそのまま残ります)。
+</p>
+
+<h2>Tera Term</h2>
+
+<table border="1">
+	<tr>
+		<th>項目</th>
+		<th style="width:250px;">INIデフォルト</th>
+		<th style="width:250px;">プログラムデフォルト</th>
+		<th>備考</th>
+	</tr>
+	<tr>
+		<td id="AcceptBroadcast"><a href="../menu/setup-additional-general.html#AcceptBroadcast">AcceptBroadcast</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="AcceptTitleChangeRequest"><a href="../menu/setup-additional-ctrlseq.html#AcceptTitleChangeRequest">AcceptTitleChangeRequest</a></td>
+		<td style="width:250px;">overwrite</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="Aixterm16Color"><a href="../menu/setup-additional-window.html#Aixterm16Color">Aixterm16Color</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="AlphaBlendActive"><a href="../menu/setup-additional-visual.html#AlphaBlendActive">AlphaBlendActive</a></td>
+		<td style="width:250px;">255</td>
+		<td style="width:250px;">※</td>
+		<td>※<a href="#AlphaBlend">AlphaBlend</a>の設定値が使われる</td>
+	</tr>
+	<tr>
+		<td id="AlphaBlend"><a href="../menu/setup-additional-visual.html#AlphaBlend">AlphaBlend</a></td>
+		<td style="width:250px;">255</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ANSIColor"><a href="../menu/setup-additional-visual.html#ANSIColor">ANSIColor</a></td>
+		<td style="width:250px;">0,0,0,0, 1,255,0,0, 2,0,255,0, 3,255,255,0, 4,128,128,255, 5,255,0,255, 6,0,255,255, 7,255,255,255, 8,64,64,64, 9,192,0,0, 10,0,192,0, 11,192,192,0, 12,64,64,192, 13,192,0,192, 14,0,192,192, 15,192,192,192</td>
+		<td style="width:250px;">0,0,0,0, 1,255,0,0, 2,0,255,0, 3,255,255,0, 4,0,0,255, 5,255,0,255, 6,0,255,255, 7,255,255,255, 8,128,128,128, 9,128,0,0, 10,0,128,0, 11,128,128,0, 12,0,0,128, 13,128,0,128, 14,0,128,128, 15,192,192,192</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="Answerback"><a href="../menu/setup-additional-terminal.html#Answerback">Answerback</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="AutoComPortReconnect"><a href="teraterm-com.html#AutoComPortReconnect">AutoComPortReconnect</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><a href="teraterm-com.html#AutoComPortReconnectDelayNormal">AutoComPortReconnectDelayNormal</a></td>
+		<td style="width:250px;">300</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><a href="teraterm-com.html#AutoComPortReconnectRetryCount">AutoComPortReconnectRetryCount</a></td>
+		<td style="width:250px;">3</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><a href="teraterm-com.html#AutoComPortReconnectRetryCount">AutoComPortReconnectRetryInterval</a></td>
+		<td style="width:250px;">1000</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="AutoFileRename"><a href="teraterm-trans.html#rename">AutoFileRename</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="AutoScrollOnlyInBottomLine"><a href="../menu/setup-additional-general.html#AutoScrollOnlyInBottomLine">AutoScrollOnlyInBottomLine</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="AutoTextCopy"><a href="teraterm-win.html#autocopy">AutoTextCopy</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="AutoWinClose"><a href="../menu/setup-additional-tcpip.html#AutoWinClose">AutoWinClose</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="AutoWinResize"><a href="../menu/setup-additional-terminal.html#AutoWinResize">AutoWinResize</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="AutoWinSwitch"><a href="../menu/setup-additional-terminal.html#AutoWinSwitch">AutoWinSwitch</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="BaudRate"><a href="../menu/setup-additional-serialport.html#Speed">BaudRate</a></td>
+		<td style="width:250px;">9600</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="Beep"><a href="teraterm-term.html#beep">Beep</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="BeepVBellWait"><a href="teraterm-term.html#BeepVBellWait">BeepVBellWait</a></td>
+		<td style="width:250px;">10</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="BPAuto"><a href="teraterm-trans.html#bpauto">BPAuto</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="BPEscCtl"><a href="teraterm-trans.html#bpesc">BPEscCtl</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="BPLog"><a href="teraterm-trans.html#bplog">BPLog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="BSKey"><a href="../menu/setup-additional-keyboard.html#BSKey">BSKey</a></td>
+		<td style="width:250px;">BS</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ClearOnResize"><a href="../menu/setup-additional-general.html#ClearOnResize">ClearOnResize</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ClipboardAccessFromRemote"><a href="../menu/setup-additional-ctrlseq.html#ClipboardAccessFromRemote">ClipboardAccessFromRemote</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ConfirmChangePaste"><a href="../menu/setup-additional-copy-and-paste.html#ConfirmChangePaste">ConfirmChangePaste</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ConfirmChangePasteCR">ConfirmChangePasteCR</td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ConfirmChangePasteStringFile"><a href="../menu/setup-additional-copy-and-paste.html#ConfirmChangePasteStringFile">ConfirmChangePasteStringFile</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ConfirmDisconnect"><a href="teraterm-com.html#confirm">ConfirmDisconnect</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ConfirmFileDragAndDrop"><a href="teraterm-trans.html#draganddrop">ConfirmFileDragAndDrop</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ConfirmPasteMouseRButton"><a href="../menu/setup-additional-copy-and-paste.html#ConfirmPasteMouseRButton">ConfirmPasteMouseRButton</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="CRReceive"><a href="../menu/setup-additional-terminal.html#CRReceive">CRReceive</a></td>
+		<td style="width:250px;">CR</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="CRSend"><a href="../menu/setup-additional-terminal.html#CRSend">CRSend</a></td>
+		<td style="width:250px;">CR</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="CursorCtrlSequence"><a href="../menu/setup-additional-ctrlseq.html#CursorCtrlSequence">CursorCtrlSequence</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="CursorShape"><a href="../menu/setup-additional-window.html#CursorShape">CursorShape</a></td>
+		<td style="width:250px;">block</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DataBit"><a href="../menu/setup-additional-serialport.html#Speed">DataBit</a></td>
+		<td style="width:250px;">8</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DecSpMappingDir"><a href="../menu/setup-additional-coding.html#DecSpecial">DecSpMappingDir</a></td>
+		<td style="width:250px;">2</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DelayPerChar"><a href="../menu/setup-additional-serialport.html#Delay">DelayPerChar</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DelayPerLine"><a href="../menu/setup-additional-serialport.html#Delay">DelayPerLine</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DeleteKey"><a href="../menu/setup-additional-keyboard.html#DeleteKey">DeleteKey</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DisableAcceleratorSendBreak"><a href="../menu/setup-additional-general.html#DisableAcceleratorSendBreak">DisableAcceleratorSendBreak</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DisableAppCursor"><a href="../menu/setup-additional-keyboard.html#DisableAppCursor">DisableAppCursor</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DisableAppKeypad"><a href="../menu/setup-additional-keyboard.html#DisableAppKeypad">DisableAppKeypad</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DisableMouseTrackingByCtrl"><a href="../menu/setup-additional-ctrlseq.html#DisableMouseTrackingByCtrl">DisableMouseTrackingByCtrl</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DisablePasteMouseMButton"><a href="teraterm-misc.html#DisablePasteMouseMButton">DisablePasteMouseMButton</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DisablePasteMouseRButton"><a href="../menu/setup-additional-copy-and-paste.html#DisablePasteMouseRButton">DisablePasteMouseRButton</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DrawingResizedFont"><a href="../menu/setup-additional-font.html#ResizedFont">DrawingResizedFont</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="EnableANSIColor"><a href="../menu/setup-additional-visual.html#EnableANSIColor">EnableANSIColor</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="EnableBlinkAttrColor"><a href="../menu/setup-additional-visual.html#EnableBlinkAttrColor">EnableBlinkAttrColor</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="EnableBold"><a href="../menu/setup-additional-window.html#EnableBold">EnableBold</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="EnableBoldAttrColor"><a href="../menu/setup-additional-visual.html#EnableBoldAttrColor">EnableBoldAttrColor</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="EnableClickableUrl"><a href="../menu/setup-additional-mouse.html#EnableClickableUrl">EnableClickableUrl</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="EnableContinuedLineCopy"><a href="../menu/setup-additional-copy-and-paste.html#EnableContinuedLineCopy">EnableContinuedLineCopy</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="IniAutoBackup"><a href="teraterm-misc.html#IniAutoBackup">IniAutoBackup</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="EnableReverseAttrColor"><a href="../menu/setup-additional-visual.html#EnableReverseAttrColor">EnableReverseAttrColor</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="EnableScrollBuff">EnableScrollBuff</td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="EnableURLColor"><a href="../menu/setup-additional-visual.html#EnableURLAttrColor">EnableURLColor</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="FileDir">FileDir</td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td>値が "" の場合、プログラムはダウンロードフォルダを使用する。</td>
+	</tr>
+	<tr>
+		<td id="FileReceiveFilter"><a href="teraterm-trans.html#FileReceiveFilter">FileReceiveFilter</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="FileSendFilter"><a href="teraterm-trans.html#filter">FileSendFilter</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="FileSendHighSpeedMode"><a href="teraterm-trans.html#FileSendHighSpeedMode">FileSendHighSpeedMode</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="FlowCtrl"><a href="../menu/setup-additional-serialport.html#Speed">FlowCtrl</a></td>
+		<td style="width:250px;">none</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="FlowCtrlDTR"><a href="../menu/setup-additional-serialport.html#FlowCtrlDTR">FlowCtrlDTR</a></td>
+		<td style="width:250px;">1</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="FlowCtrlRTS"><a href="../menu/setup-additional-serialport.html#FlowCtrlRTS">FlowCtrlRTS</a></td>
+		<td style="width:250px;">1</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="FontQuality"><a href="../menu/setup-additional-visual.html#FontQuality">FontQuality</a></td>
+		<td style="width:250px;">default</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="FTHideDialog"><a href="teraterm-trans.html#hidetransdialog">FTHideDialog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="HistoryList"><a href="../menu/setup-additional-tcpip.html#HistoryList">HistoryList</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KanjiIn"><a href="../menu/setup-additional-coding.html#KanjiIn">KanjiIn</a></td>
+		<td style="width:250px;">B</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KanjiOut"><a href="../menu/setup-additional-coding.html#KanjiOut">KanjiOut</a></td>
+		<td style="width:250px;">B</td>
+		<td style="width:250px;">J</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KanjiReceive"><a href="../menu/setup-additional-coding.html#KanjiReceive">KanjiReceive</a></td>
+		<td style="width:250px;">UTF-8</td>
+		<td style="width:250px;">SJIS</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KanjiSend"><a href="../menu/setup-additional-coding.html#KanjiSend">KanjiSend</a></td>
+		<td style="width:250px;">UTF-8</td>
+		<td style="width:250px;">SJIS</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KatakanaReceive"><a href="../menu/setup-additional-coding.html#KatakanaReceive">KatakanaReceive</a></td>
+		<td style="width:250px;">8</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KatakanaSend"><a href="../menu/setup-additional-coding.html#KatakanaSend">KatakanaSend</a></td>
+		<td style="width:250px;">8</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KmtFileAttr"><a href="teraterm-trans.html#kmfileattr">KmtFileAttr</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KmtLog"><a href="teraterm-trans.html#kmlog">KmtLog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KmtLongPacket"><a href="teraterm-trans.html#kmlongpkt">KmtLongPacket</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LocalEcho"><a href="../menu/setup-additional-terminal.html#LocalEcho">LocalEcho</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogAppend"><a href="../menu/setup-additional-log.html#LogAppend">LogAppend</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogAutoStart"><a href="../menu/setup-additional-log.html#LogAutoStart">LogAutoStart</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogBinary"><a href="../menu/setup-additional-log.html#LogBinary">LogBinary</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogDefaultName"><a href="../menu/setup-additional-log.html#LogDefaultName">LogDefaultName</a></td>
+		<td style="width:250px;">teraterm.log</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogDefaultPath"><a href="../menu/setup-additional-log.html#LogDefaultPath">LogDefaultPath</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogHideDialog"><a href="../menu/setup-additional-log.html#LogHideDialog">LogHideDialog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogIncludeScreenBuffer"><a href="../menu/file-log.html#LogIncludeScreenBuffer">LogIncludeScreenBuffer</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogRotate"><a href="../menu/setup-additional-log.html#LogRotate">LogRotate</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogRotateSize"><a href="../menu/setup-additional-log.html#LogRotateSize">LogRotateSize</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogRotateSizeType">LogRotateSizeType</td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogRotateStep"><a href="../menu/setup-additional-log.html#LogRotateStep">LogRotateStep</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogTimestamp"><a href="../menu/setup-additional-log.html#LogTimestamp">LogTimestamp</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogTimestampType"><a href="../menu/setup-additional-log.html#LogTimestampType">LogTimestampType</a></td>
+		<td style="width:250px;">Local</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="LogTypePlainText"><a href="../menu/setup-additional-log.html#LogTypePlainText">LogTypePlainText</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="MaxBroadcatHistory"><a href="teraterm-misc.html#broadcast">MaxBroadcatHistory</a></td>
+		<td style="width:250px;">99</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="MetaKey"><a href="../menu/setup-additional-keyboard.html#MetaKey">MetaKey</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="MouseCursor"><a href="../menu/setup-additional-visual.html#MouseCursor">MouseCursor</a></td>
+		<td style="width:250px;">IBEAM</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="MouseEventTracking"><a href="../menu/setup-additional-ctrlseq.html#MouseEventTracking">MouseEventTracking</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="MouseWheelScrollLine"><a href="../menu/setup-additional-mouse.html#MouseWheelScrollLine">MouseWheelScrollLine</a></td>
+		<td style="width:250px;">3</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="NonblinkingCursor"><a href="teraterm-win.html#blink">NonblinkingCursor</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="NotifyClipboardAccess"><a href="../menu/setup-additional-ctrlseq.html#NotifyClipboardAccess">NotifyClipboardAccess</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="NotifySound"><a href="../menu/setup-additional-general.html#NotifySound">NotifySound</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="Parity"><a href="../menu/setup-additional-serialport.html#Speed">Parity</a></td>
+		<td style="width:250px;">none</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="PasteDelayPerLine"><a href="../menu/setup-additional-copy-and-paste.html#PasteDelayPerLine">PasteDelayPerLine</a></td>
+		<td style="width:250px;">10</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="PcBoldColor"><a href="../menu/setup-additional-window.html#PcBoldColor">PcBoldColor</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="PopupMenu"><a href="../menu/setup-additional-window.html">PopupMenu</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="Port"><a href="../menu/setup-additional-general.html#Port">Port</a></td>
+		<td style="width:250px;">tcpip</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="PrinterCtrlSequence"><a href="teraterm-prn.html#ignoremc">PrinterCtrlSequence</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="QVLog"><a href="teraterm-trans.html#qvlog">QVLog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="QVWinSize"><a href="teraterm-trans.html#qvwinsize">QVWinSize</a></td>
+		<td style="width:250px;">8</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ReceivefileSkipOptionDialog"><a href="../setup/teraterm-trans.html#ReceivefileSkipOptionDialog">ReceivefileSkipOptionDialog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ReceivefileAutoStopWaitTime"><a href="../menu/file-receivefile.html#ReceivefileAutoStopWaitTime">ReceivefileAutoStopWaitTime</a></td>
+		<td style="width:250px;">5</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="SendfileDelayTick"><a href="../menu/file-sendfile.html#DelayTick">SendfileDelayTick</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="SendfileDelayType"><a href="../menu/file-sendfile.html#DelayType">SendfileDelayType</a></td>
+		<td style="width:250px;">NoDelay</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="SendfileSequential"><a href="../menu/file-sendfile.html#Sequential">SendfileSequential</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="SendfileSize"><a href="../menu/file-sendfile.html#Size">SendfileSize</a></td>
+		<td style="width:250px;">4096</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="SendfileSkipOptionDialog"><a href="../setup/teraterm-trans.html#SendfileSkipOptionDialog">SendfileSkipOptionDialog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ScpSendDir">ScpSendDir</td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ScrollBuffSize"><a href="../menu/setup-additional-window.html#ScrollBuffSize">ScrollBuffSize</a></td>
+		<td style="width:250px;">10000</td>
+		<td style="width:250px;">100</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="SelectOnActivate"><a href="teraterm-win.html#textselect">SelectOnActivate</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="SelectOnlyByLButton"><a href="../menu/setup-additional-copy-and-paste.html#SelectOnlyByLButton">SelectOnlyByLButton</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="SendBreakTime"><a href="teraterm-com.html#SendBreakTime">SendBreakTime</a></td>
+		<td style="width:250px;">1000</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="StopBit"><a href="../menu/setup-additional-serialport.html#Speed">StopBit</a></td>
+		<td style="width:250px;">1</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TCPPort"><a href="../menu/setup-additional-tcpip.html#TCPPort">TCPPort</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">※</td>
+		<td>※TelPortの値</td>
+	</tr>
+	<tr>
+		<td id="TEKColor"><a href="../menutek/setup-window.html#TEKColor">TEKColor</a></td>
+		<td style="width:250px;">0,0,0,255,255,255</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TEKColorEmulation"><a href="../menutek/setup-window.html#TEKColorEmulation">TEKColorEmulation</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TEKFont"><a href="../menutek/setup-font.html#TEKFont">TEKFont</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">Courier,0,-13,0</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TEKGINMouseCode"><a href="teraterm-term.html#tekgin">TEKGINMouseCode</a></td>
+		<td style="width:250px;">32</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TelBin"><a href="teraterm-com.html#telbin">TelBin</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TelKeepAliveInterval"><a href="../menu/setup-additional-tcpip.html#TelKeepAliveInterval">TelKeepAliveInterval</a></td>
+		<td style="width:250px;">300</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="Telnet"><a href="../menu/setup-additional-tcpip.html#Telnet">Telnet</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TerminalID"><a href="../menu/setup-additional-terminal.html#TerminalID">TerminalID</a></td>
+		<td style="width:250px;">VT100</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TerminalSize"><a href="../menu/setup-additional-terminal.html#TerminalSize">TerminalSize</a></td>
+		<td style="width:250px;">80,24</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TermIsWin"><a href="../menu/setup-additional-terminal.html#TermIsWin">TermIsWin</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TermType"><a href="../menu/setup-additional-tcpip.html#TermType">TermType</a></td>
+		<td style="width:250px;">xterm</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="Title"><a href="../menu/setup-additional-window.html#Title">Title</a></td>
+		<td style="width:250px;">Tera Term</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TitleFormat"><a href="teraterm-win.html#title">TitleFormat</a></td>
+		<td style="width:250px;">13</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TitleReportSequence"><a href="../menu/setup-additional-ctrlseq.html#TitleReportSequence">TitleReportSequence</a></td>
+		<td style="width:250px;">empty</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TransBin"><a href="../menu/file-sendfile.html#Binary">TransBin</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TrimTrailingNLonPaste"><a href="../menu/setup-additional-copy-and-paste.html#TrimTrailingNL">TrimTrailingNLonPaste</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="UILanguageFile"><a href="../menu/setup-additional-ui.html#UILanguageFile">UILanguageFile</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td>空のときは macOS の言語設定に合わせる (例: lang_utf8\ja_JP.lng)</td>
+	</tr>
+	<tr>
+		<td id="UnicodeAmbiguousWidth"><a href="../menu/setup-additional-coding.html#AmbiguousCharactersWidth">UnicodeAmbiguousWidth</a></td>
+		<td style="width:250px;">1</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="UnicodeEmojiOverride"><a href="../menu/setup-additional-coding.html#UnicodeEmojiOverride">UnicodeEmojiOverride</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="UnicodeEmojiWidth"><a href="../menu/setup-additional-coding.html#UnicodeEmojiOverride">UnicodeEmojiWidth</a></td>
+		<td style="width:250px;">1</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="UnicodeToDecSpMapping"><a href="teraterm-term.html#UnicodeDecSpMapping">UnicodeToDecSpMapping</a></td>
+		<td style="width:250px;">3</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="UnderlineAttrColor"><a href="../menu/setup-additional-visual.html#EnableUnderlineAttrColor">UnderlineAttrColor</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="UnderlineAttrFont"><a href="../menu/setup-additional-visual.html#EnableUnderlineAttrFont">UnderlineAttrFont</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="URLColor"><a href="../menu/setup-additional-window.html#Attribute">URLColor</a></td>
+		<td style="width:250px;">0,255,255,0,0,0</td>
+		<td style="width:250px;">0,255,0,255,255,255</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="URLUnderline"><a href="../menu/setup-additional-visual.html#EnableURLAttrFont">URLUnderline</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="UseNormalBGColor"><a href="../menu/setup-additional-window.html#UseNormalBGColor">UseNormalBGColor</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">off</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ViewlogEditor"><a href="../menu/setup-additional-log.html#ViewlogEditor">ViewlogEditor</a></td>
+		<td style="width:250px;">notepad.exe</td>
+		<td style="width:250px;"></td>
+		<td>空または notepad.exe のときはテキストエディットで開く。.app を指定するとそのアプリで開く</td>
+	</tr>
+	<tr>
+		<td id="ViewlogEditorArg"><a href="../menu/setup-additional-log.html#ViewlogEditorArg">ViewlogEditorArg</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="VTBlinkColor"><a href="../menu/setup-additional-window.html#Attribute">VTBlinkColor</a></td>
+		<td style="width:250px;">255,0,0,0,0,0</td>
+		<td style="width:250px;">255,0,0,255,255,255</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="VTBoldColor"><a href="../menu/setup-additional-window.html#Attribute">VTBoldColor</a></td>
+		<td style="width:250px;">255,255,0,0,0,0</td>
+		<td style="width:250px;">0,0,255,255,255,255</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="VTColor"><a href="../menu/setup-additional-window.html#Attribute">VTColor</a></td>
+		<td style="width:250px;">255,255,255,0,0,0</td>
+		<td style="width:250px;">0,0,0,255,255,255</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="VTFont"><a href="../menu/setup-additional-font.html#VTFont">VTFont</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">※</td>
+		<td>※ターミナル.app の標準のフォント (読めないときは Menlo 11pt)<br>Mac にある等幅フォントだけ使います。ないときは大きさだけ使います。</td>
+	</tr>
+	<tr>
+		<td id="VTFontSpace"><a href="teraterm-win.html#space">VTFontSpace</a></td>
+		<td style="width:250px;">0,0,0,0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="VTReverseColor"><a href="../menu/setup-additional-window.html#Attribute">VTReverseColor</a></td>
+		<td style="width:250px;">0,0,0,255,255,255</td>
+		<td style="width:250px;">255,255,255,0,0,0</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="VTUnderlineColor"><a href="../menu/setup-additional-window.html#Attribute">VTUnderlineColor</a></td>
+		<td style="width:250px;">0,255,0,0,0,0</td>
+		<td style="width:250px;">255,0,255,255,255,255</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="WindowCtrlSequence"><a href="../menu/setup-additional-ctrlseq.html#WindowCtrlSequence">WindowCtrlSequence</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="WindowReportSequence"><a href="../menu/setup-additional-ctrlseq.html#WindowReportSequence">WindowReportSequence</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="XmodemBin">XmodemBin</td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="XmodemLog"><a href="teraterm-trans.html#xmlog">XmodemLog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="XmodemOpt">XmodemOpt</td>
+		<td style="width:250px;">checksum</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="XmodemRcvCommand"><a href="teraterm-trans.html#xmodemrecv">XmodemRcvCommand</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="XmodemTimeouts"><a href="teraterm-trans.html#XmodemTimeouts">XmodemTimeouts</a></td>
+		<td style="width:250px;">10,3,10,20,60</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="Xterm256Color"><a href="../menu/setup-additional-window.html#Xterm256Color">Xterm256Color</a></td>
+		<td style="width:250px;">on</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="YmodemLog"><a href="teraterm-trans.html#ymlog">YmodemLog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="YmodemRcvCommand">YmodemRcvCommand</td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">rb</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="YmodemTimeouts"><a href="teraterm-trans.html#YmodemTimeouts">YmodemTimeouts</a></td>
+		<td style="width:250px;">10,3,10,20,60</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ZmodemAuto"><a href="teraterm-trans.html#zmauto">ZmodemAuto</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ZmodemDataLen"><a href="teraterm-trans.html#zmparam">ZmodemDataLen</a></td>
+		<td style="width:250px;">1024</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ZmodemEscCtl"><a href="teraterm-trans.html#zmesc">ZmodemEscCtl</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ZmodemLog"><a href="teraterm-trans.html#zmlog">ZmodemLog</a></td>
+		<td style="width:250px;">off</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ZmodemRcvCommand"><a href="teraterm-trans.html#zmodemrecv">ZmodemRcvCommand</a></td>
+		<td style="width:250px;">rz</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ZmodemTimeouts"><a href="teraterm-trans.html#ZmodemTimeouts">ZmodemTimeouts</a></td>
+		<td style="width:250px;">10,0,10,3</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="ZmodemWinSize"><a href="teraterm-trans.html#zmparam">ZmodemWinSize</a></td>
+		<td style="width:250px;">32767</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+</table>
+
+<h2 id="HostList">Hosts</h2>
+
+<p>
+読み込むと接続ダイアログの履歴に入ります。Windows で作ったファイルにある /F= /W= /X= /Y= のオプションは外し、\\ で始まる項目と /R= /C= の項目は読みません。ssh:// と telnet:// はそのまま使えます。保存するときは接続の履歴 (最大 20 件) を書きます。
+</p>
+
+host list
+
+<pre>
+[Hosts]
+Host1=1st item
+Host2=2nd item
+Host3=3rd item
+ :
+</pre>
+
+<h2>TTSSH</h2>
+
+<p>
+Tera Term Mac の SSH は macOS の ssh (OpenSSH) を使います。下の表の項目は ssh のオプションに直して渡します。このほか、Tera Term Mac 独自のキー TeraMacCiphers・TeraMacKexAlgorithms・TeraMacHostKeyAlgorithms・TeraMacMACs (OpenSSH のアルゴリズム名をカンマで区切ったもの。空なら ssh の標準) と TeraMacGatewayPorts (1 なら ssh -g) を読み書きします。
+</p>
+
+<table border="1">
+	<tr>
+		<th>項目</th>
+		<th style="width:250px;">INIデフォルト</th>
+		<th style="width:250px;">プログラムデフォルト</th>
+		<th>備考</th>
+	</tr>
+	<tr>
+		<td id="Compression"><a href="../menu/setup-ssh.html#Compression">Compression</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DefaultAuthMethod"><a href="../menu/setup-sshauth.html#DefaultAuthMethod">DefaultAuthMethod</a></td>
+		<td style="width:250px;">3</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DefaultForwarding"><a href="../menu/setup-sshforward.html">DefaultForwarding</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DefaultRSAPrivateKeyFile"><a href="../menu/setup-sshauth.html#DefaultRSAPrivateKeyFile">DefaultRSAPrivateKeyFile</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DefaultUserName"><a href="../menu/setup-sshauth.html#DefaultUserName">DefaultUserName</a></td>
+		<td style="width:250px;"></td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="DefaultUserType"><a href="../menu/setup-sshauth.html#DefaultUserType">DefaultUserType</a></td>
+		<td style="width:250px;">1</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<!-- hidden parameter tr>
+		<td id="EnableRsaShortKeyServer">EnableRsaShortKeyServer</td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr -->
+	<tr>
+		<td id="ForwardAgent"><a href="../menu/setup-ssh.html#ForwardAgent">ForwardAgent</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="HeartBeat"><a href="../menu/setup-ssh.html#Keepalive">HeartBeat</a></td>
+		<td style="width:250px;">300</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="KnownHostsFiles"><a href="../menu/setup-ssh.html#KnownHostsFiles">KnownHostsFiles</a></td>
+		<td style="width:250px;">ssh_known_hosts</td>
+		<td style="width:250px;">&lt;-</td>
+		<td>既定の ssh_known_hosts は ~/.ssh/known_hosts として扱います。</td>
+	</tr>
+	<tr>
+		<td id="LogLevel"><a href="teraterm-ssh.html#LogLevel">LogLevel</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="UpdateHostkeys"><a href="../menu/setup-ssh.html#UpdateHostkeys">UpdateHostkeys</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="VerifyHostKeyDNS"><a href="../menu/setup-ssh.html#VerifyHostKeyDNS">VerifyHostKeyDNS</a></td>
+		<td style="width:250px;">0</td>
+		<td style="width:250px;">1</td>
+		<td></td>
+	</tr>
+</table>
+
+<h2>TTProxy</h2>
+
+<p>
+Tera Term Mac は TTProxy と同じプロキシ機能を内蔵しています。下の表の項目を読み書きします。
+</p>
+
+<table border="1">
+	<tr>
+		<th>項目</th>
+		<th style="width:250px;">INIデフォルト</th>
+		<th style="width:250px;">プログラムデフォルト</th>
+		<th>備考</th>
+	</tr>
+	<tr>
+		<td id="ConnectionTimeout">ConnectionTimeout</td>
+		<td style="width:250px;">&quot;10&quot;</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="SocksResolve">SocksResolve</td>
+		<td style="width:250px;">&quot;auto&quot;</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TelnetConnectedMessage">TelnetConnectedMessage</td>
+		<td style="width:250px;">&quot;-- Connected to &quot;</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TelnetErrorMessage">TelnetErrorMessage</td>
+		<td style="width:250px;">&quot;!!!!!!!!&quot;</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TelnetHostnamePrompt">TelnetHostnamePrompt</td>
+		<td style="width:250px;">&quot;&gt;&gt; Host name: &quot;</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TelnetPasswordPrompt">TelnetPasswordPrompt</td>
+		<td style="width:250px;">&quot;Password:&quot;</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="TelnetUsernamePrompt">TelnetUsernamePrompt</td>
+		<td style="width:250px;">&quot;Username:&quot;</td>
+		<td style="width:250px;">&lt;-</td>
+		<td></td>
+	</tr>
+</table>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../setup/teraterm.html">‹ 設定ファイル (TERATERM.INI)</a><a href="../index.html">目次</a><a class="ttw-next" href="../setup/theme.html">テーマファイル ›</a></nav>
+</body>
+</html>

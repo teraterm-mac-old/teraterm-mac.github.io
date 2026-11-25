@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>strdim</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>strdim</span><a class="ttw-lang" href="../../../en/macro/command/strdim.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>strdim</h1>
+
+<p>
+文字列配列型の変数を宣言する。
+</p>
+
+<pre class="macro-syntax">
+strdim &lt;array&gt; &lt;size&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+&lt;size&gt;個の要素を持つ整数配列型の変数&lt;array&gt;を宣言する。&lt;size&gt;は 1 ～ 65536 の範囲の値を持つことができ、配列の添字は0オリジンである。<br />
+配列内の各要素の初期値は空文字列。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+strdim timeary 10
+for i 9 0
+        gettime timeary[9-i]
+        statusbox i "wait"
+        pause 1
+next
+
+msg = ""
+for i 0 9
+        strconcat msg timeary[i]
+        strconcat msg #13#10
+next
+
+messagebox msg "result"
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="../syntax/types.html">データ型</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/strcopy.html">‹ strcopy</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/strinsert.html">strinsert ›</a></nav>
+</body>
+</html>

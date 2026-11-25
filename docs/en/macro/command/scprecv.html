@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>scprecv</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>scprecv</span><a class="ttw-lang" href="../../../ja/macro/command/scprecv.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>scprecv</h1>
+
+<p>
+Receives a file from the remote host with the SCP protocol.
+</p>
+
+<pre class="macro-syntax">
+scprecv &lt;remote filename&gt; [&lt;local filename&gt;]
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Receives the remote file &lt;remote filename&gt; from the host with the SCP(Secure Copy Protocol) protocol. 
+The SSH connection is shared and the file is transferred with the Mac scp command. This command works only while connected with SSH.
+If the local file &lt;local filename&gt; is omitted, the file &lt;remote filename&gt; would be copied in the file transfer folder (the folder set by <a href="changedir.html">changedir</a>; the Downloads folder by default).
+The macro does not pause until the end of the file transfer.<br>
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+connect '192.168.3.2:22 /ssh /auth=password /user=hoge /passwd=fuga'
+wait '$'
+scprecv 'bin/tool.sh'
+scprecv 'sample.bin' '/Users/user/hoge.bin'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/rotateright.html">‹ rotateright</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/scpsend.html">scpsend ›</a></nav>
+</body>
+</html>

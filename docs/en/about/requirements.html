@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Requirements</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>System requirements</span><a class="ttw-lang" href="../../ja/about/requirements.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Requirements</h1>
+
+<p>Supported macOS versions:</p>
+
+<ul class="no-marker">
+  <li>macOS 11 Big Sur or later</li>
+</ul>
+
+<p>Available architectures:</p>
+
+<ul class="no-marker">
+  <li>Apple Silicon (arm64): Runs natively.</li>
+  <li>Intel (x86_64): Runs natively.</li>
+</ul>
+
+<p>
+  The app is a universal binary that contains both architectures. Rosetta is not required.<br>
+  SSH connections use OpenSSH (/usr/bin/ssh), which comes with macOS. Nothing else needs to be installed.
+</p>
+
+<h2 id="install">Installation</h2>
+
+<ol>
+  <li>Download TeraTermMac-&lt;version&gt;.dmg from <a href="https://github.com/satorunet/teraterm_macos/releases/latest" target="_blank">Releases</a> and open it.</li>
+  <li>Drag the "Tera Term Mac" icon to the "Applications" folder on the right.</li>
+</ol>
+
+<p>
+  Tera Term Mac is notarized by Apple, so it starts without a Gatekeeper warning.<br>
+  If you start it directly from the disk image or the Downloads folder, it asks whether to move it to the Applications folder. Click "Move" to copy it there and restart it.
+</p>
+
+<h2 id="update">Updates</h2>
+
+<p>
+  Tera Term Mac supports automatic updates with Sparkle.<br>
+  Once a day it checks GitHub for a new version and, if there is one, asks whether to install it. It never replaces the app without asking.
+</p>
+
+<ul>
+  <li>Check at any time with [Tera Term Mac] &gt; [Check for Updates...].</li>
+  <li>Uncheck [Tera Term Mac] &gt; [Automatically Check for Updates] to stop all update traffic unless you check yourself.</li>
+  <li>No information about your Mac is sent when checking for updates.</li>
+</ul>
+
+<p>
+  For the changes in each version, see <a href="https://github.com/satorunet/teraterm_macos/releases" target="_blank">Releases</a> (also available from "Release Notes" in "About Tera Term Mac").
+</p>
+
+<h2 id="uninstall">Uninstallation</h2>
+
+<p>
+  Use [Tera Term Mac] &gt; [Uninstall Tera Term Mac&hellip;].
+  This menu item is shown only when the app is installed in the Applications folder.
+  See "<a href="../uninstall.html">Uninstallation</a>" for details.
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../about/foreword.html">‹ What is Tera Term Mac</a><a href="../index.html">Contents</a><a class="ttw-next" href="../uninstall.html">Uninstalling ›</a></nav>
+</body>
+</html>

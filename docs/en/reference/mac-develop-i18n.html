@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>For developers (Mac version) - UI languages and help</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>UI languages and help</span><a class="ttw-lang" href="../../ja/reference/mac-develop-i18n.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>UI languages and help (Mac version)</h1>
+
+<ul>
+  <li><a href="mac-develop.html">Source layout</a></li>
+  <li><a href="mac-develop-build.html">Build, test and release</a></li>
+  <li>UI languages and help (this page)</li>
+</ul>
+
+<h2 id="lang">UI languages (Lang.swift)</h2>
+
+<p>
+UI strings are looked up with <code>Lang</code> in <code>Sources/TeraCore/Lang.swift</code>. There are two kinds of language files.
+</p>
+
+<table border="1">
+<tr><th>Lookup</th><th>Language file</th><th>Used for</th></tr>
+<tr><td><code>Lang.t("Tera Term", "MENU_FILE_NEW", "新しい接続...")</code></td><td>upstream <code>installer/release/lang_utf8/&lt;lang&gt;.lng</code> (same sections and keys as upstream)</td><td>strings that upstream also has</td></tr>
+<tr><td><code>Lang.m("MENU_TOGGLE_MENUBAR", "メニューバーを開く")</code></td><td>the <code>[Tera Term Mac]</code> section of <code>macos/Resources/lang/mac_&lt;lang&gt;.lng</code></td><td>Mac-only strings</td></tr>
+</table>
+
+<p>
+The last argument is the fallback text (in Japanese). Strings with <code>%s</code>, <code>%d</code> and so on take values after it (<code>Lang.m("SETUP_INI_LOADED", "%s を読み込みました", name)</code>).
+Returned strings have Windows access keys (<code>(&amp;F)</code>, <code>&amp;F</code>) and shortcut labels (<code>\tAlt+N</code>) removed, and <code>\n</code> becomes a newline. Use <code>Lang.raw</code> for the unmodified value.
+</p>
+
+<h3 id="lookup">Lookup order</h3>
+
+<ol>
+  <li>the upstream language file of the selected language (e.g. <code>ja_JP.lng</code>)</li>
+  <li>the Mac language file of the selected language (e.g. <code>mac_ja_JP.lng</code>)</li>
+  <li>the upstream English file (<code>en_US.lng</code>)</li>
+  <li>the Mac English file (<code>mac_en_US.lng</code>)</li>
+  <li>the fallback text in the call</li>
+</ol>
+
+<p>
+Section and key names are case-insensitive. In the app, language files are read from <code>Contents/Resources/lang</code>; during development (<code>swift build</code>) from the source tree's <code>macos/Resources/lang</code> and <code>installer/release/lang_utf8</code>.
+</p>
+
+<h3 id="auto">Choosing the language</h3>
+
+<p>
+The language is <code>UILanguageFile</code> in UserDefaults (same name as in upstream TERATERM.INI, e.g. <code>ja_JP.lng</code>). An upstream style value such as <code>lang_utf8\ja_JP.lng</code> also works; only the file name is used.
+When it is empty (automatic), the macOS preferred languages are checked in order and the closest language file is chosen: one that matches the region (e.g. <code>pt-BR</code> &rarr; <code>pt_BR.lng</code>), otherwise one of the same language. Chinese uses <code>zh_TW.lng</code> for Traditional (Hant, TW, HK, MO) and <code>zh_CN.lng</code> otherwise. If nothing matches, English is used.
+Changing the language posts <code>Lang.didChange</code>, and menus and the like are rebuilt.
+</p>
+
+<h3 id="add-string">Adding a string</h3>
+
+<ol>
+  <li>If an upstream language file already has a string with the same meaning, use it with <code>Lang.t</code> and the upstream section and key.</li>
+  <li>Otherwise write <code>Lang.m("KEY", "Japanese text")</code> and add the key to the <code>[Tera Term Mac]</code> section of <code>Resources/lang/mac_ja_JP.lng</code> and <code>mac_en_US.lng</code>. Please add it to the other <code>mac_*.lng</code> files as well (languages without it show English).</li>
+  <li>Leading and trailing spaces in language file values are dropped. If you need them, add them in code.</li>
+</ol>
+
+<h3 id="add-language">Adding a language</h3>
+
+<p>
+The selectable languages are the upstream language files in <code>lang_utf8</code> (except <code>Default.lng</code> and <code>mac_*.lng</code>), named by each file's <code>[Info] language=</code>.
+For a language upstream already has, create <code>Resources/lang/mac_&lt;lang&gt;.lng</code> (copy <code>mac_en_US.lng</code> and translate it; UTF-8) with an <code>[Info] language=</code> line and a <code>[Tera Term Mac]</code> section; <code>scripts/bundle.sh</code> puts it into the app.
+A language upstream does not have needs an upstream language file first.
+</p>
+
+<h2 id="help">Help</h2>
+
+<p>
+The help is in <code>macos/Resources/help-mac/{ja,en}</code>. It is based on upstream <code>doc/ja</code> and <code>doc/en</code>, rewritten for the Mac, under the same BSD license as Tera Term.
+When the UI language is Japanese the ja help is shown, otherwise the en help (<code>HelpViewer.language</code>). If that help is missing, the other one is used.
+</p>
+
+<table border="1">
+<tr><th>File</th><th>Contents</th></tr>
+<tr><td>html/</td><td>The help pages. The classic table of contents is html/index.html</td></tr>
+<tr><td>teraterm.hhp</td><td>The same hhp as upstream's CHM. Its <code>[ALIAS]</code> lines (<code>HlpXxx=html\menu\xxx.html</code>) map help IDs to pages (Shift_JIS)</td></tr>
+<tr><td>modern-toc.json</td><td>The task-oriented table of contents on the left of the modern view</td></tr>
+<tr><td>html/modern.html</td><td>The start page of the modern view</td></tr>
+</table>
+
+<p>
+<code>scripts/bundle.sh</code> copies these into <code>Contents/Resources/help/{ja,en}</code> and puts upstream <code>teraterm/common/helpid.h</code> at <code>Contents/Resources/help/helpid.h</code>. During development the help-mac folder in the source tree (or upstream doc if missing) is used.
+</p>
+
+<h3 id="helpid">Help IDs</h3>
+
+<p>
+Help buttons in dialogs and similar open pages by the same help IDs as upstream.
+</p>
+
+<pre>
+HelpViewer.openIndex()                                 // contents (modern.html in the modern view)
+HelpViewer.open(topic: "HlpMenuSetupAdditionalTheme")  // name from helpid.h
+HelpViewer.open(id: 43024)                             // number from helpid.h
+HelpViewer.open(relativePath: "html/menu/setup-font.html#xxx")
+</pre>
+
+<p>
+A name is resolved to a page through <code>[ALIAS]</code> in teraterm.hhp, and a number to a name through the <code>#define</code> lines in helpid.h. Unknown names open the contents (HlpIndex).
+To open a new page by ID, add a line to <code>[ALIAS]</code> in teraterm.hhp.
+</p>
+
+<h3 id="images">Help images</h3>
+
+<p>
+To keep the app small, help images (*.png) are not bundled. When a page is shown and an image is missing locally, it is loaded from the same path in the upstream web manual (<code>https://teratermproject.github.io/manual/5/&lt;lang&gt;/</code>). Without a network connection only the images are missing.
+So pages rewritten for the Mac must keep the same image paths as upstream.
+</p>
+
+<h3 id="modern">Modern view (HelpModernStyle.swift)</h3>
+
+<p>
+The help window can switch between "Classic" and "Modern" (Modern by default; <code>HelpStyleModern</code> in UserDefaults). In the modern view the page HTML is unchanged; at display time a script applies the new look (system font, wider line spacing, dark mode, table of contents and search on the left).
+</p>
+
+<ul>
+  <li>The left table of contents is <code>&lt;lang&gt;/modern-toc.json</code>, in the form <code>[{"t": heading, "items": [{"t": title, "p": path under html/}]}]</code>; <code>p</code> may include a <code>#</code> anchor. Without the file, it is built from the classic contents (<code>div.topic</code> elements in html/index.html and the links under them).</li>
+  <li>The start page is html/modern.html (html/index.html if missing).</li>
+  <li>When you add a page, list it in html/index.html, modern-toc.json and, if useful, modern.html.</li>
+</ul>
+
+<h3 id="encoding">Page encodings</h3>
+
+<p>
+Most pages that come from upstream are Shift_JIS (Japanese) or ASCII (English) with CRLF line endings. Keep the original encoding and line endings when you edit them. New Mac-only pages are UTF-8 (<code>&lt;meta charset="utf-8"&gt;</code>). The modern view reads a page using its meta charset (UTF-8 if there is none, then Shift_JIS).
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../reference/mac-develop-build.html">‹ Build, test and release</a><a href="../index.html">Contents</a><span></span></nav>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>getfileattr</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>getfileattr</span><a class="ttw-lang" href="../../../ja/macro/command/getfileattr.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>getfileattr</h1>
+
+<p>
+Returns the attributes of a file or directory.
+</p>
+
+<pre class="macro-syntax">
+getfileattr &lt;filename&gt;
+</pre>
+
+
+<h2>Parameters</h2>
+
+<dl>
+	<dt class="macro">string &lt;filename&gt;</dt>
+	<dd>The file name or directory name</dd>
+</dl>
+
+<h2>Return Value</h2>
+
+<dl>
+	<dt class="macro">System variable &lt;result&gt;</dt>
+	<dd>When this command fails, -1 is stored.<br>
+		When the command succeeds, the returned value is a combination of the following (the same values as on Windows):<br>
+	    <table border="2">
+	      <tr>
+	        <th>Value</th>
+	        <th>Meaning</th>
+	      </tr>
+	      <tr>
+	        <td>$1</td>
+	        <td>Read-only (no write permission)</td>
+	      </tr>
+	      <tr>
+	        <td>$2</td>
+	        <td>Hidden file or directory (has the Finder hidden flag, or the name starts with ".")</td>
+	      </tr>
+	      <tr>
+	        <td>$10</td>
+	        <td>Directory</td>
+	      </tr>
+	      <tr>
+	        <td>$20</td>
+	        <td>Regular file</td>
+	      </tr>
+	      <tr>
+	        <td>$400</td>
+	        <td>Symbolic link</td>
+	      </tr>
+	    </table>
+	</dd>
+</dl>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+file = '/Users/user/test.txt'
+getfileattr file
+if result &lt;&gt; -1 then
+	if result &amp; $1 &gt; 0 then
+		messagebox 'This file has readonly attribute.' file
+	endif
+endif
+</pre>
+
+<pre class="macro-example">
+name = "/Users/user/test"
+
+getfileattr name
+
+if result &lt; 0 then
+	messagebox "Not found" name
+elseif result &amp; $10 then
+	messagebox "Directory" name
+else
+	messagebox "File" name
+endif
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="setfileattr.html">setfileattr</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getfileattributesw" target="_blank">GetFileAttributesW (Microsoft Learn)</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/windows/win32/fileio/file-attribute-constants" target="_blank">File Attribute Constants (Microsoft Learn)</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/getenv.html">‹ getenv</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/gethostname.html">gethostname ›</a></nav>
+</body>
+</html>

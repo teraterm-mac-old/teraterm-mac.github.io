@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Uninstallation</TITLE>
+<link rel="stylesheet" href="./style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../en/">Tera Term Mac</a> › <a href="index.html">Documentation</a> › <span>Uninstalling</span><a class="ttw-lang" href="../ja/uninstall.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Uninstallation</h1>
+
+<h2>Uninstalling from the menu</h2>
+
+<p>
+Choose Tera Term Mac menu &gt; "Uninstall Tera Term Mac&hellip;".<br>
+A dialog asks what to remove (the dialog is currently shown in Japanese). Check the items and click the first button ("&#12450;&#12531;&#12452;&#12531;&#12473;&#12488;&#12540;&#12523;", Uninstall).
+</p>
+
+<ul>
+  <li>The app (moved to the Trash)</li>
+  <li>Settings and the connection list (including launch at login)</li>
+  <li>Saved passwords (Keychain)</li>
+</ul>
+
+<p>
+All connected windows are closed, and Tera Term Mac quits after removing anything.<br>
+This menu item is shown only when the app is installed in the Applications folder (/Applications or ~/Applications).
+It is hidden when the app runs directly from the disk image or the Downloads folder.
+</p>
+
+<p>
+To keep your connection list, save it first from the TeraTerm Menu list settings with "ttpmenu.ini" &gt; "Export&hellip;".
+</p>
+
+<h2>Manual uninstallation</h2>
+
+<p>
+Quit Tera Term Mac and delete the following:
+</p>
+
+<ul>
+  <li>The app: /Applications/Tera Term Mac.app (move it to the Trash in Finder)</li>
+  <li>Settings and the connection list: ~/Library/Preferences/net.satoru.teramac.plist</li>
+  <li>Launch at login: ~/Library/LaunchAgents/net.satoru.teramac.menu.plist</li>
+  <li>Saved passwords: the "Tera Term Mac &#12513;&#12491;&#12517;&#12540;" items in Keychain Access</li>
+  <li>Setup folder: ~/Library/Application Support/Tera Term Mac (contains TERATERM.INI and other files saved with "Save setup")</li>
+</ul>
+
+<p>
+The setup folder is not removed by the menu item either. Delete it by hand if you no longer need it.
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="about/requirements.html">‹ System requirements</a><a href="index.html">Contents</a><a class="ttw-next" href="about/mac-features.html">Features only in the Mac version ›</a></nav>
+</body>
+</HTML>

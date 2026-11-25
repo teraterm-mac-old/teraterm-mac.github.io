@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>cygconnect</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>cygconnect</span><a class="ttw-lang" href="../../../ja/macro/command/cygconnect.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>cygconnect</h1>
+
+<p>
+Connects to a local shell on the Mac.
+</p>
+
+<pre class="macro-syntax">
+cygconnect [&lt;command line parameters&gt;]
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Connects the window the macro is running in to a local shell on this Mac (the shell set in the <a href="../../menu/setup-additional-cygwin.html">Local Shell</a> tab of the settings). &lt;command line parameters&gt; is accepted for compatibility with Windows macros, but it is not used.
+</p>
+
+<p>
+If the macro is not linked to a window (after <a href="unlink.html">unlink</a> or <a href="closett.html">closett</a>), this command opens a new window, links it to the macro and connects it to the local shell.
+</p>
+
+<p>
+If the macro has already been linked to a window and the window has already been connected to the host or the local shell, this command is ignored.
+</p>
+
+<p>
+As a result of this command, the system variable "result" is set to one of the following values depending on the link and connection status:
+</p>
+
+<table>
+ <tr>
+  <th>Value</th>
+  <th>Status</th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>The macro is not linked to a window.</td>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>Connection to the host or the local shell has not been made, but the macro is linked to a window.</td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>Both connection and link have been made.</td>
+ </tr>
+</table>
+
+<p>
+To test the current link and connect status before executing the "cygconnect" command, use the "<a href="testlink.html">testlink</a>" command.
+</p>
+
+<p>
+Communication commands except "<a href="connect.html">connect</a>", "cygconnect" and "<a href="testlink.html">testlink</a>" can not be executed before the link is established.
+</p>
+
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; connect to the local shell
+cygconnect
+</pre>
+
+
+<h2>See also</h2>
+<ul>
+  <li><a href="connect.html">connect</a></li>
+  <li><a href="closett.html">closett</a></li>
+  <li><a href="disconnect.html">disconnect</a></li>
+  <li><a href="testlink.html">testlink</a></li>
+  <li><a href="unlink.html">unlink</a></li>
+  <li><a href="../appendixes/disconnecttiming.html">NOTICE: Immediately re-connect the server after disconnection</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/crc32.html">‹ crc32, crc32file</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/delpassword.html">delpassword ›</a></nav>
+</body>
+</html>

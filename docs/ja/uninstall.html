@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>アンインストール</TITLE>
+<link rel="stylesheet" href="./style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../">Tera Term Mac</a> › <a href="index.html">ドキュメント</a> › <span>アンインストール</span><a class="ttw-lang" href="../en/uninstall.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>アンインストール</h1>
+
+<h2>メニューからアンインストールする</h2>
+
+<p>
+Tera Term Mac のメニュー →「Tera Term Mac をアンインストール…」を選びます。<br>
+消すものを選ぶ画面が出るので、チェックを付けて「アンインストール」を押してください。
+</p>
+
+<ul>
+  <li>アプリ本体 (ゴミ箱に入ります)</li>
+  <li>設定と接続リスト (ログイン時の起動も)</li>
+  <li>保存したパスワード (キーチェーン)</li>
+</ul>
+
+<p>
+接続中のウインドウはすべて閉じます。何かを消すと Tera Term Mac は終了します。<br>
+この項目は、アプリケーションフォルダ (/Applications または ~/Applications) にインストールされているときだけ表示されます。
+ディスクイメージやダウンロードフォルダから直接起動しているときは表示されません。
+</p>
+
+<p>
+接続リストを残したいときは、先に TeraTerm Menu のリスト設定で「ttpmenu.ini」→「書き出し…」を使って保存しておいてください。
+</p>
+
+<h2>手動でアンインストールする</h2>
+
+<p>
+Tera Term Mac を終了してから、次のものを削除してください。
+</p>
+
+<ul>
+  <li>アプリ本体: /Applications/Tera Term Mac.app (Finder でゴミ箱に入れます)</li>
+  <li>設定と接続リスト: ~/Library/Preferences/net.satoru.teramac.plist</li>
+  <li>ログイン時の起動: ~/Library/LaunchAgents/net.satoru.teramac.menu.plist</li>
+  <li>保存したパスワード: 「キーチェーンアクセス」で「Tera Term Mac メニュー」の項目</li>
+  <li>設定フォルダ: ~/Library/Application Support/Tera Term Mac (設定の保存で書き出した TERATERM.INI などが入っています)</li>
+</ul>
+
+<p>
+設定フォルダは、メニューからアンインストールしたときも削除されません。不要なら手で削除してください。
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="about/requirements.html">‹ 動作環境</a><a href="index.html">目次</a><a class="ttw-next" href="about/mac-features.html">Mac 版だけの機能 ›</a></nav>
+</body>
+</HTML>

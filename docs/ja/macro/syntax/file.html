@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>TTLファイル</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>TTL ファイル</span><a class="ttw-lang" href="../../../en/macro/syntax/file.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>エンコーディング</h1>
+
+<p>
+マクロファイルは Unicode (UTF-8, UTF-16BE, UTF-16LE) で書けます。UTF-8 を推奨します。<br>
+Windows 版の Tera Term 用に Shift_JIS で書いたマクロファイルも読めます。
+</p>
+
+<h2>1) サポートするエンコーディング</h2>
+
+<table>
+  <tr>
+    <th>encoding</th>
+    <th>support</th>
+  </tr>
+  <tr>
+    <td>Shift_JIS</td>
+    <td>Support</td>
+  </tr>
+  <tr>
+    <td>UTF-8 (with BOM)</td>
+    <td>Support<td>
+  </tr>
+  <tr>
+    <td>UTF-8 (without BOM)</td>
+    <td>Support<td>
+  </tr>
+  <tr>
+    <td>UTF-16BE (without BOM)</td>
+    <td>Not support<td>
+  </tr>
+  <tr>
+    <td>UTF-16LE (without BOM)</td>
+    <td>Not support<td>
+  </tr>
+  <tr>
+    <td>UTF-16 (with BE BOM)</td>
+    <td>Support<td>
+  </tr>
+  <tr>
+    <td>UTF-16 (with LE BOM)</td>
+    <td>Support<td>
+  </tr>
+  <tr>
+    <td>UTF-16 (without BOM = UTF-16BE)</td>
+    <td>Not support<td>
+  </tr>
+</table>
+
+<h2>2) エンコーディングの判定</h2>
+
+<p>
+Tera Term Mac は次のように判定します。
+</p>
+
+<dl>
+  <dt>BOMがある場合</dt>
+  <dd>BOMの種別からUTF-8, UTF-16BE, UTF-16LEを判定して読み込む</dd>
+
+  <dt>BOMがない場合</dt>
+  <dd>
+    <ul>
+      <li>UTF-8として読み込む</li>
+      <li>UTF-8としてデコードできなかった場合はShift_JISとして読み込む</li>
+    </ul>
+  </dd>
+</dl>
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/syntax/index.html">‹ TTL の文法</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/syntax/variables.html">変数 ›</a></nav>
+</body>
+</html>

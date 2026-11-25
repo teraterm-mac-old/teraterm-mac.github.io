@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>getver</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>getver</span><a class="ttw-lang" href="../../../ja/macro/command/getver.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>getver</h1>
+
+<p>
+Get the version of Tera Term.
+</p>
+
+<pre class="macro-syntax">
+getver &lt;strvar&gt; [&lt;version&gt;]
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Returns the version of Tera Term in the string variable &lt;strvar&gt;. The stored value is the version of the Tera Term source this port is based on (5.8), not the version of Tera Term Mac itself.
+</p>
+
+<p>
+If &lt;version&gt; is specified, &lt;version&gt; is compared with the version of running Tera Term and the result is stored in the system variable "result". If &lt;version&gt; is not specified, the system variable "result" is not changed. The meaning of "result" is as follows.
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>-2</td>
+      <td>
+	Error. &lt;version&gt; is invalid.
+      </td>
+    </tr>
+
+    <tr>
+      <td>-1</td>
+      <td>
+	Tera Term version is older than &lt;version&gt;.
+      </td>
+    </tr>
+
+    <tr>
+      <td>0</td>
+      <td>
+	Tera Term version is equal to &lt;version&gt;.
+      </td>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>
+	Tera Term version is newer than &lt;version&gt;.
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+getver version
+messagebox version 'getver'   ; 5.8
+
+getver version '5.0'
+if result &gt;= 0 then
+  messagebox 'version 5.0 or later' 'getver'
+endif
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/getttpos.html">‹ getttpos</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/goto.html">goto ›</a></nav>
+</body>
+</html>

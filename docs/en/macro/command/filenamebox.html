@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>filenamebox</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>filenamebox</span><a class="ttw-lang" href="../../../ja/macro/command/filenamebox.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>filenamebox</h1>
+
+<p>
+Open a dialog can be selected a file.
+</p>
+
+<pre class="macro-syntax">
+filenamebox &lt;title&gt; [&lt;dialogtype&gt; [&lt;initialdir&gt;]]
+</pre>
+
+
+<h2>Parameters</h2>
+
+<dl>
+	<dt class="macro">string &lt;title&gt;</dt>
+	<dd>The title of dialog box</dd>
+
+	<dt class="macro">integer &lt;dialogtype&gt; (optional default=zero)</dt>
+	<dd>Specifies the type of dialog box.<br>
+	    If this parameter is zero, creates [Open] dialog box.<br>
+	    If this parameter is nonzero, creates [Save] dialog box.</dd>
+
+	<dt class="macro">string &lt;initialdir&gt; (optional default="")</dt>
+	<dd>The initial directory of the dialog box can be specified.<br>
+	    When the empty string is specified, the file panel opens its usual folder (e.g. the folder used last time).
+</dd>
+</dl>
+
+<h2>Return Value</h2>
+
+<dl>
+	<dt class="macro">System variable &lt;result&gt;</dt>
+	<dd>If the user specifies a file name and clicks OK button, set to nonzero. The file name is stored in "inputstr."<br>
+	    If the user cancels or closes the dialog, set to zero.</dd>
+
+	<dt class="macro">System variable &lt;inputstr&gt;</dt>
+	<dd>The file name entered by the user</dd>
+</dl>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+connect '/C=1'
+filenamebox 'File selection' 0
+if result&lt;&gt;0 then
+	messagebox inputstr 'title' 0
+	sendfile inputstr 1
+endif
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/filemarkptr.html">‹ filemarkptr</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/fileopen.html">fileopen ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Log and replay functions</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>Logging and log replay</span><a class="ttw-lang" href="../../../ja/usage/tips/loging_howto.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Log and replay functions</h1>
+
+<p>
+You can save the host data to the file if you use Tera Term logging function.
+</p>
+
+<h2>Log to the file</h2>
+
+<p>
+You can log characters received from the host. Execute the [File] Log... command to start logging.
+</p>
+
+<p>
+Do in the following commands:
+</p>
+
+<ol>
+  <li>Do <A HREF="../../menu/file.html">[File] Log...</A> command.</li>
+  <li>The "Log" dialog box will be shown.
+<p>
+Input the saving file name to the log file name field. You can also choose it with the "..." button or drop a file from Finder. If you enter only a file name, the file is saved in your home folder.<br>
+All host data will be written to the file if you select `Binary'.<br>
+KANJI, CR and LF codes are converted, and written to the file if you select `Text'. However, the escape sequences are not written to the file.<br>
+The host data will be appended to the file if you select `Append'.<br>
+The host data will overwrite the file if you select `New/Overwrite'.<br>
+Turn on `Timestamp' to add the time to each line.
+</p></li>
+  <li>Push OK button, and logging will start. If the logging dialog option is set to show the dialog, a small window showing the logging status opens. You can use Tera Term Mac normally while logging, except for some functions.</li>
+  <li>Push Close or Pause button on the logging dialog box if you finish the logging or temporarily stop. Pause button will change into Start button if you push Pause button; push it to restart logging. [File] Pause Logging and [File] Stop Logging do the same. If you closed the dialog, [File] Show Logging dialog... opens it again.</li>
+</ol>
+
+<p>
+You can read the saved file with an editor such as TextEdit, or with [File] View Log. To browse log files which contain escape sequences, it is convenient to use the replay function.
+</p>
+
+<h2>Replay the log file</h2>
+
+<p>
+Choose <A HREF="../../menu/file.html">[File] Replay Log...</A> and select a log file recorded in binary mode.
+A new window opens, and the contents of the log file are displayed as if the characters were received from the host.
+We call this function 'replay log'.
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../menu/file-log.html">‹ Logging</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../menu/setup-additional-log.html">Log settings ›</a></nav>
+</body>
+</HTML>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>scpsend</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>scpsend</span><a class="ttw-lang" href="../../../en/macro/command/scpsend.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>scpsend</h1>
+
+<p>
+SCPプロトコルでファイルを送信する。
+</p>
+
+<pre class="macro-syntax">
+scpsend &lt;filename&gt; [&lt;destination filename&gt;]
+</pre>
+
+
+<h2>解説</h2>
+
+<p>
+ファイル &lt;filename&gt; を SCP(Secure Copy Protocol) プロトコルで送信する。
+SSH の接続を共有して、Mac の scp コマンドで転送する。SSH で接続しているときだけ使える。
+転送先を省略した場合は、ファイルはリモートホストのホームディレクトリへコピーされる。
+送信が終わるのを待たずに、次のコマンドを実行することができる。<br>
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+connect '192.168.3.2:22 /ssh /auth=password /user=hoge /passwd=fuga'
+wait '$'
+scpsend '/Users/user/doc/manual.pdf'
+scpsend '/Users/user/doc/manual.pdf' 'tmp/foo.pdf'
+</pre>
+
+<pre class="macro-example">
+; ファイル送信完了を確認する
+SOURFILE = '/Users/user/doc/manual.pdf'
+DESTFILE = '~'
+
+;; ファイル送信
+scpsend SOURFILE DESTFILE
+;; ファイル送信プロセス確認
+do
+  mpause 5000
+  sprintf2 str 'ps -ef |grep -v grep |grep -c scp'
+  sendln str
+  waitln '0' '1'
+loop while result != 1
+;; ファイル送信が完了すると次のマクロを実行
+sendln 'echo SCP finish'
+;; マクロ終了
+end
+</pre>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/scprecv.html">‹ scprecv</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/send.html">send ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>sendfile</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>sendfile</span><a class="ttw-lang" href="../../../ja/macro/command/sendfile.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>sendfile</h1>
+
+<p>
+Sends a file.
+</p>
+
+<pre class="macro-syntax">
+sendfile &lt;filename&gt; &lt;binary flag&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Causes Tera Term to send the file &lt;filename&gt; to the host. Pauses until the end of the file transfer.<br>
+</p>
+
+<p>
+When &lt;filename&gt; is relative path, file is saved relative to <a href="../../setup/folder.html#FileDir">file transfer folder</a>.
+</p>
+
+<p>
+If &lt;binary flag&gt; is non-zero, the file is sent without any modifications.<br>
+If &lt;binary flag&gt; is zero, new-line characters are converted (CR -&gt; CR/CRLF) and control characters except TAB, LF and CR are stripped out.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+sendfile 'data.dat' 1
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="changedir.html">changedir</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/sendbroadcast.html">‹ sendbroadcast</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/sendkcode.html">sendkcode ›</a></nav>
+</body>
+</html>

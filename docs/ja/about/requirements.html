@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>動作環境</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>動作環境</span><a class="ttw-lang" href="../../en/about/requirements.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>動作環境</h1>
+
+<p>Tera Term Mac は以下の macOS で動作します。</p>
+
+<ul class="no-marker">
+  <li>macOS 11 Big Sur 以降</li>
+</ul>
+
+<p>Tera Term Mac は以下の アーキテクチャ で動作します。</p>
+
+<ul class="no-marker">
+  <li>Apple Silicon (arm64): ネイティブに動作します。</li>
+  <li>Intel (x86_64): ネイティブに動作します。</li>
+</ul>
+
+<p>
+  アプリは両方のアーキテクチャを含むユニバーサルバイナリです。Rosetta は必要ありません。<br>
+  SSH 接続には macOS に標準で入っている OpenSSH (/usr/bin/ssh) を使います。別にインストールするものはありません。
+</p>
+
+<h2 id="install">インストール</h2>
+
+<ol>
+  <li><a href="https://github.com/satorunet/teraterm_macos/releases/latest" target="_blank">Releases</a> から TeraTermMac-&lt;版&gt;.dmg をダウンロードして開きます。</li>
+  <li>「Tera Term Mac」のアイコンを、右の「アプリケーション」へドラッグします。</li>
+</ol>
+
+<p>
+  Tera Term Mac は Apple の公証 (notarization) を受けているので、Gatekeeper の警告は出ずにそのまま起動できます。<br>
+  ディスクイメージやダウンロードフォルダから直接起動すると、アプリケーションフォルダへ移動するか聞かれます。「移動する」を押すと、アプリケーションフォルダにコピーして起動し直します。
+</p>
+
+<h2 id="update">アップデート</h2>
+
+<p>
+  Tera Term Mac は Sparkle による自動アップデートに対応しています。<br>
+  1 日 1 回、新しい版があるか GitHub に確認し、あれば「インストールしますか?」と聞きます。勝手には入れ替えません。
+</p>
+
+<ul>
+  <li>[Tera Term Mac] &gt; [アップデートを確認…] で、いつでも確認できます。</li>
+  <li>[Tera Term Mac] &gt; [アップデートを自動で確認] のチェックを外すと、自分で確認しない限り通信しません。</li>
+  <li>アップデートの確認で、Mac の情報などは送りません。</li>
+</ul>
+
+<p>
+  各版で変わったことは <a href="https://github.com/satorunet/teraterm_macos/releases" target="_blank">Releases</a> を見てください (「Tera Term Mac について」の「更新情報」からも開けます)。
+</p>
+
+<h2 id="uninstall">アンインストール</h2>
+
+<p>
+  [Tera Term Mac] &gt; [Tera Term Mac をアンインストール…] で削除できます。
+  この項目は、アプリケーションフォルダにインストールされているときだけ表示されます。
+  詳しくは「<a href="../uninstall.html">アンインストール</a>」を参照してください。
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../about/foreword.html">‹ Tera Term Mac とは</a><a href="../index.html">目次</a><a class="ttw-next" href="../uninstall.html">アンインストール ›</a></nav>
+</body>
+</html>

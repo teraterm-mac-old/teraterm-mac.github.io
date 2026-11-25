@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>kmtsend</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>kmtsend</span><a class="ttw-lang" href="../../../ja/macro/command/kmtsend.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>kmtsend</h1>
+
+<p>
+Sends a file with the Kermit protocol.
+</p>
+
+<pre class="macro-syntax">
+kmtsend &lt;filename&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Causes Tera Term to send the file &lt;filename&gt; to the host with the Kermit protocol.<br>
+Pauses until the end of the file transfer.<br>
+If the file is transferred successfully, the system variable "result" is set to 1. Otherwise, "result" is set to zero.
+</p>
+
+<p>
+When &lt;filename&gt; is relative path, file is saved relative to <a href="../../setup/folder.html#FileDir">file transfer folder</a>.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+kmtsend 'readme.txt'
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="changedir.html">changedir</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/kmtrecv.html">‹ kmtrecv</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/listbox.html">listbox ›</a></nav>
+</body>
+</html>

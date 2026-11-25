@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>getspecialfolder</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>getspecialfolder</span><a class="ttw-lang" href="../../../ja/macro/command/getspecialfolder.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>getspecialfolder</h1>
+
+<p>
+Retrieves the path of a special folder.
+</p>
+
+
+<h2>Format</h2>
+
+<pre class="macro-syntax">
+getspecialfolder &lt;strvar&gt; &lt;foldertype&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Stores the path of the special folder given by &lt;foldertype&gt; to the &lt;strvar&gt; string variable. The type names are the same as on Windows, and the nearest Mac folder (see the table below) is returned for each. '~' stands for the home folder (e.g. /Users/user); the stored value is the expanded path.
+</p>
+
+<h2>Parameters</h2>
+
+<dl>
+	<dt class="macro">string variable &lt;strvar&gt;</dt>
+	<dd>Returns into the got string.</dd>
+
+	<dt class="macro">string &lt;foldertype&gt;</dt>
+	<dd>The drive and path of the specified folder by the string &lt;foldertype&gt; stores into the &lt;strvar&gt; string variable.
+	  <table border="2">
+	    <tr>
+	        <th>AllUsersDesktop</th>
+	        <td>/Users/Shared</td>
+	    </tr>
+	    <tr>
+	        <th>AllUsersStartMenu</th>
+	        <td>/Applications</td>
+	    </tr>
+	    <tr>
+	        <th>AllUsersPrograms</th>
+	        <td>/Applications</td>
+	    </tr>
+	    <tr>
+	        <th>AllUsersStartup</th>
+	        <td>/Library/LaunchAgents</td>
+	    </tr>
+	    <tr>
+	        <th>Desktop</th>
+	        <td>~/Desktop</td>
+	    </tr>
+	    <tr>
+	        <th>Favorites</th>
+	        <td>the home folder</td>
+	    </tr>
+	    <tr>
+	        <th>Fonts</th>
+	        <td>/Library/Fonts</td>
+	    </tr>
+	    <tr>
+	        <th>MyDocuments</th>
+	        <td>~/Documents</td>
+	    </tr>
+	    <tr>
+	        <th>NetHood</th>
+	        <td>the home folder</td>
+	    </tr>
+	    <tr>
+	        <th>PrintHood</th>
+	        <td>the home folder</td>
+	    </tr>
+	    <tr>
+	        <th>Programs</th>
+	        <td>~/Applications</td>
+	    </tr>
+	    <tr>
+	        <th>Recent</th>
+	        <td>the home folder</td>
+	    </tr>
+	    <tr>
+	        <th>SendTo</th>
+	        <td>the home folder</td>
+	    </tr>
+	    <tr>
+	        <th>StartMenu</th>
+	        <td>~/Applications</td>
+	    </tr>
+	    <tr>
+	        <th>Startup</th>
+	        <td>~/Library/LaunchAgents</td>
+	    </tr>
+	    <tr>
+	        <th>Templates</th>
+	        <td>the home folder</td>
+	    </tr>
+	  </table>
+	</dd>
+
+</dl>
+
+<h2>Return Value</h2>
+
+<dl>
+	<dt class="macro">System variable &lt;result&gt;</dt>
+	<dd>When the command fails, 0 is stored.<br>
+	    When the command succeeds, 1 is stored.</dd>
+
+</dl>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+getspecialfolder str "Desktop"
+if result then
+	messagebox str &quot;Desktop&quot;   ; /Users/user/Desktop
+endif
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/getpassword2.html">‹ getpassword2</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/gettime.html">gettime ›</a></nav>
+</body>
+</html>

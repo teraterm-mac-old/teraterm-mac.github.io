@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Contents of a theme file</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Contents of a theme file</span><a class="ttw-lang" href="../../ja/menu/setup-additional-visual-theme.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1>Contents of a theme file</h1>
+
+    Theme is a framework that handles background image, text color, or both at once.<br>
+    <p>
+      To create or change a theme, edit the theme file (*.ini) in a text editor and load it with Startup on the
+      <a href="setup-additional-theme.html">"Theme" tab</a>.<br>
+      This page explains what a theme file can set.
+    </p>
+
+    <a href="../setup/theme.html">About theme file</a>
+
+    <hr>
+
+
+    <h2 id="bg">Background (Background theme)</h2>
+
+    <h3>background</h3>
+
+    Background images are merged from the bottom up.<br>
+    See <a href="#bg_overview">Overview of background</a>.
+
+    <dl>
+      <dt>Simple color plane</dt>
+      <dd>
+        Alphablend with a single color.<br>
+        For example, if you want to slightly darker the blended image background image and desktop wallpaper, Alphablend black with half value(128).
+        <dl>
+          <dt>Color</dt>
+          <dd>Plane color</dd>
+
+          <dt>Alpha (Opaque right):</dt>
+          <dd>Alpha blend value</dd>
+        </dl>
+      </dd>
+
+      <dt>Background Image</dt>
+      <dd>
+        Background image.<br>
+        Some image files support per-pixel alpha values.
+        <dl>
+          <dt>Image file</dt>
+          <dd>
+            Any format macOS can read (JPEG, PNG, GIF, BMP, HEIC, etc.) can be used (loaded with the macOS image loader, ImageIO).<br>
+            For images with an alpha channel, such as transparent PNG, the transparency is used as well.
+          </dd>
+
+          <dt>Pattern</dt>
+          <dd>
+            How to draw background images.
+            <dl>
+              <dt>stretch</dt>
+              <dd>
+                Stretch image to fit the window.
+              </dd>
+              <dt>tile</dt>
+              <dd>
+                Tile image starting from the top-left corner of the window.
+              </dd>
+              <dt>center</dt>
+              <dd>
+                Display image in center of the window.
+              </dd>
+              <dt>fit_width</dt>
+              <dd>
+                Scale image to match the window width while maintaining aspect ratio.
+              </dd>
+              <dt>fit_height</dt>
+              <dd>
+                Scale image to match the window height while maintaining aspect ratio.
+              </dd>
+              <dt>autofit</dt>
+              <dd>
+                Maintain aspect ratio and display at maximum size without overflow.
+              </dd>
+              <dt>autofill</dt>
+              <dd>
+                Maintain aspect ratio and display at maximum size even if it overflows.
+              </dd>
+            </dl>
+          </dd>
+
+          <dt>Color</dt>
+          <dd>
+            If there are areas where the background image is not drawn,
+            the area will be painted with this color.<br>
+            If there are transparent areas in the image and the wallpaper image is not blended,
+            the area will be patinted with this color too.
+          </dd>
+
+          <dt>Alpha (Opaque right):</dt>
+          <dd>
+            Alpha blend value with desktop wallpaper image<br>
+            Setting values from transparent to opaque<br>
+          </dd>
+        </dl>
+      </dd>
+
+      <dt>Desktop wallpaper image</dt>
+      <dd>
+        Wallpaper image. The desktop picture is used.
+      </dd>
+
+    </dl>
+
+    <hr>
+
+    <h2 id="bg_alpha">Background image alpha</h2>
+
+    <dl>
+      <dt>Normal back alpha (Opaque right direction):</dt>
+      <dd>
+        Transparency of background image and normal text background color<br>
+        Setting values from transparent to opaque<br>
+        Background of normal text (1)
+      </dd>
+      <dt>Reverse back alpha:</dt>
+      <dd>
+        Transparency of background image and reverse text background color<br>
+        Setting values from transparent to opaque<br>
+        Background of reverse text (2)
+      </dd>
+      <dt>Other back alpha:</dt>
+      <dd>
+        transparency of Background image and other text background colors<br>
+        Setting values from transparent to opaque<br>
+        Background of text in other colors (3)
+      </dd>
+    </dl>
+
+    <hr>
+
+    <h2 id="color">Text color (color theme)</h2>
+
+    <p>
+      The color theme sets colors overriding default colors.<br>
+      <a href="#default_color">Default colors</a> are set in TERATERM.INI.<br>
+      Colors not set in the color theme ini file will be the default colors.
+
+    <p>
+      Colors are set by writing them in the theme file.
+      You can also pick a preset scheme with "Color Scheme" on the "Theme" tab.
+
+    <p>
+      Example of displaying the set color
+      <pre>
+curl -fsSL https://raw.githubusercontent.com/TeraTermProject/teraterm/main/tests/256colors2.pl | perl
+curl -fsSL https://raw.githubusercontent.com/TeraTermProject/teraterm/main/tests/colortable16.sh | sh
+curl -fsSL https://raw.githubusercontent.com/TeraTermProject/teraterm/main/tests/color-sgr-decscnm.pl | perl</pre>
+
+
+    <hr>
+    <h2 id="bg_overview">Background Theme Overview</h2>
+
+    Tera Term Mac creates the background image as follows.<br>
+    <img src="https://teratermproject.github.io/manual/5/en/menu/setup-additional-visual-theme.png"><br>
+
+    <hr>
+
+<h2>Color setting Overview</h2>
+
+<ul>
+  <li>Tera Term default colors are read from TERATERM.INI<br>
+    Drawing colors will be the default color.<br>
+    If themefile is loaded at startup and it contains a color theme, Drawing colors will be colors in theme.
+  <li>Saving to TERATERM.INI saves default colors.
+  <li>Cannot copy drawing color to default colors.
+</ul>
+
+    <h2 id="default_color">About default colors</h2>
+
+    Default colors and fonts can be set with the following keywords in TERATERM.INI
+<pre>
+| Attr \ ini    | font on/off       | color on/off           | color(R,G,B,R,G,B) |
+|---------------|-------------------|------------------------|--------------------|
+| Normal        | -                 | -                      | VTColor            |
+| Bold          | EnableBold        | EnableBoldAttrColor    | VTBoldColor        |
+| Blink         | -                 | EnableBlinkAttrColor   | VTBlinkColor       |
+| Reverse       | -                 | EnableReverseAttrColor | VTReverseColor     |
+| URL Underline | URLUnderline      | EnableURLColor         | URLColor           |
+| Underline     | UnderlineAttrFont | UnderlineAttrColor     | VTUnderlineColor   |
+</pre>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/file-transfer-zmodem-send.html">‹ ZMODEM Send</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-serialport.html">Serial port settings ›</a></nav>
+</body>
+</html>

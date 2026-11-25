@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>setflowctrl</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>setflowctrl</span><a class="ttw-lang" href="../../../ja/macro/command/setflowctrl.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>setflowctrl</h1>
+
+<p>
+Causes Tera Term to change flow control.
+</p>
+
+<pre class="macro-syntax">
+setflowctrl &lt;value&gt;
+</pre>
+
+<h2>Parameters</h2>
+
+<dl>
+	<dt class="macro">integer &lt;value&gt;</dt>
+	<dd>Set the flow control of serial port by using below flags.
+
+<table>
+ <tr>
+  <th>Value</th>
+  <th>Meaning</th>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>Xon/Xoff</td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>hardware(RTS/CTS)</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>none</td>
+ </tr>
+ <tr>
+  <td>4</td>
+  <td>hardware(DSR/DTR)</td>
+ </tr>
+</table>
+
+	</dd>
+</dl>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; change flow control to "none"
+setflowctrl 3
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/setfileattr.html">‹ setfileattr</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/setmulticastname.html">setmulticastname ›</a></nav>
+</body>
+</html>

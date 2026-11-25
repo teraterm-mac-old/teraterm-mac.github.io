@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>break</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>break</span><a class="ttw-lang" href="../../../en/macro/command/break.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>break</h1>
+
+<p>
+ループから抜ける。
+</p>
+
+<pre class="macro-syntax">
+break
+</pre>
+
+<h2>解説</h2>
+
+<p>
+"for" や "while" のループから抜ける。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+for i 1 10
+  yesnobox 'ループから抜けますか?' 'Tera Term'
+  if result <strong>break</strong>
+next
+
+while 1
+  recvln
+  strcompare inputstr "OK"
+  if result=0 then
+    <strong>break</strong>
+  else
+    sendln "abc..."
+  endif
+endwhile
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="doloop.html">do, loop</a></li>
+  <li><a href="fornext.html">for, next</a></li>
+  <li><a href="until.html">until, enduntil</a></li>
+  <li><a href="while.html">while, endwhile</a></li>
+  <li><a href="continue.html">continue</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/bplussend.html">‹ bplussend</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/bringupbox.html">bringupbox ›</a></nav>
+</body>
+</html>

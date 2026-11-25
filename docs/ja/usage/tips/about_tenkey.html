@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>テンキー(数値キーパッド)について</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>テンキー</span><a class="ttw-lang" href="../../../en/usage/tips/about_tenkey.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>テンキー(数値キーパッド)について</h1>
+
+<p>
+キーボードの初期設定は VT100 のキーボードをエミュレートするようになっています。
+このためテンキー(数値キーパッド)のキーを押したとき、キーに書いてある文字と違う文字が
+送出されることがあります。VT100 キーボードのテンキーの機能を使う必要がなく、
+テンキーを普通に使いたい場合は、キーボード設定ファイル KEYBOARD.CNF の [VT numeric keypad]
+の全項目を以下のように off にしてください。詳しくは、<A HREF="../../setup/keyboard.html">キーボード設定ファイル</A> を読んでください。
+</p>
+
+<p>
+KEYBOARD.CNF は設定フォルダ (~/Library/Application Support/Tera Term Mac) に置きます。
+ファイルがないときは、標準の割り当て (IBMKEYB.CNF と同じ) を使います。
+書き換えたファイルは、次にキーを押したときに読み直されます。別の場所のファイルを使うときは [設定] メニューの「キーマップ読み込み...」で選んでください。
+</p>
+
+<p>
+Mac のテンキーはキーの刻印で対応します。clear キーが Num Lock、= キーはテンキーの = です。
+ノートブックの Mac のようにテンキーがないキーボードでは、この設定は関係ありません。
+</p>
+
+<pre>
+[VT numeric keypad]
+
+Num0=off
+Num1=off
+Num2=off
+Num3=off
+Num4=off
+Num5=off
+Num6=off
+Num7=off
+Num8=off
+Num9=off
+NumMinus=off
+NumComma=off
+NumPeriod=off
+NumEnter=off
+PF1=off
+PF2=off
+PF3=off
+PF4=off
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../usage/tips/user-shortcutkey.html">‹ ユーザー・ショートカット・キー</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../usage/tips/appkeypad.html">キーパッドモード ›</a></nav>
+</body>
+</HTML>

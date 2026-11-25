@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>logopen</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>logopen</span><a class="ttw-lang" href="../../../ja/macro/command/logopen.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>logopen</h1>
+
+<p>
+Causes Tera Term to start logging.
+</p>
+
+<pre class="macro-syntax">
+logopen &lt;filename&gt; &lt;binary flag&gt; &lt;append flag&gt; [&lt;plain text flag&gt; [&lt;timestamp flag&gt; [&lt;hide dialog flag&gt; [&lt;include screen buffer flag&gt; [&lt;timestamp type]]]]]
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Received characters are written to the file &lt;filename&gt;.<br>
+When the file name has no folder, the log is saved in the default log folder of the <a href="../../menu/setup-additional-log.html">log settings</a>. If no default log folder is set, it is saved in the folder set by <a href="changedir.html">changedir</a>, or else in the Documents folder.<br>
+Both '/' and '\' can be used as folder separators.
+</p>
+
+<p>
+If &lt;binary flag&gt; is zero, received new-line characters are converted (CR -&gt; CR/CRLF) and escape sequences are stripped out.<br>
+If &lt;binary flag&gt; is non-zero, received characters are written without any modifications.
+</p>
+
+<p>
+If &lt;append flag&gt; is non-zero and the file &lt;filename&gt; already exists, received characters are appended to it.<br>
+If &lt;append flag&gt; is zero and the file &lt;filename&gt; already exists, the file is overwritten.
+</p>
+
+<p>
+If &lt;plain text flag&gt; is not 0, ASCII non-printable characters are not written into log.<br>
+If &lt;timestamp flag&gt; is not 0, a timestamp is added on top of log.<br>
+If &lt;binary flag&gt; is non-zero, &lt;plain text flag&gt; and &lt;timestamp flag&gt; is ignored. The binary log file is available for <a href="../../menu/file.html">Replay Log</a>.
+</p>
+
+<p>
+If &lt;hide dialog flag&gt; is not 0, "Log" dialog box is not displayed.
+</p>
+
+<p>
+If &lt;include screen buffer flag&gt; is not 0, all current screen buffer is written into a log file in first.
+</p>
+
+<p>
+&lt;timestamp type&gt; specifies timestamp type, and can be one of the following:
+</p>
+
+<table>
+  <tr>
+    <th>value</th>
+    <th>Meaning</th>
+  </tr>
+
+  <tr>
+    <td>0</td>
+    <td>Local Time</td>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td>UTC</td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td>Elapsed Time (Logging)</td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td>Elapsed Time (Connection)</td>
+  </tr>
+</table>
+
+<p>
+If a log file is successfully opened, the system variable "result" is set to 0. Otherwise, the "result" is set to 1.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+connect '/C=1'
+
+; get a user name
+getenv 'USER' username
+; get the date and time
+gettime timestr "%Y%m%d-%H%M%S"
+
+; add the user name and the timestamp to the log file name
+sprintf2 filename 'console_%s_%s.log' username timestr
+
+; change the current directory
+changedir '/Users/user/Desktop'
+
+logopen filename 0 0
+logwrite 'Log start'#13#10
+logwrite '*****************************************************'#13#10
+logclose
+
+end
+</pre>
+
+
+<pre class="macro-example">
+;
+; PowerCycle with logging
+;
+
+getenv 'USER' username
+gettime timestr "%Y%m%d-%H%M%S"
+getdir mdir
+sprintf2 filename '%s/console_%s_%s.log' mdir username timestr
+
+logopen filename 0 0
+
+step = 0
+while 1
+  call show_step
+  sendln 'echo do something'
+  wait '$'
+  pause 2
+endwhile
+
+logclose
+end
+
+:show_step
+step = step + 1
+gettime timestr
+sprintf2 str '[%d] %s' step timestr
+statusbox str 'counter'
+return
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="logwrite.html">logwrite</a></li>
+  <li><a href="logclose.html">logclose</a></li>
+  <li><a href="statusbox.html">statusbox</a></li>
+  <li><a href="gettime.html">gettime</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/loginfo.html">‹ loginfo</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/logpause.html">logpause ›</a></nav>
+</body>
+</html>

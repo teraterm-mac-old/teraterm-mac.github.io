@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>New Connection ([File] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>新しい接続</span><a class="ttw-lang" href="../../en/menu/file-new.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1>New Connection ([File] メニュー)</h1>
+    <p>
+      新しいホストまたはシリアルポート、ローカルシェルに接続します (&#x2318;N)。
+      すでに接続されているときは、新しいウィンドウを開いて接続します。<br>
+      ログの再生は [File] メニューの [Replay log...] で行います。
+    </p>
+
+    <h2>"New connection" ダイアログボックス</h2>
+    <p>
+      TCP/IP、Serial、ローカルシェル (この Mac のシェル) のどれかを選んで [接続] を押します。
+      最初は前回選んだ種類と内容が入っています。
+    </p>
+
+    <h3>TCP/IP</h3>
+    <dl>
+      <dt id="Host">Host</dt>
+      <dd>
+	接続するホスト名または IP アドレスを入力します。<br>
+	user@myhost.example.com のように書くと、@ の前がユーザー名になります。<br>
+	Telnet のとき "myhost.example.com /B" のように書くと、Telnet バイナリモードで接続します。<br>
+	ポート番号は [TCP port#] に入力します。ホスト欄に書いたその他の<a href="../commandline/teraterm.html">コマンドライン</a>オプションは使われません。
+      </dd>
+
+    <dl>
+      <dt id="HostList">Host List</dt>
+      <dd>
+        ドロップダウンを使用してホストリストからホストを選択することができます。
+        選ぶと、保存されているユーザー名・ポート番号・サービス・秘密鍵が各欄に入ります。<br>
+        ホストリストは次の方法で編集することができます。
+        <ul>
+          <li><a href="setup-additional-tcpip.html#EditHistory">[Setup] Additional Setting の TCP/IP タブのホストリストの編集</a></li>
+          <li>ドロップダウンから "&lt;Edit host list...&gt;" を選択</li>
+        </ul>
+        ホストリストはアプリの設定に保存されます。[Setup] メニューの [Save setup...] で、<a href="../setup/teraterm-ini.html#HostList">TERATERM.INI の Hosts セクション</a>にも書き出します。<br>
+        保存できるホスト数は最大20です。<br>
+      </dd>
+      <dt id="keybind">keybind</dt>
+      <dd>
+        このエディットコントロールでは、macOS の標準のテキスト編集キーを使用できます。たとえば次のキーです。
+        <dl>
+          <dt>Ctrl+a</dt>
+          <dd>キャレットを先頭へ移動</dd>
+          <dt>Ctrl+e</dt>
+          <dd>キャレットを最後尾へ移動</dd>
+          <dt>Ctrl+b</dt>
+          <dd>キャレットを1文字後ろへ移動</dd>
+          <dt>Ctrl+f</dt>
+          <dd>キャレットを1文字前へ移動</dd>
+          <dt>Ctrl+d</dt>
+          <dd>一文字削除</dd>
+          <dt>Ctrl+k</dt>
+          <dd>行末まで削除</dd>
+        </dl>
+      </dd>
+    </dl>
+
+      <dt>Add host list</dt>
+      <dd>
+        このオプションを選択すると、接続するときに、入力したホストがホストリストの先頭に追加されます。<br>
+        ホストリストに存在している場合は、先頭に移動します。<br>
+        <a href="setup-additional-tcpip.html">Additional settings / "TCP/IP" タブ</a> の <a href="setup-additional-tcpip.html#HistoryList">Add host list when new connection</a> がこのチェックボックスの初期値となります。
+      </dd>
+
+      <dt>Telnet</dt>
+      <dd>
+        Telnet プロトコルを使用します。<br>
+        参照: <a href="../usage/tips/login_nonascii.html">ユーザ名またはパスワードに非 ASCII 文字を使用する場合の注意</a>
+      </dd>
+
+      <dt>SSH</dt>
+      <dd>
+        SSH プロトコルを使用します。macOS の ssh (/usr/bin/ssh) で接続します。<br>
+        参照: <a href="../usage/ssh.html">SSH 接続</a>
+      </dd>
+
+      <dt>Other</dt>
+      <dd>
+        Telnet / SSH 以外のプロトコル (そのままの TCP) を使用します。
+      </dd>
+
+      <dt>TCP port#</dt>
+      <dd>
+        選択したサービスによって、ポート番号を指定してください。<br>
+        Telnet か SSH を選ぶと、次のデフォルトが入ります。<br>
+        <table border="1">
+          <tr>
+           <th>Service</th>
+           <th>TCP port#</th>
+           <th>備考</th>
+          </tr>
+
+          <tr>
+           <td>Telnet</td>
+           <td>23</td>
+           <td>well-known ports</td>
+          </tr>
+
+          <tr>
+           <td>SSH</td>
+           <td>22</td>
+           <td>well-known ports</td>
+          </tr>
+
+          <tr>
+           <td>Other</td>
+           <td>（任意）</td>
+           <td></td>
+          </tr>
+
+        </table>
+      </dd>
+
+      <dt>User name / Password</dt>
+      <dd>
+        SSH のときのユーザー名とパスワードです。
+        初期値は前回のユーザー名、または <a href="setup-sshauth.html">SSH 認証</a>の設定です。
+        パスワードを空にしたときは、端末の画面で ssh が尋ねます。<br>
+        コマンドラインの<a href="../commandline/ttssh.html#passwd_specify">パスワードを指定するときの注意</a>も参照してください。
+      </dd>
+
+      <dt>Private key</dt>
+      <dd>
+        SSH の公開鍵認証で使う秘密鍵ファイルです。[選ぶ…] で ~/.ssh から選べます。ssh の -i オプションで渡します。
+      </dd>
+
+    </dl>
+    <p class="indent1">
+      注:<br>
+      Telnet が選択されて、かつ TCP port# が 23 のときだけ、Tera Term Mac
+      から自発的に telnet の option negotiation を開始します。
+      それ以外の場合でも Tera Term Mac はホストから送られてきた telnet
+      コマンドに応答することができます。
+    </p>
+
+    <p class="indent1">
+      参照:<br>
+      <a href="../usage/tips/not_port23.html">Telnet 用ポート番号 / 非 telnet 接続用の端末設定</a>
+    </p>
+
+    <h3>Serial</h3>
+    <dl>
+      <dt id="SerialPort">Port</dt>
+      <dd>
+        接続するシリアルポートをリストの中から選択してください。リストには /dev/cu.* のデバイス (USB シリアル変換器など) が表示されます。
+        利用可能なシリアルポートが存在しない場合は「(シリアルポートが見つかりません)」と表示されます。
+        あとからデバイスをつないだときは [再検索] を押してください。<br>
+        速度・データ・パリティ・ストップ・フロー制御もここで指定できます。
+      </dd>
+    </dl>
+
+    <h3>ローカルシェル</h3>
+    <p>
+      この Mac のシェルに接続します。既定ではログインシェル ($SHELL) を起動します。シェルは <a href="setup-additional-cygwin.html">Additional settings のローカルシェルタブ</a>で変えられます。
+      [File] メニューの [ローカルシェル接続] (&#x2318;G) でも開けます。
+    </p>
+
+    <h2>参照</h2>
+    <ul>
+      <li><a href="../setup/teraterm-com.html">行単位送信モードの無効化(Disabling "Line at a time" mode)</a>
+    </ul>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/tips/teraterm_config_howto.html">‹ 設定のしかた</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-additional-tcpip_edithistory.html">ホストリストの編集 ›</a></nav>
+</body>
+</html>

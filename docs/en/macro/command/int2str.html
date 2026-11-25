@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>int2str</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>int2str</span><a class="ttw-lang" href="../../../ja/macro/command/int2str.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>int2str</h1>
+
+<p>
+Converts integer value to a string.
+</p>
+
+<pre class="macro-syntax">
+int2str &lt;strvar&gt; &lt;integer value&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Converts &lt;integer value&gt; to its string expression, and returns it in the string variable &lt;strvar&gt;.<br>
+This command is equal to the formatted output("%d") of the sprintf family.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; The string "123" is assigned to the variable "valstr".
+int2str valstr 123
+messagebox valstr "str"     ; 123
+
+num = 123
+sprintf2 valstr "%d" num
+messagebox valstr "str"     ; 123
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="sprintf.html">sprintf</a></li>
+  <li><a href="sprintf2.html">sprintf2</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/inputbox.html">‹ inputbox</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/intdim.html">intdim ›</a></nav>
+</body>
+</html>

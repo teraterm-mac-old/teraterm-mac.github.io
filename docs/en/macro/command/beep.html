@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>beep</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>beep</span><a class="ttw-lang" href="../../../ja/macro/command/beep.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>beep</h1>
+
+<p>
+Makes a beep sound.
+</p>
+
+<pre class="macro-syntax">
+beep [&lt;sound type&gt;]
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Plays a Mac system sound.<br>
+The &lt;sound type&gt; parameter can be one of the following values. The default value is 5 (the default alert sound).
+</p>
+
+<table>
+ <tr>
+  <th>Value</th>
+  <th>Meaning</th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>The default alert sound</td>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>Glass</td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>Funk</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>Basso</td>
+ </tr>
+ <tr>
+  <td>4</td>
+  <td>Purr</td>
+ </tr>
+ <tr>
+  <td>5</td>
+  <td>The default alert sound</td>
+ </tr>
+</table>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+for i 1 10
+	beep 0
+	pause 1
+next
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/basename.html">‹ basename</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/bplusrecv.html">bplusrecv ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>[漢字コード] メニュー</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>[漢字コード] メニュー</span><a class="ttw-lang" href="../../en/ttxplugin/kanjimenu.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>[漢字コード] メニュー</h1>
+
+<p>
+  [漢字コード] メニューでは、送受信の文字コードをすぐに切り替えられます。<br>
+  メニュー内容で選択した日本語または韓国語環境向けの文字コードがメニューに表示されます。
+  メニュー内の項目から送受信文字コード、Unicode(UTF-8)時の Ambiguous Character Width を変更することができます。
+</p>
+
+<p>
+  文字コードが UTF-8 以外のとき Ambiguous Character Width は無効になります。
+</p>
+
+<p>
+  メニュー内容が Auto のときは、macOS で優先する言語 (韓国語なら韓国語向け、それ以外は日本語向け) で決めます。
+</p>
+
+<p>
+  メニューから[設定]を選択すると、[漢字コード] メニューの設定ダイアログが表示されます。
+</p>
+
+<h1>設定</h1>
+
+設定ダイアログの次の項目は、環境設定に保存します。
+
+<dl>
+  <dt id="CharCodeMenu">CharCodeMenu</dt>
+  <dd>
+    送受文字コードメニューを表示
+    <dl>
+      <dt>ON</dt>
+      <dd>表示する</dd>
+      <dt>OFF</dt>
+      <dd>表示しない</dd>
+    </dl>
+  </dd>
+  <dt id="UseOneSetting">UseOneSetting</dt>
+  <dd>
+    送受文字コードを同一とする
+    <dl>
+      <dt>ON</dt>
+      <dd>同一</dd>
+      <dt>OFF</dt>
+      <dd>同一ではない</dd>
+    </dl>
+  </dd>
+  <dt id="Language">Language</dt>
+  <dd>
+    送受文字コードメニューの内容を選択
+    <dl>
+      <dt>Auto</dt>
+      <dd>macOS の言語設定から自動で 日本語向け/韓国語向け を選択します</dd>
+      <dt>Japanese</dt>
+      <dd>日本語向け</dd>
+      <dt>Korean</dt>
+      <dd>韓国語向け</dd>
+    </dl>
+  </dd>
+  <dt id="UseOneSettingMenu">UseOneSettingMenu</dt>
+  <dd>
+    UseOneSettingMenu(送受信両方を変更メニュー)を表示
+    <dl>
+      <dt>ON</dt>
+      <dd>表示する</dd>
+      <dt>OFF</dt>
+      <dd>表示しない</dd>
+    </dl>
+  </dd>
+  <dt id="AmbiguousCharacterWidthMenu">AmbiguousCharacterWidthMenu</dt>
+  <dd>
+    AmbiguousCharacterWidth メニューを表示
+    <dl>
+      <dt>ON</dt>
+      <dd>表示する</dd>
+      <dt>OFF</dt>
+      <dd>表示しない</dd>
+    </dl>
+  </dd>
+</dl>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../about/ctrlseq.html">‹ 対応制御シーケンス</a><a href="../index.html">目次</a><a class="ttw-next" href="../usage/migrate_to_5.html">Windows 版からの移行 ›</a></nav>
+</body>
+</html>

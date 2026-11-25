@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>bringupbox</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>bringupbox</span><a class="ttw-lang" href="../../../en/macro/command/bringupbox.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>bringupbox</h1>
+
+<p>
+statusbox コマンドによって開かれたステータスダイアログボックスを最前面に表示する。
+</p>
+
+<pre class="macro-syntax">
+bringupbox
+</pre>
+
+<h2>パラメータ</h2>
+なし。
+
+<h2>返り値</h2>
+なし。
+
+<h2>例</h2>
+
+<pre class="macro-example">
+step = 0
+while 1
+  call show_step
+  sendln 'echo do something'
+  wait '$'
+  pause 2
+
+  bringupbox
+
+endwhile
+end
+
+:show_step
+step = step + 1
+gettime timestr "%Y/%m/%d-%H:%M:%S"
+sprintf2 s "counter %d" step
+statusbox timestr s
+return
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="statusbox.html">statusbox</a></li>
+  <li><a href="closesbox.html">closesbox</a></li>
+  <li><a href="setdlgpos.html">setdlgpos</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/break.html">‹ break</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/call.html">call ›</a></nav>
+</body>
+</html>

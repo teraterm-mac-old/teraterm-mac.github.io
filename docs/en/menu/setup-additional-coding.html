@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Encoding" tab ([Setup] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Encoding settings</span><a class="ttw-lang" href="../../ja/menu/setup-additional-coding.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Encoding" tab ([Setup] menu)</h1>
+
+    <h2>Encoding</h2>
+
+    <dl>
+      <dt id="KanjiReceive">Receive</dt>
+      <dd>
+        Kanji character that is received from host.<br>
+        Please refer to <a href="../usage/character_encoding.html">available character encoding page</a>.
+      </dd>
+      <dt id="KanjiSend">Transmit (Use different code)</dt>
+      <dd>
+        Kanji character that is sent from client.<br>
+        Please refer to <a href="../usage/character_encoding.html">available character encoding page</a>.
+      </dd>
+    </dl>
+
+    <h2>Unicode</h2>
+
+    <p>
+      Select the character width (number of cells) used by Tera Term to render text when using Unicode (UTF-8).<br>
+      Specifying the character width expected by the remote host helps reduce display issues.
+    </p>
+    <p>
+      Refer to <a href="setup-additional-font.html#ResizedFont">Drawing resized font to fit cell width</a> for Tera Term drawing character width.
+    </p>
+
+    <h3 id="AmbiguousCharactersWidth">Ambiguous Characters width</h3>
+
+    <p>
+      Select 1 Cell or 2 Cell for the character width of characters with the Ambiguous East_Asian_Width property.<br>
+    Refer to <a href="../usage/unicode.html#EastAsianWidth">East_Asian_Width and width (cells)</a>.<br>
+    </p>
+
+    <h3 id="UnicodeEmojiOverride">Override Emoji Characters width</h3>
+
+    <p>
+      Sets the character width for characters whose Emoji property is set to Yes.<br>
+      For details about this property, refer to <a href="../usage/unicode.html#emoji">About Emoji width (cells)</a>.
+    </p>
+
+    <p>
+      When unchecked, the character width is determined based on the value of the East_Asian_Width property.<br>
+      When the same width is applied regardless of the property value (W, N, or A).
+    </p>
+
+    <ul>
+      <li>Emoji with U+1F000 and above are 2Cell (full-width).
+      <li>Emoji less than U+1F000:
+        <dl>
+          <dt>when selected 2 Cell</dt>
+          <dd>2 Cell (full-width)</dd>
+          <dt>when selected 1 Cell</dt>
+          <dd>1 Cell (half-width)</dd>
+        </dl>
+    </ul>
+
+    <h3 id="width_decision">Flow of character width determination</h3>
+
+    <p>
+      As described above, Tera Term provides multiple settings for specifying
+      the character width used for rendering.
+      The following diagram illustrates the priority order of these settings.
+    </p>
+
+    <img src="https://teratermproject.github.io/manual/5/en/menu/cell_width.png">
+
+    <h2 id="DecSpecial">DEC Special Graphics</h2>
+
+    <p>DEC Special Graphics are drawn without a special font, using characters of the same shape, 1 cell (half-width) wide.</p>
+
+    Select display method for <a href="../about/emulations_dec_special.html">DEC Special Graphics</a>
+
+    <dl>
+      <dt>Mapping Unicode to DEC Special Graphics</dt>
+      <dd>
+        Unicode is converted to DEC Special Graphic.<br>
+        Character width of DEC Special Graphic is 1 cell (half-width).<br>
+        Select character type to be converted.
+        See <a href="../setup/teraterm-term.html#UnicodeDecSpMapping">Mapping of Unicode to DEC special character</a>
+        <dl>
+          <dt>Box-drawing character (U+2500-U+257F)</dt>
+          <dt>Punctuation, Block Elements, Shade</dt>
+          <dt>Middle dots(U+00B7,U+2024,U+2219)</dt>
+        </dl>
+      </dd>
+      <dt>Mapping DEC Special Graphics to Unicode</dt>
+      <dd>
+        DEC Special Graphic is converted to Unicode, displays with VT Window font.
+        The character width displayed in Unicode differs for each character.
+        It changes depending on Ambiguous Characters width setting.
+      </dd>
+      <dt>Do not mapping</dt>
+      <dd>
+        DEC Special Graphic is displayed 1 cell wide.
+        No Unicode replacement is performed.
+      </dd>
+    </dl>
+
+    <h2 id="JIS">JIS</h2>
+
+    <h3>Receive</h3>
+
+    <dl>
+      <dt id="KatakanaReceive">Half-width kana</dt>
+      <dd>
+        When "HANKAKU" katakana code from host is described for 7bit
+        (Shift control with SO/SI is using), please select this entry.
+        This is only enabled when Kanji (receive) is JIS.
+      </dd>
+    </dl>
+
+    <h3>Transmit</h3>
+
+    <dl>
+      <dt id="KatakanaSend">Half-width kana transmit</dt>
+      <dd>
+        When "HANKAKU" katakana code from host is described for 7bit
+        (Shift control with SO/SI is using), please select this entry.
+        This is only enabled when Kanji (transmit) is JIS.
+      </dd>
+      <dt id="KanjiIn">Kanji-in</dt>
+      <dd>
+        The escape sequence is used when Kanji (transmit) is JIS.
+        (Sequence regarding Kanji character is specified to G0.
+        ^[$@ or ^[$B).
+        The escape sequence from host can use any sequence.
+      </dd>
+      <dt id="KanjiOut">Kanji-out</dt>
+      <dd>
+        The escape sequence is used when Kanji (transmit) is JIS.
+        (Sequence regarding ASCII and JIS Roman code is specified to G0.
+        ^[(B or ^[(J ).
+        The escape sequence from host can use any sequence.
+        <p>
+          NOTICE: ^[(H can not be selected on initial setting. <br>
+          <!--a href="../usage/tips/incorrect-kanjiout.html">�� ^[(H ��I���\�ɂ���B</a-->
+        </p>
+      </dd>
+    </dl>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/unicode.html">‹ Unicode settings</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-font.html">Fonts ›</a></nav>
+</body>
+</html>

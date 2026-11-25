@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>ifdefined</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>ifdefined</span><a class="ttw-lang" href="../../../en/macro/command/ifdefined.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>ifdefined</h1>
+
+<p>
+型を調べる。
+</p>
+
+<pre class="macro-syntax">
+ifdefined &lt;var&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+&lt;var&gt; の型を表す値をシステム変数 result に格納する。変数 result の値の意味は以下のとおり。
+</p>
+
+<table>
+ <tr>
+  <th>値</th>
+  <th>意味</th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>定義されていない</td>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>整数型</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>文字列型</td>
+ </tr>
+ <tr>
+  <td>4</td>
+  <td>ラベル</td>
+ </tr>
+ <tr>
+  <td>5</td>
+  <td>整数配列型</td>
+ </tr>
+ <tr>
+  <td>6</td>
+  <td>文字列配列型</td>
+ </tr>
+</table>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+ifdefined data
+int2str valstr result
+messagebox valstr 'variable type'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/ifthenelseif.html">‹ if, then, elseif, else, endif</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/include.html">include ›</a></nav>
+</body>
+</html>

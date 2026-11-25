@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>connect</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>connect</span><a class="ttw-lang" href="../../../en/macro/command/connect.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>connect</h1>
+
+<p>
+接続する。
+</p>
+
+<pre class=".code">
+connect &lt;command line parameters&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+マクロを動かしているウインドウを、&lt;command line parameters&gt; で指定した接続先につなぐ。&lt;command line parameters&gt; の書式は Tera Term Mac の<a href="../../commandline/teraterm.html">コマンドライン</a>と同じ (<a href="../../commandline/ttssh.html">SSH のオプション</a>も使える)。
+</p>
+
+<p>
+マクロがウインドウとリンクされていない場合 (<a href="unlink.html">unlink</a> や <a href="closett.html">closett</a> のあと、またはウインドウが閉じられたあと) は、新しいウインドウを開いてマクロとリンクし、そのウインドウで接続する。
+</p>
+
+<p>
+マクロがウインドウとすでにリンクされていて、ウインドウがホストに接続されていない場合、そのウインドウを &lt;command line parameters&gt; で指定されるホストに接続させる。接続先を指定しないときは、接続のダイアログを出す。
+</p>
+
+<p>
+マクロがウインドウとすでにリンクされていて、ウインドウがホストにすでに接続されている場合、このコマンドは無視される。
+</p>
+
+<p>
+接続し終わる (または失敗する) まで、マクロは次の行に進まない。このコマンドの結果、リンクと接続の状態に応じて以下のうちの一つの値がシステム変数 result に格納される。
+</p>
+
+<table>
+ <tr>
+  <th>値</th>
+  <th>状態</th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>ウインドウとリンクされていない。</td>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>ホストへの接続はされていないが、ウインドウとのリンクはされている。</td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>リンクおよび接続両方ともされている。</td>
+ </tr>
+</table>
+
+<p>
+"connect" コマンドを実行する前にリンクと接続の状態を調べるには、"<a href="testlink.html">testlink</a>" コマンドを使うことができる。
+</p>
+
+<p>
+マクロがウインドウとリンクしていない状態では、"connect" と "<a href="cygconnect.html">cygconnect</a>", "<a href="testlink.html">testlink</a>" 以外の通信コマンドは実行できない。
+</p>
+
+<h2>接続方法</h2>
+
+<p>
+マクロから接続する方法には、次の種類があります。
+</p>
+
+<ul>
+ <li>telnet接続 (port 23)</li>
+ <li>SSH接続 (port 22)</li>
+ <li>シリアルポート接続</li>
+</ul>
+
+<h3>telnet接続</h3>
+
+<pre class=".code">
+<code>connect '<em>myserver</em>:23 /nossh /T=1'
+connect '<em>myserver</em>:23'
+</code></pre>
+
+<p>
+/nossh を指定することを強く推奨します。このオプションがない場合、最後に保存された設定と同じ方法（telnet もしくは SSH）で接続しようとします。もし、SSHを使って接続しようとするならば、connectマクロは失敗するでしょう。
+</p>
+<p>
+/T=1 を使うことを推奨します。このオプションがない場合、設定の Telnet の値にしたがって接続しようとします。もし、Telnet の値も off の場合、telnet ネゴシエーションをしないので、意図したとおりの通信ができないでしょう。
+</p>
+
+<h3>SSH接続</h3>
+
+<p>
+SSH は Mac の ssh コマンド (OpenSSH) で、SSH2 でつなぎます。
+</p>
+
+<pre class=".code">
+<code>connect '<em>myserver</em> /ssh'
+connect '<em>myserver</em> /ssh /2'
+</code></pre>
+
+<pre class=".code">
+<code>connect '<em>myserver</em> /ssh /auth=password /user=<em>username</em> /passwd=<em>password</em>'
+connect '<em>myserver</em> /ssh /auth=publickey /user=<em>username</em> /passwd=<em>password</em> /keyfile=<em>private-key-file</em>'
+connect '<em>myserver</em> /ssh /auth=challenge /user=<em>username</em> /passwd=<em>password</em>'
+</code></pre>
+
+<p>
+この方法は、マクロからユーザ名とパスワードを渡すことにより、パスワードの入力を省くことができます。/auth=passwordはパスワード認証、/auth=publickeyは公開鍵認証 (/passwd= は秘密鍵のパスフレーズ)、/auth=challengeはチャレンジレスポンス認証であることを表します。
+</p>
+
+<pre class=".code">
+<code>connect '<em>myserver</em> /ssh /auth=pageant /user=<em>username</em>'
+</code></pre>
+
+<p>
+この方法は、マクロからユーザ名を渡して、ssh-agent などに登録した鍵で公開鍵認証をします。
+</p>
+
+<pre class=".code">
+<code>connect '<em>myserver</em> /ssh /auth=password /user=<em>username</em> /ask4passwd'
+connect '<em>myserver</em> /ssh /auth=publickey /user=<em>username</em> /ask4passwd /keyfile=<em>private-key-file</em>'
+connect '<em>myserver</em> /ssh /auth=challenge /user=<em>username</em> /ask4passwd'
+</code></pre>
+
+<p>
+この方法は、マクロからユーザ名と認証方法を渡して、ポップアップでパスワードの入力を促します。
+</p>
+
+<h3>シリアルポート接続</h3>
+
+<pre class=".code">
+<code>connect '/C=x'
+connect '/C=/dev/cu.usbserial-XXXX'
+</code></pre>
+
+<p>
+x は、Mac のシリアルポートの一覧で何番目のポートかを表します (1 から数えます)。たとえば、1 番目のポートに接続したいのなら、 connect '/C=1' とします。/C=/dev/cu.usbserial-XXXX のように、デバイスを直接書くこともできます。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; 接続先を指定しない (接続のダイアログを出す)
+connect ''
+
+; 接続が成功しなかった場合、5秒でタイムアウトが発生
+connect '<em>myserver</em> /timeout=5'
+
+; telnet セッションを開く
+connect '<em>myserver</em>:23 /nossh'
+
+; SSH セッションを開く
+connect '<em>myserver</em> /ssh'
+
+; SSH セッションを開き、ユーザ名とパスワードのプロンプトは表示されない。
+connect '<em>myserver</em> /ssh /auth=password /user=<em>username</em> /passwd=<em>password</em>'
+
+; SSH セッションを開き、ユーザ名とパスワードと秘密鍵ファイルのプロンプトは表示されない。
+connect '<em>myserver</em> /ssh /auth=publickey /user=<em>username</em> /passwd=<em>password</em> /keyfile=<em>private-key-file</em>'
+
+; ssh-agent の鍵を利用して、公開鍵認証で接続する。ユーザ名とパスワードと秘密鍵ファイルのプロンプトは表示されない。
+connect '<em>myserver</em> /ssh /auth=pageant /user=<em>username</em>'
+
+; シリアルポート接続を開く。x はシリアルポートの一覧で何番目か (1 から)。
+connect '/C=x'
+
+CommandLine = '111.111.11.11'
+connect CommandLine
+</pre>
+
+
+<pre class="macro-example">
+; Sample macro for Tera Term
+;  Telnet login
+
+; connect to the host (telnet)
+connect 'myhost.mydomain'
+
+; set username
+UsernamePrompt = 'Username:'
+Username = 'MYNAME'
+PasswordPrompt = 'Password:'
+; get password from file
+getpassword 'password.dat' 'mypassword' Password
+
+; login
+wait   UsernamePrompt
+sendln Username
+
+wait   PasswordPrompt
+sendln Password
+
+; OK, auto login complete.
+</pre>
+
+
+<pre class="macro-example">
+; sample macro of Tera Term
+;
+; File: ssh2login.ttl
+; Description: auto login with SSH2 protocol
+; Environment: generic
+
+username = 'nike'
+hostname = '192.168.1.3'
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+msg = 'Enter password for user '
+strconcat msg username
+passwordbox msg 'Get password'
+
+msg = hostname
+strconcat msg ':22 /ssh /auth=password /user='
+strconcat msg username
+strconcat msg ' /passwd='
+strconcat msg inputstr
+
+connect msg
+</pre>
+
+
+<h2>注意</h2>
+
+<ol>
+ <li>このページの例において斜体で表示されている値を、実際の値に置き換える必要があります。</li>
+ <li>パスワードにはスペースを含むことが可能です。パスワードの中でスペースを表すには、パスワード全体を `"' で囲んでください。パスワードに " を含めるためには、連続した `"`("") を使用してください。</li>
+ <li>マクロにユーザ名とパスワードを指定した場合、そのマクロファイルをプレーンテキストとして保存したのなら、セキュリティ的に安全な場所に置く必要があることを肝に銘じておいてください。</li>
+ <li>ホストとの接続を終了してすぐにconnectコマンドで新しい接続を開始しようとした場合、タイミングによっては接続できない場合があります。詳しくは"<a href="../appendixes/disconnecttiming.html">切断後すぐに接続する場合の注意点</a>"を参照してください。</li>
+ <li>SSH のコマンドラインの<a href="../../commandline/ttssh.html#passwd_specify">パスワードを指定するときの注意</a>を参照してください。</li>
+</ol>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="closett.html">closett</a></li>
+  <li><a href="cygconnect.html">cygconnect</a></li>
+  <li><a href="disconnect.html">disconnect</a></li>
+  <li><a href="testlink.html">testlink</a></li>
+  <li><a href="unlink.html">unlink</a></li>
+  <li><a href="../appendixes/disconnecttiming.html">切断後すぐに接続する場合の注意点</a></li>
+  <li><a href="../../commandline/ttssh.html#passwd_specify">パスワードを指定するときの注意</a></li>
+  <li><a href="../syntax/variables.html">変数</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/code2str.html">‹ code2str</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/continue.html">continue ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Local shell connection</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Local shell</span><a class="ttw-lang" href="../../ja/usage/cygwin.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Local shell connection</h1>
+
+<p>
+A <b>local shell connection</b> runs the shell of this Mac (zsh etc.) in a Tera Term Mac window.
+</p>
+
+<ul>
+  <li>Choose [File] Local Shell Connection or press &#8984;G to open a shell in a new window.</li>
+  <li>You can also choose "Local shell (Terminal on this Mac)" in the <a href="../menu/file-new.html">New connection</a> dialog.</li>
+  <li>Menu ID 50112 used with the <a href="../macro/command/callmenu.html">callmenu</a> macro command opens a local shell connection.</li>
+</ul>
+
+<h2>Settings</h2>
+
+<p>
+Settings are made on the <a href="../menu/setup-additional-cygwin.html">Local Shell tab of [Setup] Additional settings...</a>. They apply to shells opened afterwards.
+</p>
+
+<dl>
+  <dt>SHELL</dt>
+  <dd>The shell to run. When empty, the shell in the SHELL environment variable (or /bin/zsh) is used.</dd>
+
+  <dt>TERM</dt>
+  <dd>The value of the TERM environment variable. The default is xterm-256color.</dd>
+
+  <dt>ENV_1, ENV_2</dt>
+  <dd>Additional environment variables in "name=value" form.</dd>
+
+  <dt>LOGIN_SHELL</dt>
+  <dd>Starts the shell as a login shell.</dd>
+
+  <dt>HOME_CHDIR</dt>
+  <dd>Starts in the home directory.</dd>
+</dl>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-serialport.html">‹ Serial port settings</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-cygwin.html">Local shell settings ›</a></nav>
+</body>
+</HTML>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>xmodemrecv</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>xmodemrecv</span><a class="ttw-lang" href="../../../en/macro/command/xmodemrecv.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>xmodemrecv</h1>
+
+<p>
+XMODEM プロトコルでファイルを受信する。
+</p>
+
+<pre class="macro-syntax">
+xmodemrecv &lt;filename&gt; &lt;binary flag&gt; &lt;option&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+XMODEM プロトコルでファイル &lt;filename&gt; を受信する。受信が終わるまで次のコマンドは実行されない。<br>
+ファイルが正しく転送された場合、システム変数 result に 1 が格納される。それ以外の場合、 result に 0 が格納される。
+</p>
+
+<p>
+&lt;filename&gt; が相対パスの時、<a href="../../setup/folder.html#FileDir">ファイル転送用ディレクトリ</a>相対として扱う。
+</p>
+
+<p>
+ファイルがバイナリファイルの場合は、&lt;binary flag&gt; は 0 以外でなければならない。<br>
+テキストファイルの場合は、&lt;binary flag&gt; は 0 でなければならない。
+</p>
+
+<p>
+&lt;option&gt; によって、XMODEM のオプション(エラー検出の種類)を指定する。<br>
+パケットサイズ(1K)は送信側でのみ指定できる。
+</p>
+
+<table>
+ <tr>
+  <th>&lt;option&gt;</th>
+  <th>意味</th>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>Checksum</td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>CRC</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>CRC</td>
+ </tr>
+ <tr>
+  <td>それ以外</td>
+  <td>Checksum</td>
+ </tr>
+</table>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; XMODEM receive, text file, CRC
+xmodemrecv 'readme.txt' 0 2
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="changedir.html">changedir</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/while.html">‹ while, endwhile</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/xmodemsend.html">xmodemsend ›</a></nav>
+</body>
+</html>

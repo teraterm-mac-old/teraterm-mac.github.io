@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Miscellaneous (Tera Term setup file)</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>INI: Miscellaneous</span><a class="ttw-lang" href="../../ja/setup/teraterm-misc.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<p>
+To use these items, edit TERATERM.INI and read it with [Setup]-[Restore setup...]. See "<a href="teraterm-ini.html#mac">How Tera Term Mac uses this file</a>".
+</p>
+
+<h1 id="UILang">User interface language file</h1>
+
+<p>
+To switch the display language, specify user interface language file that includes the message.
+</p>
+
+<pre>
+UILanguageFile=lang_utf8\ja_JP.lng
+</pre>
+
+<p>
+The language is chosen from the language files bundled in the app (<a href="../menu/setup-additional-ui.html">the "UI" tab of [Setup]-[Additional settings...]</a>). When reading, only the file name (ja_JP.lng and so on) is used, and only if that language is bundled. When saving, it is written as <code>lang_utf8\ja_JP.lng</code>. When empty, the macOS language setting is used.
+</p>
+
+<pre>
+Default:
+UILanguageFile=
+</pre>
+
+
+<h1 id="broadcast">Number for the history of broadcast command</h1>
+
+<p>
+If you configure the number for the history of broadcast command, you need to set up MaxBroadcatHistory entry in the 'teraterm.ini' file. See example of this value below.
+</p>
+
+<pre>
+MaxBroadcatHistory=200
+</pre>
+
+<pre>
+Default:
+MaxBroadcatHistory=99
+</pre>
+
+
+<h1 id="DisablePasteMouseMButton">Enable paste by clicking the middle button of mouse</h1>
+
+<p>
+In order to <a href="../menu/setup-additional-copy-and-paste.html#DisablePasteMouseMButton">enable paste by clicking the middle button</a> of mouse, change the DisablePasteMouseMButton line at [Tera Term] section of the setup file like the following:
+</p>
+
+<pre>
+DisablePasteMouseMButton=off
+</pre>
+
+<pre>
+Default:
+DisablePasteMouseMButton=on
+</pre>
+
+
+<h1 id="IniAutoBackup">Auto backup of Tera Term setup file</h1>
+
+<p>
+When overwriting an existing setup file, a backup file is created automatically.
+If you do not need a backup file, change the IniAutoBackup entry of [Tera Term] section as the following:
+</p>
+
+<pre>
+IniAutoBackup=off
+</pre>
+
+<pre>
+Default:
+IniAutoBackup=on
+</pre>
+
+<h1 id="BracketedSupport">Supports bracketed paste</h1>
+
+<p>
+If you do not need <a href="../about/glossary.html#Bracketed">Bracketed paste</a>, change the BracketedSupport entry of [Tera Term] section as the following:
+</p>
+
+<pre>
+BracketedSupport=off
+</pre>
+
+<pre>
+Default:
+BracketedSupport=on
+</pre>
+
+<h1 id="BracketedControlOnly">Limit bracketed pasting to cases containing control characters</h1>
+<p>
+<a href="../about/glossary.html#Bracketed">Bracket pasting</a> is useful because it allows the pasted content to be confirmed before fixateing it,
+but it requires two steps of pasting and fixating even if the pasted content does not include control characters such as line changings.
+If you want to enable bracket pasting only when control characters are included, change the BracketedControlOnly entry of [Tera Term] section as the following:
+</p>
+
+<pre>
+BracketedControlOnly=on
+</pre>
+
+<pre>
+Default:
+BracketedControlOnly=off
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../setup/teraterm-com.html">‹ INI: Communication</a><a href="../index.html">Contents</a><a class="ttw-next" href="../setup/teraterm-prn.html">INI: Printing ›</a></nav>
+</body>
+</HTML>

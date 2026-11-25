@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>uptime</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>uptime</span><a class="ttw-lang" href="../../../ja/macro/command/uptime.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>uptime</h1>
+
+<p>
+Gets System Up Time.
+</p>
+
+<pre class="macro-syntax">
+uptime &lt;intvar&gt;
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Retrieves the number of milliseconds that have elapsed since the Mac was started (including time asleep),
+and then stores the value into the &lt;intvar&gt; variable.
+</p>
+
+<p>
+The time wraps around to zero if the system is run continuously for 49.7 days.
+</p>
+
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; How to get the uptime
+uptime var
+day = var / 86400000
+var = var % 86400000
+hour = var / 3600000
+var = var % 3600000
+min = var / 60000
+var = var % 60000
+sec = var / 1000
+
+sprintf2 str "System Up Time: %d Days, %d Hours, %d Minutes, %d Seconds" day hour min sec
+messagebox str "uptime"
+</pre>
+
+<pre class="macro-example">
+uptime varstart
+
+; do something...
+
+uptime varend
+diff = varend - varstart
+sprintf2 str "Macro running time: %d msec" diff
+messagebox str "running time"
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/until.html">‹ until, enduntil</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/var2clipb.html">var2clipb ›</a></nav>
+</body>
+</html>

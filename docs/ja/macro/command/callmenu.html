@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>callmenu</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>callmenu</span><a class="ttw-lang" href="../../../en/macro/command/callmenu.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>callmenu</h1>
+
+<p>
+ウィンドウのメニューを実行する。
+</p>
+
+<pre class="macro-syntax">
+callmenu &lt;menu ID&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+&lt;menu ID&gt; で指定されたメニューを実行する。使える ID は次のとおり。そのほかの ID では、画面に「対応していません」と出すだけで何もしない。
+</p>
+
+<table>
+ <tr>
+  <th>ID</th>
+  <th>操作</th>
+ </tr>
+ <tr>
+  <td>50110, 50003</td>
+  <td>新しい接続</td>
+ </tr>
+ <tr>
+  <td>50111, 50010</td>
+  <td>セッションの複製</td>
+ </tr>
+ <tr>
+  <td>50112</td>
+  <td>新しいウインドウでローカルシェル</td>
+ </tr>
+ <tr>
+  <td>50120</td>
+  <td>ログ</td>
+ </tr>
+ <tr>
+  <td>50124</td>
+  <td>ログの一時停止 / 再開</td>
+ </tr>
+ <tr>
+  <td>50125</td>
+  <td>ログの停止</td>
+ </tr>
+ <tr>
+  <td>50122</td>
+  <td>ログファイルを開く</td>
+ </tr>
+ <tr>
+  <td>50123</td>
+  <td>ログファイルを Finder で表示</td>
+ </tr>
+ <tr>
+  <td>50130</td>
+  <td>ファイル送信</td>
+ </tr>
+ <tr>
+  <td>50190, 50009</td>
+  <td>切断</td>
+ </tr>
+ <tr>
+  <td>50199, 50005</td>
+  <td>ウインドウを閉じる</td>
+ </tr>
+ <tr>
+  <td>50200</td>
+  <td>終了</td>
+ </tr>
+ <tr>
+  <td>50210, 50002</td>
+  <td>コピー</td>
+ </tr>
+ <tr>
+  <td>50230, 50008</td>
+  <td>貼り付け</td>
+ </tr>
+ <tr>
+  <td>50250</td>
+  <td>画面のクリア</td>
+ </tr>
+ <tr>
+  <td>50260</td>
+  <td>バッファのクリア</td>
+ </tr>
+ <tr>
+  <td>50280, 50290</td>
+  <td>すべて選択</td>
+ </tr>
+ <tr>
+  <td>50310, 50320, 50330, 50340, 50370, 50375</td>
+  <td>設定のダイアログ</td>
+ </tr>
+ <tr>
+  <td>50350</td>
+  <td>シリアルポートの設定</td>
+ </tr>
+ <tr>
+  <td>50360</td>
+  <td>新しい接続</td>
+ </tr>
+ <tr>
+  <td>50380</td>
+  <td>設定の保存</td>
+ </tr>
+ <tr>
+  <td>50410</td>
+  <td>端末リセット</td>
+ </tr>
+ <tr>
+  <td>50411</td>
+  <td>リモートタイトルリセット</td>
+ </tr>
+ <tr>
+  <td>50420</td>
+  <td>AYT 送信</td>
+ </tr>
+ <tr>
+  <td>50430, 50001</td>
+  <td>ブレーク送信</td>
+ </tr>
+ <tr>
+  <td>50440</td>
+  <td>ポートのリセット</td>
+ </tr>
+ <tr>
+  <td>50470</td>
+  <td>マクロ</td>
+ </tr>
+ <tr>
+  <td>50990</td>
+  <td>バージョン情報</td>
+ </tr>
+</table>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; すべて選択
+callmenu 50280
+
+; クリップボードへコピー
+callmenu 50210
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/call.html">‹ call</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/changedir.html">changedir ›</a></nav>
+</body>
+</html>

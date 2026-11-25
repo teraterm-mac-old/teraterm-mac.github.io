@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>よく使う接続先を登録する</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>よく使う接続先を登録する</span><a class="ttw-lang" href="../../en/easy/ttmenu.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1 id="top">よく使う接続先を登録する (TeraTerm Menu)</h1>
+
+<p>よくつなぐサーバーを登録しておくと、一覧から選ぶだけでつなげます。Windows 版の TeraTerm Menu と同じ機能が、Tera Term Mac に入っています。</p>
+
+<h2 id="open">リスト編集を開く</h2>
+<ul>
+ <li>Tera Term Mac を起動すると開きます。</li>
+ <li>あとから開くときは、[Tera Term Mac] メニューの [TeraTerm Menu のリスト編集…] を選びます。</li>
+</ul>
+
+<p><img src="img/ttmenu.jpg" alt="リスト編集のウィンドウ" width="700"><br>
+<small>リスト編集。左が登録した一覧、右が選んだ接続先の設定内容です (接続先は例です)</small></p>
+
+<h2 id="add">接続先を登録する</h2>
+<ol>
+ <li>左下の「新規」を押します。</li>
+ <li>右側の「登録名」に、わかりやすい名前を入れます (例: server1 (SSH))。</li>
+ <li>「ホスト名」に、つなぐ先を入れます (例: server1.example.com)。ポートを変えるときは「ホスト名:ポート番号」と書きます。</li>
+ <li>「起動の種類」は「自動ログイン」のままにします。</li>
+ <li>「ユーザ名」にチェックを入れ、ユーザー名を入れます。</li>
+ <li>SSH でつなぐときは「sshを使用」にチェックを入れます。</li>
+ <li>パスワードも覚えさせるときは「パスワード」にチェックを入れて入力します。パスワードは Mac のキーチェーンに安全に保存されます。</li>
+ <li>「← 登録」を押すと、左の一覧に入ります。</li>
+</ol>
+
+<h2 id="use">登録した先につなぐ</h2>
+<ul>
+ <li>リスト編集の一覧で選んで、右下の「接続」を押します。</li>
+ <li>画面のいちばん上のメニューバーの右側にある Tera Term Mac のアイコンをクリックすると、一覧が出ます。選ぶとすぐにつながります。</li>
+ <li>Dock の Tera Term Mac のアイコンを右クリックしても、一覧が出ます。</li>
+</ul>
+
+<h2 id="tips">便利な使い方</h2>
+<ul>
+ <li>一覧を右クリックすると、フォルダを作って接続先を分けられます。ドラッグでフォルダに入れられます。</li>
+ <li>「起動時に実行」にチェックを入れると、Tera Term Mac を起動したときに自動でつなぎます。</li>
+ <li>Windows 版で使っていた ttpmenu.ini は、左下の「ttpmenu.ini」のボタンから読み込めます。</li>
+</ul>
+
+<h2 id="detail">くわしくは</h2>
+<ul>
+ <li><a href="../usage/TTMenu/TTMenu.html">TeraTerm Menu</a></li>
+</ul>
+
+<p><a href="index.html">かんたんマニュアルの目次へ</a> | 次: <a href="macro.html">マクロを動かしてみる</a></p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../easy/settings.html">‹ 見た目を変える・言語を変える</a><a href="../index.html">目次</a><a class="ttw-next" href="../easy/macro.html">マクロを動かしてみる ›</a></nav>
+</body>
+</html>

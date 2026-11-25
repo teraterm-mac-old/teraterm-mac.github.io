@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>strreplace</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>strreplace</span><a class="ttw-lang" href="../../../en/macro/command/strreplace.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>strreplace</h1>
+
+<p>
+文字列を置換する。
+</p>
+
+<h2>形式</h2>
+
+<pre class="macro-syntax">
+strreplace &lt;strvar&gt; &lt;index&gt; &lt;regex&gt; &lt;newstr&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+文字列変数 &lt;strvar&gt; の &lt;index&gt; 位置（1オリジン）から、正規表現 &lt;regex&gt; を検索し、文字列 &lt;newstr&gt; に置き換える。<br>
+&lt;newstr&gt; が ""(空文字列) の場合、&lt;strvar&gt; 中の &lt;regex&gt; は削除される。
+</p>
+
+<p>
+置換が成功すると、システム変数 result に "1" が格納され、正規表現 &lt;regex&gt; でマッチした文字列はシステム変数 matchstr に格納される。<br>
+&lt;regex&gt; が &lt;strvar&gt; の内容にマッチせず置換が行われなかった場合は、result に "0" が格納される。<br>
+&lt;regex&gt; の書式が正しくない等でエラーとなった場合は、result に "-1" が格納される。
+</p>
+
+<p>
+日本語等のマルチバイト文字列を検索する場合、事前に<a href="regexoption.html">regexoption</a>で適切なエンコーディングを設定しておく必要がある。
+</p>
+
+<p>
+このマクロコマンドを実行すると システム変数 groupmatchstr1 ～ groupmatchstr9 の内容がクリアされる。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+src='linux.txt'
+strreplace src 1 '\.txt' '.doc'
+messagebox src 'result'          ; linux.doc
+</pre>
+
+<pre class="macro-example">
+src='I can do it.'
+strreplace src 1 'can\s' ''
+messagebox src 'result'     ; 'I do it.'
+</pre>
+
+<pre class="macro-example">
+src='Darwin Kernel [Version 21.6.0]'
+strmatch src '(Version \d+.\d+.)\d+'
+
+int2str s result
+messagebox s groupmatchstr1
+pos=result                ; 16
+mstr=groupmatchstr1       ; Version 21.6.
+
+strreplace src pos mstr 'Build '
+if result=1 then
+	messagebox src 'result'   ; Darwin Kernel [Build 0]
+endif
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="../../reference/RE.txt">Oniguruma の正規表現</a></li>
+  <li><a href="regexoption.html">regexoption</a></li>
+  <li><a href="strmatch.html">strmatch</a></li>
+  <li><a href="strinsert.html">strinsert</a></li>
+  <li><a href="strremove.html">strremove</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/strremove.html">‹ strremove</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/strscan.html">strscan ›</a></nav>
+</body>
+</html>

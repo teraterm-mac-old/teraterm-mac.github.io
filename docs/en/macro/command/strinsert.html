@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>strinsert</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>strinsert</span><a class="ttw-lang" href="../../../ja/macro/command/strinsert.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>strinsert</h1>
+
+<p>
+Inserts a string.
+</p>
+
+<h2>Format</h2>
+
+<pre class="macro-syntax">
+strinsert &lt;strvar&gt; &lt;index&gt; &lt;string&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Inserts a specified instance of &lt;string&gt; at a specified &lt;index&gt; position(1-origin) in the string variable &lt;strvar&gt;.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+s='abc'
+strinsert s 3 'XYZ'  ; 'abXYZc'
+messagebox s s
+
+s='abc'
+strinsert s 1 'XYZ'  ; 'XYZabc'
+messagebox s s
+
+s='abc'
+strinsert s -1 'XYZ'  ; Syntax error
+messagebox s s
+
+s='abc'
+strinsert s 0 'XYZ'  ; Syntax error
+messagebox s s
+
+s='abc'
+strinsert s 4 'XYZ'  ; 'abcXYZ'
+messagebox s s
+
+s='abc'
+strinsert s 5 'XYZ'  ; Syntax error
+messagebox s s
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="strmatch.html">strmatch</a></li>
+  <li><a href="strreplace.html">strreplace</a></li>
+  <li><a href="strremove.html">strremove</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/strdim.html">‹ strdim</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/strjoin.html">strjoin ›</a></nav>
+</body>
+</html>

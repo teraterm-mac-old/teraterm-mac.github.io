@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>VT100 の PF1-PF4 キー</TITLE>
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<META http-equiv="Content-Style-Type" content="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>VT100 の PF1-PF4 キー</span><a class="ttw-lang" href="../../../en/usage/tips/pf1-pf4key_vt100.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>VT100 の PF1-PF4 キー</h1>
+
+<p>
+初期設定 (KEYBOARD.CNF がないときの割り当て。IBMKEYB.CNF と同じ) では、VT100 の PF1-PF4 キーの機能は F1-F4 キーに割り当てられています。
+Mac のキーボードでは、F1-F4 キーを押すときに fn キーも押す必要があることがあります (システム設定の「キーボード」で、F1、F2 などのキーを標準のファンクションキーとして使う設定にすると、fn は不要になります)。
+</p>
+
+<p>
+割り当てを変えるには、キーボード設定ファイル KEYBOARD.CNF を書き換えてください。詳しくは、<A HREF="../../setup/keyboard.html">キーボード設定ファイル</A>を読んでください。
+以下は PF1-PF4 を F1-F4 キーに割り当てる例です。
+</p>
+
+<pre>
+[VT numeric keypad]
+PF1=59
+PF2=60
+PF3=61
+PF4=62
+; 59-62 は F1-F4 key のキーコード
+
+[X function keys]
+XF1=off
+XF2=off
+XF3=off
+XF4=off
+; キーコード 59-62 を二重使用しないようにするため XF1-XF4 を "off" にする。
+</pre>
+
+<p>
+テンキーの一番上の列 (Mac では clear、=、/、*) に割り当てたいときは、clear (Num Lock) が 325、/ が 309、* が 55 です。
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../usage/tips/appkeypad.html">‹ キーパッドモード</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../usage/tips/ime.html">IME のヒント ›</a></nav>
+</body>
+</HTML>

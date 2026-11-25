@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>changedir</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>changedir</span><a class="ttw-lang" href="../../../en/macro/command/changedir.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>changedir</h1>
+
+<p>
+ファイル転送用ディレクトリを変更する。
+</p>
+
+<pre class="macro-syntax">
+changedir &lt;path&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+ファイル転送用ディレクトリを &lt;path&gt; に変更する。<br>
+ファイル転送用ディレクトリの既定は「ダウンロード」フォルダ (TERATERM.INI の FileDir があればそのフォルダ)。パスは Mac のパスで書く ('c:' のようなドライブ名は無視し、'\' は '/' として扱う。%HOME% のような環境変数を使える)。
+</p>
+
+<p>
+通信コマンドの送信時(sendfile, kmtsend 等)に指定されるファイル名、受信コマンド(zmodemrecv 等)のファイル保存先は "ファイル転送用ディレクトリ" を基準にする。
+</p>
+
+<p>
+通信コマンドに指定されるファイル名が、相対パスの場合は "ファイル転送用ディレクトリ" を基準とする。絶対パスの場合はその影響を受けない。
+</p>
+
+<h3>注意</h3>
+
+<p>
+changedir コマンドは "ファイル転送用ディレクトリ" を変更する。<br>
+<a href="setdir.html">setdir</a> コマンドは "マクロのカレントディレクトリ" を変更する。<br>
+</p>
+<p>
+ファイル転送用フォルダはログの保存先にも影響します。ログの既定のフォルダを設定で決めていなければ、ログはファイル転送用フォルダに保存します (<a href="logopen.html">logopen</a> を参照)。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+changedir '/Users/user/Documents'
+sendfile '/Users/user/source/code.dat' 1
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="setdir.html">setdir</a></li>
+  <li><a href="../../setup/folder.html#FileDir">Tera Term のファイル転送用ディレクトリ</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/callmenu.html">‹ callmenu</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/checksum16.html">checksum16, checksum16file ›</a></nav>
+</body>
+</html>

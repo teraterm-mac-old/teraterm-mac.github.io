@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>切断後すぐに接続する場合の注意点</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>切断直後の再接続</span><a class="ttw-lang" href="../../../en/macro/appendixes/disconnecttiming.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>切断後すぐに接続する場合の注意点</h1>
+<p>
+ホストとの接続を終了後、すぐにconnectコマンドで新しい接続を開始する場合、以下のような問題が発生する場合がある。例えば、
+</p>
+
+<pre class="macro-example">
+; exitコマンドを送って、ホストとの接続を終了する。
+sendln "exit"
+
+; 新しい接続を開始する。
+connect "server"
+</pre>
+
+<p>
+このマクロは大抵の場合はうまく動かない。<br>
+sendln "exit"でexitコマンドを送ってからホストが接続を切断してくるのに少しタイムラグが発生する。<br>
+マクロはこのタイムラグの間に次のconnectコマンドを実行する。<br>
+しかしホストとの接続がまだ終了していないため、connectコマンドは既に接続しているとみなして何も行わない。
+</p>
+
+<p>
+この問題を回避するには、以下のようにホストとの接続が終了したのを確認してからconnectコマンドを実行するようにする。
+</p>
+
+<pre class="macro-example">
+; exitコマンドを送って、ホストとの接続を終了する。
+sendln "exit"
+
+do
+	; 10ミリ秒待つ
+	mpause 10
+	; 接続状態を確認する
+	testlink
+; まだホストと接続されている(<a href="../command/testlink.html">resultが2</a>)ならばループを繰り返す
+loop while result = 2
+
+; 新しい接続を開始する。
+connect "server"
+</pre>
+
+<p>
+また、<a href="../../menu/setup-additional-tcpip.html#AutoWinClose">切断後自動的にウィンドウを閉じる設定</a>の場合、以下のようにunlinkコマンドでウインドウを切り離してもよい。
+</p>
+
+<pre class="macro-example">
+; exitコマンドを送って、ホストとの接続を終了する。
+sendln "exit"
+
+; ウインドウを切り離す
+unlink
+
+; 新しい接続を開始する。
+connect "server"
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/show.html">‹ マクロのウィンドウ (Mac)</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/appendixes/negative.html">負の整数定数についての注意 ›</a></nav>
+</body>
+</html>

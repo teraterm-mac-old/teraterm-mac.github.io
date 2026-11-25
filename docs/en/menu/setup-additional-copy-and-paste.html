@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <TITLE>Additional settings / "Copy and Paste" tab ([Setup] Menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Copy and paste settings</span><a class="ttw-lang" href="../../ja/menu/setup-additional-copy-and-paste.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Copy and Paste" tab ([Setup] Menu)</h1>
+
+    <dl>
+      <dt id="EnableContinuedLineCopy">Enable continued line copy</dt>
+      <dd>
+	Concatenates current line with the next line including word
+	characters when the whole line is stepped over.<br>
+	This is also effective for double clicking the left button and dragging after double clicking the left button.<br>
+	Please refer to <a href="../usage/mouse.html">mouse</a> page.
+      </dd>
+
+      <dt id="DisablePasteMouseRButton">Disable mouse R button paste</dt>
+      <dd>
+	Disables pasting clipboard data when mouse right button is clicked.
+      </dd>
+
+      <dt id="ConfirmPasteMouseRButton">Confirm mouse R button paste</dt>
+      <dd>
+	Displays popup menu and confirm pasting clipboard data when mouse
+	right button is clicked.<br>
+	Available when "Disable mouse R button paste" is off.
+      </dd>
+
+      <dt id="DisablePasteMouseMButton">Disable mouse M button paste</dt>
+      <dd>
+	Disables pasting clipboard data when mouse middle button is clicked.
+      </dd>
+
+      <dt id="SelectOnlyByLButton">Select only by L button</dt>
+      <dd>
+	Enable selection by mouse drag only with left button.
+      </dd>
+
+      <dt id="TrimTrailingNL">Trim trailing new line character when pasting</dt>
+      <dd>
+	Remove trailing new line character when pasting.
+      </dd>
+
+      <dt>Use bracketed paste only when text contains control characters</dt>
+      <dd>
+	In bracketed paste mode, the pasted text is wrapped in brackets only when it contains control characters (BracketedControlOnly in TERATERM.INI).
+      </dd>
+
+      <dt id="ConfirmChangePaste">Confirm change paste</dt>
+      <dd>
+	When the Clipboard includes CR/LF, the confirmation
+	dialog can be shown to paste by right-click or &#x2318;V.
+	This is a foolproof way.
+      </dd>
+
+      <dt>Always confirm pasting text that contains line breaks</dt>
+      <dd>
+	Pasting with [Edit] menu Paste&lt;CR&gt; (&#x2318;R) always shows the confirmation dialog, whatever the text is (ConfirmChangePasteCR in TERATERM.INI).<br>
+	Works when "Confirm change paste" is on.
+      </dd>
+
+      <dt id="ConfirmChangePasteStringFile">String file</dt>
+      <dd>
+	When the Clipboard includes any strings in the specified file,
+	the confirmation dialog can be shown to paste by right-click or &#x2318;V.
+	This is a foolproof way.<br>
+	This function works when the ConfirmChangePaste is enabled.
+      </dd>
+
+      <dt id="DelimiterChar">Delimiter characters</dt>
+      <dd>
+	Includes delimiter characters for the word selection.
+      </dd>
+
+      <dt id="PasteDelayPerLine">Paste delay per line</dt>
+      <dd>
+	A user can delay to send a line data to the remote host when the user pastes multiple lines. The delay time can be specified by this option on the millisecond time scale.
+      </dd>
+
+      <dt id="SelectOnActivate">Enabling text selection when the window is activated by mouse</dt>
+      <dd>
+	When an inactive window is activated by clicking the text area with the mouse, the text selection is disabled.
+      </dd>
+
+      <dt id="AutoTextCopy">Copy to clipboard when text is selected</dt>
+      <dd>
+        Automatic copy to the clipboard when text is selected.
+      </dd>
+
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/edit.html">‹ Copy and paste</a><a href="../index.html">Contents</a><a class="ttw-next" href="../usage/keyboard.html">Keyboard and shortcuts ›</a></nav>
+</body>
+</html>

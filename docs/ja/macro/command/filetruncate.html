@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>filetruncate</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>filetruncate</span><a class="ttw-lang" href="../../../en/macro/command/filetruncate.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>filetruncate</h1>
+
+<p>
+ファイルのサイズを変更する。
+</p>
+
+<pre class="macro-syntax">
+filetruncate &lt;filename&gt; &lt;size&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+ファイル &lt;filename&gt; をサイズ &lt;size&gt; バイトの大きさに変更する。<br>
+指定したサイズが、既存の大きさを超えた場合、ヌル文字('\0')が追加される。
+</p>
+
+<p>
+サイズ変更に成功した場合は、システム変数 result に 0 が格納される。
+失敗した場合は -1 が格納される。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; ファイルを32バイトに切り詰める
+filetruncate 'test.bin' 32
+if result = -1 then
+	messagebox 'file truncate error' 'filetruncate'
+else
+	messagebox 'file truncate success' 'filetruncate'
+endif
+</pre>
+
+<pre class="macro-example">
+; 8MBの空ファイルを作る
+size = 8*1024*1024
+filetruncate 'bigfile.bin' size
+</pre>
+
+<pre class="macro-example">
+; マクロがある場所にログファイルを作る
+getdir dir
+sprintf2 filename '%s\test.log' dir
+logopen filename 0 0
+; ファイルの上限サイズ
+maxsize = 512
+counter = 0
+
+:loop
+counter = counter + 1
+sprintf2 line 'counter = %d' counter
+logwrite line
+logwrite #13#10
+filetruncate filename maxsize
+if result = -1 then
+	messagebox 'file truncate error' 'filetruncate'
+	goto skip
+endif
+if counter &gt; 32 goto skip
+goto loop
+
+:skip
+logclose
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/filestrseek2.html">‹ filestrseek2</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/fileunlock.html">fileunlock ›</a></nav>
+</body>
+</html>

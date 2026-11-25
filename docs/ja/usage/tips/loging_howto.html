@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>ログの取り方、ログの再生機能</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>ログの取り方と再生</span><a class="ttw-lang" href="../../../en/usage/tips/loging_howto.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>ログの取り方、ログの再生機能</h1>
+
+<p>
+ログ (log) 機能をつかうと、ホストから送られてきた文字をファイルに保存することができます。
+</p>
+
+<h2>ログの取りかた</h2>
+
+<p>
+以下の手順にしたがってください。
+</p>
+
+<ol>
+  <li><A HREF="../../menu/file.html">[ファイル] ログ...</A>コマンドを実行する。</li>
+  <li>「ログ」ダイアログが現れる。
+<p>
+保存するファイルの名前をログファイル名の欄に入力する。「...」ボタンで選んだり、Finder からファイルをドロップしたりもできる。ファイル名だけを入れたときは、ホームフォルダに保存される。<br>
+「バイナリ」を選ぶと、ホストから送られた文字はすべてファイルに書き込まれる。<br>
+「テキスト」を選ぶと、漢字、改行コードは変換されて書き込まれる。エスケープシーケンスは書き込まれない。<br>
+「追記」を選ぶと、ファイルがすでに存在する場合、追加して書き込まれる。<br>
+「新規/上書き」を選ぶと、ファイルがすでに存在する場合、上書きされる。<br>
+「タイムスタンプ」をオンにすると、各行に時刻が付く。
+</p></li>
+  <li>OK ボタンを押すと、ログが開始される。「ログ記録中ダイアログ」を「表示」にしていると、ログの状態を表示する小さなウインドウが開く。ログを取っている間も、一部の機能を除いて普通に Tera Term Mac を使用することができる。</li>
+  <li>ログを終了したり、中断したい場合は、ログ記録中ダイアログの「閉じる」または「一時停止」ボタンを押す。「一時停止」ボタンを押すと「再開」ボタンに変わるので、それを押すとログが再開される。[ファイル] メニューの「ログを中断」「ログを終了」でも同じことができる。ダイアログを閉じてしまったときは「ログ記録中ダイアログを表示...」で再び開ける。</li>
+</ol>
+
+<p>
+保存したファイルは、「テキストエディット」等のエディタや [ファイル] メニューの「ログを表示」で見ることができますが、エスケープシーケンス等を含んだファイルは、
+ログの再生機能を使って見ると便利です。
+</p>
+
+<h2>ログの再生のしかた</h2>
+
+<p>
+<A HREF="../../menu/file.html">[ファイル] ログを再生...</A> を選び、バイナリで記録したログファイルを選びます。
+新しいウインドウが開き、あたかもホストから文字が送られてきたかのように、ログファイルを再生することができます。
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../menu/file-log.html">‹ ログを取る</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../menu/setup-additional-log.html">ログの設定 ›</a></nav>
+</body>
+</HTML>

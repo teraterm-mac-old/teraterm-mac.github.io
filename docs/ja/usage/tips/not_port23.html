@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>TCP/IP 接続で 23 以外の TCP port 番号を使用する場合の注意</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>23 番以外のポートで接続する</span><a class="ttw-lang" href="../../../en/usage/tips/not_port23.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>Telnet 用ポート番号</h1>
+
+<p>
+<A HREF="../../commandline/teraterm.html">コマンドライン</A>、または <A HREF="../../menu/file.html">[ファイル] 新しい接続</A> ダイアログボックスでは、TCP/IP 接続に使用される TCP ポート番号 (&lt;TCP port#&gt;) と telnet フラグ (&lt;telnet flag&gt;) を指定することができます。コマンドラインでこれらのパラメーターが省略された場合は、設定の値が使用されます。
+</p>
+
+<p>
+&lt;telnet flag&gt; が 1 (on) で、かつ &lt;TCP port#&gt; が 23 の場合だけ、Tera Term Mac はホストに接続した直後に、自発的に telnet コマンドをホストに送信し option negotiation を開始します。
+</p>
+
+
+<p>
+&lt;telnet flag&gt; が 1 (on) なら、&lt;TCP port#&gt; が何であれ Tera Term Mac はホストから送られてきた telnet コマンドに応答します。
+&lt;telnet flag&gt; が 0 (off、/T=0 の生 TCP) のときは、受信したデータをそのまま扱います。
+</p>
+
+<h1>非 telnet TCP/IP 接続用の端末設定</h1>
+
+<p>
+Telnet プロトコルに対応していないホスト(通常 23 以外のポート番号を使用)に TCP/IP 接続する場合、ローカルエコーを on に、送信する改行コードを CR+LF にする必要がある場合があります。
+</p>
+
+<p>
+<A HREF="../../menu/setup-terminal.html">[設定] 端末...</A> でローカルエコーと改行コード (送信) を変えてください。
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../menu/setup-additional-tcpip.html">‹ TCP/IP の詳細設定</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../menu/setup-serialport.html">シリアルポートの設定 ›</a></nav>
+</body>
+</HTML>

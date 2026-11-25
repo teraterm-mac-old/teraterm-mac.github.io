@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>setdir</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>setdir</span><a class="ttw-lang" href="../../../ja/macro/command/setdir.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>setdir</h1>
+
+<p>
+Changes the current working directory for the macro.
+</p>
+
+<pre class="macro-syntax">
+setdir &lt;dir&gt;
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Changes the current working directory for the macro to &lt;dir&gt;. Use Mac paths ('~' is the home folder; a drive letter such as 'c:' is ignored, and '\' is treated as '/').
+</p>
+
+<p>
+File names specified for other commands (e.g. fileopen) are based on the "current working directory for the macro."
+</p>
+
+<h3>Note</h3>
+
+<p>
+The setdir command changes "current working directory for the macro."<br>
+The <a href="changedir.html">changedir</a> command changes "File transfer directory."
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+setdir '~/Documents'
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="getdir.html">setdir</a></li>
+  <li><a href="changedir.html">changedir</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/setdebug.html">‹ setdebug</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/setdlgpos.html">setdlgpos ›</a></nav>
+</body>
+</html>

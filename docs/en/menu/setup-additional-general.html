@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "General" Tab ([Setup] Menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>General tab</span><a class="ttw-lang" href="../../ja/menu/setup-additional-general.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "General" Tab ([Setup] Menu)</h1>
+
+    <dl>
+      <dt id="DisableAcceleratorSendBreak">Disable accelerator send break</dt>
+      <dd>
+	Disables the &#x2318;B shortcut for sending a break.
+      </dd>
+
+      <dt id="AcceptBroadcast">Accept broadcast</dt>
+      <dd>
+	Accept the <a href="control-broadcast.html">broadcast command</a>.<br>
+	Can be only enabled when the "Realtime mode" is off. However, this option is always ignored when the "Realtime mode" is on.
+      </dd>
+
+      <dt id="AutoScrollOnlyInBottomLine">Auto scroll only in bottom line</dt>
+      <dd>
+	Stop auto scrolling except when the bottom line is displayed.
+      </dd>
+
+      <dt id="ClearOnResize">Clear display when window resized</dt>
+      <dd>
+	The current screen is cleared when the VT window resizes.
+      </dd>
+
+      <dt id="Port">New connection default</dt>
+      <dd>
+	Default port type (TCP/IP or Serial) to be used when Tera Term Mac is
+	run without command line parameter.
+      </dd>
+
+      <dt id="TitleFormat">Title format</dt>
+      <dd>Configures the window title format.
+        <dl>
+          <dt>Display host/port name</dt>
+          <dd>Displays hostname or serial port name</dd>
+
+          <dt>Display session number</dt>
+          <dd>Displays session number</dd>
+
+          <dt>Display VT/TEK</dt>
+          <dd>Displays VT or TEK</dd>
+
+          <dt>Swap hostname and title position</dt>
+          <dd>Swaps the hostname and <a href="setup-additional-window.html#Title">title text</a>, displays hostname first.</dd>
+
+          <dt>Display tcp port number</dt>
+          <dd>Displays tcp port number (TCP/IP connection only)</dd>
+
+          <dt>Display serial port speed</dt>
+          <dd>Displays speed of serial port (serial connection only)</dd>
+        </dl>
+      </dd>
+
+      <dt>Notification</dt>
+
+      <dd>
+        <dl>
+          <dt id="NotifySound">Notify sound</dt>
+          <dd>
+            Allows the notification sound. The value is saved as NotifySound in TERATERM.INI.<br>
+            Tera Term Mac does not post to Notification Center, so this currently has no effect.
+          </dd>
+        </dl>
+      </dd>
+
+      <dt id="FileFolder">File transfer folder</dt>
+      <dd>
+        Sets the folder for file transfer (send and receive). Use the "..." button to choose a folder.<br>
+        Environment variables (ex "$HOME/Downloads") are expanded. A relative path is taken from your home folder.<br>
+        If not set, or if the folder does not exist, the Downloads folder (~/Downloads) <a href="../setup/folder.html#FileDir">is used</a>.<br>
+        The current folder can be checked in <a href="../menu/setup-directory.html">Setup Directory</a>.<br>
+        [File] menu <a href="file-chdir.html">Change directory...</a> opens this tab.<br>
+        From MACRO, this can be changed with <a href="../macro/command/changedir.html">changedir macro command</a>.
+      </dd>
+    </dl>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional.html">‹ Additional settings</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-window.html">Window tab ›</a></nav>
+</body>
+</html>

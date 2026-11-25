@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>connect</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>connect</span><a class="ttw-lang" href="../../../ja/macro/command/connect.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>connect</h1>
+
+<p>
+Connects.
+</p>
+
+<pre class="macro-syntax">
+connect &lt;command line parameters&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Connects the window the macro is running in to the destination given by &lt;command line parameters&gt;. &lt;command line parameters&gt; uses the same format as the Tera Term Mac <a href="../../commandline/teraterm.html">command line</a> (the <a href="../../commandline/ttssh.html">SSH options</a> can also be used).
+</p>
+
+<p>
+If the macro is not linked to a window (after <a href="unlink.html">unlink</a> or <a href="closett.html">closett</a>, or after the window was closed), this command opens a new window, links it to the macro and connects in that window.
+</p>
+
+<p>
+If the macro has already been linked to a window and the window is not connected to the host, this command causes the window to connect to the host specified by &lt;command line parameters&gt;. If no destination is given, the connection dialog is shown.
+</p>
+
+<p>
+If the macro has already been linked to a window and the window has already been connected to the host, this command is ignored.
+</p>
+
+<p>
+The macro does not go on to the next line until the connection is made (or fails). As a result of this command, the system variable "result" is set to one of the following values depending on the link and connection status:
+</p>
+
+<table>
+ <tr>
+  <th>Value</th>
+  <th>Status</th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>The macro is not linked to a window.</td>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>Connection to the host has not been made, but the macro is linked to a window.</td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>Both connection and link have been made.</td>
+ </tr>
+</table>
+
+<p>
+To test the current link and connect status before executing the "connect" command, use the "<a href="testlink.html">testlink</a>" command.
+</p>
+
+<p>
+Communication commands except "connect", "<a href="cygconnect.html">cygconnect</a>" and "<a href="testlink.html">testlink</a>" can not be executed before the link is established.
+</p>
+
+<h2>Connection method</h2>
+
+<p>
+These types of connection can be established from a macro:
+</p>
+
+<ul>
+ <li>Telnet connection (port 23)</li>
+ <li>SSH connection (port 22)</li>
+ <li>Serial port connection</li>
+</ul>
+
+<h3>Telnet connections</h3>
+
+<pre class=".code">
+<code>connect '<em>myserver</em>:23 /nossh /T=1'
+connect '<em>myserver</em>:23'
+</code></pre>
+
+<p>
+Using /nossh is strongly recommended. Without this parameter the connection uses the same method (telnet or SSH) as in the last saved settings. In case it was SSH, your macro will try to connect via SSH and will eventually fail.
+</p>
+<p>
+Using /T=1 is recommended. Without this parameter the connection uses the value of 'Telnet' in the settings. When the Telnet value is off, telnet negotiation is not done and the session may not work well.
+</p>
+
+<h3>SSH connections</h3>
+
+<p>
+SSH connections use the macOS ssh command (OpenSSH) with SSH2.
+</p>
+
+<pre class=".code">
+<code>connect '<em>myserver</em> /ssh'
+connect '<em>myserver</em> /ssh /2'
+</code></pre>
+
+<pre class=".code">
+<code>connect '<em>myserver</em> /ssh /auth=password /user=<em>username</em> /passwd=<em>password</em>'
+connect '<em>myserver</em> /ssh /auth=publickey /user=<em>username</em> /passwd=<em>password</em> /keyfile=<em>private-key-file</em>'
+connect '<em>myserver</em> /ssh /auth=challenge /user=<em>username</em> /passwd=<em>password</em>'
+</code></pre>
+
+<p>
+These ways pass username and password directly from the macro, so the password does not have to be typed. /auth=password is password authentication, /auth=publickey is public key authentication (/passwd= is the passphrase of the private key), and /auth=challenge is challenge-response authentication. Do not replace the word 'password' or 'publickey' in /auth= with the actual password.
+</p>
+
+<pre class=".code">
+<code>connect '<em>myserver</em> /ssh /auth=pageant /user=<em>username</em>'
+</code></pre>
+
+<p>
+This way passes username from the macro and uses public key authentication with the keys in ssh-agent etc.
+</p>
+
+<pre class=".code">
+<code>connect '<em>myserver</em> /ssh /auth=password /user=<em>username</em> /ask4passwd'
+connect '<em>myserver</em> /ssh /auth=publickey /user=<em>username</em> /ask4passwd /keyfile=<em>private-key-file</em>'
+connect '<em>myserver</em> /ssh /auth=challenge /user=<em>username</em> /ask4passwd'
+</code></pre>
+
+<p>
+These ways pass username and authentication method directly from the macro, and the popup asks for password.
+</p>
+
+<h3>Serial port connections</h3>
+
+<pre class=".code">
+<code>connect '/C=x'
+connect '/C=/dev/cu.usbserial-XXXX'
+</code></pre>
+
+<p>
+Here x is the position of the port in the list of Mac serial ports (counted from 1). For example, to connect via the first port, use connect '/C=1'. You can also give the device directly, e.g. /C=/dev/cu.usbserial-XXXX.
+</p>
+
+<h2>Examples</h2>
+
+<pre class="macro-example">
+; No destination (the connection dialog is shown)
+connect ''
+
+; Timeout will occur if connection does not succeed within five seconds.
+connect '<em>myserver</em> /timeout=5'
+
+; Open telnet session
+connect '<em>myserver</em>:23 /nossh'
+
+; Open SSH session
+connect '<em>myserver</em> /ssh'
+
+; Open SSH session and do not prompt for user name and password
+connect '<em>myserver</em> /ssh /auth=password /user=<em>username</em> /passwd=<em>password</em>'
+
+; Open SSH session, do not prompt for user name and password, and use private key file
+connect '<em>myserver</em> /ssh /auth=publickey /user=<em>username</em> /passwd=<em>password</em> /keyfile=<em>private-key-file</em>'
+
+; Connect with public key authentication using the keys in ssh-agent,
+; and do not prompt for user name and password.
+connect '<em>myserver</em> /ssh /auth=pageant /user=<em>username</em>'
+
+; Open serial port connection. x is the position in the list of serial ports (from 1).
+connect '/C=x'
+
+CommandLine = '111.111.11.11'
+connect CommandLine
+</pre>
+
+
+<pre class="macro-example">
+; Sample macro for Tera Term
+;  Telnet login
+
+; connect to the host (telnet)
+connect 'myhost.mydomain'
+
+; set username
+UsernamePrompt = 'Username:'
+Username = 'MYNAME'
+PasswordPrompt = 'Password:'
+; get password from file
+getpassword 'password.dat' 'mypassword' Password
+
+; login
+wait   UsernamePrompt
+sendln Username
+
+wait   PasswordPrompt
+sendln Password
+
+; OK, auto login complete.
+</pre>
+
+
+<pre class="macro-example">
+; sample macro of Tera Term
+;
+; File: ssh2login.ttl
+; Description: auto login with SSH2 protocol
+; Environment: generic
+
+username = 'nike'
+hostname = '192.168.1.3'
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+msg = 'Enter password for user '
+strconcat msg username
+passwordbox msg 'Get password'
+
+msg = hostname
+strconcat msg ':22 /ssh /auth=password /user='
+strconcat msg username
+strconcat msg ' /passwd='
+strconcat msg inputstr
+
+connect msg
+</pre>
+
+
+<h2>Note</h2>
+
+<ol>
+ <li>In these examples parameters shown with Italic font have to be replaced with their actual values.</li>
+ <li>A user's password can include space characters. If the password includes the space character, a user should put the password in quotations by using `"' character. Also, if the password includes the " character, a user should write the " two times.</li>
+ <li>Please remember that entering actual username and password in a macro will cause them to be stored as an open text and it is your responsibility to keep such macro is secure location.</li>
+ <li>When a user re-connect the remote host soon after disconnecting the server, a user could not connect the server. For more detail, refer to "<a href="../appendixes/disconnecttiming.html">here</a>".</li>
+ <li>Please refer to <a href="../../commandline/ttssh.html#passwd_specify">Notes on Specifying a Password</a> of the SSH command line.</li>
+</ol>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="closett.html">closett</a></li>
+  <li><a href="cygconnect.html">cygconnect</a></li>
+  <li><a href="disconnect.html">disconnect</a></li>
+  <li><a href="testlink.html">testlink</a></li>
+  <li><a href="unlink.html">unlink</a></li>
+  <li><a href="../appendixes/disconnecttiming.html">NOTICE: Immediately re-connect the server after disconnection</a></li>
+  <li><a href="../../commandline/ttssh.html#passwd_specify">Notes on Specifying a Password</a></li>
+  <li><a href="../syntax/variables.html">Variables</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/code2str.html">‹ code2str</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/continue.html">continue ›</a></nav>
+</body>
+</html>

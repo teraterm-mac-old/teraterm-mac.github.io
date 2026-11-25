@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Q &amp; A集</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>Q &amp; A</span><a class="ttw-lang" href="../../en/about/qanda.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>Q &amp; A集</h1>
+
+<p>
+<A HREF="contacts.html">連絡</A>をする前にこのページをよく読んでください。<br>
+Tera Term Mac のことは <A HREF="contacts.html">Tera Term Mac の Issues</A> へお願いします。
+</p>
+
+<h2>[Tera Term Mac について]</h2>
+
+<p>
+<span class="qanda">Q.</span> Tera Term Mac の最新版はどこで入手可能か?<br>
+<span class="qanda">A.</span> <a href="https://github.com/satorunet/teraterm_macos/releases/latest" target="_blank">https://github.com/satorunet/teraterm_macos/releases/latest</a>から入手できます。<br>
+<span class="qanda">A.</span> インストール済みの Tera Term Mac は自動アップデート (Sparkle) に対応しています。メニューの [Tera Term Mac] &gt; [アップデートを確認…] でいつでも確認できます。
+</p>
+
+<p>
+<span class="qanda">Q.</span> Tera Term Mac の次のバージョンはいつ出るのか?<br>
+<span class="qanda">A.</span> 決まった時期はありません。新しい版が出ると、自動アップデートで「インストールしますか?」と聞きます (勝手には入れ替えません)。<br>
+<span class="qanda">A.</span> 各版で変わったことは <a href="https://github.com/satorunet/teraterm_macos/releases" target="_blank">Releases</a> にまとめています。
+</p>
+
+<p>
+<span class="qanda">Q.</span> バージョン番号はどうなっているのか?<br>
+<span class="qanda">A.</span> Tera Term Mac のバージョン番号は Tera Term Mac 独自のものです (例: 0.4.4)。<br>
+バージョンは [Tera Term Mac] &gt; [Tera Term Mac について] で確認できます。
+</p>
+
+<p>
+<span class="qanda">Q.</span> Tera Term Mac の実行プログラムやソースコードを商用利用して問題ないか?<br>
+<span class="qanda">A.</span> まったく問題ありません。連絡も不要です。Tera Term Mac は <a href="copyright.html">MIT License</a> (Tera Term から受け継いだ部分は BSD License) に基づいて配布されています。</p>
+
+<p>
+<span class="qanda">Q.</span> Tera Term Mac の開発に参加したい。<br>
+<span class="qanda">A.</span> GitHub の <a href="https://github.com/satorunet/teraterm_macos" target="_blank">satorunet/teraterm_macos</a> で Issues や Pull Request を送ってください。</p>
+
+<p>
+<span class="qanda">Q.</span> 海外への輸出規制(EAR)について<br>
+<span class="qanda">A.</span>
+Tera Term Mac は SSH の暗号処理を含まず、SSH には macOS に入っている ssh コマンドを使います。<a href="./module.html">構成要素</a>と<a href="./copyright.html">ライセンス・著作権</a>を参照し、輸出管理法の遵守はご自身の判断でお願いします。
+</p>
+
+
+<h2>[基本的な使い方]</h2>
+
+<p>
+<span class="qanda" id="connection">Q.</span> ホストに接続できない。<br>
+<span class="qanda">A.</span> 以下のことを確認してみてください。
+</p>
+<ul>
+ <li>macOS の「システム設定」(「システム環境設定」) の「ネットワーク」の設定。</li>
+ <li>他の TCP/IP アプリケーションは使えますか? (telnet, FTP, WWW ブラウザなど)</li>
+ <li>ホスト名または IP アドレスはあってますか?</li>
+ <li>他のマシンでそのホストに接続できますが?</li>
+</ul>
+
+<p>
+表示されたメッセージを元に、次のことを確認してください。
+</p>
+
+<dl>
+  <dt>無効なホスト(Invalid host)</dt>
+  <dd>
+    ホスト名を使って接続先を解決することができませんでした。<br>
+    ホスト名が有効かホスト名の解決が可能か確認してください。
+  </dd>
+
+  <dt>接続が拒否されました(Connection refused)</dt>
+  <dd>
+    接続先のサービスが動作していないため接続できない状態です。<br>
+    サービスの起動を確認してください。
+  </dd>
+
+  <dt>接続がタイムアウトしました(Connection timed out)</dt>
+  <dd>
+    接続先から応答がありません<br>
+    ネットワーク、ホストの起動、ファイアフォールなどを確認してください。
+  </dd>
+
+  <dt>ネットワークに到達できません(Network cannot be reached)</dt>
+  <dd>
+    接続先に到達できません。<br>
+    Tera Term Mac が動作している Mac のネットワークの設定、接続先までの経路を確認してください
+  </dd>
+
+</dl>
+
+<p>
+ネットワークに関する設定についてはネットワークの管理者に問い合わせてください。
+</p>
+
+<p>
+<span class="qanda">Q.</span> Telnet でホストに接続し、その後ログアウトしたときに Tera Term が勝手に終了してしまい困る。<br>
+<span class="qanda">A.</span> <a href="../menu/setup-additional-tcpip.html">[Setup] Additional settings / "TCP/IP" タブ</a> の Auto window close を off にしてください。
+</p>
+
+<p>
+<span class="qanda">Q.</span> Telnet 接続をしたいのに、起動すると勝手にシリアルポートが開かれてしまう。<br>
+<span class="qanda">A.</span> <a href="../menu/setup-additional-tcpip.html">[Setup] Additional settings / "TCP/IP" タブ</a> で Default port を "TCP/IP" にしてください。
+</p>
+
+<p id="save_ini">
+  <span class="qanda">Q.</span> 変更した設定が保持されない。Tera Term を終了してふたたび起動すると元に戻っている。<br>
+  <span class="qanda">A.</span> Tera Term Mac では、[設定] メニューのダイアログで OK を押した設定は自動的に保存され、次に起動したときも使われます。<br>
+  <a href="../menu/setup-save.html">[Setup] Save setup</a> は、設定を TERATERM.INI 形式のファイルに書き出すためのものです。書き出したファイルは <a href="../menu/setup-restore.html">[Setup] Restore setup</a> で読み込めます。
+</p>
+
+
+<h2>[日本語]</h2>
+<p>
+<span class="qanda">Q.</span> 日本語が入力/表示できない。<br>
+<span class="qanda">A.</span> まずは <a href="../menu/setup-general.html">[Setup] General</a> で Language が "Japanese" になっていることを確認してください。<br>
+次に <a href="../menu/setup-terminal.html">[Setup] Terminal</a> で Kanji (receive) と Kanji (transmit) を "SJIS", "EUC", "JIS", "UTF-8" の中から１つ選び両方とも同じものにしてください。<br>
+4つともためしてうまくいくものを探してください。より確実にはホストの管理者にどの日本語コードを指定すべきか聞いてください。<br>
+<span class="qanda">A.</span> ホストで使われている日本語コードが JIS 以外の場合で、日本語の入力ができない場合、ホストで 8 bit 文字の入力ができるように設定されていない<br>
+可能性があります。8 bit 文字を入力可能にするには、例えば以下のようなコマンドで設定してください。
+</p>
+<pre>
+stty pass8 -istrip	(SunOS等の unix の場合)
+set term /eight		(VMS の場合)
+</pre>
+<p>
+詳しくは、ホストの管理者等に聞いてください。
+</p>
+
+<p>
+<span class="qanda">Q.</span> 最初は正しく表示されていたが、何かの拍子に文字が正しく表示されなくなる。<br>
+<span class="qanda">A.</span> ホスト側が壊れた文字列を送ってきたり、Tera Term の受信漢字コードの設定と異なる漢字コードの文字列を送って来た場合、それ以降の文字表示が正しく行われなくなる場合があります。以下のことを試してみてください。
+</p>
+<ul>
+  <li><a href="../menu/control.html">[Control] Reset Terminal (端末リセット)</a> で表示状態をリセット出来ます。</li>
+  <li>ホスト側で利用する漢字コードと Tera Term の受信漢字コードの設定を合わせてください。</li>
+  <li>ホスト側のバグ等で壊れた文字列が送られて来る事があります。ホスト側の OS や利用しているソフトウェアに対してバグ報告をしたり、(あれば)パッチを適用したりしてホスト側が壊れた文字列を送らないようにしてください。</li>
+  <li>漢字コードとして UTF-8 のみを利用している場合、<a href="../menu/setup-general.html">[Setup] General</a> の Language を UTF-8 に変更すると症状が軽減される場合があります。</li>
+  <li><a href="../setup/teraterm-term.html">「2バイト文字(漢字)の1バイト目と2バイト目の間に制御文字等が入った場合、1バイト目を無効にする」</a>の設定を行うと症状が軽減される場合があります。</li>
+</ul>
+
+
+<h2>[キーボード]</h2>
+<p>
+<span class="qanda">Q.</span> Backspace または Delete (DEL) キーを押してもカーソルの一つ左の文字が消せない。<br>
+<span class="qanda">A.</span> Mac の delete キーは、標準のターミナルと同じく初期設定で DEL を送ります。Backspace (BS) を送りたいときは <a href="../menu/setup-keyboard.html">[Setup] Keyboard</a> の Backspace key を on または off に変えてみてください。前方削除 (fn+delete) キーについては、
+<a href="../menu/setup-keyboard.html">[Setup] Keyboard</a> の Delete key を on にしてください。ただしホストによっては Delete キーが使えない場合があります。
+
+<p>
+<span class="qanda">Q.</span> テンキー(数値キーパッド)でキーに書いてある文字が正しく入力できない。<br>
+<span class="qanda">Q.</span> テンキー(数値キーパッド)で "/", "*", "-", "+" が入力できない。<br>
+<span class="qanda">A.</span> <A HREF="../usage/tips/about_tenkey.html">「テンキー(数値キーパッド)について」</A>を読んでください。
+</p>
+
+<p>
+<span class="qanda">Q.</span> F1-F4 キーが使えない。<br>
+<span class="qanda">A.</span>「F1-F4 キー」を押すことによって VT100 の PF1-PF4 キーの機能を実現させたいという意味ならば、<A HREF="../usage/tips/pf1-pf4key_vt100.html">「VT100 の PF1-PF4 キー」</A>を読んでください。
+</p>
+
+<p>
+<span class="qanda">Q.</span> 何々キーが使えない。<br>
+<span class="qanda">A.</span> この種の質問はたいていの場合答えられません。そのキーを押した時に送出されるべき文字(列)あるいは実行されるべき機能がわからないことが多いからです。もしそれがわかる場合は、キーボード設定ファイルを設定することによってそのキーを使えるようにすることができます。<A HREF="../setup/keyboard.html">キーボード設定ファイル</A>を読んでください。
+
+<p>
+<span class="qanda">Q.</span> 某社の unix に接続し、DEL キーを押して実行中のプログラムを中断しようとしたができない。<br>
+<span class="qanda">A.</span> <a href="../menu/setup-keyboard.html">[Setup] Keyboard</a> の Delete key を on にしてください (Mac では fn+delete キー)。
+</p>
+
+<p>
+<span class="qanda">Q.</span> <a href="../menu/edit.html">[Edit] Paste (Copy)</a> の ショートカットキーを他のアプリケーションと同じにしたい。<br>
+<span class="qanda">A.</span> Tera Term Mac では、他の Mac のアプリケーションと同じく &#8984;V (&#8984;C) が [編集] &gt; [貼り付け] ([コピー]) のショートカットキーです。<br>
+Control+V や Control+C は、そのまま ^V や ^C としてホストに送られます。
+</p>
+
+<h2>[ファイル転送]</h2>
+<p>
+<span class="qanda">Q.</span> XMODEM/ZMODEM/B-Plus/Quick-VAN によるファイル転送がうまくいかない。<br>
+<span class="qanda">Q.</span> メニューの XMODEM/ZMODEM/B-Plus/Quick-VAN が灰色になっていて使えない。<br>
+<span class="qanda">A.</span> <A HREF="../usage/tips/xmodem.html">「XMODEM のヒント」</A>, <A HREF="../usage/tips/zmodem.html">「ZMODEM のヒント」</A>, <A HREF="../usage/tips/b-plus.html">「B-Plus のヒント」</A>, <A HREF="../usage/tips/quick_van.html">「Quick-VAN のヒント」</A>を読んでください。
+</p>
+
+<p>
+<span class="qanda">Q.</span> あるホストへログインし、そこから他のホストへログインした場合、終端ホストと Tera Term の間でのファイル転送がうまくいかない。<br>
+<span class="qanda">A.</span> <a href="../usage/tips/forwarding-files.html">「中間ホストを経由してホストに接続した場合のファイル転送」</a> を参考にしてください。<br>
+</p>
+
+
+<h2>[SSH]</h2>
+<p id="ssh_C-v">
+  <span class="qanda">Q.</span> パスワードやパスフレーズの入力欄に貼り付けできない。<br>
+  <span class="qanda">A.</span> Tera Term Mac では、ダイアログの入力欄には &#8984;V で貼り付けできます。<br>
+  SSH の認証は macOS の OpenSSH (ssh コマンド) が行います。端末画面に出たパスワードの問い合わせにも、&#8984;V で貼り付けられます。
+</p>
+
+<p id="ssh_SCP_dir">
+  <span class="qanda">Q.</span> 送信先フォルダを指定せずに SCP でファイルを送信したが、シェルのカレントディレクトリに保存されない。<br>
+  <span class="qanda">A.</span> 仕組み上そのように送信することはできません。<br>
+端末エミュレータはリモート側のシェルのカレントディレクトリを知りません。プロンプトに表示されているとしてもリモート側が出力したテキストをそのまま表示しているに過ぎませんし、プロンプトがカレントディレクトリを表示しないこともあります。ユーザがカレントディレクトリを把握できるのは、プロンプトの表示や、pwd コマンドの表示や 実行した cd コマンドなどをもとにユーザが頭の中で構築しているからです。
+</p>
+
+
+<h2>[その他]</h2>
+<p id="dec_special_graphic">
+<span class="qanda">Q.</span> 罫線などの DEC Special Graphics が正常に表示されない。<br>
+<span class="qanda">A.</span> <a href="emulations_dec_special.html">DEC Special Graphics(DEC特殊グラフィック)</a>を参照してください。<br>
+罫線などはアプリが自分で描きます。<br>
+正しく表示されない場合は、ホストと Tera Term Mac の文字コードの設定が合っているか確認してください。
+</p>
+
+<p>
+<span class="qanda">Q.</span> DEC Special Graphics の罫線を表示させると、線に隙間ができたり、辺と角がなめらかにつながらなかったりする。<br>
+<span class="qanda">A.</span> <a href="emulations_dec_special.html">DEC Special Graphics(DEC特殊グラフィック)</a>を参照してください。<br>
+Tera Term Mac は、主な罫線 (─ │ ┌ ┐ └ ┘ ├ ┤ ┬ ┴ ┼ など) を文字の枠いっぱいに線で描くので、隙間はできにくくなっています。それでも気になる場合は、<a href="../menu/setup-font.html">[Setup] Font</a> でフォントの種類や大きさ、文字間の設定を変えてみてください。
+</p>
+
+<p>
+<span class="qanda">Q.</span> <a href="../menu/setup-font.html">[Setup] Font</a> ダイアログボックスのリストに含まれるフォントの種類が少ないのはなぜ?<br>
+<span class="qanda">Q.</span> <a href="../menu/setup-font.html">[Setup] Font</a> ダイアログボックスでなぜ "Times" フォントが選択できない?<br>
+<span class="qanda">A.</span> Tera Term Mac では、フォントは macOS のフォントパネルで選びます。VT 端末を正しくエミュレートするためには文字を等間隔で表示しなければならないので、"Menlo" や "SF Mono"、"Osaka－等幅" のような等幅フォントを選んでください。<br>
+"Times" のような可変幅(プロポーショナル)フォントを選ぶと、文字の間隔がそろわず正しく表示されません。
+</p>
+
+<p>
+<span class="qanda">Q.</span> ダブルクリックで単語を選択するときの単語の区切り方を Tera Term 2.3 と同じにしたい。<br>
+<span class="qanda">A.</span> <A HREF="../setup/teraterm-win.html">「ダブルクリックによる単語選択の区切り文字」</A>を読んでください。
+</p>
+
+<p>
+<span class="qanda">Q.</span> 何かの拍子に TEK window が勝手に開いてしまって困る。<br>
+<span class="qanda">A.</span> <A HREF="../menu/setup-terminal.html">[Setup] Terminal</A> で Auto change (VT&lt;-&gt;TEK) という項目を off にしてください。<br>
+On になっていると、TEK4010 というグラフィック端末のコントロールシーケンスを受信したとき TEK window が自動的に開きます。
+</p>
+
+<p>
+<span class="qanda">Q.</span> マクロをつかって、モデムに設定コマンド (AT...)を複数行送ろうとしたが、送るのが速すぎてモデムがコマンドを正常にうけつけない。<br>
+<span class="qanda">A.</span> モデムによっては、あるコマンド行を処理してる間に、次のコマンドが送られてくると、処理中のコマンドをキャンセルする、というようなものがあります。モデムから「OK」が来たのを確認した後に次のコマンドを送るようにするか、<A HREF="../menu/setup-serialport.html">[Setup]Serial port</A> で Transmit delay の msec/line の値を増やしてみてください。(例えば 200 msec/line にする)
+</p>
+
+<p>
+<span class="qanda">Q.</span> コマンドラインオプションの<a href="../commandline/teraterm.html#w">/W=</a>やマクロの<a href="../macro/command/settitle.html">settitle</a>コマンドでウィンドウタイトルが変更できない。<br>
+<span class="qanda">A.</span> Linuxの一部のディストリビューションなどではウィンドウタイトルを変更する制御シーケンスを送信するよう設定されている場合があり、変更したウィンドウタイトルがホスト側に書き換えられてしまう事があります。この場合は以下のどちらかを行ってください。
+</p>
+<ul>
+  <li>ホスト側のシェル等の設定で、ウィンドウタイトルを変更する制御シーケンスを送出しないように設定する</li>
+  <li><a href="../menu/setup-additional-general.html">[Setup] Additional SettingのGeneralタブ</a>にある Accept Window Title Change Request を off に変更する </li>
+</ul>
+
+<p id="window_resize_clear">
+  <span class="qanda">Q.</span> ウィンドウをリサイズすると画面がクリアされる。<br>
+  <span class="qanda">A.</span> クリアしたくない場合は、<a href="../menu/setup-additional-general.html#ClearOnResize">[Setup]-[Additional settings]-[General]-[Clear display when window resized]</a> を「off」にしてください。
+</p>
+
+<p id="logfile_garbled">
+  <span class="qanda">Q.</span> ログファイルの内容が VTWindow に表示された内容と異なる。表示できない文字が出力されている。<br>
+  <span class="qanda">A.</span> VTWindow に表示されるのは、受信したデータに含まれる制御シーケンスを解析した結果です。一方 Tera Term のログファイルは受信したデータを記録したものです。<br>
+  そのため、ログファイルの出力と VTWindow に表示される結果は同じにはなりません。Word 文書を「Word で開いた場合」と「テキストエディタで開いた場合」のように異なるものです。
+</p>
+
+<div>
+例:
+</div>
+
+キーボード入力
+<div style="border: 1px solid #666666; color:#000000; background-color:#ffffff; padding:0.2ex;">
+type `l'<br>
+type `s'<br>
+type ENTER
+</div>
+
+VTWindow の表示
+<div style="border: 1px solid #666666; color:#ffffff; background-color:#333333; padding:0.2ex;">
+ls<br>
+<span style="color:#00ff00;">256colors2.pl</span>&nbsp;&nbsp;<span style="color:#00ff00;">ansi.sh</span>&nbsp;&nbsp;<span style="color:#00ff00;">bcetest.sh</span>&nbsp;&nbsp;<span style="color:#00ff00;">color-sgr-decscnm.pl</span>&nbsp;&nbsp;<span style="color:#00ff00;">colortable16.sh</span>&nbsp;&nbsp;<span style="color:#8080ff;">data</span><br>
+% 
+</div>
+
+テキストログ
+<div style="border: 1px solid #666666; color:#000000; background-color:#ffffff; padding:0.2ex;">
+lls<br>
+
+256colors2.pl&nbsp;&nbsp;ansi.sh&nbsp;&nbsp;bcetest.sh&nbsp;&nbsp;color-sgr-decscnm.pl&nbsp;&nbsp;colortable16.sh&nbsp;&nbsp;data<br>
+%
+</div>
+
+バイナリログ
+<div style="border: 1px solid #666666; color:#000000; background-color:#ffffff; padding:0.2ex;">
+l<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-BS.png" style="width:0.8em; height:1em;">ls<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[?2004l<br>
+<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32m256colors2.pl<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32mansi.sh<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32mbcetest.sh<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32mcolor-sgr-decscnm.pl<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32mcolortable16.sh<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;34mdata<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m<br>
+<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[27m<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[24m<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[J% <img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[K<img src="https://teratermproject.github.io/manual/5/ja/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[?2004h
+</div>
+
+<p>
+bash を利用している場合には、次のように行編集を無効にすることで再描画を少なくし、ログの崩れを少なくできるかもしれません。<br>
+そのかわり、キーカーソル操作が使えなくなります。
+</p>
+
+<div style="border: 1px solid #666666; color:#000000; background-color:#ffffff; padding:0.2ex;">
+set +o emacs<br>
+set +o vi
+</div>
+
+<p id="selected_highlight">
+<span class="qanda">Q.</span> 範囲選択したが、色が変わらないので判別できない。<br>
+<span class="qanda">A.</span>
+<a href="../menu/setup-additional-window.html">Window</a> 設定の Attribute で Reverse を選択し、"Swap colors" ボタンを押してください。<br>
+この現象が起こるのは、Normal 属性の色設定とReverse 属性の色設定が同じになっているためです。Normal 属性の文字を<a href="./emulations.html#reverse">選択したときに使われる色</a>は、Reverse 属性の色設定です。<br>
+"Swap colors" ボタンは、現在設定中の文字属性の文字の色と背景の色を入れ替えます。Normal 属性の色を入れ替えても、Reverse 属性の色は入れ替えません。
+</p>
+
+
+<h2>[Windows 版 Tera Term からの移行]</h2>
+
+<p>
+<span class="qanda">Q.</span> Windows 版 Tera Term の設定ファイル (TERATERM.INI) は使える?<br>
+<span class="qanda">A.</span>
+<a href="../menu/setup-restore.html">[Setup] Restore setup</a> で Windows 版の TERATERM.INI を読み込めます。
+端末サイズ、文字コード、改行コード、色、フォント、シリアル設定、接続先の履歴などが反映されます。
+文字コードは UTF-16 (Tera Term 5) も Shift_JIS など (Tera Term 4) も読めます。<br>
+Mac にないフォントや Windows のフォルダのパスのように、Mac にそのまま当てはまらない設定は反映されません。<br>
+TeraTerm Menu の接続先は、リスト設定の「ttpmenu.ini」→「読み込み…」で ttpmenu.ini から読み込めます。<br>
+詳しくは<a href="../usage/migrate_to_5.html">Windows 版 Tera Term からの移行</a>を参照してください。
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../setup/teraterm-win.html">‹ INI: ウィンドウ</a><a href="../index.html">目次</a><a class="ttw-next" href="../usage/tips/index.html">ヒント一覧 ›</a></nav>
+</body>
+</HTML>

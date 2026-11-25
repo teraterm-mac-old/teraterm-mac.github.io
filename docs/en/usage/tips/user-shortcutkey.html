@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>User shortcut keys</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>User shortcut keys</span><a class="ttw-lang" href="../../../ja/usage/tips/user-shortcutkey.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>User shortcut keys</h1>
+
+<p>
+You can define shortcut keys for the following functions by editing items in the [Shortcut keys] and [VT function keys] sections of the <A HREF="../../setup/keyboard.html">keyboard setup file</A>:
+</p>
+
+<pre>
+[Shortcut keys]
+Item in the         Function                                Default key
+<HR>
+EditCopy            [Edit] Copy command *1)                 Ctrl+Insert
+EditPaste           [Edit] Paste command *1)                Shift+Insert
+EditPasteCR         [Edit] Paste&lt;CR&gt; command *1)            none
+EditCLS             [Edit] Clear screen command             none
+EditCLB             [Edit] Clear buffer command             none
+ControlOpenTEK      [Control] Open TEK command              none
+ControlCloseTEK     [Control] Close TEK command             none
+LineUp              Scrolls up screen by 1 line             Ctrl+Up-arrow
+LineDown            Scrolls down screen by 1 line           Ctrl+Down-arrow
+PageUp              Scrolls up screen by 1 page             Ctrl+PageUp
+PageDown            Scrolls down screen by 1 page           Ctrl+PageDown
+BuffTop             Scrolls screen to buffer top            Ctrl+Home
+BuffBottom          Scrolls screen to buffer bottom         Ctrl+End
+NextWin             Moves to the next Tera Term window      Ctrl+Tab
+PrevWin             Moves to the previous Tera Term window  Ctrl+Shift+Tab
+NextShownWin        Moves to the next Tera Term window      none
+		    (except minimized window)
+PrevShownWin        Moves to the previous Tera Term window  none
+		    (except minimized window)
+LocalEcho           Toggles the local echo status           none
+
+
+[VT function keys]
+Item in the         Function                                Default key
+<HR>
+Print               [File] Print command *1)                none
+Break               Sends a break signal *1)                none
+</pre>
+
+<p>
+*1) <A HREF="../keyboard.html">System shortcut keys</A> are assigned for these functions.
+These are the menu &#8984; shortcuts (Copy &#8984;C, Paste &#8984;V, Paste&lt;CR&gt; &#8984;R, Print &#8984;P, Send break &#8984;B).
+</p>
+
+<h2>Notes for Mac</h2>
+<ul>
+  <li>The &#8984; key is used for menu shortcuts, so it cannot be assigned in the keyboard setup file. The Option key is treated as Alt.</li>
+  <li>Mac keyboards have no Insert key. On keyboards with a help key, the help key acts as Insert. Use &#8984;C / &#8984;V instead of the default Ctrl+Insert / Shift+Insert.</li>
+  <li>PageUp, PageDown, Home and End can also be typed as fn+Up, fn+Down, fn+Left and fn+Right.</li>
+  <li>Control+Up, Control+Down and similar keys may be taken by macOS Mission Control. In that case, turn off or change the macOS shortcut in System Settings &gt; Keyboard &gt; Keyboard Shortcuts.</li>
+  <li>You can also scroll back with Shift+PageUp / Shift+PageDown.</li>
+</ul>
+
+<p>
+If you want to assign Ctrl+V for the [Edit] Paste command, edit the EditPaste item in the [Shortcut keys] section of the keyboard setup file:
+</p>
+
+<pre>
+EditPaste=1071
+</pre>
+
+<p>
+(In the case of IBM PC/AT keyboard. On a Mac this is Control+V.)
+</p>
+
+<p>
+You can also define user shortcut keys for all menu commands by using user keys at the [User keys] section.
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../usage/tips/index.html">‹ Tips</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../usage/tips/about_tenkey.html">Numeric keypad ›</a></nav>
+</body>
+</HTML>

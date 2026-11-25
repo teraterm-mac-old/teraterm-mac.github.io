@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>マクロの実行方法</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>マクロの実行方法</span><a class="ttw-lang" href="../../en/macro/howtorun.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>マクロの実行方法</h1>
+
+<p>
+マクロは Tera Term Mac の中で動きます。<br>
+マクロファイルを実行するには、次の方法があります。
+</p>
+
+<h2>1) Tera Term Mac のメニューから実行する。</h2>
+
+<p>
+[コントロール] メニューの [マクロ] を選んでください。マクロファイル (*.ttl) を選ぶパネルが出るので、実行したいマクロファイルを選んでください。マクロは、そのウインドウで動きます。
+</p>
+
+<h2>2) Finder から実行する。</h2>
+
+<p>
+Finder でマクロファイル (*.ttl) をダブルクリックすると、Tera Term Mac が新しいウインドウを開いてマクロを実行します。ターミナルから open コマンドで開くこともできます。
+</p>
+
+<pre>
+open DIALUP.ttl
+open -a "Tera Term Mac" DIALUP.ttl
+</pre>
+
+<p>
+このウインドウは、まだどこにもつながっていません。マクロコマンド<A HREF="command/connect.html">connect</A>で接続してください。
+</p>
+
+<h2>3) コマンドラインから実行する。</h2>
+
+<p>
+Tera Term Mac を起動するときに、/M= オプションでマクロファイルを指定できます。詳しくは<A HREF="commandline.html">コマンドライン</A>を見てください。
+</p>
+
+<h2>4) そのほかの方法</h2>
+
+<p>
+TeraTerm Menu の接続先 (モードを「マクロ」にしたもの) や、キーボード設定ファイル (KEYBOARD.CNF) のマクロの割り当てからも実行できます。
+</p>
+
+<h2>マクロのウインドウ</h2>
+
+<p>
+マクロの実行中に [コントロール] メニューの [マクロウィンドウの表示] を選ぶと、「MACRO - &lt;マクロファイル名&gt;」というウインドウが出ます。このウインドウにはマクロファイル名と実行中の行が出ます。「中断」/「開始」/「終了」ボタンで、マクロを止める・続ける・終えることができます。
+</p>
+
+
+<h2>注: マクロファイルの読み込み</h2>
+
+<p>
+マクロファイルは、一括してメモリ上に読み込まれてから、翻訳実行されます。ただし、マクロコマンド<A HREF="command/include.html">include</A> は、当該コマンドが実行される度に、指定されたマクロファイルを読み込みます。ネットワーク上にあるマクロファイルを直接実行する際、ネットワークが切断されると、マクロコマンドincludeがエラーになります。
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../macro/index.html">‹ マクロとは</a><a href="../index.html">目次</a><a class="ttw-next" href="../macro/howtoassoc.html">.ttl ファイルを開く ›</a></nav>
+</body>
+</HTML>

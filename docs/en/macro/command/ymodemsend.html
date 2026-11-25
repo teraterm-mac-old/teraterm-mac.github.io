@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>ymodemsend</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>ymodemsend</span><a class="ttw-lang" href="../../../ja/macro/command/ymodemsend.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>ymodemsend</h1>
+
+<p>
+Sends a file from the host with the YMODEM protocol.
+</p>
+
+<pre class="macro-syntax">
+ymodemsend &lt;filename&gt; 
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Causes Tera Term to send the file &lt;filename&gt; to the host with the YMODEM protocol. Pauses until the end of the file transfer.<br>
+If the file is transferred successfully, the system variable "result" is set to 1. Otherwise, "result" is set to zero.
+</p>
+
+<p>
+When &lt;filename&gt; is relative path, file is saved relative to <a href="../../setup/folder.html#FileDir">file transfer folder</a>.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+filename = 'test.ttl'
+srcfile = '/Users/user/Macro/test.ttl'
+dstfile = '/Users/user/Downloads/test.ttl'
+
+ymodemsend srcfile
+if result=1 then
+	messagebox 'File transfer success' 'Send'
+else
+	messagebox 'File transfer failure' 'Send'
+endif
+
+sprintf2 var 'sb %s' filename
+sendln var
+ymodemrecv
+if result=1 then
+	messagebox 'File transfer success' 'Recv'
+else
+	messagebox 'File transfer failure' 'Recv'
+endif
+
+sprintf2 var 'fc /b %s %s' srcfile dstfile
+exec var
+if result=0 then
+	messagebox 'Two files are same.' 'Compare'
+else
+	messagebox 'Two files are not same.' 'Compare'
+endif
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="changedir.html">changedir</a></li>
+  <li><a href="ymodemrecv.html">ymodemrecv</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/ymodemrecv.html">‹ ymodemrecv</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/zmodemrecv.html">zmodemrecv ›</a></nav>
+</body>
+</html>

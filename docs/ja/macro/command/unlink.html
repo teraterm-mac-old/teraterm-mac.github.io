@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>unlink</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>unlink</span><a class="ttw-lang" href="../../../en/macro/command/unlink.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>unlink</h1>
+
+<p>
+現在のウインドウとマクロの間のリンクを断つ。
+</p>
+
+<pre class="macro-syntax">
+unlink
+</pre>
+
+<h2>解説</h2>
+
+<p>
+このコマンド以降、マクロは非リンク状態になり、そのウインドウを制御できなくなる。ウインドウはそのまま残り、マクロは動き続ける。<br>
+非リンク状態では、connect コマンドによって新しいウインドウを開き、マクロをそれにリンクさせることができる。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; ホストに接続する
+connect 'host'
+
+; リンクを断つ
+unlink
+
+; 新しいウインドウを開き、それにリンクして接続する
+connect 'host2'
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="closett.html">closett</a></li>
+  <li><a href="connect.html">connect</a></li>
+  <li><a href="cygconnect.html">cygconnect</a></li>
+  <li><a href="disconnect.html">disconnect</a></li>
+  <li><a href="testlink.html">testlink</a></li>
+  <li><a href="../appendixes/disconnecttiming.html">切断後すぐに接続する場合の注意点</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/toupper.html">‹ toupper</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/until.html">until, enduntil ›</a></nav>
+</body>
+</html>

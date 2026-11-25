@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>How to run a macro file</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Running a macro</span><a class="ttw-lang" href="../../ja/macro/howtorun.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>How to run a macro file</h1>
+
+<p>
+Macros run inside Tera Term Mac.<br>
+There are the following ways to run a macro file.
+</p>
+
+<h2>1) Run a macro from the Tera Term Mac menu.</h2>
+
+<p>
+Choose [Control] &gt; [Macro]. A panel to select a macro file (*.ttl) appears; select the macro file you want to run. The macro runs in that window.
+</p>
+
+<h2>2) Run a macro from the Finder.</h2>
+
+<p>
+Double-click a macro file (*.ttl) in the Finder. Tera Term Mac opens a new window and runs the macro. You can also open it with the open command in Terminal:
+</p>
+
+<pre>
+open DIALUP.ttl
+open -a "Tera Term Mac" DIALUP.ttl
+</pre>
+
+<p>
+The new window is not connected yet. Use the macro command <A HREF="command/connect.html">connect</A> to connect.
+</p>
+
+<h2>3) Run a macro from the command line.</h2>
+
+<p>
+You can give a macro file with the /M= option when starting Tera Term Mac. See <A HREF="commandline.html">Command line</A>.
+</p>
+
+<h2>4) Other ways</h2>
+
+<p>
+A macro can also be run from a TeraTerm Menu entry (with the mode set to macro) or from a macro assignment in the keyboard setup file (KEYBOARD.CNF).
+</p>
+
+<h2>The macro window</h2>
+
+<p>
+While a macro is running, choose [Control] &gt; [Show Macro Window] to open the "MACRO - &lt;macro file name&gt;" window. It shows the macro file name and the line being run. With the "Pause"/"Start"/"End" buttons you can pause, resume and end the macro.
+</p>
+
+
+<h2>Note: Loading macro files</h2>
+
+<p>
+A macro file is loaded into memory at once and then interpreted. However, the macro command <A HREF="command/include.html">include</A> loads the specified macro file each time it is executed. When a macro file on a network is run directly and the network is disconnected, the include command causes an error.
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../macro/index.html">‹ About macros</a><a href="../index.html">Contents</a><a class="ttw-next" href="../macro/howtoassoc.html">Opening .ttl files ›</a></nav>
+</body>
+</HTML>

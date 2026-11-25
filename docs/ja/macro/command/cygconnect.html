@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>cygconnect</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>cygconnect</span><a class="ttw-lang" href="../../../en/macro/command/cygconnect.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>cygconnect</h1>
+
+<p>
+Mac のローカルシェルに接続する。
+</p>
+
+<pre class="macro-syntax">
+cygconnect [&lt;command line parameters&gt;]
+</pre>
+
+<h2>解説</h2>
+
+<p>
+マクロを動かしているウインドウを、この Mac のローカルシェル (設定の<a href="../../menu/setup-additional-cygwin.html">ローカルシェル</a>タブで決めたシェル) につなぐ。&lt;command line parameters&gt; は Windows 版のマクロとの互換のために受け付けるが、使わない。
+</p>
+
+<p>
+マクロがウインドウとリンクされていない場合 (<a href="unlink.html">unlink</a> や <a href="closett.html">closett</a> のあと) は、新しいウインドウを開いてマクロとリンクし、そのウインドウでローカルシェルにつなぐ。
+</p>
+
+<p>
+マクロがウインドウとすでにリンクされていて、ウインドウがホスト又はローカルシェルにすでに接続されている場合、このコマンドは無視される。
+</p>
+
+<p>
+このコマンドの結果、リンクと接続の状態に応じて以下のうちの一つの値がシステム変数 result に格納される。
+</p>
+
+<table>
+ <tr>
+  <th>値</th>
+  <th>状態</th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>ウインドウとリンクされていない。</td>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>ホスト又はローカルシェルへの接続はされていないが、ウインドウとのリンクはされている。</td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>リンクおよび接続両方ともされている。</td>
+ </tr>
+</table>
+
+<p>
+"cygconnect" コマンドを実行する前にリンクと接続の状態を調べるには、"<a href="testlink.html">testlink</a>" コマンドを使うことができる。
+</p>
+
+<p>
+マクロがウインドウとリンクしていない状態では、"<a href="connect.html">connect</a>" と "cygconnect", "<a href="testlink.html">testlink</a>" 以外の通信コマンドは実行できない。
+</p>
+
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; ローカルシェルに接続する
+cygconnect
+</pre>
+
+
+<h2>参照</h2>
+<ul>
+  <li><a href="connect.html">connect</a></li>
+  <li><a href="closett.html">closett</a></li>
+  <li><a href="disconnect.html">disconnect</a></li>
+  <li><a href="testlink.html">testlink</a></li>
+  <li><a href="unlink.html">unlink</a></li>
+  <li><a href="../appendixes/disconnecttiming.html">切断後すぐに接続する場合の注意点</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/crc32.html">‹ crc32, crc32file</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/delpassword.html">delpassword ›</a></nav>
+</body>
+</html>

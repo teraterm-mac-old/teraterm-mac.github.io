@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>TTSSH command line</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>SSH のコマンドライン</span><a class="ttw-lang" href="../../en/commandline/ttssh.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>TTSSH command line</h1>
+
+<p>
+SSH 接続 (TTSSH) では以下のコマンドラインオプションが使用できます。SSH は macOS の ssh (OpenSSH) を使います。起動のしかたは「<a href="teraterm.html">Tera Term Mac コマンドライン</a>」を参照してください。
+これらのオプションは、新しい接続ダイアログのホスト名の欄や connect マクロコマンドでも使えます。<br>
+ポートフォワーディング・X11 転送は [設定]-[SSH転送...]、エージェント転送・圧縮は [設定]-[SSH...] で設定します。
+</p>
+
+
+<h2>オプション</h2>
+
+<dl>
+  <dt id="hostname">&lt;username&gt;@&lt;host&gt;[:&lt;#TCP port&gt;]</dt>
+  <dd>ホスト名指定ではTera Term本体が対応している形式の他に、ttssh拡張としてユーザ名付きも使えます。</dd>
+
+  <dt id="host-url">&lt;scheme&gt;://[&lt;username&gt;[:&lt;password&gt;]@]&lt;host&gt;[:&lt;TCP port&gt;][/]</dt>
+  <dd>URL形式も拡張されます。<br>
+      &lt;scheme&gt;には、ssh, ssh2, slogin, slogin2が使えます。<br>
+      ポート番号が指定されなかった場合は22が使われます。<br>
+      コマンドラインの引数として使えます (例: <code>open -a "Tera Term Mac" --args ssh://user@host</code>)。Tera Term Mac は ssh:// の URL を開くアプリとしては登録されません。URL の中のパスワードは、起動時のコマンドラインでは使いません (connect マクロコマンドでは使えます)。</dd>
+
+  <dt id="t">/t=&lt;value&gt;</dt>
+  <dd><ul>
+        <li><span class="syntax">value=2</span> SSH を有効にする</li>
+        <li><span class="syntax">value=2以外</span> SSH を無効にする</li>
+      </ul></dd>
+
+  <dt id="nossh">/nossh</dt>
+  <dd>SSH 接続を無効にする</dd>
+
+  <dt id="telnet">/telnet</dt>
+  <dd>SSH 接続を無効にする<br>
+      さらに、Telnet プロトコルを使用する。<a href="./teraterm.html#t">Tera Term の /T=1</a> と同じ。</dd>
+
+  <dt id="2">/2</dt>
+  <dd>SSH2 で接続する</dd>
+
+  <dt id="ssh2">/ssh2</dt>
+  <dd>SSH2 で接続する</dd>
+
+  <dt id="auth">/auth=&lt;mode&gt;</dt>
+  <dd>&lt;mode&gt; で指定された認証方式で自動ログインを試みる
+      <ul>
+        <li><span class="syntax">password</span> パスワード認証</li>
+        <li><span class="syntax">publickey</span> 公開鍵認証</li>
+        <li><span class="syntax">challenge</span> キーボードインタラクティブ認証</li>
+        <li><span class="syntax">keyboard-interactive</span> challenge と同じ</li>
+        <li><span class="syntax">pageant</span> エージェント (ssh-agent) を用いた公開鍵認証</li>
+      </ul>
+      connect マクロコマンドで使えます。ssh の PreferredAuthentications に直して渡します。起動時のコマンドラインでは使いません。</dd>
+
+  <dt id="user">/user=&lt;username&gt;</dt>
+  <dd>ユーザ名を指定する</dd>
+
+  <dt id="passwd">/passwd=&lt;password&gt;</dt>
+  <dd>
+    パスワードを指定する<br>
+    connect マクロコマンドで使えます。起動時のコマンドラインでは使いません。/auth=publickey のときは鍵のパスフレーズとして使います。<br>
+    <a href="#passwd_specify">パスワードを指定するときの注意</a>を参照のこと
+  </dd>
+
+  <dt id="keyfile">/keyfile=&lt;file&gt;</dt>
+  <dd>
+    秘密鍵を指定する<br>
+    ssh の -i に渡します。絶対パスか ~ で始まるパスで指定してください。OpenSSH の形式の秘密鍵を使います (PuTTY の .ppk は使えません)。
+  </dd>
+
+  <dt id="ask4passwd">/ask4passwd</dt>
+  <dd>
+    自動ログインをせず、パスワードを聞く<br>
+    /auth=&lt;mode&gt; は、認証方式のみを意味するようになる<br>
+    connect マクロコマンドで使えます。
+  </dd>
+
+</dl>
+
+<p>
+パラメータの値にスペースやセミコロンを含めるためには、値全体を `"' で囲んでください。<br />
+値に `"' を含めるためには、連続した `"'("") を指定してください。
+</p>
+
+
+<h2 id="example1">例</h2>
+
+<pre>
+open -a "Tera Term Mac" --args server1
+open -a "Tera Term Mac" --args server1:22 /ssh /user=guest
+open -a "Tera Term Mac" --args guest@server2
+open -a "Tera Term Mac" --args ssh://guest@server3:2222/
+open -a "Tera Term Mac" --args server4 /ssh /user=admin /keyfile=~/.ssh/id_ed25519
+</pre>
+
+<p>
+connect マクロコマンドの例:
+</p>
+
+<pre>
+connect 'server3:22 /ssh /2 /auth=password /user=guest /passwd=guest'
+connect 'server4:22 /ssh /2 /auth=publickey /user=admin /keyfile=~/.ssh/id_ed25519 /ask4passwd'
+</pre>
+
+
+<h2 id="passwd_specify">パスワードを指定するときの注意</h2>
+
+<p>
+コマンドライン引数にパスワードを書くと、起動しているプロセスのコマンドライン引数 (ps コマンドなど) から見られることがあります。Tera Term Mac では次のとおりです。
+</p>
+
+<dl>
+  <dt>コマンドライン引数を指定して実行する</dt>
+  <dd>
+    起動時のコマンドラインの /passwd= と URL の中のパスワードを使いません。パスワードをコマンドラインに書かないでください。
+  </dd>
+  <dt>connect マクロコマンドの引数に指定する</dt>
+  <dd>
+    connect は同じプロセスの中で処理し、新しいプロセスを起動しません。パスワードは ssh の引数には渡さず、ssh がパスワードを聞いてきたときに入力します。<br>
+    パスワードをマクロファイルに書く代わりに、<a href="../macro/command/getpassword.html">getpassword</a> などを使うこともできます。
+  </dd>
+  <dt>[ファイル]-[セッションの複製] と TeraTerm Menu</dt>
+  <dd>
+    どちらも新しいプロセスを起動しないので、コマンドライン引数でパスワードを渡すことはありません。
+  </dd>
+</dl>
+
+
+<h2 id="example2">例: エージェントとの連携</h2>
+
+<p>
+エージェントには macOS の ssh-agent を使います。鍵を ssh-agent に登録しておきます (macOS のキーチェーンにパスフレーズを保存することもできます)。
+</p>
+
+<pre>
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+</pre>
+
+<p>
+Tera Term Mac からエージェントを利用して、公開鍵認証による接続をするには以下のようにします。
+</p>
+
+<pre>
+connect 'shell.example.com:22 /ssh /auth=pageant /user=yutaka'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../commandline/teraterm.html">‹ コマンドライン</a><a href="../index.html">目次</a><a class="ttw-next" href="../commandline/ttproxy.html">プロキシのコマンドライン ›</a></nav>
+</body>
+</html>

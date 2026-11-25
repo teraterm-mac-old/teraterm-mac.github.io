@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH([Setup] Menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>SSH settings</span><a class="ttw-lang" href="../../ja/menu/setup-ssh.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH ([Setup] menu)</h1>
+
+    <p>
+      Tera Term Mac connects over SSH with the OpenSSH client that comes with macOS (/usr/bin/ssh).
+      The settings in this dialog are converted to ssh options (-o ...) when a connection is made.
+      They take effect from the next session you connect.<br>
+      Your ~/.ssh/config is used as with plain ssh.
+    </p>
+
+    <h2>"TTSSH: Setup" dialog box</h2>
+    <dl>
+      <dt id="CipherOrder">Preferred cipher order</dt>
+      <dd>
+	Specifies the ciphers used for SSH connections, in order of preference (ssh Ciphers).<br>
+	Ciphers below &lt;ciphers below this line are disabled&gt; are not used.<br>
+	The list shows the ciphers the ssh on this Mac supports (ssh -Q cipher).
+	If you leave the order as ssh's default, no option is passed.
+      </dd>
+
+      <dt id="KnownHostsFiles">SSH Known Hosts</dt>
+      <dd>
+	Specifies the files that store the hosts (and host public keys) you have connected to.<br>
+	The default read/write file is ~/.ssh/known_hosts (ssh UserKnownHostsFile).
+	The read-only file is passed as ssh GlobalKnownHostsFile.
+	A relative path is taken from the setup folder (~/Library/Application Support/Tera Term Mac).
+      </dd>
+
+      <dt id="UpdateHostkeys">Host key rotation</dt>
+      <dd>
+	<p>
+	  Specifies whether host keys are updated automatically (ssh UpdateHostKeys).
+	</p>
+	<p>
+	  An SSH server may change its host key for some reason.<br />
+	  Some servers then send the list of new host keys to the client so that the client can update its list.<br />
+	  When such a list is received, the client-side known hosts file can be updated.
+	</p>
+	<dl>
+	  <dt>No</dt>
+	  <dd>Does not update (UpdateHostKeys=no).</dd>
+	  <dt>Yes</dt>
+	  <dd>Updates the known hosts file automatically (UpdateHostKeys=yes).</dd>
+	  <dt>Ask</dt>
+	  <dd>Asks before updating the known hosts file (UpdateHostKeys=ask).</dd>
+	</dl>
+      </dd>
+
+      <dt id="Keepalive">Keepalive</dt>
+      <dd>
+	Sends a keep-alive packet when nothing has been received from the server for the specified number of seconds (ssh ServerAliveInterval).
+	0 disables it.
+      </dd>
+
+      <dt id="ForwardAgent">Enable agent forwarding</dt>
+      <dd>
+	Enables SSH agent forwarding with ssh-agent (ssh ForwardAgent=yes).<br>
+	To be asked for confirmation each time a forwarded key is used, add the key with ssh-add -c.
+      </dd>
+
+      <dt id="VerifyHostKeyDNS">Verify host key fingerprint by DNS</dt>
+      <dd>
+	Specifies whether the server host key is verified with <a href="../usage/ssh.html#VerifyHostKeyDNS">SSHFP resource records</a> (ssh VerifyHostKeyDNS).
+      </dd>
+
+      <dt id="KexOrder">KEX order (SSH2 only)</dt>
+      <dd>
+	Specifies the key exchange algorithms, in order of preference (ssh KexAlgorithms).<br>
+	Algorithms below &lt;KEXs below this line are disabled&gt; are not used.<br>
+	The list shows the algorithms the ssh on this Mac supports (ssh -Q kex).
+      </dd>
+
+      <dt id="MacOrder">MAC order (SSH2 only)</dt>
+      <dd>
+	Specifies the MAC algorithms, in order of preference (ssh MACs).<br>
+	Algorithms below &lt;MACs below this line are disabled&gt; are not used.<br>
+	The list shows the algorithms the ssh on this Mac supports (ssh -Q mac).
+      </dd>
+
+      <dt id="HostKeyOrder">Host key order (SSH2 only)</dt>
+      <dd>
+	Specifies the host key algorithms, in order of preference (ssh HostKeyAlgorithms).<br>
+	Algorithms below &lt;Host keys below this line are disabled&gt; are not used.<br>
+	The list shows the algorithms the ssh on this Mac supports (ssh -Q key).
+      </dd>
+
+      <dt id="Compression">Compression level</dt>
+      <dd>
+	Specifies compression of the connection.
+	Any value other than 0 (none) enables compression (ssh Compression=yes).
+	OpenSSH cannot choose a compression level, so the values 1 to 9 all behave the same.
+	(On fast lines, compression may make the response slower.)
+      </dd>
+
+      <dt id="LogLevel">LogLevel</dt>
+      <dd>
+	Specifies the level of ssh debug logging.<br>
+	If it is greater than 0, ssh writes its log to "TTSSH.LOG" in the setup folder (~/Library/Application Support/Tera Term Mac) (ssh -E).
+	The value maps to ssh LogLevel as follows.<br>
+	<table border="1">
+	  <tr>
+	    <td>Value</td>
+	    <td>ssh LogLevel</td>
+	  </tr>
+	  <tr>
+	    <td>0</td>
+	    <td>Disabled</td>
+	  </tr>
+	  <tr>
+	    <td>1-24</td>
+	    <td>INFO</td>
+	  </tr>
+	  <tr>
+	    <td>25-49</td>
+	    <td>VERBOSE</td>
+	  </tr>
+	  <tr>
+	    <td>50-74</td>
+	    <td>DEBUG1</td>
+	  </tr>
+	  <tr>
+	    <td>75-99</td>
+	    <td>DEBUG2</td>
+	  </tr>
+	  <tr>
+	    <td>100 or more</td>
+	    <td>DEBUG3</td>
+	  </tr>
+	</table>
+      </dd>
+
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/ssh.html">‹ Connecting with SSH</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-sshauth.html">SSH authentication ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Copy and Paste" タブ ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>コピーと貼り付けの設定</span><a class="ttw-lang" href="../../en/menu/setup-additional-copy-and-paste.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Copy and Paste" タブ ([Setup] メニュー)</h1>
+
+    <dl>
+      <dt id="EnableContinuedLineCopy">Enable continued line copy</dt>
+      <dd>
+	継続している行を改行せずにコピーする機能を有効にします。<br>
+	ダブルクリックでワードを選択する時、ダブルクリック後のドラッグでも有効です。<br>
+	<a href="../usage/mouse.html">マウスの使い方</a>を参照ください。
+      </dd>
+
+      <dt id="DisablePasteMouseRButton">Disable mouse R button paste</dt>
+      <dd>
+	右クリックでクリップボードの内容を貼り付ける機能を無効にします。
+      </dd>
+
+      <dt id="ConfirmPasteMouseRButton">Confirm mouse R button paste</dt>
+      <dd>
+	右クリックでクリップボードの内容を貼り付けるとき、
+	ポップアップメニューで確認する機能を有効にします。<br>
+	"Disable mouse R button paste" が off のときに設定できます。
+      </dd>
+
+      <dt id="DisablePasteMouseMButton">Disable mouse M button paste</dt>
+      <dd>
+	中クリックでクリップボードの内容を貼り付ける機能を無効にします。
+      </dd>
+
+      <dt id="SelectOnlyByLButton">Select only by L button</dt>
+      <dd>
+	マウスドラッグによる選択を、左ボタンでのみ有効にする。
+      </dd>
+
+      <dt id="TrimTrailingNL">Trim trailing new line character when pasting</dt>
+      <dd>
+	貼り付け時に末尾の改行を削除する。
+      </dd>
+
+      <dt>Bracketed paste only when the text contains control characters</dt>
+      <dd>
+	ブラケットペーストモードのとき、貼り付ける文字に制御文字が含まれる場合だけブラケットで囲みます (TERATERM.INI の BracketedControlOnly)。
+      </dd>
+
+      <dt id="ConfirmChangePaste">Confirm change paste</dt>
+      <dd>
+	クリップボードに改行コード(CR/LF)を含む場合、マウスの右クリックおよび &#x2318;V で
+	Tera Term Mac のウィンドウへ貼り付けようとするタイミングで、確認ダイアログを表示させることができます。
+	誤操作により、端末へ予期せぬコマンド投入を防ぐことができます。
+      </dd>
+
+      <dt>Always confirm paste with new line</dt>
+      <dd>
+	[Edit] メニューの Paste&lt;CR&gt; (&#x2318;R) で貼り付けるときは、内容にかかわらずいつも確認ダイアログを表示します (TERATERM.INI の ConfirmChangePasteCR)。<br>
+	"Confirm change paste" が on のときに作用します。
+      </dd>
+
+      <dt id="ConfirmChangePasteStringFile">String file</dt>
+      <dd>
+	クリップボードに、この設定で指定したファイル内に存在するテキストが含まれる場合、マウスの右クリックおよび &#x2318;V で
+	Tera Term Mac のウィンドウへ貼り付けようとするタイミングで、確認ダイアログを表示させることができます。
+	誤操作により、端末へ予期せぬコマンド投入を防ぐことができます。<br>
+	この設定は、ConfirmChangePasteの設定が有効な場合に作用します。
+      </dd>
+
+      <dt id="DelimiterChar">Delimiter characters</dt>
+      <dd>
+	単語選択の区切り文字を設定します。
+      </dd>
+
+      <dt id="PasteDelayPerLine">Paste delay per line</dt>
+      <dd>
+	複数行のデータを貼り付けるとき、改行が現れるごとにデータの送信を遅延させることができます。遅延する時間をミリ秒で設定します。
+      </dd>
+
+      <dt id="SelectOnActivate">Enabling text selection when the window is activated by mouse</dt>
+      <dd>
+        非選択状態のウィンドウを、文字領域をマウスでクリックすることで
+        選択するとき、文字の選択を禁止します。
+      </dd>
+
+      <dt id="AutoTextCopy">Copy to clipboard when text is selected</dt>
+      <dd>
+        マウスで文字列を選択したとき、クリップボードへコピーします。
+      </dd>
+
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/edit.html">‹ コピーと貼り付け</a><a href="../index.html">目次</a><a class="ttw-next" href="../usage/keyboard.html">キーボードとショートカット ›</a></nav>
+</body>
+</html>

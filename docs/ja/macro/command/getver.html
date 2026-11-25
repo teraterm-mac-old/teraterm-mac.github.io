@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>getver</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>getver</span><a class="ttw-lang" href="../../../en/macro/command/getver.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>getver</h1>
+
+<p>
+Tera Termのバージョンを取得する。
+</p>
+
+<pre class="macro-syntax">
+getver &lt;strvar&gt; [&lt;version&gt;]
+</pre>
+
+
+<h2>解説</h2>
+
+<p>
+Tera Term のバージョンを &lt;strvar&gt; に格納する。格納されるのは移植元の Tera Term の版 (5.8) で、Tera Term Mac 自身の版ではない。
+</p>
+
+<p>
+&lt;version&gt; が指定された場合、&lt;version&gt; と実行中の Tera Term のバージョンを比較し、結果をシステム変数 result に格納する。&lt;version&gt; が指定されなかった場合は、変数 result の値は変更されない。変数 result の値の意味は以下のとおり。
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>値</th>
+      <th>意味</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>-2</td>
+      <td>
+	&lt;version&gt; の指定が不正である。
+      </td>
+    </tr>
+
+    <tr>
+      <td>-1</td>
+      <td>
+	Tera Termのバージョンが &lt;version&gt; より古い。
+      </td>
+    </tr>
+ 
+    <tr>
+      <td>0</td>
+      <td>
+	Tera Termのバージョンが &lt;version&gt; と同じ。
+      </td>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>
+	Tera Termのバージョンが &lt;version&gt; より新しい。
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+getver version
+messagebox version 'getver'   ; 5.8
+
+getver version '5.0'
+if result &gt;= 0 then
+  messagebox 'version 5.0 or later' 'getver'
+endif
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/getttpos.html">‹ getttpos</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/goto.html">goto ›</a></nav>
+</body>
+</html>

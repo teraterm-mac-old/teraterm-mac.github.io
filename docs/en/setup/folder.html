@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Folders used by Tera Term Mac</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Folders used</span><a class="ttw-lang" href="../../ja/setup/folder.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Folders used by Tera Term Mac</h1>
+
+<p>
+Folders and full paths of files can be found in <a href="../menu/setup-directory.html">[Setup]-[Setup directory...]</a>.
+</p>
+
+<table border="1">
+  <tr>
+    <th></th>
+    <th>Tera Term Mac</th>
+  </tr>
+  <tr>
+    <th id="HomeDir">setup files</th>
+    <td><code>~/Library/Application Support/Tera Term Mac</code><br>
+      Holds TERATERM.INI (default for Save setup), KEYBOARD.CNF, broadcast.log, TTSSH.LOG and the theme folder.</td>
+  </tr>
+  <tr>
+    <th>preferences</th>
+    <td><code>~/Library/Preferences/net.satoru.teramac.plist</code><br>
+      Settings changed in the setup dialogs are saved here. macOS manages this file; do not edit it directly.</td>
+  </tr>
+  <tr>
+    <th id="LogDir">SSH log</th>
+    <td>The SSH log (TTSSH.LOG) is written to the setup files folder.</td>
+  </tr>
+  <tr>
+    <th id="FileDir">File transfer*</th>
+    <td>
+      <a href="../menu/setup-additional-general.html#FileFolder">File transfer folder</a><br>
+      <code>~/Downloads</code>
+    </td>
+  </tr>
+  <tr>
+    <th id="TermLogDir">Terminal log folder*</th>
+    <td>
+      <a href="../menu/setup-additional-log.html#LogDefaultPath">Default log save folder</a><br>
+      <a href="../menu/setup-additional-general.html#FileFolder">File transfer folder</a><br>
+      <code>~/Downloads</code>
+    </td>
+  </tr>
+</table>
+
+* In order of priority. When an item is not set, the next one is used.
+
+<h1>The app and uninstalling</h1>
+
+<ul>
+  <li>The app is <code>/Applications/Tera Term Mac.app</code>. When it is started from a disk image or the Downloads folder, it offers to move itself to the Applications folder.</li>
+  <li>The bundled TERATERM.INI, language files, themes and help are in <code>Tera Term Mac.app/Contents/Resources</code>. The settings at the first launch are made from the bundled TERATERM.INI.</li>
+  <li>The uninstall menu item removes the app and the preferences (including the connection list). The setup files folder is kept; delete it in the Finder if you no longer need it.</li>
+</ul>
+
+<h2>If a file name is specified</h2>
+
+<p>Another TERATERM.INI or KEYBOARD.CNF can be chosen from the menu.</p>
+
+<ul>
+  <li>TERATERM.INI: the file chosen in <a href="../menu/setup-save.html">[Setup]-[Save setup...]</a> or <a href="../menu/setup-restore.html">[Setup]-[Restore setup...]</a> becomes the default from then on.</li>
+  <li>KEYBOARD.CNF: the file chosen in <a href="../menu/setup-loadkeymap.html">[Setup]-[Load key map...]</a> keeps being used.</li>
+</ul>
+
+<h2>When setup files do not exist</h2>
+
+<ul>
+  <li>The setup files folder is created if it does not exist.</li>
+  <li>When there is no KEYBOARD.CNF, the standard key settings (the same as IBMKEYB.CNF) are used. No file is copied.</li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-directory.html">‹ Opening the settings folder</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-general.html">General settings ›</a></nav>
+</body>
+</html>

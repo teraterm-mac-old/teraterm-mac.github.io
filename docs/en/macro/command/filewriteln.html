@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>filewriteln</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>filewriteln</span><a class="ttw-lang" href="../../../ja/macro/command/filewriteln.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>filewriteln</h1>
+
+<p>
+Writes a data with new-line to a file.
+</p>
+
+<pre class="macro-syntax">
+filewriteln &lt;file handle&gt; &lt;data&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Writes &lt;data&gt; and the new-line characters (CR+LF) to the file specified by &lt;file handle&gt;.
+</p>
+
+<p>
+When the &lt;data&gt; type is the character string, the data is written as string.<br />
+When the &lt;data&gt; type is the integer, the least significant byte(0-255) regards as the ASCII code and
+the ASCII character is written.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+filewriteln fhandle '---------cut here---------'
+</pre>
+
+<pre class="macro-example">
+; write a NUL character (0x00) and the new-line character (CR+LF).
+filewrite fhandle 0
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/filewrite.html">‹ filewrite</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/findoperations.html">findfirst ›</a></nav>
+</body>
+</html>

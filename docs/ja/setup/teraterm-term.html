@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>ターミナルエミュレーション (Tera Term 設定ファイル)</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>INI: 端末</span><a class="ttw-lang" href="../../en/setup/teraterm-term.html">English</a></nav>
+<main class="ttw-main">
+
+
+<p>
+ここに挙げた項目は、TERATERM.INI を編集したあと [設定]-[設定の読み込み...] で読み込むと使われます。設定ファイルの扱いは「<a href="teraterm-ini.html#mac">Tera Term Mac での扱い</a>」を参照してください。
+</p>
+
+<h1 id="beep">BEL 文字受信時の動作</h1>
+
+<p>
+BEL 文字 (ASCII $07) が受信された時に Tera Term はビープ音を鳴らします。
+</p>
+
+<p>
+ビープ音を鳴らしたくない場合は、設定ファイルの [Tera Term] セクションの Beep 行を以下のように変更してください。
+</p>
+
+<pre>
+Beep=off
+</pre>
+
+<p>
+また、以下のようにするとビープ音を鳴らす代わりに端末画面をフラッシュさせるようになります。
+</p>
+
+<pre>
+Beep=visual
+</pre>
+
+<pre>
+省略時:
+Beep=on
+</pre>
+
+
+<h1 id="tekgin">TEK GIN report のマウスコード</h1>
+
+<p>
+ホスト側のアプリケーションによって、TEK window が GIN モード(クロスヘアーカーソルが現れ、座標入力が可能な状態)になったとき、あるキーを押すと TEK window はクロスヘアーカーソルの座標とキーの ASCII コードをホストへ報告します。
+</p>
+
+<p>
+GIN モードでマウスの左ボタンを押したときに座標とともに送出する キーコード を設定するには、設定ファイルの [Tera Term] セクションの TEKGINMouseCode 行を、
+</p>
+
+<pre>
+TEKGINMouseCode=&lt;key code&gt;
+</pre>
+
+<p>
+のように変更してください。
+</p>
+
+<pre>
+省略時:
+TEKGINMouseCode=32
+(32はSpace のASCII コード)
+</pre>
+
+
+<h1 id="UnicodeDecSpMapping">UnicodeからDEC Special Graphicsへのマッピングを設定する</h1>
+
+<p>
+  ここでは設定の内容について説明します。
+</p>
+
+<p>
+  次のページも参照ください。
+  <ul>
+    <li><a href="../about/emulations_dec_special.html">DEC Special Graphics(DEC特殊グラフィック)について</a></li>
+    <li><a href="../menu/setup-additional-coding.html#DecSpecial">Additional settings / "Encoding" タブ, DEC Special Graphics</a></li>
+    <li><a href="../about/qanda.html#dec_special_graphic">Q &amp; A集</a></li>
+  </ul>
+</p>
+
+<p>
+マップされる文字は幾つかの種類に分類されており、種類毎に変換するか設定する事が出来ます。<br>
+変換する種類ごとの値を足した数値をUnicodeToDecSpMappingに指定してください。
+</p>
+
+<pre>
+種類A: 罫線
+値: 1
+  Box drawings (U+2500-U+257F)
+</pre>
+
+<pre>
+種類B: 記号類
+値: 2
+  Bullet (U+2022)
+  Hyphenation point (U+2027)
+  Light shade (25%) (U+2591)
+  Medium shade (50%) (U+2592)
+  Dark shade (75%) (U+2593)
+  Black small square (U+25AA)
+  Black vertical rectangle (U+25AE)
+  Black very small square (U+2B1D)
+</pre>
+
+<pre>
+種類C: 日本語環境では中点、英語環境ではMiddle dotとして表示される文字
+       日本語環境以外では指定しない事を勧めます
+値: 4
+  Middle dot (U+00B7)
+  One dot leader (U+2024)
+  Bullet operator (U+2219)
+</pre>
+
+<pre>
+省略時:
+# 種類AとB
+UnicodeToDecSpMapping=3
+</pre>
+
+
+<h1 id="BeepVBellWait">Beep が Visual Bell のときのフラッシュ時間</h1>
+<p>
+ホスト側から BEL 文字 (ASCII $07) が送られて来た時、Tera Term では画面を点滅させることができます。
+</p>
+
+<p>
+画面の点滅は、端末を反転表示したのち一定時間待ち、再び端末を反転表示して元に戻しています。<br>
+ユーザはこの待ち時間を調節することができます。
+</p>
+
+<pre>
+; Wait time (ms) when Beep is Visual Bell
+BeepVBellWait=100
+</pre>
+
+<pre>
+省略時:
+BeepVBellWait=10
+</pre>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../setup/teraterm-ssh.html">‹ ログレベル</a><a href="../index.html">目次</a><a class="ttw-next" href="../setup/teraterm-win.html">INI: ウィンドウ ›</a></nav>
+</body>
+</HTML>

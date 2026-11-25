@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>SSH の設定</span><a class="ttw-lang" href="../../en/menu/setup-ssh.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH ([Setup] メニュー)</h1>
+
+    <p>
+      Tera Term Mac の SSH 接続は、macOS に入っている OpenSSH (/usr/bin/ssh) を使います。
+      このダイアログの設定は、接続するときに ssh のオプション (-o ...) に直して渡します。
+      設定は、次に接続するセッションから有効になります。<br>
+      ~/.ssh/config の設定も、ふだんの ssh と同じように使われます。
+    </p>
+
+    <h2>"TTSSH: Setup" ダイアログボックス</h2>
+    <dl>
+      <dt id="CipherOrder">Preferred cipher order</dt>
+      <dd>
+	SSH 接続で使用する暗号の種類を順序を付けて指定します (ssh の Ciphers)。<br>
+	&lt;ciphers below this line are disabled&gt; より下の暗号は使用されません。<br>
+	一覧には、この Mac の ssh が対応している暗号 (ssh -Q cipher) が表示されます。
+	順序を ssh の標準のままにしたときは、オプションを渡しません。
+      </dd>
+
+      <dt id="KnownHostsFiles">SSH Known Hosts</dt>
+      <dd>
+	SSH で接続したホスト (とホスト公開鍵) が格納されるファイルを指定します。<br>
+	読み書き用の既定は ~/.ssh/known_hosts です (ssh の UserKnownHostsFile)。
+	読み取り専用のファイルは ssh の GlobalKnownHostsFile として渡します。
+	相対パスは設定フォルダ (~/Library/Application Support/Tera Term Mac) からのパスになります。
+      </dd>
+
+      <dt id="UpdateHostkeys">Host key rotation</dt>
+      <dd>
+	<p>
+	  ホスト公開鍵の自動更新を実施するかどうかを設定します (ssh の UpdateHostKeys)。
+	</p>
+	<p>
+	  SSH サーバはホスト鍵を持っていますが、何らかの理由でこのホスト鍵を変更することがあります。<br />
+	  この場合 SSH サーバによっては新しいホスト鍵の一覧をクライアントに送信し、クライアントにホスト鍵一覧の更新を促します。<br />
+	  新しいホスト鍵の一覧を受信したときに、クライアント側の known hosts リストを更新することができます。
+	</p>
+	<dl>
+	  <dt>無効</dt>
+	  <dd>更新を行いません (UpdateHostKeys=no)。</dd>
+	  <dt>有効</dt>
+	  <dd>known hostsファイルを自動更新します (UpdateHostKeys=yes)。</dd>
+	  <dt>確認する</dt>
+	  <dd>known hostsファイルを更新する際、問い合わせを行います (UpdateHostKeys=ask)。</dd>
+	</dl>
+      </dd>
+
+      <dt id="Keepalive">Keepalive</dt>
+      <dd>
+	指定した秒数のあいだサーバから何も届かなかったときに、接続維持用のパケットを送信します (ssh の ServerAliveInterval)。
+	0 を指定すると無効になります。
+      </dd>
+
+      <dt id="ForwardAgent">Enable agent forwarding</dt>
+      <dd>
+	ssh-agent を利用した SSH エージェント転送を有効にします (ssh の ForwardAgent=yes)。<br>
+	転送した鍵を使うたびに確認したいときは、ssh-add -c で鍵を登録してください。
+      </dd>
+
+      <dt id="VerifyHostKeyDNS">Verify host key fingerprint by DNS</dt>
+      <dd>
+	<a href="../usage/ssh.html#VerifyHostKeyDNS">SSHFP リソースレコード</a>を利用して SSH サーバホスト鍵を検証するか指定します (ssh の VerifyHostKeyDNS)。
+      </dd>
+
+      <dt id="KexOrder">KEX order (SSH2 only)</dt>
+      <dd>
+	SSH2 接続で使用するKEX(鍵交換)の種類を順序を付けて指定します (ssh の KexAlgorithms)。<br>
+	&lt;KEXs below this line are disabled&gt; より下の方式は使用されません。<br>
+	一覧には、この Mac の ssh が対応している方式 (ssh -Q kex) が表示されます。
+      </dd>
+
+      <dt id="MacOrder">MAC order (SSH2 only)</dt>
+      <dd>
+	SSH2 接続で使用するMACの種類を順序を付けて指定します (ssh の MACs)。<br>
+	&lt;MACs below this line are disabled&gt; より下の方式は使用されません。<br>
+	一覧には、この Mac の ssh が対応している方式 (ssh -Q mac) が表示されます。
+      </dd>
+
+      <dt id="HostKeyOrder">Host key order (SSH2 only)</dt>
+      <dd>
+	SSH2 接続で使用するホスト鍵の種類を順序を付けて指定します (ssh の HostKeyAlgorithms)。<br>
+	&lt;Host keys below this line are disabled&gt; より下の方式は使用されません。<br>
+	一覧には、この Mac の ssh が対応している方式 (ssh -Q key) が表示されます。
+      </dd>
+
+      <dt id="Compression">Compression level</dt>
+      <dd>
+	通信路の圧縮を指定します。
+	0 (なし) 以外にすると圧縮が有効になります (ssh の Compression=yes)。
+	OpenSSH は圧縮レベルを選べないため、1 から 9 のどれでも同じ動作になります。
+	(高速な回線ではレスポンスが悪くなる場合もあります。)<br>
+      </dd>
+
+      <dt id="LogLevel">LogLevel</dt>
+      <dd>
+	ssh のデバッグ情報を記録するレベルを指定します。<br>
+	0 より大きい場合、ssh のログが設定フォルダ (~/Library/Application Support/Tera Term Mac) の「TTSSH.LOG」に記録されます (ssh -E)。
+	値は ssh の LogLevel に次のように対応します。<br>
+	<table border="1">
+	  <tr>
+	    <td>値</td>
+	    <td>ssh の LogLevel</td>
+	  </tr>
+	  <tr>
+	    <td>0</td>
+	    <td>無効</td>
+	  </tr>
+	  <tr>
+	    <td>1～24</td>
+	    <td>INFO</td>
+	  </tr>
+	  <tr>
+	    <td>25～49</td>
+	    <td>VERBOSE</td>
+	  </tr>
+	  <tr>
+	    <td>50～74</td>
+	    <td>DEBUG1</td>
+	  </tr>
+	  <tr>
+	    <td>75～99</td>
+	    <td>DEBUG2</td>
+	  </tr>
+	  <tr>
+	    <td>100 以上</td>
+	    <td>DEBUG3</td>
+	  </tr>
+	</table>
+      </dd>
+
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/ssh.html">‹ SSH で接続する</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-sshauth.html">SSH の認証 ›</a></nav>
+</body>
+</html>

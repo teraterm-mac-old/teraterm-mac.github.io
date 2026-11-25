@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Font" tab ([Setup] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Font tab</span><a class="ttw-lang" href="../../ja/menu/setup-additional-font.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Font" tab ([Setup] menu)</h1>
+
+    <dl>
+      <dt id="VTFont">VTWindow Font</dt>
+      <dd>
+        Specify VTWin font. The current font name and size are shown.
+        <dl>
+
+          <dt>Select Button</dt>
+          <dd>
+            Opens the macOS Fonts panel to choose the font and size.<br>
+            The chosen font is applied to the terminal immediately.
+          </dd>
+
+          <dt>Reset to Default Font button</dt>
+          <dd>
+            Restores the default font and size of Tera Term Mac. The button is hidden while the default font is used.
+          </dd>
+
+
+          <dt id="Windows_Fonts">Open font settings / Fonts folder button</dt>
+          <dd>
+            Opens your Fonts folder (~/Library/Fonts) in Finder.
+            You can also use the macOS Font Book app to add and manage fonts.
+          </dd>
+        </dl>
+      </dd>
+
+      <dt id="ResizedFont">Drawing resized font to fit cell width</dt>
+      <dd>
+        The character width used by Tera Term to render text may not match the character width defined by the font design.<br>
+        When the text is drawn to fit the cell width, looks natural,
+        but drawing may be slower and the font design may differ from the font developer's intent.<br>
+        <dl>
+          <dt>ON</dt>
+          <dd>
+            When the width to be displayed and the width of the font to be drawn are different,
+            text is drawn with resizing font to the cell width.
+            <div style="margin-top:1ex; overflow:hidden;">
+              <img src="https://teratermproject.github.io/manual/5/en/menu/DrawingResizedFont-greek_on.png" style="float:left; margin-right:1ex;">
+              <img src="https://teratermproject.github.io/manual/5/en/menu/DrawingResizedFont-checkmark_on.png" style="float:left;">
+            </div>
+          </dd>
+          <dt>OFF</dt>
+          <dd>
+            Displays the design of the font file as it is.
+            <ul>
+              <li>When Tera Term displays as 2Cell and the font design is 1Cell,
+                1Cell character and 1Cell space are drawn.
+              <li>When Tera Term displays as 1Cell and the font design is 2Cell,
+                The left half of 2Cell is drawn.
+            </ul>
+            <div style="margin-top:1ex; overflow:hidden;">
+              <img src="https://teratermproject.github.io/manual/5/en/menu/DrawingResizedFont-greek_off.png" style="float:left; margin-right:1ex;">
+              <img src="https://teratermproject.github.io/manual/5/en/menu/DrawingResizedFont-checkmark_off.png" style="float:left;">
+            </div>
+          </dd>
+        </dl>
+      </dd>
+
+
+      <dt id="CharSpace">character space</dt>
+      <dd>
+        <p>
+          When charactor space is 0, font outline and <a href="../about/glossary.html#Cell">cell</a> outline are identical.<br>
+          Setting character spacing allows to add (or remove) space around font outline.<br>
+          <img width=30% src="https://teratermproject.github.io/manual/5/en/menu/char_space.png">
+        </p>
+
+        <p>
+          Type values in the top, bottom, left and right fields, or change them with the arrow buttons.
+          When the values differ from the defaults, the "Reset to Default" button restores them.
+        </p>
+
+        <p>
+          see <a href="../setup/teraterm-win.html#space">Space between characters (lines)</a>.
+        </p>
+      </dd>
+
+    </dl>
+
+    <h3>Note:</h3>
+    <ul>
+      <li>
+	<a href="../about/emulations_dec_special.html">DEC Special Graphics</a> are drawn without a special font, using characters of the same shape, one cell wide.
+      </li>
+    </ul>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-mouse.html">‹ Mouse tab</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-ui.html">UI tab (language) ›</a></nav>
+</body>
+</html>

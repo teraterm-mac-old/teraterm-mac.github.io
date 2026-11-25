@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>callmenu</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>callmenu</span><a class="ttw-lang" href="../../../ja/macro/command/callmenu.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>callmenu</h1>
+
+<p>
+Executes a menu of window.
+</p>
+
+<pre class="macro-syntax">
+callmenu &lt;menu ID&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Executes the menu that was specified by &lt;menu ID&gt;. The following IDs can be used. Other IDs only show a "not supported" message and do nothing.
+</p>
+
+<table>
+ <tr>
+  <th>ID</th>
+  <th>Operation</th>
+ </tr>
+ <tr>
+  <td>50110, 50003</td>
+  <td>New connection</td>
+ </tr>
+ <tr>
+  <td>50111, 50010</td>
+  <td>Duplicate session</td>
+ </tr>
+ <tr>
+  <td>50112</td>
+  <td>Local shell in a new window</td>
+ </tr>
+ <tr>
+  <td>50120</td>
+  <td>Log</td>
+ </tr>
+ <tr>
+  <td>50124</td>
+  <td>Pause / resume log</td>
+ </tr>
+ <tr>
+  <td>50125</td>
+  <td>Stop log</td>
+ </tr>
+ <tr>
+  <td>50122</td>
+  <td>Open the log file</td>
+ </tr>
+ <tr>
+  <td>50123</td>
+  <td>Show the log file in the Finder</td>
+ </tr>
+ <tr>
+  <td>50130</td>
+  <td>Send file</td>
+ </tr>
+ <tr>
+  <td>50190, 50009</td>
+  <td>Disconnect</td>
+ </tr>
+ <tr>
+  <td>50199, 50005</td>
+  <td>Close the window</td>
+ </tr>
+ <tr>
+  <td>50200</td>
+  <td>Quit</td>
+ </tr>
+ <tr>
+  <td>50210, 50002</td>
+  <td>Copy</td>
+ </tr>
+ <tr>
+  <td>50230, 50008</td>
+  <td>Paste</td>
+ </tr>
+ <tr>
+  <td>50250</td>
+  <td>Clear screen</td>
+ </tr>
+ <tr>
+  <td>50260</td>
+  <td>Clear buffer</td>
+ </tr>
+ <tr>
+  <td>50280, 50290</td>
+  <td>Select all</td>
+ </tr>
+ <tr>
+  <td>50310, 50320, 50330, 50340, 50370, 50375</td>
+  <td>Setup dialog</td>
+ </tr>
+ <tr>
+  <td>50350</td>
+  <td>Serial port setup</td>
+ </tr>
+ <tr>
+  <td>50360</td>
+  <td>New connection</td>
+ </tr>
+ <tr>
+  <td>50380</td>
+  <td>Save setup</td>
+ </tr>
+ <tr>
+  <td>50410</td>
+  <td>Reset terminal</td>
+ </tr>
+ <tr>
+  <td>50411</td>
+  <td>Reset remote title</td>
+ </tr>
+ <tr>
+  <td>50420</td>
+  <td>Are You There</td>
+ </tr>
+ <tr>
+  <td>50430, 50001</td>
+  <td>Send break</td>
+ </tr>
+ <tr>
+  <td>50440</td>
+  <td>Reset port</td>
+ </tr>
+ <tr>
+  <td>50470</td>
+  <td>Macro</td>
+ </tr>
+ <tr>
+  <td>50990</td>
+  <td>About</td>
+ </tr>
+</table>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; select all.
+callmenu 50280
+
+; copy to the clipboard.
+callmenu 50210
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/call.html">‹ call</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/changedir.html">changedir ›</a></nav>
+</body>
+</html>

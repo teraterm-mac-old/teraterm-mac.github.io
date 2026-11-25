@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tera Term setup file</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Settings file (TERATERM.INI)</span><a class="ttw-lang" href="../../ja/setup/teraterm.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Tera Term setup file</h1>
+
+<p>
+Tera Term Mac keeps its settings in the macOS preferences. Changes made in the setup dialogs are saved automatically and are used again at the next launch.
+</p>
+
+<p>
+The setup file TERATERM.INI is read when the <a href="../menu/setup-restore.html">[Setup]-[Restore setup...]</a> command is executed; its contents are applied to the current window and saved in the preferences. A TERATERM.INI made with Tera Term on Windows can be read as is.<br>
+To write the current setup into a setup file, execute the <a href="../menu/setup-save.html">[Setup]-[Save setup...]</a> command. The default file is <code>~/Library/Application Support/Tera Term Mac/TERATERM.INI</code>.
+</p>
+
+<p>
+The setup file is written as UTF-16 (with LE BOM). When reading, UTF-16, UTF-8 and Shift_JIS are detected automatically.
+</p>
+
+<p>
+For details, see "<a href="teraterm-ini.html#mac">How Tera Term Mac uses this file</a>".
+</p>
+
+
+<h2>Configuration settings of the Tera Term setup file</h2>
+
+<p>
+<a href="teraterm-ini.html">All items of Tera Term setup file</a>
+</p>
+
+
+<h2>Special options in the Tera Term setup file</h2>
+
+<p>
+You need to edit the Tera Term setup file directly to change the following setup items. Edit TERATERM.INI and then read it with [Setup]-[Restore setup...]. The file transfer items are read directly from the TERATERM.INI that was last restored or saved.
+</p>
+
+<h3>Terminal emulation</h3>
+<ul>
+ <li><a href="teraterm-term.html#beep">The motion receiving BEL character</a></li>
+ <li><a href="teraterm-term.html#tekgin">Mouse code in TEK GIN report</a></li>
+ <li><a href="teraterm-term.html#UnicodeDecSpMapping">Mapping of Unicode to DEC special character</a></li>
+ <li><a href="teraterm-term.html#BeepVBellWait">Flash time when Beep is Visual Bell</a></li>
+</ul>
+
+<h3>Window</h3>
+<ul>
+ <li><a href="teraterm-win.html#autocopy">Disabling auto text copying</a></li>
+ <li><a href="teraterm-win.html#blink">Nonblinking cursor</a></li>
+ <li><a href="teraterm-win.html#textselect">Disabling text selection when the window is activated by mouse</a></li>
+ <li><a href="teraterm-win.html#title">Title format</a></li>
+ <li><a href="teraterm-win.html#space">Space between characters (lines)</a></li>
+</ul>
+
+<h3>Communication</h3>
+<ul>
+ <li><a href="teraterm-com.html#confirm">Disabling the warning on TCP/IP disconnection</a></li>
+ <li><a href="teraterm-com.html#telbin">Telnet binary option</a></li>
+ <li><a href="teraterm-com.html#SendBreakTime">Pause time while the break signal is sending to the serial port</a></li>
+ <li><a href="teraterm-com.html#AutoComPortReconnect">Automatic COM port Reconnection</a></li>
+</ul>
+
+<h3>File transfer</h3>
+<ul>
+ <li><a href="teraterm-trans.html#rename">Auto renaming of a received file to avoid overwriting</a></li>
+ <li><a href="teraterm-trans.html#bpauto">Auto activation of B-Plus Receive</a></li>
+ <li><a href="teraterm-trans.html#bpesc">Escaping all control characters in the B-Plus protocol</a></li>
+ <li><a href="teraterm-trans.html#bplog">B-Plus log</a></li>
+ <li><a href="teraterm-trans.html#kmlog">Kermit log</a></li>
+ <li><a href="teraterm-trans.html#xmlog">XMODEM log</a></li>
+ <li><a href="teraterm-trans.html#xmodemrecv">Receive command for XMODEM</a></li>
+ <li><a href="teraterm-trans.html#XmodemTimeouts">Timeout settings for XMODEM</a></li>
+ <li><a href="teraterm-trans.html#ymlog">YMODEM log</a></li>
+ <li><a href="teraterm-trans.html#YmodemTimeouts">Timeout settings for YMODEM</a></li>
+ <li><a href="teraterm-trans.html#zmauto">Auto activation of ZMODEM Receive / Send</a></li>
+ <li><a href="teraterm-trans.html#zmparam">Parameters for ZMODEM sending</a></li>
+ <li><a href="teraterm-trans.html#zmesc">Escaping all control characters in the ZMODEM protocol</a></li>
+ <li><a href="teraterm-trans.html#zmlog">ZMODEM log</a></li>
+ <li><a href="teraterm-trans.html#zmodemrecv">Receive command for ZMODEM</a></li>
+ <li><a href="teraterm-trans.html#ZmodemTimeouts">Timeout settings for ZMODEM</a></li>
+ <li><a href="teraterm-trans.html#filter">File name filter for send file dialog</a></li>
+ <li><a href="teraterm-trans.html#FileReceiveFilter">File name filter for receive file dialog</a></li>
+ <li><a href="teraterm-trans.html#draganddrop">Confirmation of File Transfer by Drag &amp; Drop</a></li>
+ <li><a href="teraterm-trans.html#hidetransdialog">File Transfer Dialog is hidden</a></li>
+ <li><a href="teraterm-trans.html#FileSendHighSpeedMode">High Speed File Transfer on Serial Connection</a></li>
+ <li><a href="teraterm-trans.html#SendfileSkipOptionDialog">Skip Send file dialog</a></li>
+ <li><a href="teraterm-trans.html#ReceivefileSkipOptionDialog">Skip Receive file dialog</a></li>
+</ul>
+
+<h3>Printing</h3>
+<ul>
+ <li><a href="teraterm-prn.html#ignoremc">Disabling the printing by the control sequence</a></li>
+</ul>
+
+<h3>Miscellaneous</h3>
+<ul>
+ <li><a href="teraterm-misc.html#UILang">User interface language file</a></li>
+ <li><a href="teraterm-misc.html#broadcast">Number for the history of broadcast command</a></li>
+ <li><a href="teraterm-misc.html#DisablePasteMouseMButton">Enable paste by clicking the middle button of mouse</a></li>
+ <li><a href="teraterm-misc.html#IniAutoBackup">Auto backup of Tera Term setup file</a></li>
+ <li><a href="teraterm-misc.html#BracketedSupport">Support bracketed paste</a></li>
+ <li><a href="teraterm-misc.html#BracketedControlOnly">Limit bracketed pasting to cases containing control characters</a></li>
+</ul>
+
+<h3>TTSSH</h3>
+<ul>
+ <li><a href="teraterm-ssh.html#LogLevel">log level</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../setup/keyboard.html">‹ Keyboard file (KEYBOARD.CNF)</a><a href="../index.html">Contents</a><a class="ttw-next" href="../setup/teraterm-ini.html">All TERATERM.INI entries ›</a></nav>
+</body>
+</html>

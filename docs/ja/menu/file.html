@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>[File] メニュー</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>切断する</span><a class="ttw-lang" href="../../en/menu/file.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1>[File] メニュー</h1>
+    <dl>
+      <dt><a href="file-new.html">New connection...</a></dt>
+      <dd>
+        新しいホストまたはシリアルポートに接続します (&#8984;N)。
+      </dd>
+
+      <dt>Duplicate session</dt>
+      <dd>
+        現在のセッションを新しいウィンドウに複製します (&#8984;D)。
+        TELNET, SSH, ローカルシェル接続のみが複製されます。
+        TCP (生) 接続とシリアル接続は複製されません。<br>
+        コマンドラインの<a href="../commandline/ttssh.html#passwd_specify">パスワードを指定するときの注意</a>を参照してください。
+      </dd>
+
+      <dt>Local shell connection</dt>
+      <dd>
+        新しいウィンドウを開き、この Mac のシェル (ログインシェル) に接続します (&#8984;G)。
+        設定は<a href="setup-additional-cygwin.html">その他の設定のローカルシェルタブ</a>で行います。
+      </dd>
+
+      <dt><a href="file-log.html">Log...</a></dt>
+      <dd>
+        受信される文字をファイルに書き込みます。
+      </dd>
+
+      <dt id="PauseLog">Pause Logging</dt>
+      <dd>
+        ログの記録を一時中断します。
+      </dt>
+
+      <dt id="Comment">Comment to Log...</dt>
+      <dd>
+        ログファイルへコメントを追加することができます。
+        コメントは UTF-8 で書き込まれ、最後に改行 (LF) が付きます。
+      </dd>
+
+      <dt>View Log</dt>
+      <dd>
+        ログファイルを開きます。<br>
+        標準ではテキストエディットで開きます。
+        <a href="../setup/teraterm-ini.html#ViewlogEditor">ViewlogEditor</a> にアプリケーション (.app) または実行ファイルを指定すると、それで開きます。
+      </dd>
+
+      <dt>Show Log dialog...</dt>
+      <dd>
+        ログダイアログを表示します。
+      </dd>
+
+      <dt id="StopLog">Stop Logging</dt>
+      <dd>
+        ログの記録を終了します。
+      </dd>
+
+      <dt id="Sendfile"><a href="file-sendfile.html">Send file...</a></dt>
+      <dd>
+        ファイルを送信します。<br>
+        <dl>
+          <dt>選択したとき</dt>
+          <dd>
+            "Send file" ダイアログ が表示されます。
+          </dd>
+          <dt>control キーを押しながら選択したとき</dt>
+          <dd>
+            "Send file" ダイアログがスキップされて、ファイル選択ダイアログが表示されます。<br>
+            前回と同じ送信オプションが使用されます。
+          </dd>
+        </dl>
+
+        <a href="../setup/teraterm-trans.html#SendfileSkipOptionDialog">設定</a>を変更することで
+        動作を入れ替えることができます。
+      </dd>
+
+      <dt id="Receivefile"><a href="file-receivefile.html">Receive file...</a></dt>
+      <dd>
+        受信したデータをファイルに出力します。<br>
+        <dl>
+          <dt>選択したとき</dt>
+          <dd>
+            "Receive file" ダイアログ が表示されます。
+          </dd>
+          <dt>control キーを押しながら選択したとき</dt>
+          <dd>
+            "Receive file" ダイアログがスキップされて、ファイル選択ダイアログが表示されます。<br>
+            前回と同じ受信オプションが使用されます。
+          </dd>
+        </dl>
+
+        <a href="../setup/teraterm-trans.html#ReceivefileSkipOptionDialog">設定</a>を変更することで
+        動作を入れ替えることができます。
+      </dd>
+
+      <dt><a href="file-transfer.html">Transfer</a></dt>
+      <dd>
+        Kermit/XMODEM/YMODEM/ZMODEM/B-Plus/Quick-VAN プロトコルでファイルを転送します。
+      </dd>
+
+      <dt><a href="file-ssh-scp.html">SSH SCP</a></dt>
+      <dd>
+        SCP プロトコルでファイルを転送します。
+      </dd>
+
+      <dt><a href="file-chdir.html">Change directory...</a></dt>
+      <dd>
+        ファイル転送のためのディレクトリを変更します。
+      </dd>
+
+      <dt>Replay Log...</dt>
+      <dd>
+        バイナリログを再生します。/R オプションと等価です。<br>
+        新しいウィンドウを開き、ファイルの内容を受信したデータとして画面に表示します。
+      </dd>
+
+      <dt><a href="file-print.html">Print...</a></dt>
+      <dd>
+        現在の画面または、マウスで選択された文字を印刷します (&#8984;P)。
+      </dd>
+
+      <dt id="disconnect">Disconnect</dt>
+      <dd>
+        接続を切ります (&#8984;I)。
+        TCP/IP 接続時で <a href="setup-additional-tcpip.html">Auto window close</a>
+        オプションが選択されている場合、ウィンドウを閉じます。
+      </dd>
+
+      <dt>Exit</dt>
+      <dd>
+        このウィンドウを閉じます (&#8984;W)。
+        ホストまたはシリアルポートに接続されている場合は、接続を切ります。<br>
+        アプリケーションそのものを終了するには、[Tera Term Mac] メニューの「Tera Term Mac を終了」(&#8984;Q) を使います。
+      </dd>
+
+      <dt>Exit All</dt>
+      <dd>
+        確認のあと、すべての Tera Term Mac のウィンドウを個別の問い合わせなしで閉じます。
+        ホストまたはシリアルポートに接続されている場合は、接続を切ります。
+      </dd>
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../commandline/ttproxy.html">‹ プロキシのコマンドライン</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/edit.html">コピーと貼り付け ›</a></nav>
+</body>
+</html>

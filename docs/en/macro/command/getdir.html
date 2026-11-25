@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>getdir</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>getdir</span><a class="ttw-lang" href="../../../ja/macro/command/getdir.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>getdir</h1>
+
+<p>
+Gets the current working directory for the macro.
+</p>
+
+<pre class="macro-syntax">
+getdir &lt;strvar&gt;
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Returns the current working directory for the macro to the string variable &lt;strvar&gt; as a Mac path (e.g. /Users/user/Macro). Initially it is the folder that contains the macro file.<br>
+If the directory is the root, the string is "/". If the directory is a directory other than the root, the string ends with the directory name and not with "/".
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+getdir dir
+; dir = /Users/user/Macro
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="setdir.html">setdir</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/getdate.html">‹ getdate</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/getenv.html">getenv ›</a></nav>
+</body>
+</html>

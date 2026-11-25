@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Keyboard</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Keyboard and shortcuts</span><a class="ttw-lang" href="../../ja/usage/keyboard.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Keyboard</h1>
+
+<p>
+Some keyboard settings can be made in <A HREF="../menu/setup-keyboard.html">[Setup] Keyboard...</A>.
+</p>
+
+<p>
+You can freely change key assignments by editing the keyboard setup file (KEYBOARD.CNF). Tera Term Mac reads KEYBOARD.CNF from the setup folder (~/Library/Application Support/Tera Term Mac). A KEYBOARD.CNF used with Windows Tera Term can be used as is. For details, see <A HREF="../setup/keyboard.html">Keyboard setup file overview</A>.
+</p>
+
+<p>
+Mac keys are treated as the PC key at the same position or with the same label. Home / End / PageUp / PageDown, which Mac keyboards lack, are fn+Left/Right/Up/Down, and the clear key on the numeric keypad is NumLock.
+</p>
+
+<h2>Shortcut keys</h2>
+
+<h3>VT window</h3>
+
+<p>
+Shortcut keys use &#8984; (Command key). Every key combination with &#8984; is a menu shortcut and is never sent to the host.<br>
+Hint: <A HREF="tips/user-shortcutkey.html">"User shortcut key"</A>
+</p>
+
+<dl>
+
+<dt>&#8984;B</dt>
+<dd>Sends a break signal (serial and Telnet connections; a break cannot be sent over SSH).</dd>
+
+<dt>&#8984;C, Ctrl+Insert</dt>
+<dd>Copies the text selected with the mouse to the clipboard.
+When <a href="../menu/setup-additional-copy-and-paste.html#AutoTextCopy">AutoTextCopy</a> is enabled, the text is already copied when you select it.</dd>
+
+<dt>&#8984;D</dt>
+<dd>Duplicates the session.</dd>
+
+<dt>&#8984;G</dt>
+<dd>Opens a local shell connection (the shell of this Mac) in a new window.</dd>
+
+<dt>&#8984;I</dt>
+<dd>Disconnects.</dd>
+
+<dt>&#8984;N</dt>
+<dd>Connects to a new host or serial port.</dd>
+
+<dt>&#8984;P</dt>
+<dd>Prints the current screen or the text selected with the mouse.</dd>
+
+<dt>&#8984;W</dt>
+<dd>Closes this window.</dd>
+
+<dt>&#8984;Q</dt>
+<dd>Quits Tera Term Mac. If some windows are connected, you are asked to confirm.</dd>
+
+<dt>&#8984;R</dt>
+<dd>Sends the text in the clipboard to the host, followed by a new-line.</dd>
+
+<dt>&#8984;T</dt>
+<dd>Sends the Telnet AYT (Are You There) command. The host usually answers with some message. Available only for Telnet connections.</dd>
+
+<dt>&#8984;V, Shift+Insert</dt>
+<dd>Sends the text in the clipboard to the host.
+A right click does the same.
+If <a href="../setup/teraterm-misc.html#DisablePasteMouseMButton">DisablePasteMouseMButton</a> is off, a middle-button click does the same too.
+</dd>
+
+<dt>&#8984;A</dt>
+<dd>Selects the whole buffer.</dd>
+
+<dt>&#8984;,</dt>
+<dd>Opens the <a href="../menu/setup-terminal.html">terminal setup</a>.</dd>
+
+<dt>Ctrl+Tab, Ctrl+Shift+Tab</dt>
+<dd>Switches between Tera Term Mac windows. The Mac's &#8984;` also works. For windows grouped as tabs, &#8984;&#8679;[ / &#8984;&#8679;] moves to the previous / next tab.</dd>
+
+<dt>Ctrl+Up/Down cursor</dt>
+<dd>Scrolls up/down by one line (not available if macOS assigns these keys to Mission Control etc.).</dd>
+
+<dt>Ctrl+PageUp/PageDown, Shift+PageUp/PageDown</dt>
+<dd>Scrolls up/down by one page. On a Mac keyboard, fn+Up/Down are PageUp/PageDown.</dd>
+
+<dt>Ctrl+Home</dt>
+<dd>Moves to the top of the buffer.</dd>
+
+<dt>Ctrl+End</dt>
+<dd>Moves to the bottom of the buffer.</dd>
+
+<dt>Option+F / E / S / O / W / K / H</dt>
+<dd>When the in-window menu bar is shown, opens the [File] [Edit] [Setup] [Control] [Window] [KanjiCode] [Help] menus. Not available when the Option key is used as the Meta key.</dd>
+
+<dt>F1 key</dt>
+<dd>Same as the Num pad NumLock key.</dd>
+
+<dt>F2 key</dt>
+<dd>Same as the Num pad '/' key.</dd>
+
+<dt>F3 key</dt>
+<dd>Same as the Num pad '*' key.</dd>
+
+<dt>F4 key</dt>
+<dd>Same as the Num pad '-' key.</dd>
+
+</dl>
+
+<p>
+Depending on the macOS settings, function keys such as F1 must be pressed together with the fn key.
+</p>
+
+<h3>TEK window</h3>
+
+<p>
+Shortcut keys in the TEK window use the Option key.
+</p>
+
+<dl>
+<dt>Option+C</dt>
+<dd>Copies the image of the area selected with the mouse to the clipboard.</dd>
+
+<dt>Option+O</dt>
+<dd>Moves to the VT window.</dd>
+
+<dt>Option+P</dt>
+<dd>Prints the whole screen or the area selected with the mouse.</dd>
+
+<dt>Option+Q</dt>
+<dd>Closes the TEK window.</dd>
+
+<dt>Option+R</dt>
+<dd>Same as &#8984;R in the VT window.</dd>
+
+<dt>Option+V</dt>
+<dd>Same as &#8984;V in the VT window.</dd>
+
+</dl>
+
+<h2>Meta key</h2>
+
+<p>
+When <b>Meta key</b> is selected in <A HREF="../menu/setup-keyboard.html">[Setup] Keyboard...</A>, the Option key works as the Meta key in the VT window. For example, pressing Option+A sends ESC A. You can also use only the left or right Option key as the Meta key (left / right).<br>
+The &#8984; shortcut keys keep working while the Meta key is enabled.
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-copy-and-paste.html">‹ Copy and paste settings</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-keyboard.html">Keyboard settings ›</a></nav>
+</body>
+</HTML>

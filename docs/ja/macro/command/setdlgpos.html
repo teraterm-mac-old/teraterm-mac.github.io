@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>setdlgpos</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>setdlgpos</span><a class="ttw-lang" href="../../../en/macro/command/setdlgpos.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>setdlgpos</h1>
+
+<p>
+ダイアログボックスの表示位置を設定する。
+</p>
+
+<pre class="macro-syntax">
+setdlgpos [&lt;x&gt; &lt;y&gt; [&lt;position&gt; [&lt;offset x&gt; &lt;offset y&gt;]]]
+</pre>
+
+<h2>パラメータ</h2>
+
+<dl>
+	<dt class="macro">整数 &lt;x&gt;</dt>
+	<dd>ダイアログボックス左上隅の X 座標。</dd>
+
+	<dt class="macro">整数 &lt;y&gt;</dt>
+	<dd>ダイアログボックス左上隅の Y 座標。</dd>
+
+	<dt class="macro">整数 &lt;position&gt;</dt>
+	<dd>ダイアログボックスの表示位置。<br>
+	  1 : ディスプレイの左上<br>
+	  2 : ディスプレイの右上<br>
+	  3 : ディスプレイの左下<br>
+	  4 : ディスプレイの右下<br>
+	  5 : ディスプレイの中央<br>
+	  6 : 端末のウインドウの左上<br>
+	  7 : 端末のウインドウの右上<br>
+	  8 : 端末のウインドウの左下<br>
+	  9 : 端末のウインドウの右下<br>
+	 10 : 端末のウインドウの中央
+	</dd>
+
+	<dt class="macro">整数 &lt;offset x&gt;</dt>
+	<dd>&lt;position&gt; で指定した表示位置の X 座標補正値</dd>
+
+	<dt class="macro">整数 &lt;offset y&gt;</dt>
+	<dd>&lt;position&gt; で指定した表示位置の Y 座標補正値</dd>
+</dl>
+
+<h2>返り値</h2>
+
+<dl>
+	<dt class="macro">無し</dt>
+</dl>
+
+<h2>解説</h2>
+
+<p>
+<a href="inputbox.html">"inputbox"</a>, <a href="listbox.html">"listbox"</a>, <a href="messagebox.html">"messagebox"</a>, <a href="passwordbox.html">"passwordbox"</a>, <a href="statusbox.html">"statusbox"</a>, <a href="yesnobox.html">"yesnobox"</a> コマンドで表示されるダイアログボックスとエラーダイアログの表示位置を変更する。<br>
+また、ステータスダイアログボックスが表示されている場合、setdlgpos コマンドはそのダイアログボックスを移動させる。<br>
+ダイアログがディスプレイからはみ出す場合は、ディスプレイ内に移動される。<br>
+座標の単位はポイント。<br>
+</p>
+
+<ol>
+  <li>setdlgpos<br>
+    パラメータ省略時の表示位置は、メインディスプレイ(プライマリディスプレイ 以下略)の中央となる。
+  </li>
+  <li>setdlgpos &lt;x&gt; &lt;y&gt;<br>
+    &lt;x&gt; と &lt;y&gt; でダイアログボックス左上隅の座標 (x,y) を指定する。<br>
+    &lt;x&gt; と &lt;y&gt; は、ペアで指定しなければならない。<br>
+    原点 (0,0)はメインディスプレイ左上隅。
+  </li>
+  <li>setdlgpos &lt;x&gt; &lt;y&gt; &lt;position&gt;
+    <ul>
+      <li>&lt;position&gt; が 1 から 5 の場合<br>
+        マクロがウインドウとリンクされている場合は、端末のウインドウが表示されているディスプレイにダイアログボックスを表示する。<br>
+        マクロがウインドウとリンクされていない場合は、メインディスプレイにダイアログボックスを表示する。<br>
+        ダイアログボックスの表示位置は、&lt;position&gt; で指定した場所となり、&lt;x&gt; &lt;y&gt; は無視される。
+      </li>
+      <li>&lt;position&gt; が 6 から 10 の場合<br>
+        マクロがウインドウとリンクされている場合は、端末のウインドウが表示されているディスプレイにダイアログボックスを表示する。<br>
+        マクロがウインドウとリンクされている場合の表示位置は、&lt;position&gt; で指定した場所となる。<br>
+        マクロがウインドウとリンクされていない、もしくは、ウインドウが最小化状態または非表示状態の場合は、メインディスプレイにダイアログボックスを表示する。<br>
+        この場合の表示位置は &lt;x&gt; &lt;y&gt; 座標となる。
+      </li>
+    </ul>
+  </li>
+  <li>setdlgpos &lt;x&gt; &lt;y&gt; &lt;position&gt; &lt;offset x&gt; &lt;offset y&gt;<br>
+    ダイアログボックスの表示位置は、setdlgpos &lt;x&gt; &lt;y&gt; &lt;position&gt; の表示位置(x,y座標)に &lt;offset x&gt; &lt;offset y&gt; を加算した場所となる。<br>
+    &lt;offset x&gt; と &lt;offset y&gt; はペアで指定しなければならない。<br>
+    負の値を指定する場合は、<a href="../appendixes/negative.html">負の整数定数についての注意</a>を参照のこと。
+  </li>
+</ol>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; 左上の隅にダイアログボックス
+setdlgpos 0 0
+messagebox 'Message' 'Title'
+
+; ステータスダイアログボックスを開く
+setdlgpos 0 200
+statusbox 'Message' 'Title'
+
+; ステータスダイアログボックスを移動
+for i 0 200
+  setdlgpos i 200
+next
+
+; VTウィンドウの左上を基準に表示する
+setdlgpos 0 0 6
+messagebox 'top-left' 'VT window'
+
+; ディスプレイの右上を基準に、下に10px、左に10pxに表示する
+setdlgpos 0 0 2 (-10) 10
+messagebox 'top-right offset 10px' 'Display'
+</pre>
+
+<pre class="macro-example">
+strdim message_string_array 11
+message_string_array[1]  = 'top-left of the display'
+message_string_array[2]  = 'top-right of the display'
+message_string_array[3]  = 'bottom-left of the display'
+message_string_array[4]  = 'bottom-right of the display'
+message_string_array[5]  = 'center of the display'
+message_string_array[6]  = 'top-left of the VT window'
+message_string_array[7]  = 'top-right of the VT window'
+message_string_array[8]  = 'bottom-left of the VT window'
+message_string_array[9]  = 'bottom-right of the VT window'
+message_string_array[10] = 'center of the VT window'
+
+strdim listbox_string_array 3
+listbox_string_array[0] = 'Banana'
+listbox_string_array[1] = 'Apple'
+listbox_string_array[2] = 'Orange'
+
+x = 0
+y = 0
+offset_x = 0
+offset_y = 0
+
+for position 1 10
+  sprintf2 message 'setdlgpos %d %d %d %d %d\n(%s)' x y position offset_x offset_y message_string_array[position]
+  strspecial message
+  setdlgpos x y position offset_x offset_y
+  statusbox   message 'statusbox'
+  messagebox  message 'messagebox'
+  yesnobox    message 'yesnobox'
+  inputbox    message 'inputbox'
+  passwordbox message 'passwordbox'
+  listbox     message 'listbox' listbox_string_array
+next
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="inputbox.html">inputbox</a></li>
+  <li><a href="listbox.html">listbox</a></li>
+  <li><a href="messagebox.html">messagebox</a></li>
+  <li><a href="passwordbox.html">passwordbox</a></li>
+  <li><a href="statusbox.html">statusbox</a></li>
+  <li><a href="yesnobox.html">yesnobox</a></li>
+  <li><a href="getttpos.html">getttpos</a></li>
+  <li><a href="../appendixes/negative.html">負の整数定数についての注意</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/setdir.html">‹ setdir</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/setdtr.html">setdtr ›</a></nav>
+</body>
+</html>

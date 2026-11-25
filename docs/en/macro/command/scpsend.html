@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>scpsend</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>scpsend</span><a class="ttw-lang" href="../../../ja/macro/command/scpsend.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>scpsend</h1>
+
+<p>
+Sends a file from the host with the SCP protocol.
+</p>
+
+<pre class="macro-syntax">
+scpsend &lt;filename&gt; [&lt;destination filename&gt;]
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Sends the file &lt;filename&gt; to the host with the SCP(Secure Copy Protocol) protocol. 
+The SSH connection is shared and the file is transferred with the Mac scp command. This command works only while connected with SSH.
+If the file &lt;destination filename&gt; is omitted, the file &lt;filename&gt; would be copied in the home directory of the remote host.
+The macro does not pause until the end of the file transfer.<br>
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+connect '192.168.3.2:22 /ssh /auth=password /user=hoge /passwd=fuga'
+wait '$'
+scpsend '/Users/user/doc/manual.pdf'
+scpsend '/Users/user/doc/manual.pdf' 'tmp/foo.pdf'
+</pre>
+
+<pre class="macro-example">
+; Confirm finishing a file sending.
+SOURFILE = '/Users/user/doc/manual.pdf'
+DESTFILE = '~'
+
+;; Send a file.
+scpsend SOURFILE DESTFILE
+;; Confirm a scp process.
+do
+  mpause 5000
+  sprintf2 str 'ps -ef |grep -v grep |grep -c scp'
+  sendln str
+  waitln '0' '1'
+loop while result != 1
+;; Do next macro after finishing the file sending.
+sendln 'echo SCP finish'
+;; Exit this macro script.
+end
+</pre>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/scprecv.html">‹ scprecv</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/send.html">send ›</a></nav>
+</body>
+</html>

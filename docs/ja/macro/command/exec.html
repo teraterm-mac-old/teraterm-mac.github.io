@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>exec</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>exec</span><a class="ttw-lang" href="../../../en/macro/command/exec.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>exec</h1>
+
+<p>
+アプリケーションを起動する。
+</p>
+
+<pre class="macro-syntax">
+exec &lt;command line&gt; [&lt;show&gt; [&lt;wait&gt; [&lt;current directory&gt;]]]
+</pre>
+
+
+<h2>解説</h2>
+
+<p>
+コマンドライン文字列 &lt;command line&gt; を /bin/sh -c で実行する。パイプやリダイレクトなど、シェルの書き方が使える。Mac のアプリは 'open -a TextEdit readme.txt' のように open コマンドで起動する。
+</p>
+
+
+<h2>パラメータ</h2>
+<dl>
+	<dt class="macro">文字列 &lt;show&gt; (オプション デフォルト="show")</dt>
+	<dd>Windows 版のマクロとの互換のために受け付けるが、使わない ("hide", "minimize", "maximize", "show" のどれを指定しても同じ)。</dd>
+
+	<dt class="macro">整数値 &lt;wait&gt; (オプション デフォルト=0)</dt>
+	<dd>1 の場合は、起動したアプリケーションが終了するまで待つ。アプリケーションの終了コードが result システム変数に格納される。<br />
+	    1 以外の場合は、アプリケーションを起動してマクロに制御が返る。</dd>
+
+	<dt class="macro">文字列 &lt;current directory&gt; (オプション デフォルト="")</dt>
+	<dd>カレントディレクトリを指定することができる。<br />
+	    省略したときは、マクロファイルのあるフォルダで動く (setdir や changedir では変わらない)。</dd>
+</dl>
+
+
+<h2>返り値</h2>
+
+<dl>
+	<dt class="macro">システム変数 &lt;result&gt;</dt>
+	<dd>
+		&lt;wait&gt; が 1 の場合
+				<table border="2">
+				<tr>
+				  <th>値</th>
+				  <th>意味</th>
+				</tr>
+				<tr>
+				  <td>-1</td>
+				  <td>アプリケーションの実行に失敗した。</td>
+				</tr>
+				<tr>
+				  <td>-1 以外</td>
+				  <td>アプリケーションの終了コード</td>
+				</tr>
+				</table><br />
+				
+				&lt;wait&gt; が 1 以外の場合
+				<table border="2">
+				<tr>
+				  <th>値</th>
+				  <th>意味</th>
+				</tr>
+				<tr>
+				  <td>-1</td>
+				  <td>アプリケーションの実行に失敗した。</td>
+				</tr>
+				<tr>
+				  <td>0</td>
+				  <td>アプリケーションの実行に成功した。</td>
+				</tr>
+				</table>
+			</dd>
+</dl>
+
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; 「テキストエディット」でファイルを開く
+exec 'open -a TextEdit readme.txt'
+
+; フォルダを指定して実行
+exec 'ls -l > list.txt' 'show' 0 '/Users/user/work'
+
+; 終わるまで待って、終了コードを調べる
+exec 'ping -c 1 192.0.2.1' 'hide' 1
+if result = 0 messagebox 'OK' 'ping'
+</pre>
+
+<pre class="macro-example">
+; シェルスクリプトを起動する
+tmp='/bin/sh ~/upload.sh '
+strconcat tmp username1
+strconcat tmp ' '
+strconcat tmp userpass1
+strconcat tmp ' '
+strconcat tmp address
+messagebox tmp 'exec'
+exec tmp
+</pre>
+
+<pre class="macro-example">
+; ディレクトリを作る
+getenv "HOME" home
+getdate logdir "log-%Y%m%d"
+sprintf2 cmd 'mkdir -p "%s/Documents/%s"' home logdir
+exec cmd "HIDE"
+</pre>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/end.html">‹ end</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/execcmnd.html">execcmnd ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>困ったとき</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>困ったとき</span><a class="ttw-lang" href="../../en/easy/trouble.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1 id="top">困ったとき</h1>
+
+<h2 id="mojibake">文字化けする</h2>
+<p>日本語が「縺薙ｓ縺ｫ縺｡縺ｯ」のようにおかしく出るときは、文字コードが合っていません。</p>
+<ol>
+ <li>[漢字コード] メニューを開きます。</li>
+ <li>接続先に合う文字コードを選びます。いまのサーバーの多くは「送受信: UTF-8」です。古い機器では「Shift_JIS」や「EUC-JP」のことがあります。</li>
+ <li>選ぶとすぐに切り替わります。おかしかった文字は、もう一度表示させると直ります。</li>
+</ol>
+
+<h2 id="bs">delete キーで文字が消えない (^H や ^? が出る)</h2>
+<ol>
+ <li>[設定] &gt; [キーボード...] を選びます。</li>
+ <li>「DELを送信するキー:」の「Backspace キー」のチェックを切り替えます。Mac の delete キーは Windows の Backspace キーにあたります。</li>
+ <li>「OK」を押して、もう一度試します。</li>
+</ol>
+
+<h2 id="connect">つながらない</h2>
+<ul>
+ <li>ホスト名やユーザー名のつづりを確かめてください。</li>
+ <li>SSH のときは、サービスが「SSH」、TCP ポートが 22 (または管理者から教わった番号) になっているか確かめます。</li>
+ <li>会社や学校のネットワークでは、プロキシの設定や VPN が要ることがあります。管理者に確かめてください。プロキシは [設定] &gt; [プロキシ...] で設定します。</li>
+ <li>シリアルのときは、ポートとスピードが機器と合っているか確かめます (「<a href="connect-serial.html">シリアル機器につなぐ</a>」)。</li>
+ <li>画面に出た英語のメッセージ (例: Connection refused、Permission denied) をそのまま検索すると、原因がわかることがあります。</li>
+</ul>
+
+<h2 id="help">ヘルプを開く</h2>
+<ul>
+ <li>[ヘルプ] &gt; [目次] を選ぶと、このマニュアルが開きます。</li>
+ <li>左の目次の上の欄に言葉を入れると、目次を検索できます。</li>
+ <li>上の「従来のマニュアル (Windows 版)」に切り替えると、本家 Tera Term のヘルプも読めます。</li>
+</ul>
+
+<p><img src="img/help.jpg" alt="ヘルプのウィンドウ" width="700"><br>
+<small>[ヘルプ] &gt; [目次] で開くヘルプのウィンドウ</small></p>
+
+<h2 id="contact">連絡先</h2>
+<p>
+不具合や要望は、<a href="https://github.com/satorunet/teraterm_macos/issues" target="_blank">GitHub の Issues</a> へお願いします。<br>
+Tera Term Mac は TeraTerm Project とは別の、非公式の移植版です。本家 (TeraTerm Project) には問い合わせないでください。
+</p>
+
+<h2 id="detail">くわしくは</h2>
+<ul>
+ <li><a href="../usage/character_encoding.html">文字コード</a>、<a href="../ttxplugin/kanjimenu.html">[漢字コード] メニュー</a></li>
+ <li><a href="../menu/setup-keyboard.html">キーボードの設定</a></li>
+ <li><a href="../usage/proxy.html">プロキシ経由で接続する</a></li>
+ <li><a href="../about/qanda.html">よくある質問</a></li>
+ <li><a href="../about/feedback.html">要望・お知らせを送る (匿名)</a></li>
+ <li><a href="../about/contacts.html">連絡先</a></li>
+</ul>
+
+<p><a href="index.html">かんたんマニュアルの目次へ</a></p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../easy/macro.html">‹ マクロを動かしてみる</a><a href="../index.html">目次</a><a class="ttw-next" href="../about/feedback.html">要望・お知らせを送る ›</a></nav>
+</body>
+</html>

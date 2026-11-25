@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>fileunlock</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>fileunlock</span><a class="ttw-lang" href="../../../ja/macro/command/fileunlock.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>fileunlock</h1>
+
+<p>
+Unlocks the specified file.
+</p>
+
+<pre class="macro-syntax">
+fileunlock &lt;file handle&gt;
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Unlocks the specified whole file (locked by <a href="filelock.html">filelock</a>). Unlocking a file enables other programs that use locks
+to lock the file.
+</p>
+
+<p>
+If the function succeeds, the system variable "result" is set to 0.<br>
+If the function fails, the system variable "result" is set to 1.
+</p>
+
+
+<h2>Examples</h2>
+
+<pre class="macro-example">
+fileopen fhandle 'test.txt' 0
+filelock fhandle
+if result!=0 then
+	messagebox 'error' 'hoge'
+endif
+filewrite fhandle 'sample'
+pause 60
+fileunlock fhandle
+if result!=0 then
+	messagebox 'error' 'hoge'
+endif
+fileclose fhandle
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="filelock.html">filelock</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/filetruncate.html">‹ filetruncate</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/filewrite.html">filewrite ›</a></nav>
+</body>
+</html>

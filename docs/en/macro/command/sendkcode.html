@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>sendkcode</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>sendkcode</span><a class="ttw-lang" href="../../../ja/macro/command/sendkcode.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>sendkcode</h1>
+
+<p>
+Sends the key code.
+</p>
+
+<pre class="macro-syntax">
+sendkcode &lt;key code&gt; &lt;repeat count&gt;
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Performs a function defined for pressing a key or key combination.<br>
+The key or key combination is specified by its &lt;key code&gt; (the IBM PC keyboard key code, the same as in the keyboard setup file). The function is performed &lt;repeat count&gt; times.<br>
+Keys assigned in the keyboard setup file (KEYBOARD.CNF) send their assigned content. Otherwise only common keys (arrow keys, function keys, keypad keys etc.) can be sent. For key codes that cannot be sent, a "not supported" message is shown.<br>
+</p>
+
+<p>
+Usually the function means sending a character string to the host. The function can be defined in the keyboard setup file.<br>
+See <a href="../../setup/keyboard.html">Keyboard setup file</a>.
+</p>
+
+<p>
+The execution of macros using sendkcode in the [User keys] section of the <a href="../../setup/keyboard.html">keyboard setup file</a> with &lt;control flag&gt; 2 is not possible.<br>
+The execution of menu commands using sendkcode in the [User keys] section of the <a href="../../setup/keyboard.html">keyboard setup file</a> with &lt;control flag&gt; 3 is not supported.<br>
+Please use the <a href="callmenu.html">callmenu</a> command to execute menu commands.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; Simulate pressing the down-arrow key three times.
+; The key code of the down-arrow key is 336 for the IBM PC keyboard.
+sendkcode 336 3
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/sendfile.html">‹ sendfile</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/sendln.html">sendln ›</a></nav>
+</body>
+</html>

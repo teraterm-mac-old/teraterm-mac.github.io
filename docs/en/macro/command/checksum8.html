@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>checksum8, checksum8file</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>checksum8, checksum8file</span><a class="ttw-lang" href="../../../ja/macro/command/checksum8.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>checksum8, checksum8file</h1>
+
+<p>
+Calculates the 8bit-checksum of a string or a file.
+</p>
+
+<pre class="macro-syntax">
+checksum8 &lt;intvar&gt; &lt;string&gt;
+checksum8file &lt;intvar&gt; &lt;filename&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+This macro function calculates the checksum(8bit) of a string or a file. 
+<br><br>
+
+The calculated value stores the variable "intvar" as mathematical value.<br>
+If the &lt;filename&gt; file can not open by using checksum8file, the system variable "result" is set to -1.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+str = 'this is a test string to be checksum8ed'
+checksum8 crc str
+
+; Display checksum8 result asHEX
+sprintf '0x%08X' crc
+messagebox inputstr 'checksum8 = '
+
+checksum8file crc 'foo.bin'
+if result = -1 then
+    messagebox 'file open error' 'checksum8 = '
+else
+    sprintf '0x%08X' crc
+    messagebox inputstr 'checksum8 = '
+endif
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/checksum32.html">‹ checksum32, checksum32file</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/clearscreen.html">clearscreen ›</a></nav>
+</body>
+</html>

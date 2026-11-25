@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>strconcat</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>strconcat</span><a class="ttw-lang" href="../../../ja/macro/command/strconcat.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>strconcat</h1>
+
+<p>
+Appends a string.
+</p>
+
+
+<h2>Format</h2>
+
+<pre class="macro-syntax">
+strconcat &lt;strvar&gt; &lt;string&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Appends a copy of &lt;string&gt; to the end of the string variable &lt;strvar&gt;.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+filename = '/Users/user/teraterm/'
+strconcat filename 'test.txt'  ; /Users/user/teraterm/test.txt
+
+msg='HOST:'
+sprintf2 var "%s/ USER NAME:%s" '192.168.1.1' 'test user'
+strconcat msg var
+messagebox msg "inputstr" ; HOST:192.168.1.1/ USER NAME:test user
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/strcompare.html">‹ strcompare</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/strcopy.html">strcopy ›</a></nav>
+</body>
+</html>

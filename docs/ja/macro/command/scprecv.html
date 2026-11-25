@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>scprecv</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>scprecv</span><a class="ttw-lang" href="../../../en/macro/command/scprecv.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>scprecv</h1>
+
+<p>
+SCPプロトコルでファイルを受信する。
+</p>
+
+<pre class="macro-syntax">
+scprecv &lt;remote filename&gt; [&lt;local filename&gt;]
+</pre>
+
+
+<h2>解説</h2>
+
+<p>
+ファイル &lt;remote filename&gt; を SCP(Secure Copy Protocol) プロトコルで受信する。
+SSH の接続を共有して、Mac の scp コマンドで転送する。SSH で接続しているときだけ使える。
+ローカルファイル &lt;local filename&gt; を省略した場合は、ファイルはファイル転送フォルダ (<a href="changedir.html">changedir</a> で決めたフォルダ、既定は「ダウンロード」) へコピーされる。
+受信が終わるのを待たずに、次のコマンドを実行することができる。<br>
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+connect '192.168.3.2:22 /ssh /auth=password /user=hoge /passwd=fuga'
+wait '$'
+scprecv 'bin/tool.sh'
+scprecv 'sample.bin' '/Users/user/hoge.bin'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/rotateright.html">‹ rotateright</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/scpsend.html">scpsend ›</a></nav>
+</body>
+</html>

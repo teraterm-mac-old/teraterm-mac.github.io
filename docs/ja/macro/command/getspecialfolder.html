@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>getspecialfolder</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>getspecialfolder</span><a class="ttw-lang" href="../../../en/macro/command/getspecialfolder.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>getspecialfolder</h1>
+
+<p>
+特殊フォルダのパスを取得する。
+</p>
+
+
+<h2>形式</h2>
+
+<pre class="macro-syntax">
+getspecialfolder &lt;strvar&gt; &lt;foldertype&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+&lt;foldertype&gt; で指定した種類の特殊フォルダのパスを取得して &lt;strvar&gt; に格納します。種類の名前は Windows 版と同じで、それぞれ Mac の近いフォルダ (下の表) を返します。'~' はホームフォルダ (例: /Users/user) を表します (実際の値には展開したパスが入ります)。
+</p>
+
+<h2>パラメータ</h2>
+
+<dl>
+	<dt class="macro">文字列変数 &lt;strvar&gt;</dt>
+	<dd>取得された文字列が格納される。</dd>
+
+	<dt class="macro">文字列 &lt;foldertype&gt;</dt>
+	<dd>この引数で指定した種類の特殊フォルダが文字列変数 &lt;strvar&gt;に代入される。<br>
+	  <table border="2">
+	    <tr>
+	        <th>AllUsersDesktop</th>
+	        <td>/Users/Shared</td>
+	    </tr>
+	    <tr>
+	        <th>AllUsersStartMenu</th>
+	        <td>/Applications</td>
+	    </tr>
+	    <tr>
+	        <th>AllUsersPrograms</th>
+	        <td>/Applications</td>
+	    </tr>
+	    <tr>
+	        <th>AllUsersStartup</th>
+	        <td>/Library/LaunchAgents</td>
+	    </tr>
+	    <tr>
+	        <th>Desktop</th>
+	        <td>~/Desktop</td>
+	    </tr>
+	    <tr>
+	        <th>Favorites</th>
+	        <td>ホームフォルダ</td>
+	    </tr>
+	    <tr>
+	        <th>Fonts</th>
+	        <td>/Library/Fonts</td>
+	    </tr>
+	    <tr>
+	        <th>MyDocuments</th>
+	        <td>~/Documents</td>
+	    </tr>
+	    <tr>
+	        <th>NetHood</th>
+	        <td>ホームフォルダ</td>
+	    </tr>
+	    <tr>
+	        <th>PrintHood</th>
+	        <td>ホームフォルダ</td>
+	    </tr>
+	    <tr>
+	        <th>Programs</th>
+	        <td>~/Applications</td>
+	    </tr>
+	    <tr>
+	        <th>Recent</th>
+	        <td>ホームフォルダ</td>
+	    </tr>
+	    <tr>
+	        <th>SendTo</th>
+	        <td>ホームフォルダ</td>
+	    </tr>
+	    <tr>
+	        <th>StartMenu</th>
+	        <td>~/Applications</td>
+	    </tr>
+	    <tr>
+	        <th>Startup</th>
+	        <td>~/Library/LaunchAgents</td>
+	    </tr>
+	    <tr>
+	        <th>Templates</th>
+	        <td>ホームフォルダ</td>
+	    </tr>
+	  </table>
+	</dd>
+
+</dl>
+
+<h2>返り値</h2>
+
+<dl>
+	<dt class="macro">システム変数 &lt;result&gt;</dt>
+	<dd>取得に失敗すると0が格納される。<br>
+	    成功すると1が格納される。</dd>
+
+</dl>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+getspecialfolder str "Desktop"
+if result then
+	messagebox str &quot;Desktop&quot;   ; /Users/user/Desktop
+endif
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/getpassword2.html">‹ getpassword2</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/gettime.html">gettime ›</a></nav>
+</body>
+</html>

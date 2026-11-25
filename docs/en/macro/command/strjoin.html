@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>strjoin</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>strjoin</span><a class="ttw-lang" href="../../../ja/macro/command/strjoin.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>strjoin</h1>
+
+<p>
+Concatenates a string with delimiters.
+</p>
+
+<h2>Format</h2>
+
+<pre class="macro-syntax">
+strjoin &lt;strvar&gt; &lt;separator&gt; [&lt;count&gt;]
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Concatenates a specified separator string variable &lt;strvar&gt; between each element of the 9 system variables from "groupmatchstr1" to "groupmatchstr9", yielding a single concatenated string.
+</p>
+
+<p>
+&lt;separator&gt; is specified delimiter characters.
+</p>
+
+<p>
+The &lt;count&gt; is specified the maximum number of substrings to concatenate.<br />
+When the &lt;count&gt; is left out, the default value is 9.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+groupmatchstr1="Jan"
+groupmatchstr2="Feb"
+groupmatchstr3="Mar"
+groupmatchstr4="Apr"
+groupmatchstr5="May"
+groupmatchstr6="Jun"
+groupmatchstr7="Jul"
+groupmatchstr8="Aug"
+groupmatchstr9="Sep"
+strjoin strvar ","
+messagebox strvar "strvar"   ; 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep'
+
+groupmatchstr1="Jan"
+groupmatchstr2="Feb"
+groupmatchstr3="Mar"
+groupmatchstr4="Apr"
+groupmatchstr5="May"
+groupmatchstr6="Jun"
+groupmatchstr7="Jul"
+groupmatchstr8="Aug"
+groupmatchstr9="Sep"
+strjoin strvar " and " 6
+messagebox strvar "strvar"   ; 'Jan and Feb and Mar and Apr and May and Jun'
+
+groupmatchstr1="Jan"
+groupmatchstr2="Feb"
+groupmatchstr3="Mar"
+groupmatchstr4="Apr"
+groupmatchstr5="May"
+groupmatchstr6="Jun"
+groupmatchstr7=""
+groupmatchstr8=""
+groupmatchstr9=""
+strjoin strvar "," 9
+messagebox strvar "strvar"   ; 'Jan,Feb,Mar,Apr,May,Jun,,,'
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="strsplit.html">strsplit</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/strinsert.html">‹ strinsert</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/strlen.html">strlen ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>exec</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>exec</span><a class="ttw-lang" href="../../../ja/macro/command/exec.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>exec</h1>
+
+<p>
+Runs an application.
+</p>
+
+<pre class="macro-syntax">
+exec &lt;command line&gt; [&lt;show&gt; [&lt;wait&gt; [&lt;current directory&gt;]]]
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Runs &lt;command line&gt; with /bin/sh -c, so shell syntax such as pipes and redirection can be used. Start Mac apps with the open command, e.g. 'open -a TextEdit readme.txt'.
+</p>
+
+
+<h2>Parameters</h2>
+<dl>
+	<dt class="macro">string &lt;show&gt; (optional default="show")</dt>
+	<dd>Accepted for compatibility with Windows macros, but not used ("hide", "minimize", "maximize" and "show" all work the same).</dd>
+
+	<dt class="macro">integer &lt;wait&gt; (optional default=0)</dt>
+	<dd>If it is 1, macro waits to finish the launched application. The exit code of the application stores the `result' system variable.<br />
+	    If it is not 1, macro launches the application and control is returned to macro.</dd>
+
+	<dt class="macro">string &lt;current directory&gt; (optional default="")</dt>
+	<dd>A current directory can be specified.<br />
+	    When omitted, the command runs in the folder of the macro file (setdir and changedir do not change it).</dd>
+</dl>
+
+
+<h2>Return Value</h2>
+
+<dl>
+	<dt class="macro">System variable &lt;result&gt;</dt>
+	<dd>
+		If integer value &lt;wait&gt; is 1
+				<table border="2">
+				<tr>
+				  <th>Value</th>
+				  <th>Meaning</th>
+				</tr>
+				<tr>
+				  <td>-1</td>
+				  <td>Failed to execute the application.</td>
+				</tr>
+				<tr>
+				  <td>not -1</td>
+				  <td>The exit code of the application</td>
+				</tr>
+				</table><br />
+				
+				If integer value &lt;wait&gt; is not 1
+				<table border="2">
+				<tr>
+				  <th>Value</th>
+				  <th>Meaning</th>
+				</tr>
+				<tr>
+				  <td>-1</td>
+				  <td>Failed to execute the application.</td>
+				</tr>
+				<tr>
+				  <td>0</td>
+				  <td>Succeeded to execute the application.</td>
+				</tr>
+				</table>
+			</dd>
+</dl>
+
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; Open a file in TextEdit.
+exec 'open -a TextEdit readme.txt'
+
+; Run a command in a given directory.
+exec 'ls -l > list.txt' 'show' 0 '/Users/user/work'
+
+; Wait for the command and check its exit code.
+exec 'ping -c 1 192.0.2.1' 'hide' 1
+if result = 0 messagebox 'OK' 'ping'
+</pre>
+
+<pre class="macro-example">
+; Launch a shell script.
+tmp='/bin/sh ~/upload.sh '
+strconcat tmp username1
+strconcat tmp ' '
+strconcat tmp userpass1
+strconcat tmp ' '
+strconcat tmp address
+messagebox tmp 'exec'
+exec tmp
+</pre>
+
+<pre class="macro-example">
+; Make a directory.
+getenv "HOME" home
+getdate logdir "log-%Y%m%d"
+sprintf2 cmd 'mkdir -p "%s/Documents/%s"' home logdir
+exec cmd "HIDE"
+</pre>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/end.html">‹ end</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/execcmnd.html">execcmnd ›</a></nav>
+</body>
+</html>

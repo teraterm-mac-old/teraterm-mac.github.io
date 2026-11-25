@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Window" tab ([Setup] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Window tab</span><a class="ttw-lang" href="../../ja/menu/setup-additional-window.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Window" tab ([Setup] menu)</h1>
+
+    <dl>
+      <dt id="Title">Title:</dt>
+      <dd>
+	Text displayed in the window title.<br>
+	See <a href="setup-additional-ctrlseq.html#AcceptTitleChangeRequest">Accept window title change request</a> for behavior when a remote title is set.<br>
+	The remote title can be reset with <a href="control.html#RsetRemoteTitle">Reset Remote Title</a>.
+      </dd>
+
+      <dt id="CursorShape">Cursor shape</dt>
+      <dd>
+	Cursor shape. Block, Vertical line or Horizontal line.<br>
+	The "Blink cursor" check box selects whether the cursor blinks.
+      </dd>
+
+      <dt id="EnableBold">Enable bold font</dt>
+      <dd>
+	Enables the use of bold style font for characters with the bold attribute.
+      </dd>
+
+      <dt id="PcBoldColor">16 Colors (PC style)</dt>
+      <dd>
+	Enables the PC style mapping of bold color.  In this mode, the bold (blink)
+	attribute is used as a color attribute bit for text (background).
+	This option increases the number of colors for text and
+	background specified by escape sequences twice, from 8 to 16.
+      </dd>
+
+      <dt id="Aixterm16Color">16 Colors (aixterm style)</dt>
+      <dd>
+	Enables aixterm style 16 colors mode.
+	This option increases the number of colors for text and
+	background specified by escape sequences twice, from 8 to 16.<br>
+
+	<b>NOTE</b>: The escape sequence(&lt;CSI&gt;100m) which changes the background color to the color number nine would conflict the escape sequence of the resetting rxvt-style characters and background color. So, if a user enables this mode, the behavior of &lt;CSI&gt;100m escape sequence will work never before.<br>
+	If a user does not like this behavior, turn off this option.
+      </dd>
+
+      <dt id="Xterm256Color">256 Colors (xterm style)</dt>
+      <dd>
+	Enables xterm style 256 colors mode.
+	This option increases the number of colors for text and
+	background specified by escape sequences twice, from 8 to 256.<br>
+	Also, a user can change the color table by the escape sequence.
+      </dd>
+
+      <dt id="ScrollBuffSize">Scroll buffer</dt>
+      <dd>
+	Enables the scroll buffer. If enabled, the number of lines in the
+	scroll buffer (including the displayed area) can be specified.
+	Up to 1,000,000 lines can be entered.<br>
+	See also <a href="../setup/teraterm-win.html">Maximum scroll buffer size</a>.
+      </dd>
+
+      <dt>Color</dt>
+      <dd>
+	<dl>
+	  <dt id="Attribute">Attribute</dt>
+	  <dd>
+	    Attribute of characters whose colors are being changed.
+      <ul>
+        <li>Normal</li>
+        <li>Bold</li>
+        <li>Blink</li>
+        <li>Reverse</li>
+        <li>URL</li>
+        <li>Underline</li>
+      </ul>
+	  </dd>
+
+	  <dt>Text</dt>
+	  <dd>
+	    Text color.
+	  </dd>
+
+	  <dt>Background</dt>
+	  <dd>
+	    Background color.
+	  </dd>
+
+	  <dt>Swap colors</dt>
+	  <dd>
+	    Exchanges the text color and background color of the currently active character attribute.
+	  </dd>
+
+	  <dt>R:, G:, B:</dt>
+	  <dd>
+	    Specifies the RGB value of the color of the specified character attribute.
+	  </dd>
+
+	  <dt id="UseNormalBGColor">Always use Normal text's BG</dt>
+	  <dd>
+	    If this option is ON, Tera Term uses Normal background color instead of Bold, Blink and URL's background color.
+	  </dd>
+	</dl>
+      </dd>
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-general.html">‹ General tab</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-visual.html">Visual tab ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Connect to a server with SSH</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Connect to a server with SSH</span><a class="ttw-lang" href="../../ja/easy/connect-ssh.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1 id="top">Connect to a server with SSH</h1>
+
+<p>This page connects to the example server "example.com" as the user "user". Use the host name and user name your server administrator gave you instead.</p>
+
+<h2 id="steps">Steps</h2>
+<ol>
+ <li>Press <kbd>⌘</kbd><kbd>N</kbd> (or choose [File] &gt; [New connection...]).</li>
+ <li>Make sure "TCP/IP" is selected.</li>
+ <li>In "Host", type the host name or IP address (for example example.com).</li>
+ <li>Under "Service", choose "SSH". Leave the TCP port at 22.</li>
+ <li>Type your "User name" (for example user).</li>
+ <li>You can leave "Password" empty. You will then be asked for it in the terminal after connecting.</li>
+ <li>Click "Connect".</li>
+</ol>
+
+<p><img src="img/connect_ssh.jpg" alt="The New connection dialog (SSH)" width="556"><br>
+<small>The New connection dialog with example.com as the host and user as the user name</small></p>
+
+<h2 id="hostkey">The question on your first connection</h2>
+<p>The first time you connect to a server, the terminal shows a question like this:</p>
+<pre>
+The authenticity of host 'example.com (...)' can't be established.
+ED25519 key fingerprint is SHA256:....
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</pre>
+<ol>
+ <li>It means "This is the first connection to this server. Is it really the right one?"</li>
+ <li>If the host is correct, type <kbd>yes</kbd> and press <kbd>return</kbd>.</li>
+ <li>You will not be asked again for this server.</li>
+</ol>
+<p class="notice">If a server you use every day shows "REMOTE HOST IDENTIFICATION HAS CHANGED!", do not continue. Check with the server administrator first.</p>
+
+<h2 id="password">Enter your password</h2>
+<ol>
+ <li>When the terminal shows something like "user@example.com's password:", type your password.</li>
+ <li>The characters you type are not shown. Just type and press <kbd>return</kbd>.</li>
+ <li>When the server prompt (such as "$") appears, you are connected and can type commands.</li>
+</ol>
+
+<h2 id="disconnect">Disconnect</h2>
+<ul>
+ <li>Type <code>exit</code> on the server, or choose [File] &gt; [Disconnect] (<kbd>⌘</kbd><kbd>I</kbd>).</li>
+ <li>To close the window, press <kbd>⌘</kbd><kbd>W</kbd>.</li>
+</ul>
+
+<h2 id="detail">More details</h2>
+<ul>
+ <li><a href="../menu/file-new.html">New connection</a></li>
+ <li><a href="../usage/ssh.html">SSH connections</a> (key authentication, host key checks)</li>
+ <li><a href="../menu/setup-ssh.html">SSH settings</a></li>
+</ul>
+
+<p><a href="index.html">Quick guide contents</a> | Next: <a href="connect-serial.html">Connect to a serial device</a></p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../easy/start.html">‹ Launching, quitting and updates</a><a href="../index.html">Contents</a><a class="ttw-next" href="../easy/connect-serial.html">Connect to a serial device ›</a></nav>
+</body>
+</html>

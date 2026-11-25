@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Numeric keypad</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>Numeric keypad</span><a class="ttw-lang" href="../../../ja/usage/tips/about_tenkey.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Numeric keypad</h1>
+
+<p>
+In the default setup, Tera Term emulates VT100 keyboard. Therefore some
+numeric keys do not work like them in other applications. For example,
+the "Num Lock" key does not work as "Num Lock". To disable the emulation
+and use numeric keys in normal way, edit the keyboard setup file
+KEYBOARD.CNF to disable every items in the [VT numeric keypad] section
+by using the word "off", like the following (see also
+<A HREF="../../setup/keyboard.html">Keyboard setup file</A>):
+</p>
+
+<p>
+KEYBOARD.CNF lives in the settings folder (~/Library/Application Support/Tera Term Mac).
+If the file does not exist, the standard assignments (the same as IBMKEYB.CNF) are used.
+Changes to the file take effect at the next key press. To use a file in another location, choose it with [Setup] Load key map....
+</p>
+
+<p>
+Mac keypad keys are mapped by their labels: the clear key acts as Num Lock, and the = key is the keypad =.
+On keyboards without a numeric keypad, such as MacBook keyboards, this setting does not matter.
+</p>
+
+<pre>
+[VT numeric keypad]
+
+Num0=off
+Num1=off
+Num2=off
+Num3=off
+Num4=off
+Num5=off
+Num6=off
+Num7=off
+Num8=off
+Num9=off
+NumMinus=off
+NumComma=off
+NumPeriod=off
+NumEnter=off
+PF1=off
+PF2=off
+PF3=off
+PF4=off
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../usage/tips/user-shortcutkey.html">‹ User shortcut keys</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../usage/tips/appkeypad.html">Keypad modes ›</a></nav>
+</body>
+</HTML>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>unlink</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>unlink</span><a class="ttw-lang" href="../../../ja/macro/command/unlink.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>unlink</h1>
+
+<p>
+Terminates the link between the current window and the macro.
+</p>
+
+<pre class="macro-syntax">
+unlink
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+The macro enters the unlinked state and can not control the window any more. The window stays open and the macro keeps running.<br>
+In the unlinked state, the "connect" command can open a new window and link the macro to it.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; connect to the host
+connect 'host'
+
+; terminate the link
+unlink
+
+; open a new window, link the macro to it and connect
+connect 'host2'
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="closett.html">closett</a></li>
+  <li><a href="connect.html">connect</a></li>
+  <li><a href="cygconnect.html">cygconnect</a></li>
+  <li><a href="disconnect.html">disconnect</a></li>
+  <li><a href="testlink.html">testlink</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/toupper.html">‹ toupper</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/until.html">until, enduntil ›</a></nav>
+</body>
+</html>

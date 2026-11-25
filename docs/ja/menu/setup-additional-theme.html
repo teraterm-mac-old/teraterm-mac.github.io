@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Theme" タブ ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>テーマタブ</span><a class="ttw-lang" href="../../en/menu/setup-additional-theme.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Theme" タブ ([Setup] メニュー)</h1>
+
+    <p>
+    [Setup] メニューの Theme... を選ぶと、このタブが開きます。
+    </p>
+
+    <h2 id="theme">テーマ</h2>
+
+    <p>
+    Tera Term Mac の<a href="../usage/transparent.html#theme">見た目</a>を変更することができます。<br>
+    macOS の外観 (ダークモードなど) の設定ではありません。<br>
+    テーマの内容を変えるときは、テーマファイルをテキストエディタで編集してください (<a href="setup-additional-visual-theme.html">テーマファイルの内容</a>)。
+
+    <dl>
+      <dt>Enable</dt>
+      <dd>テーマを有効にします。</dd>
+
+      <dt id="FastSizeMove">Disable theme when moving or resizing window</dt>
+      <dd>
+        ウィンドウのサイズの変更、移動の途中に
+        ウィンドウの背景(BGテーマ)の描画を省略して、処理を高速にします。<br>
+        BGテーマを使用しているときに有効です。
+      </dd>
+
+      <dt>Startup</dt>
+      <dd>
+        起動時に使用するテーマを設定します。
+        <dl>
+          <dt>使用しない</dt>
+          <dd>テーマを使用しません</dd>
+          <dt>固定テーマ(テーマファイル指定)</dt>
+          <dd>
+            特定のテーマファイルを読み込みます。<br>
+            「同梱のテーマ」ポップアップでアプリに同梱されたテーマを選ぶか、"..." ボタンでテーマファイル (*.ini) を選びます。
+          </dd>
+          <dt>ランダムテーマ</dt>
+          <dd>
+            テーマファイルフォルダのテーマをランダムに読み込みます。<br>
+            テーマファイルフォルダは ~/Library/Application Support/Tera Term Mac/theme です。ここに *.ini が無いときは、同梱のテーマから選びます。
+          </dd>
+        </dl>
+      </dd>
+
+    </dl>
+
+    <h2>配色</h2>
+
+    <dl>
+      <dt>配色</dt>
+      <dd>
+        用意された配色 (ダーク, ホワイト, 暖色, Solarized など) や、ターミナル.app のプロファイルの配色を選べます。<br>
+        配色を選ぶと、文字色・背景色・カーソルの色・ANSIカラーをその配色にします。OK で確定します。
+      </dd>
+
+      <dt>カーソルの色</dt>
+      <dd>
+        カーソルの色を選びます。
+      </dd>
+    </dl>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-visual.html">‹ 表示タブ</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-additional-terminal.html">端末タブ ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>TTSSH (Tera Term 設定ファイル)</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>ログレベル</span><a class="ttw-lang" href="../../en/setup/teraterm-ssh.html">English</a></nav>
+<main class="ttw-main">
+
+
+<p>
+この設定は、TERATERM.INI を編集したあと [設定]-[設定の読み込み...] で読み込むと使われます。扱いの詳細は「<a href="teraterm-ini.html#mac">Tera Term Mac での扱い</a>」を参照してください。
+</p>
+
+<h1 id="LogLevel">ログレベル</h1>
+
+<p>
+SSH 接続のログを TTSSH.LOG に記録するかどうかと、記録する詳しさを設定します。
+</p>
+
+<pre>
+LogLevel=&lt;設定値&gt;
+</pre>
+
+<p>
+SSH 接続には macOS の ssh を使います。0 以外を指定すると、値を ssh の LogLevel に直し、<code>ssh -E</code> で設定フォルダ (<code>~/Library/Application Support/Tera Term Mac</code>) の TTSSH.LOG に書きます。
+</p>
+
+<table>
+<thead>
+  <tr> <th>値</th> <th>ssh の LogLevel</th> </tr>
+</thead>
+<tbody>
+  <tr> <td>0</td>  <td>(記録しない)</td> </tr>
+  <tr> <td>1～24</td>  <td>INFO</td> </tr>
+  <tr> <td>25～49</td> <td>VERBOSE</td> </tr>
+  <tr> <td>50～74</td> <td>DEBUG1</td> </tr>
+  <tr> <td>75～99</td> <td>DEBUG2</td> </tr>
+  <tr> <td>100 以上</td><td>DEBUG3</td> </tr>
+</tbody>
+</table>
+
+<pre>
+省略時:
+LogLevel=0
+</pre>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../setup/teraterm-prn.html">‹ INI: 印刷</a><a href="../index.html">目次</a><a class="ttw-next" href="../setup/teraterm-term.html">INI: 端末 ›</a></nav>
+</body>
+</HTML>

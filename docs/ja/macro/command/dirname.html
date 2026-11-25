@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>dirname</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>dirname</span><a class="ttw-lang" href="../../../en/macro/command/dirname.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>dirname</h1>
+
+<p>
+パス名からディレクトリ名を得る。
+</p>
+
+<pre class="macro-syntax">
+dirname &lt;strvar&gt; &lt;path&gt;
+</pre>
+
+
+<h2>解説</h2>
+
+<p>
+パス名 &lt;path&gt; のディレクトリ名部分を &lt;strvar&gt; に格納する。<br>
+パス名は文字列として処理しており、実在している必要はない。フォルダの区切りは '/' と '\' のどちらでもかまわない。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+dirname dir '/Users/user/teraterm/test.txt'
+; dir = "/Users/user/teraterm"
+dirname dir '/Users/user/teraterm/'
+; dir = "/Users/user"
+dirname dir '/Users/user/teraterm'
+; dir = "/Users/user"
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="basename.html">basename</a></li>
+  <li><a href="makepath.html">makepath</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/delvar.html">‹ delvar</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/dirnamebox.html">dirnamebox ›</a></nav>
+</body>
+</html>

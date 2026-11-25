@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>folderdelete</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>folderdelete</span><a class="ttw-lang" href="../../../ja/macro/command/folderdelete.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>folderdelete</h1>
+
+<p>
+Deletes a folder.
+</p>
+
+<pre class="macro-syntax">
+folderdelete &lt;foldername&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Deletes the folder specified by &lt;foldername&gt;.<br>
+If the folder is deleted successfully, the system variable "result" is set to 0. Otherwise, "result" is set to non-zero.<br>
+However, the folder can not be removed if files within the folder exist.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+folderdelete 'temp'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/foldercreate.html">‹ foldercreate</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/foldersearch.html">foldersearch ›</a></nav>
+</body>
+</html>

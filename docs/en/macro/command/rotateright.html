@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>rotateright</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>rotateright</span><a class="ttw-lang" href="../../../ja/macro/command/rotateright.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>rotateright</h1>
+
+<p>
+Rotates (circular shifts) to right.
+</p>
+
+<pre class="macro-syntax">
+rotateright &lt;intvar&gt; &lt;intval&gt; &lt;count&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Rotates (circular shifts) &lt;intval&gt; &lt;count&gt; digits to right, and returns it in the integer variable &lt;intvar&gt;.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+rotateright b $00000008 4
+sprintf '0x%08x' b
+messagebox inputstr '0x80000000'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/rotateleft.html">‹ rotateleft</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/scprecv.html">scprecv ›</a></nav>
+</body>
+</html>

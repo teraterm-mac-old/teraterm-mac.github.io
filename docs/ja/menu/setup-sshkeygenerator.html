@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH Keygenerator ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>SSH 鍵の生成</span><a class="ttw-lang" href="../../en/menu/setup-sshkeygenerator.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH Keygenerator ([Setup] メニュー)</h1>
+
+    <h2>"TTSSH: Key Generator" ダイアログボックス</h2>
+    <p>
+      詳しい解説は<a href="../usage/ssh.html">SSH 接続</a>の「<a href="../usage/ssh.html#generate">キーの生成</a>」
+      をご覧下さい。<br>
+      鍵の生成には macOS の ssh-keygen (/usr/bin/ssh-keygen) を使います。
+    </p>
+
+    <dl>
+      <dt id="type">Key type</dt>
+      <dd>生成する鍵の種類を指定します。
+        <dl>
+          <dt id="rsa">RSA</dt>
+          <dd>SSH2用 RSA鍵を生成します。</dd>
+
+          <dt id="dsa">DSA</dt>
+          <dd>SSH2用 DSA鍵を生成します。鍵長は 1024 ビットに固定です。<br />
+          DSA鍵の鍵長を1024ビットより大きくしても、セキュリティを高める事にはなりません。 より強度の高い鍵を使いたい場合は、RSA鍵やECDSA鍵、ED25519鍵を使用して下さい。<br />
+          macOS の新しい ssh では DSA 鍵が使えないことがあります。</dd>
+
+          <dt id="ecdsa256">ECDSA-256</dt>
+          <dd>SSH2用 ECDSA(256bit)鍵を生成します。</dd>
+
+          <dt id="ecdsa384">ECDSA-384</dt>
+          <dd>SSH2用 ECDSA(384bit)鍵を生成します。</dd>
+
+          <dt id="ecdsa521">ECDSA-521</dt>
+          <dd>SSH2用 ECDSA(521bit)鍵を生成します。</dd>
+
+          <dt id="ed25519">ED25519</dt>
+          <dd>SSH2用 ED25519鍵を生成します。</dd>
+        </dl>
+      </dd>
+
+      <dt id="bits">Key Bits</dt>
+      <dd>生成する鍵の鍵長を指定します。RSA のときだけ変更できます。</dd>
+
+      <dt id="kdf">bcrypt KDF</dt>
+      <dd>秘密鍵を OpenSSH 形式 (bcrypt KDF) で保存します。ラウンド数も指定できます。<br />
+      チェックしないときは PEM 形式で保存します。</dd>
+
+      <dt id="generate">Generate</dt>
+      <dd>鍵を生成します。生成した鍵は、保存するまで一時フォルダに置かれます。</dd>
+
+      <dt id="passphrase">Key passphrase</dt>
+      <dd>生成した秘密鍵に付けるパスフレーズを指定します。</dd>
+
+      <dt id="confirm_pass">Confirm passphrase</dt>
+      <dd>
+        秘密鍵に付けるパスフレーズの確認をします。
+        Key passphraseと同じものを入力してください。
+      </dd>
+
+      <dt>Comment</dt>
+      <dd>鍵に付けるコメントを指定します。</dd>
+
+      <dt id="save_pulic">Save public key</dt>
+      <dd>生成した公開鍵を保存します。保存パネルは ~/.ssh で開き、ファイル名の初期値は id_種類.pub です。</dd>
+
+      <dt id="save_private">Save private key</dt>
+      <dd>生成した秘密鍵を保存します。保存パネルは ~/.ssh で開き、ファイル名の初期値は id_種類 です。
+      ファイルのアクセス権は 600 (自分だけ読み書きできる) になります。<br />
+      パスフレーズによる暗号化は ssh-keygen が行います。</dd>
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-sshforward.html">‹ SSH ポート転送</a><a href="../index.html">目次</a><a class="ttw-next" href="../setup/knownfiles.html">known_hosts ファイル ›</a></nav>
+</body>
+</html>

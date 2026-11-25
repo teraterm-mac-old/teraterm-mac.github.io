@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Proxy 接続</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>プロキシ経由で接続する</span><a class="ttw-lang" href="../../en/usage/proxy.html">English</a></nav>
+<main class="ttw-main">
+
+    <h1>Proxy 接続</h1>
+
+    <p>
+      Tera Term Mac の Proxy 接続について解説します。
+    </p>
+
+    <h2>前提知識</h2>
+
+    <p>
+      Proxy とは、下図のようにインターネット環境とLAN環境が切り離されたネットワーク構成のとき、外部との接続に用いる手段です。ゲートウェイがNATに対応しておらず、直接外部に接続できない場合に設置されていることがあります。
+    </p>
+    <div class="img"><img src="https://teratermproject.github.io/manual/5/ja/image/connection.png" alt="Proxy 接続"></div>
+    <p>
+      このような形態で使われる Proxy にはいくつもの種類があります。Tera Term Mac は次の種類の Proxy に対応します。
+    </p>
+
+    <ul>
+      <li>HTTP <a href="#http_proxy">(*)</a></li>
+      <li>TELNET（telnet 用）</li>
+      <li>SOCKS4 / SOCKS4a</li>
+      <li>SOCKS5</li>
+    </ul>
+
+    <h2>設定方法</h2>
+
+    <h3>設定の手順</h3>
+
+    <p>
+      まず、<a href="../menu/setup-proxy.html">[設定] メニューから「プロキシ...」</a>を選択します。
+    </p>
+    <p>
+      「プロキシの設定」ダイアログが現れますので、「種類」に使用する Proxy の種類を、「ホスト名」に Proxy サーバのホスト名（もしくは IP アドレス）を、「ポート番号」に Proxy のポート番号を入力して「OK」をクリックします。「ユーザ名」と「パスワード」は Proxy での認証が必要な場合にのみ入力してください。
+    </p>
+    <p>
+      これで Proxy の設定は完了ですから、通常の接続を行います。
+    </p>
+
+    <h3>接続の種類と Proxy</h3>
+
+    <ul>
+      <li>Telnet と その他 (生 TCP) の接続は、Tera Term Mac が直接 Proxy につなぎます。</li>
+      <li>SSH 接続は macOS の ssh コマンドを使います。Proxy を設定すると、ssh の ProxyCommand で Tera Term Mac 自身が中継します。このため、TELNET Proxy や、ユーザ名・パスワードが必要な SOCKS5 / HTTP Proxy も使えます。</li>
+      <li>シリアル接続とローカルシェルには Proxy は使いません。</li>
+      <li>設定は TERATERM.INI の [TTProxy] セクションと同じ名前で読み書きします。</li>
+    </ul>
+    
+    <h2 id="http_proxy">HTTP プロキシを使うときの注意点</h2>
+    
+    <p>
+    HTTP プロキシサーバは通常 HTTP リクエストを扱うために設置されているので、設定によっては以下のような接続を許さないことがあります。
+    </p>
+    
+    <ul>
+      <li>通信内容が HTTP, HTTPS ではない</li>
+      <li>通信先のポート番号が 80, 443 ではない</li>
+      <li>CONNECT メソッドで接続しようとするが、通信先のポート番号が 443 ではない</li>
+    </ul>
+    
+    <p>
+    通常の TELNET サーバや SSH サーバへの接続は上記の条件に該当するため、このような設定のプロキシサーバを通信の中継に利用することはできません。
+    </p>
+    
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-cygwin.html">‹ ローカルシェルの設定</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-proxy.html">プロキシの設定 ›</a></nav>
+</body>
+</html>

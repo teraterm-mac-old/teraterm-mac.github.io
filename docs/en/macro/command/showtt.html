@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>showtt</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>showtt</span><a class="ttw-lang" href="../../../ja/macro/command/showtt.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>showtt</h1>
+
+<p>
+Changes the displaying of Tera Term window.
+</p>
+
+<pre class="macro-syntax">
+showtt &lt;show flag&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Hides the terminal window of Tera Term if &lt;show flag&gt; is -1.<br>
+Minimizes the terminal window of Tera Term if &lt;show flag&gt; 0.<br>
+Restores the terminal window Tera Term if &lt;show flag&gt; is 1.<br>
+Hides the TEK window of Tera Term if &lt;show flag&gt; is 2.<br>
+Minimizes the TEK window of Tera Term if &lt;show flag&gt; 3.<br>
+Open/restores the TEK window of Tera Term if &lt;show flag&gt; is 4.<br>
+Closes the TEK window of Tera Term if &lt;show flag&gt; is 5.<br>
+Hides the log window if &lt;show flag&gt; is 6.<br>
+Minimizes the log window if &lt;show flag&gt; is 7.<br>
+Restores the log window if &lt;show flag&gt; is 8.<br>
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; Minimize Tera Term.
+showtt 0
+
+; Restore Tera Term.
+showtt 1
+
+; Hide Tera Term.
+showtt -1
+
+showtt 7    ;Minimize log window 
+showtt 8    ;Restore log window 
+showtt 6    ;Hide log window
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/settitle.html">‹ settitle</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/sprintf.html">sprintf ›</a></nav>
+</body>
+</html>

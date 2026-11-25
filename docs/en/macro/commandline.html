@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Command line</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Macro command line</span><a class="ttw-lang" href="../../ja/macro/commandline.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>Command line</h1>
+
+<pre>
+<span class="syntax">"/Applications/Tera Term Mac.app/Contents/MacOS/TeraMac" /M=&lt;macro file&gt; [&lt;destination and options&gt;...]</span>
+</pre>
+
+<p>
+Run a macro with the /M= option of Tera Term Mac.<br>
+You can also run a macro by opening a .ttl file from the Finder or with the open command (<a href="howtorun.html">How to run a macro file</a>).
+</p>
+
+
+<h2>Options</h2>
+
+<dl>
+  <dt>/M=&lt;macro file&gt;</dt>
+  <dd>Macro filename.<br>
+      If this value is not a full path, it is understood as a relative path from the current folder. '~' is the home folder.<br>
+      If the name has no extension, ".TTL" (or ".ttl") is added.<br>
+      The filename(path excluded) is stored in the system variable "param1" and "params[1]".
+  </dd>
+
+  <dt>&lt;destination and options&gt;</dt>
+  <dd>A destination in the same format as the Tera Term Mac command line. If given, the connection is started and then the macro is run.</dd>
+</dl>
+
+<h2>System variables</h2>
+<p>
+The following <a href="syntax/variables.html">system variables</a> are set.
+</p>
+<dl>
+  <dt>params</dt>
+  <dd>String array of the parameters.<br>
+      params[0] holds "the app executable and the macro file path", and params[1] holds the macro filename.
+  </dd>
+
+  <dt>param1</dt>
+  <dd>Same as params[1]. The macro filename is stored.</dd>
+
+  <dt>param2 - param9</dt>
+  <dd>Always empty.</dd>
+
+  <dt>paramcnt</dt>
+  <dd>The number of parameters stored in params. Always 1 (the macro filename).</dd>
+</dl>
+<p>
+Each element of params and param1 - param9 are strings, so up to 511 characters can be stored.
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../macro/howtoassoc.html">‹ Opening .ttl files</a><a href="../index.html">Contents</a><a class="ttw-next" href="../macro/syntax/index.html">TTL language ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>マクロを動かしてみる</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>マクロを動かしてみる</span><a class="ttw-lang" href="../../en/easy/macro.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1 id="top">マクロを動かしてみる</h1>
+
+<p>マクロ (TTL) は、決まった操作を自動で行うための小さなプログラムです。Windows 版の Tera Term で使っていたマクロも、そのまま動きます。</p>
+
+<h2 id="sample">サンプル</h2>
+<p>次の 5 行は、例のサーバー server1.example.com に SSH でつなぎ、2 つのコマンドを送るマクロです。</p>
+
+<pre class="macro-example">
+connect 'server1.example.com /ssh /user=user'
+wait '$'
+sendln 'echo Hello'
+wait '$'
+sendln 'ls'
+</pre>
+
+<ul>
+ <li><code>connect</code> … 接続先につなぎます。</li>
+ <li><code>wait</code> … 画面に「$」(プロンプト) が出るまで待ちます。</li>
+ <li><code>sendln</code> … 文字を送り、最後に改行 (return) を送ります。</li>
+</ul>
+
+<h2 id="save">マクロファイルを作る</h2>
+<ol>
+ <li>テキストエディット (標準テキストにしておきます) などで、上の 5 行を書きます。サーバー名とユーザー名は自分のものに変えてください。</li>
+ <li>「sample.ttl」のように、名前の最後を「.ttl」にして保存します。</li>
+</ol>
+
+<h2 id="run">マクロを動かす</h2>
+<ol>
+ <li>Tera Term Mac で [コントロール] &gt; [マクロ] を選びます。</li>
+ <li>保存した sample.ttl を選んで「開く」を押します。</li>
+ <li>パスワードを聞かれたら、端末の画面で入力します。そのあとはマクロが自動でコマンドを送ります。</li>
+</ol>
+<p>Finder で .ttl ファイルをダブルクリックしても動かせます。そのときは新しいウィンドウが開きます。</p>
+
+<p class="notice">止めたいときは、[コントロール] &gt; [マクロウィンドウの表示] で出るウィンドウの「終了」を押します。</p>
+
+<h2 id="detail">くわしくは</h2>
+<ul>
+ <li><a href="../macro/index.html">マクロとは</a></li>
+ <li><a href="../macro/howtorun.html">マクロの実行方法</a></li>
+ <li><a href="../macro/command/connect.html">connect</a>、<a href="../macro/command/wait.html">wait</a>、<a href="../macro/command/sendln.html">sendln</a></li>
+ <li><a href="../macro/command/index.html">コマンド一覧</a></li>
+</ul>
+
+<p><a href="index.html">かんたんマニュアルの目次へ</a> | 次: <a href="trouble.html">困ったとき</a></p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../easy/ttmenu.html">‹ よく使う接続先を登録する</a><a href="../index.html">目次</a><a class="ttw-next" href="../easy/trouble.html">困ったとき ›</a></nav>
+</body>
+</html>

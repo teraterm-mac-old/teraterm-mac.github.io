@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>str2int</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>str2int</span><a class="ttw-lang" href="../../../en/macro/command/str2int.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>str2int</h1>
+
+<p>
+文字列を整数値に変換する。
+</p>
+
+<pre class="macro-syntax">
+str2int &lt;intvar&gt; &lt;string&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+文字列 &lt;string&gt; を整数値に変換し、整数変数  &lt;intvar&gt; に代入する。<br>
+文字列 &lt;string&gt; には10進、16進を指定することができる。以下に例を示す。
+</p>
+
+<pre>
+10進 … 123, 0009
+16進 … 0x7b, $7b
+</pre>
+
+<p>
+正常に変換できた場合は 1 、できなかった場合は 0 がシステム変数 result に代入される。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+str2int val '123'
+; val=123, result=1
+
+str2int val '123abc'
+; val=123, result=1
+
+str2int val '0009'
+; val=9,   result=1
+
+str2int val 'abc'
+; val=0,   result=0
+
+hexnum='0x456FE3'
+str2int val hexnum
+sprintf '%d %x' val val
+messagebox inputstr 'test'
+; val=4550627, result=1
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/str2code.html">‹ str2code</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/strcompare.html">strcompare ›</a></nav>
+</body>
+</html>

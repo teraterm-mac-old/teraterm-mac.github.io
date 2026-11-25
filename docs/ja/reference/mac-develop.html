@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>開発者向け (Mac 版) - ソースの構成</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>ソースの構成</span><a class="ttw-lang" href="../../en/reference/mac-develop.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>開発者向け (Mac 版)</h1>
+
+<p>
+このページは Tera Term Mac の開発についての資料です。本家 Tera Term (Windows 版) の開発については「<a href="https://teratermproject.github.io/manual/5/ja/reference/develop.html" target="_blank">開発者向け (本家 Windows 版)</a>」を見てください。
+</p>
+
+<ul>
+  <li>ソースの構成 (このページ)</li>
+  <li><a href="mac-develop-build.html">ビルド・テスト・リリース</a></li>
+  <li><a href="mac-develop-i18n.html">画面の言語とヘルプ</a></li>
+</ul>
+
+<h2 id="repository">リポジトリ</h2>
+
+<p>
+ソースは <a href="https://github.com/satorunet/teraterm_macos" target="_blank">https://github.com/satorunet/teraterm_macos</a> にあります。
+このリポジトリは本家 <a href="https://github.com/TeraTermProject/teraterm" target="_blank">TeraTermProject/teraterm</a> を fork したもので、Mac 版のソースはすべて <code>macos/</code> フォルダにあります。
+<code>macos/</code> 以外は本家のソースの写しです。ここで直しても本家には入らないので、本家を直したいときは本家に送ってください。
+</p>
+
+<p>
+Tera Term Mac は TeraTerm Project とは関係のない非公式の移植です。不具合の報告・要望・Pull Request は、本家ではなくこのリポジトリの Issues / Discussions / Pull Request へお願いします (リポジトリの CONTRIBUTING.md も見てください)。
+</p>
+
+<h2 id="package">Swift Package の構成</h2>
+
+<p>
+<code>macos/Package.swift</code> は Swift Package Manager のパッケージ (swift-tools-version 5.5、macOS 11 以上) です。Xcode のプロジェクトファイルはありません。ターゲットは次のとおりです。
+</p>
+
+<table border="1">
+<tr><th>ターゲット</th><th>場所</th><th>中身</th></tr>
+<tr><td>TeraCore</td><td>Sources/TeraCore</td><td>端末エミュレータ・文字コード・文字幅・TTL マクロ・ファイル転送・設定ファイルの読み書きなど。AppKit に依存しない部分 (テストはここを対象にします)</td></tr>
+<tr><td>TeraMac</td><td>Sources/TeraMac</td><td>アプリ本体 (実行ファイル TeraMac)。AppKit の画面・メニュー・ダイアログ・接続・ヘルプ・自動アップデート</td></tr>
+<tr><td>CTeraFile</td><td>Sources/CTeraFile</td><td>本家 <code>teraterm/ttpfile</code> の C のソース (XMODEM / YMODEM / ZMODEM / Kermit / B-Plus / Quick-VAN / raw) をそのままコンパイルするターゲット。<code>glue/</code> と <code>compat/</code> が Windows の API の代わりをします</td></tr>
+<tr><td>COniguruma</td><td>Sources/COniguruma</td><td>正規表現ライブラリ 鬼車 (Oniguruma 6.9.10)。本家のマクロと同じ正規表現にするため</td></tr>
+<tr><td>TeraUninstall</td><td>Sources/TeraUninstall</td><td>アンインストール (アプリ本体、設定と接続リスト、キーチェーンに保存したパスワードを消す)</td></tr>
+<tr><td>TeraCoreTests</td><td>Tests/TeraCoreTests</td><td>TeraCore のテスト (XCTest)</td></tr>
+</table>
+
+<p>
+外部のパッケージは自動アップデートの <a href="https://sparkle-project.org/" target="_blank">Sparkle</a> だけです。Sparkle 2.10 からは macOS 12 以上が必要になるため、2.9 系に固定しています。
+</p>
+
+<h2 id="core">TeraCore の主なファイル</h2>
+
+<table border="1">
+<tr><th>ファイル</th><th>中身</th></tr>
+<tr><td>Terminal.swift</td><td>端末エミュレータ本体 (VT100 / xterm 互換のエスケープシーケンス、画面とスクロールバック、属性・色)</td></tr>
+<tr><td>TTL/</td><td>TTL マクロの処理系。本家 <code>teraterm/ttpmacro</code> (ttmparse.cpp・ttmbuff.c・ttl.cpp・ttl_gui.cpp など) を Swift に移したもの。TTLReserved.swift は ttmparse.h / ttmparse.cpp から作った予約語の表</td></tr>
+<tr><td>FileTransfer/</td><td>ファイル転送。プロトコル本体は CTeraFile (本家 ttpfile) を呼び、ファイル名やフォルダの決まりごとは本家と同じにしています</td></tr>
+<tr><td>TEK/</td><td>TEK ウインドウ (Tektronix 4010/4014) の解析。本家 ttptek を移したもの</td></tr>
+<tr><td>Encoding.swift</td><td>文字コード (漢字コード)。1 バイト文字コードの対応表は SBCSTables.swift</td></tr>
+<tr><td>CharWidth.swift / CharWidthTables.swift</td><td>文字の表示幅 (結合文字・半角・全角・絵文字)。表は本家の *.tbl から作ったもの</td></tr>
+<tr><td>SBCSTables.swift</td><td>ISO8859-x / CPxxx / KOI8-R などの対応表。本家 <code>teraterm/teraterm/mapping/*.map</code> から作ったもの</td></tr>
+<tr><td>Lang.swift</td><td>画面の言語 (本家の言語ファイルと Mac 版だけの文言)。<a href="mac-develop-i18n.html">画面の言語とヘルプ</a>を見てください</td></tr>
+<tr><td>IniFile.swift / IniBackup.swift</td><td>TERATERM.INI などの .ini ファイルの読み書きとバックアップ</td></tr>
+<tr><td>TTCommandLine.swift</td><td>Tera Term のコマンドライン (connect マクロのパラメータも同じ)</td></tr>
+<tr><td>TTKeyMap.swift</td><td>KEYBOARD.CNF のキーマップ</td></tr>
+<tr><td>ProxyCommandLine.swift / ProxyHandshake.swift</td><td>TTProxy のコマンドラインと、プロキシ (HTTP / SOCKS4 / SOCKS5 / telnet) とのやりとり</td></tr>
+<tr><td>TeraLog.swift</td><td>ログファイル</td></tr>
+<tr><td>その他</td><td>IDN.swift (国際化ドメイン名)、SerialLineMode.swift (シリアルのデータ長・パリティ)、TitleFormat.swift (ウインドウのタイトル)、TermLimits.swift (端末の大きさの上限) など</td></tr>
+</table>
+
+<h2 id="app">TeraMac (アプリ本体) の主なファイル</h2>
+
+<table border="1">
+<tr><th>ファイル</th><th>中身</th></tr>
+<tr><td>main.swift</td><td>起動処理 (コマンドライン、.ttl を開いたとき、自己テスト)</td></tr>
+<tr><td>SessionWindowController*.swift</td><td>1 つのウインドウ = 1 つの接続。メニューの動作、ログ、ファイル転送、設定、TEK の切り替え</td></tr>
+<tr><td>TerminalView.swift</td><td>端末画面の描画、キー入力、マウス、日本語入力</td></tr>
+<tr><td>Connection.swift</td><td>接続。SSH は macOS の <code>/usr/bin/ssh</code> を動かし、Telnet と生の TCP は Network.framework、シリアルポートは termios、ローカルシェルは forkpty を使います</td></tr>
+<tr><td>SSHSetup.swift / ProxyRelay.swift</td><td>TTSSH / TTProxy の設定を ssh のオプションに直して渡す。プロキシを使うときは、アプリ自身を <code>--proxy-connect</code> 付きで ssh の ProxyCommand として動かします</td></tr>
+<tr><td>Settings.swift</td><td>端末の設定 (UserDefaults に保存。TERATERM.INI に相当)。初期値はアプリに入れた本家の TERATERM.INI から読みます</td></tr>
+<tr><td>IniImport.swift</td><td>Windows 版の TERATERM.INI の読み込み・書き出し</td></tr>
+<tr><td>MenuBar.swift / InWindowMenuBar.swift</td><td>メニューバーと、ウインドウの中に置くメニューバー</td></tr>
+<tr><td>SetupSheet.swift / Dialogs.swift</td><td>その他の設定のシートと、ダイアログの土台</td></tr>
+<tr><td>TeraMenu.swift</td><td>TeraTerm Menu (ttpmenu) の Mac 版。メニューバーに常駐する接続先一覧</td></tr>
+<tr><td>MacroRunner.swift</td><td>TTL マクロを別スレッドで動かし、端末ウインドウとつなぐ (本家の ttpmacro と DDE の代わり)</td></tr>
+<tr><td>HelpViewer.swift / HelpModernStyle.swift</td><td>ヘルプの表示 (クラシック表示とモダン表示)</td></tr>
+<tr><td>Updater.swift</td><td>自動アップデート (Sparkle)</td></tr>
+<tr><td>その他</td><td>TEKWindowController.swift、ThemeFile.swift (テーマ)、ColorSchemes.swift (配色)、Broadcast.swift、FileDrop.swift、TransferDialogs.swift、Credits.swift (謝辞とライセンス) など</td></tr>
+</table>
+
+<h2 id="upstream">本家との関係</h2>
+
+<p>
+本家 Tera Term は Win32 API で書かれているので、Mac ではそのまま動きません。Tera Term Mac は、本家の動きに合わせながら Swift / AppKit で作り直したものです。
+</p>
+
+<ul>
+  <li><strong>本家のソースをそのまま使うもの</strong>: ファイル転送のプロトコル (<code>teraterm/ttpfile</code> の C のソースを CTeraFile にコピー)、正規表現の鬼車</li>
+  <li><strong>本家のファイルをビルドのときに使うもの</strong>: <code>installer/release/TERATERM.INI</code> (設定の初期値)、<code>installer/release/lang_utf8/*.lng</code> (画面の言語)、<code>installer/release/theme</code> (テーマの見本)、<code>teraterm/common/helpid.h</code> (ヘルプ ID)。<code>scripts/bundle.sh</code> がアプリにコピーします</li>
+  <li><strong>本家のファイルから作るもの</strong>: 文字幅の表と 1 バイト文字コードの表 (<a href="mac-develop-build.html#generators">生成スクリプト</a>)</li>
+  <li><strong>本家を Swift に移したもの</strong>: TTL マクロ (ttpmacro)、TEK、ログ、コマンドライン、キーマップ、TTProxy のやりとりなど。ソースの先頭のコメントに、元にした本家のファイルや関数を書いています</li>
+  <li><strong>Mac 向けに作り直したもの</strong>: 画面・メニュー・ダイアログ、接続 (SSH は TTSSH の代わりに macOS の OpenSSH を使う)、設定の保存 (UserDefaults)、パスワードの保存 (キーチェーン)</li>
+  <li><strong>ヘルプ</strong>: 本家の <code>doc/ja</code>・<code>doc/en</code> を元に Mac 向けに書き直したものを <code>macos/Resources/help-mac</code> に置いています</li>
+</ul>
+
+<p>
+マクロについて本家に合わせたところ・Mac 向けに変えたところは、リポジトリの <code>macos/docs/マクロ互換性.md</code> にまとめています。
+OS によって違う動きは、Windows ではなく macOS のやり方に合わせる方針です。
+</p>
+
+<h2 id="license">ライセンス</h2>
+
+<ul>
+  <li><code>macos/</code> のソースは MIT License です (<code>macos/LICENSE</code>)。送っていただいたコードも MIT License で公開します。</li>
+  <li>本家から来た部分 (アプリのアイコン、TTL マクロの処理系、CTeraFile のファイル転送、本家の表から作った表) は本家と同じ BSD 3-Clause License です。</li>
+  <li>鬼車は BSD 2-Clause License、Sparkle は MIT License です。</li>
+</ul>
+
+<p>
+全文は <code>macos/LICENSE</code> と、アプリの「謝辞とライセンス…」、<a href="../about/copyright.html">ライセンス・著作権</a>にあります。
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../about/emulations_dec_special.html">‹ DEC 特殊グラフィック</a><a href="../index.html">目次</a><a class="ttw-next" href="../reference/mac-develop-build.html">ビルド・テスト・リリース ›</a></nav>
+</body>
+</html>

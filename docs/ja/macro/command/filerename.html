@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>filerename</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>filerename</span><a class="ttw-lang" href="../../../en/macro/command/filerename.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>filerename</h1>
+
+<p>
+ファイル名を変更する。
+</p>
+
+<pre class="macro-syntax">
+filerename &lt;file1&gt; &lt;file2&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+ファイル &lt;file1&gt; を &lt;file2&gt; という名前に変更する。<br>
+&lt;file1&gt; と &lt;file2&gt; は違う名前でなければならない。<br>
+ファイル名の変更が成功した場合、システム変数 result に 0 が格納される。それ以外の場合、result に 0 以外が格納される。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+filerename 'test.dat' test2.dat'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/filereadln.html">‹ filereadln</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/filesearch.html">filesearch ›</a></nav>
+</body>
+</html>

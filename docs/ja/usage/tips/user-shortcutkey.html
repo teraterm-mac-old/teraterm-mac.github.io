@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>ユーザー・ショートカット・キー</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>ユーザー・ショートカット・キー</span><a class="ttw-lang" href="../../../en/usage/tips/user-shortcutkey.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>ユーザー・ショートカット・キー</h1>
+
+<p>
+<A HREF="../../setup/keyboard.html">キーボード設定ファイル</A>の [Shortcut keys] と [VT function keys] セクションの項目を書き換えると、以下のショートカット・キーを自分の好きなキーに割り当てることができます。詳しくは、<A HREF="../../setup/keyboard.html">キーボード設定ファイル</A>を読んでください。
+</p>
+
+<pre>
+[Shortcut keys]
+セクションの項目    機能                                初期設定
+<HR>
+EditCopy            [Edit] Copy コマンド*1)             Ctrl+Insert
+EditPaste           [Edit] Paste コマンド *1)           Shift+ nsert
+EditPasteCR         [Edit] Paste&lt;CR&gt; コマンド *1)       なし
+EditCLS             [Edit] Clear screen コマンド        なし
+EditCLB             [Edit] Clear buffer コマンド        なし
+ControlOpenTEK      [Control] Open TEK コマンド         なし
+ControlCloseTEK     [Control] Close TEK コマンド        なし
+LineUp              一行スクロールアップ                Ctrl+↑
+LineDown            一行スクロールダウン                Ctrl+↓
+PageUp              一ページスクロールアップ            Ctrl+PageUp
+PageDown            一ページスクロールダウン            Ctrl+PageDown
+BuffTop             バッファの先頭へスクロール          Ctrl+Home
+BuffBottom          バッファの最後へスクロール          Ctrl+End
+NextWin             次の Tera Term ウィンドウへ移動     Ctrl+Tab
+PrevWin             前の Tera Term ウィンドウへ移動     Ctrl+Shift+Tab
+NextShownWin        次の Tera Term ウィンドウへ移動     なし
+                    (最小化されたウィンドウは対象外)
+PrevShownWin        前の Tera Term ウィンドウへ移動     なし
+                    (最小化されたウィンドウは対象外)
+LocalEcho           ローカルエコーを on/off にする。    なし
+
+
+[VT function keys]
+セクションの項目    機能                                初期設定
+<HR>
+Print               [File] Print コマンド *1)           なし
+Break               ブレーク信号送出 *1)                なし
+</pre>
+
+<p>
+*1) これらの機能には<A HREF="../keyboard.html">システム・ショートカット・キー</A>が割り当てられています。
+メニューの &#8984; キーです (コピー &#8984;C、貼り付け &#8984;V、貼り付け&lt;CR&gt; &#8984;R、印刷 &#8984;P、ブレーク送信 &#8984;B)。
+</p>
+
+<h2>Mac での注意</h2>
+<ul>
+  <li>&#8984; キーはメニューのショートカットに使うので、キーボード設定ファイルでは割り当てられません。Option キーは Alt として扱います。</li>
+  <li>Mac のキーボードには Insert キーがありません。help キーのあるキーボードでは、help キーが Insert にあたります。初期設定の Ctrl+Insert / Shift+Insert のかわりに &#8984;C / &#8984;V を使ってください。</li>
+  <li>PageUp・PageDown・Home・End は、それぞれ fn+↑・fn+↓・fn+←・fn+→ でも押せます。</li>
+  <li>Control+↑・Control+↓ などは macOS の Mission Control に使われていることがあります。その場合は、システム設定の「キーボード」→「キーボードショートカット」で macOS 側の割り当てを外すか、別のキーを割り当ててください。</li>
+  <li>スクロールバックは Shift+PageUp / Shift+PageDown でもできます。</li>
+</ul>
+
+<p>
+例えば、Ctrl+V を [Edit] Paste に割り当てたい場合は、キーボード設定ファイルの [Shortcut keys] セクションで、
+</p>
+
+<pre>
+EditPaste=1071
+</pre>
+
+<p>
+としてください (IBM PC/AT キーボードの場合。Mac では Control+V です)。
+</p>
+
+<p>
+また [User keys] セクションでは、ユーザーキーを使ってすべてのメニューコマンドに対してショートカット・キーを設定することができます
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../usage/tips/index.html">‹ ヒント一覧</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../usage/tips/about_tenkey.html">テンキー ›</a></nav>
+</body>
+</HTML>

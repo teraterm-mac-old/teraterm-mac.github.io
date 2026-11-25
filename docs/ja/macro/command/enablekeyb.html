@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>enablekeyb</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>enablekeyb</span><a class="ttw-lang" href="../../../en/macro/command/enablekeyb.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>enablekeyb</h1>
+
+<p>
+Tera Term のキーボード入力を許可/禁止する。
+</p>
+
+<pre class="macro-syntax">
+enablekeyb &lt;flag&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+&lt;flag&gt; の値が1の場合は許可、0の場合は禁止。<br>
+禁止にすると、マクロからのデータ送信中に、ユーザの誤入力を防ぐことができる。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; ユーザのキー入力を無視する
+enablekeyb 0
+
+for i 1 5
+	sendln 'date'
+	wait '$'
+	pause 5
+next
+
+; ユーザのキー入力を許可する
+enablekeyb 1
+
+sendln 'cat &gt; /tmp/foo.txt'
+pause 10
+send $4   ; CTRL+D
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/doloop.html">‹ do, loop</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/end.html">end ›</a></nav>
+</body>
+</html>

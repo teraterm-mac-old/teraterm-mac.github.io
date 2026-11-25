@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>continue</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>continue</span><a class="ttw-lang" href="../../../ja/macro/command/continue.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>continue</h1>
+
+<p>
+Transfers control immediately to the next iteration of a loop.
+</p>
+
+<pre class="macro-syntax">
+continue
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Transfer from inside a "for" or "while" loop to the next iteration of that loop.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+a=0
+b=0
+while a&lt;5 
+    a=a+1
+    if a&gt;2 then
+        <strong>continue</strong>
+    endif
+    b=b+1
+endwhile
+
+sprintf2 var "a=%d b=%d" a b
+dispstr var
+;a=5 b=2
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="doloop.html">do, loop</a></li>
+  <li><a href="fornext.html">for, next</a></li>
+  <li><a href="until.html">until, enduntil</a></li>
+  <li><a href="while.html">while, endwhile</a></li>
+  <li><a href="break.html">break</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/connect.html">‹ connect</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/crc16.html">crc16, crc16file ›</a></nav>
+</body>
+</html>

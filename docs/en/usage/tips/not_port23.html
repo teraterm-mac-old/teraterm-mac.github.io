@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Tips on TCP/IP connection with a port other than 23</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>Using ports other than 23</span><a class="ttw-lang" href="../../../ja/usage/tips/not_port23.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Telnet port number</h1>
+
+<p>
+On the <A HREF="../../commandline/teraterm.html">command line</A>, or on the <A HREF="../../menu/file.html">[File] New connection</A> dialog box, you can specify the TCP port number (&lt;TCP port#&gt;) and telnet flag (&lt;telnet flag&gt;) for a TCP/IP connection. If these parameters are omitted in the command line, the default values are taken from the settings.
+</p>
+
+<p>
+Only if &lt;telnet flag&gt; is 1 (on) and &lt;TCP port#&gt; is 23, Tera Term Mac starts spontaneously sending telnet commands to the host for the option negotiation when the TCP/IP connection is established.
+</p>
+
+
+<p>
+If &lt;telnet flag&gt; is 1 (on), Tera Term Mac responds to telnet commands sent by the host whatever &lt;TCP port#&gt; is.
+If &lt;telnet flag&gt; is 0 (off; raw TCP with /T=0), received data is used as is.
+</p>
+
+<h1>Terminal setup for non-telnet TCP/IP connection</h1>
+
+<p>
+For a non-telnet TCP/IP connection (usually with a port other than 23), you may need to set the "local echo" option on, and the "new-line (transmit)" option to CR+LF.
+</p>
+
+<p>
+Change local echo and new-line (transmit) in <A HREF="../../menu/setup-terminal.html">[Setup] Terminal...</A>.
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../menu/setup-additional-tcpip.html">‹ TCP/IP advanced settings</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../menu/setup-serialport.html">Serial port settings ›</a></nav>
+</body>
+</HTML>

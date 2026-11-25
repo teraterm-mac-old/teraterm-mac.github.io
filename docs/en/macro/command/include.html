@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>include</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>include</span><a class="ttw-lang" href="../../../ja/macro/command/include.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>include</h1>
+
+<p>
+Moves control to the include file.
+</p>
+
+<pre class="macro-syntax">
+include '&lt;include file name&gt;'
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Loads the specified macro file and interprets the macro. When the macro execution ends, the next line of the include command is restarted.<br>
+Also, the include nest level is 9.
+</p>
+
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+----- Main file "main.ttl" ------
+i=10
+:loop
+; Move to the include file.
+include 'sub.ttl'
+if i&gt;=0 goto loop
+end
+----- End of "main.ttl" ---------
+
+----- Include file "sub.ttl" ----
+if i&lt;0 then
+  messagebox 'error!' 'sub'
+  ; Go back to the main file.
+  exit
+endif
+i = i - 1
+; Go back to the main file.
+----- End of "sub.ttl" ----------
+</pre>
+
+
+<h2>See also</h2>
+<ul>
+  <li><a href="../howtorun.html">Note: Loading a macro file</a></li>
+  <li><a href="exit.html">exit</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/ifdefined.html">‹ ifdefined</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/inputbox.html">inputbox ›</a></nav>
+</body>
+</html>

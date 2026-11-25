@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SSH SCP ([File] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Sending files with SCP</span><a class="ttw-lang" href="../../ja/menu/file-ssh-scp.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1>SSH SCP ([File] menu)</h1>
+
+    Transfers files between the Mac and the host with the Secure Copy Protocol.<br>
+    Available only while connected with SSH. The macOS scp (/usr/bin/scp) is used, sharing the current SSH connection (you do not need to log in again).<br>
+    A progress window is shown during the transfer.
+
+    <h2 id="send">Send</h2>
+    <dl>
+      <dt>From:</dt>
+      <dd>
+        Send file. Choose it with the [...] button, or drag a file from Finder onto this window.
+      </dd>
+
+      <dt>TO:</dt>
+      <dd>
+        Specify the destination path.<br>
+        The path is treated as home directory when dest is empty.<br>
+        NOTICE: The "~" may not be used in some cases of remote OS and shell.
+      </dd>
+
+      <dt>Send button</dt>
+      <dd>
+        Send start
+      </dd>
+    </dl>
+
+    <h3>See also</h3>
+    <ul>
+      <li><a href="../usage/mouse.html#scp">droped action</a></li>
+    </ul>
+
+    <h2 id="receive">Receive</h2>
+    <dl>
+      <dt>From:</dt>
+      <dd>
+        Receive file
+      </dd>
+
+      <dt>TO:</dt>
+      <dd>
+        Specify the save location.<br>
+        You can specify either a download folder or a download file.<br>
+        "<a href="../setup/folder.html#FileDir">File transfer</a>" setting is used when TO is empty.
+      </dd>
+
+      <dt>Receive button</dt>
+      <dd>
+        Receive start
+      </dd>
+    </dl>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/file-transfer-qv.html">‹ Quick-VAN</a><a href="../index.html">Contents</a><a class="ttw-next" href="../setup/teraterm-trans.html">Confirming drag and drop ›</a></nav>
+</body>
+</html>

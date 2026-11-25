@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>call</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>call</span><a class="ttw-lang" href="../../../ja/macro/command/call.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>call</h1>
+
+<p>
+Calls a subroutine.
+</p>
+
+<pre class="macro-syntax">
+call &lt;label&gt;
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Calls a subroutine beginning with the &lt;label&gt; line.
+</p>
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+messagebox "I'm in main." "test"
+; Jump to ":sub".
+<strong>call sub</strong>
+messagebox "Now I'm in main" "test"
+end
+
+; Start of the subroutine.
+:sub
+messagebox "Now I'm in sub" "test"
+; Go back to the main routine.
+return
+</pre>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="return.html">return</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/bringupbox.html">‹ bringupbox</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/callmenu.html">callmenu ›</a></nav>
+</body>
+</html>

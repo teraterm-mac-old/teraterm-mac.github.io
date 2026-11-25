@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>setdir</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>setdir</span><a class="ttw-lang" href="../../../en/macro/command/setdir.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>setdir</h1>
+
+<p>
+マクロのカレントディレクトリを変更する。
+</p>
+
+<pre class="macro-syntax">
+setdir &lt;dir&gt;
+</pre>
+
+
+<h2>解説</h2>
+
+<p>
+マクロのカレントディレクトリを &lt;dir&gt; に変更する。パスは Mac のパスで書く ('~' はホームフォルダ。'c:' のようなドライブ名は無視し、'\' は '/' として扱う)。
+</p>
+
+<p>
+ファイル操作コマンド(fileopen 等)で指定されるファイル名は "マクロのカレントディレクトリ" を基準にする。
+</p>
+
+<h3>注意</h3>
+
+<p>
+setdir コマンドは "マクロのカレントディレクトリ" を変更する。<br>
+<a href="changedir.html">changedir</a> コマンドは "ファイル転送用ディレクトリ" を変更する。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+setdir '~/Documents'
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="getdir.html">getdir</a></li>
+  <li><a href="changedir.html">changedir</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/setdebug.html">‹ setdebug</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/setdlgpos.html">setdlgpos ›</a></nav>
+</body>
+</html>

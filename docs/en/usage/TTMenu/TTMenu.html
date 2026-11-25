@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<title>TeraTerm Menu Tutorial</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>TeraTerm Menu</span><a class="ttw-lang" href="../../../ja/usage/TTMenu/TTMenu.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>TeraTerm Menu Tutorial</h1>
+
+<h2 id="whatis">1. About TeraTerm Menu</h2>
+
+<p>
+TeraTerm Menu is a launcher tool that connects to registered hosts with one click (originally written by S.Hayakawa, maintained by TeraTerm Project).
+</p>
+
+<p>
+TeraTerm Menu is built into Tera Term Mac; no separate application is needed.
+When you choose a host, Tera Term Mac connects in a new window. User names and passwords are never passed on a command line.
+</p>
+
+<h2 id="registry">2. Where the settings are stored</h2>
+
+<p>
+The connection list is stored in the macOS preferences (net.satoru.teramac), and the passwords, encrypted, in the <b>macOS keychain</b>.
+</p>
+
+<p>
+The "Import..." and "Export..." buttons at the bottom left of the list editor read and write ttpmenu.ini.
+</p>
+<ul>
+  <li>Import: reads hosts and passwords from a Windows ttpmenu.ini (UTF-16 / UTF-8 / Shift_JIS, including the format written from the registry by the <a href="https://github.com/TeraTermProject/teraterm/tree/main/installer/ttpmenu" target="_blank">conversion script</a>). Passwords encrypted with LockBox cannot be read; enter them again.</li>
+  <li>Export: writes a file that Windows TeraTerm Menu can read as is (UTF-16, CRLF). You can choose whether to export the passwords too (they use a weak encryption, so handle the file with care).</li>
+</ul>
+
+
+<h2 id="launch">3. How to launch</h2>
+
+<p>
+When Tera Term Mac starts, the list editor opens first (when started with a host name or /M=, it connects directly).<br>
+TeraTerm Menu lives in the <b>Tera Term icon in the menu bar</b>. It stays there even after all windows are closed.
+</p>
+
+<ul>
+  <li>Left click: shows the list of registered hosts. Choose one to connect in a new window.</li>
+  <li>Right click: List Configuration / showing large icon / specifying font / showing list by left-click / Show List with Hotkey (&#8963;&#8997;M) / Open Tera Term Mac at Login / Version / Run (New Connection) / Quit</li>
+  <li>The hotkey &#8963;&#8997;M shows the list at the mouse position.</li>
+  <li>The list is also available from the right-click menu of the Tera Term Mac icon in the Dock. The list editor also opens from "Edit TeraTerm Menu List..." in the application menu.</li>
+  <li>To quit, choose "Quit" from the right-click menu of the menu bar icon, or press &#8984;Q.</li>
+</ul>
+
+
+<h2 id="configuration">4. Configuration</h2>
+
+<p>
+At first no hosts are registered, so start by creating the list in the list editor. Fill in the items on the right and click "Save"; the entry is added to the list on the left (an entry with the same name is overwritten).
+You can also sort entries into folders with right click or drag and drop in the list.
+</p>
+
+<dl>
+  <dt>Name / Host Name</dt>
+  <dd>The host name can include a port number in the form "hostname:port".</dd>
+
+  <dt>autologin</dt>
+  <dd>Specify the user name, password, "use SSH" and key file. Check "use SSH" for SSH connections. For public key authentication, set the private key file in Keyfile. For Telnet, the user name and password are sent after waiting for the prompts.</dd>
+
+  <dt>specified macro file</dt>
+  <dd>Runs a TTL macro after connecting.</dd>
+
+  <dt>launch only</dt>
+  <dd>Only connects.</dd>
+
+  <dt>details</dt>
+  <dd>Specify the log file (%Y%m%d etc. insert the date and time), the user name prompt, the password prompt and options.<br>
+    Options use the Tera Term <a href="../../commandline/teraterm.html">command line</a> syntax. For example, "/KT=UTF8 /KR=UTF8" sets the character encoding, "/C= /BAUD=" makes a serial connection and "/T=0" makes a raw TCP connection.</dd>
+
+  <dt>kick at starting</dt>
+  <dd>Connects automatically when Tera Term Mac starts.</dd>
+</dl>
+
+<p>
+Once the list is ready, left-click the menu bar icon to show the list and connect right away.
+</p>
+
+<p>
+If you want to keep the connection list when uninstalling, save it to ttpmenu.ini with "Export..." first.
+</p>
+
+
+<h2 id="contact">5. Contact</h2>
+
+<p>
+For TeraTerm Menu in Tera Term Mac, please use the <a href="https://github.com/satorunet/teraterm_macos/issues" target="_blank">GitHub Issues of Tera Term Mac</a> (not the TeraTerm Project).
+</p>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../menu/setup-proxy.html">‹ Proxy settings</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../commandline/teraterm.html">Command line ›</a></nav>
+</body>
+</html>

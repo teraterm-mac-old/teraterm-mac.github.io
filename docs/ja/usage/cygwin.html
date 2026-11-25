@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ローカルシェル接続</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../">Tera Term Mac</a> › <a href="../index.html">ドキュメント</a> › <span>ローカルシェル</span><a class="ttw-lang" href="../../en/usage/cygwin.html">English</a></nav>
+<main class="ttw-main">
+
+
+<h1>ローカルシェル接続</h1>
+
+<p>
+<b>ローカルシェル接続</b>で、この Mac のシェル (zsh など) を Tera Term Mac のウィンドウで使えます。
+</p>
+
+<ul>
+  <li>[ファイル] メニューの「ローカルシェル接続」を選ぶか、&#8984;G を押すと、新しいウィンドウでシェルが開きます。</li>
+  <li><a href="../menu/file-new.html">新しい接続</a>のダイアログで「ローカルシェル (このMacのターミナル)」を選んでも開けます。</li>
+  <li>マクロの <a href="../macro/command/callmenu.html">callmenu</a> でメニュー ID 50112 を指定すると、ローカルシェル接続を開きます。</li>
+</ul>
+
+<h2>設定</h2>
+
+<p>
+<a href="../menu/setup-additional-cygwin.html">[設定] メニューの「その他の設定...」の「ローカルシェル」タブ</a>で設定します。設定は次に開くシェルから使われます。
+</p>
+
+<dl>
+  <dt>SHELL</dt>
+  <dd>起動するシェルです。空のときは環境変数 SHELL のシェル (なければ /bin/zsh) を使います。</dd>
+
+  <dt>TERM</dt>
+  <dd>環境変数 TERM の値です。既定は xterm-256color です。</dd>
+
+  <dt>ENV_1, ENV_2</dt>
+  <dd>「名前=値」の形で、環境変数を追加します。</dd>
+
+  <dt>LOGIN_SHELL</dt>
+  <dd>ログインシェルとして起動します。</dd>
+
+  <dt>HOME_CHDIR</dt>
+  <dd>ホームディレクトリで始めます。</dd>
+</dl>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-serialport.html">‹ シリアルポートの設定</a><a href="../index.html">目次</a><a class="ttw-next" href="../menu/setup-additional-cygwin.html">ローカルシェルの設定 ›</a></nav>
+</body>
+</html>

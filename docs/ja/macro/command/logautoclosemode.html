@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>logautoclosemode</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>logautoclosemode</span><a class="ttw-lang" href="../../../en/macro/command/logautoclosemode.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>logautoclosemode</h1>
+
+<p>
+マクロ終了時、自動的にログ採取を停止する。
+</p>
+
+<pre class="macro-syntax">
+logautoclosemode &lt;flag&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+&lt;flag&gt; の値が1の場合、マクロ終了時、自動的にログ採取を停止する。<br>
+&lt;flag&gt; の値が0の場合、マクロ終了時、自動的にログ採取を停止しない。
+</p>
+
+<p>
+※マクロ終了後、設定情報はデフォルトに戻す。すなわち、マクロ終了時、自動的にログ採取を停止しない。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+logautoclosemode 1
+logopen '/Users/user/Documents/teraterm_sample.log' 0 0
+
+; do something...
+
+end
+</pre>
+
+
+<h2>参照</h2>
+<ul>
+  <li><a href="logopen.html">logopen</a></li>
+  <li><a href="logclose.html">logclose</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/loadkeymap.html">‹ loadkeymap</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/logclose.html">logclose ›</a></nav>
+</body>
+</html>

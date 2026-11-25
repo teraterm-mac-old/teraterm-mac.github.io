@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>testlink</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>testlink</span><a class="ttw-lang" href="../../../en/macro/command/testlink.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>testlink</h1>
+
+<p>
+現在のリンクおよび接続の状態を報告する。
+</p>
+
+<pre class="macro-syntax">
+testlink
+</pre>
+
+<h2>解説</h2>
+
+<p>
+リンクと接続の状態に応じて以下のうちの一つの値がシステム変数 result に格納される。
+</p>
+
+<table>
+ <tr>
+  <th>値</th>
+  <th>状態</th>
+ </tr>
+ <tr>
+  <td>0</td>
+  <td>ウインドウとリンクされていない。</td>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>ホストへの接続はされていないが、ウインドウとのリンクはされている。</td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>リンクおよび接続両方ともされている。</td>
+ </tr>
+</table>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; もしマクロがウインドウにリンクされていなければ
+testlink
+; connect コマンドを実行
+if result=0 connect 'host'
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="closett.html">closett</a></li>
+  <li><a href="connect.html">connect</a></li>
+  <li><a href="cygconnect.html">cygconnect</a></li>
+  <li><a href="disconnect.html">disconnect</a></li>
+  <li><a href="unlink.html">unlink</a></li>
+  <li><a href="../appendixes/disconnecttiming.html">切断後すぐに接続する場合の注意点</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/strtrim.html">‹ strtrim</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/tolower.html">tolower ›</a></nav>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Frequently asked questions</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Q &amp; A</span><a class="ttw-lang" href="../../ja/about/qanda.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Frequently asked questions</h1>
+
+<p>
+Please read this page carefully before you contact the author.<br>
+Please send questions about Tera Term Mac to the <a href="contacts.html">Tera Term Mac Issues</a>.
+</p>
+
+<h2>[About Tera Term Mac]</h2>
+
+<p>
+<span class="qanda">Q.</span> Where can I find the latest version?<br>
+<span class="qanda">A.</span> You can find the latest Tera Term Mac at:<br>
+<a href="https://github.com/satorunet/teraterm_macos/releases/latest" target="_blank">https://github.com/satorunet/teraterm_macos/releases/latest</a><br>
+<span class="qanda">A.</span> An installed Tera Term Mac supports automatic updates (Sparkle). You can check at any time with [Tera Term Mac] &gt; [Check for Updates...] in the menu.
+</p>
+
+<p>
+<span class="qanda">Q.</span> When will the next version be released?<br>
+<span class="qanda">A.</span> Tera Term Mac has no fixed release schedule. When a new version is available, the automatic update asks whether to install it (it never replaces the app without asking).<br>
+<span class="qanda">A.</span> The changes in each version are listed on <a href="https://github.com/satorunet/teraterm_macos/releases" target="_blank">Releases</a>.
+</p>
+
+<p>
+<span class="qanda">Q.</span> What is the version number of Tera Term Mac?<br>
+<span class="qanda">A.</span> Tera Term Mac has its own version numbers (for example 0.4.4).<br>
+You can see the version in [Tera Term Mac] &gt; [About Tera Term Mac].
+</p>
+
+<p>
+<span class="qanda">Q.</span> Can a user use Tera Term Mac's program and source code at the user's place of business for commercial purposes?<br>
+<span class="qanda">A.</span>
+No problem. You do not need to tell us. Tera Term Mac is distributed under the <a href="copyright.html">MIT License</a> (the parts derived from Tera Term are under the BSD License).</p>
+
+<p>
+<span class="qanda">Q.</span> I want to participate in Tera Term Mac development.<br>
+<span class="qanda">A.</span> Please send issues or pull requests to <a href="https://github.com/satorunet/teraterm_macos" target="_blank">satorunet/teraterm_macos</a> on GitHub.</p>
+
+<p>
+<span class="qanda">Q.</span> EAR (Export Administration Regulations)<br>
+<span class="qanda">A.</span>
+Tera Term Mac does not include SSH cryptography; it uses the ssh command that comes with macOS for SSH. Refer to the <a href="./module.html">components</a> and <a href="./copyright.html">license and copyright</a> pages; you are responsible for your own compliance with export laws.
+</p>
+
+
+<h2>[Basic usage]</h2>
+<p>
+<span class="qanda" id="connection">Q.</span> I can not connect to a host.<br>
+<span class="qanda">A.</span> Please check the following things:
+</p>
+<ul>
+ <li>Network configuration of your Mac. See "Network" in System Settings (System Preferences).</li>
+ <li>Can you use other network applications such as WWW browsers and ftp  <li>clients?</li>
+ <li>Is the host name or IP address correct?</li>
+ <li>Can you connect to the host from other machines?</li>
+</ul>
+
+<p>
+Please read message and confirm following:
+</p>
+
+<dl>
+  <dt>Invalid host</dt>
+  <dd>
+    Connection destination was not resolved from host name.<br>
+    Confirm that host name is valid and host name is able to resolve.
+  </dd>
+
+  <dt>Connection refused</dt>
+  <dd>
+    Connection destination does not up a service.<br>
+    Confirm service status.
+  </dd>
+
+  <dt>Connection timed out</dt>
+  <dd>
+    No response from destination.<br>
+    Check network, host startup, firefall, etc.
+  </dd>
+
+  <dt>Network cannot be reached</dt>
+  <dd>
+    Unable to reach destination.<br>
+    Check network settings of the Mac on which Tera Term Mac is running, or route to destination.
+  </dd>
+
+</dl>
+
+<p>
+Please ask the network administrator how to configure network properties.
+</p>
+
+<p>
+<span class="qanda">Q.</span> Tera Term automatically closes when I logout a telnet host. How to disable closing?<br>
+<span class="qanda">A.</span> Turn "Auto window close" off in the <a href="../menu/setup-additional-tcpip.html">[Setup] Additional settings "TCP/IP" tab</a>.
+</p>
+
+<p>
+<span class="qanda">Q.</span> I want to connect to a telnet host, but a serial port is always opened when Tera Term is started.<br>
+<span class="qanda">A.</span> Set "Default port" to "TCP/IP" in the <a href="../menu/setup-additional-tcpip.html">[Setup] Additional settings "TCP/IP" tab</a>.
+</p>
+
+<p id="save_ini">
+  <span class="qanda">Q.</span> I changed setup item, but it is not kept. Exit Tera Term and start Tera Term, changed setup item value is restored to original value.<br>
+  <span class="qanda">A.</span> In Tera Term Mac, settings you confirm with OK in the [Setup] menu dialogs are saved automatically and used the next time you start the app.<br>
+  <a href="../menu/setup-save.html">[Setup] Save setup</a> writes the settings to a file in the TERATERM.INI format. You can read such a file with <a href="../menu/setup-restore.html">[Setup] Restore setup</a>.
+</p>
+
+
+<h2>[Keyboard]</h2>
+<p>
+<span class="qanda">Q.</span> How to set the Backspace or Delete key to work for the backspace function.<br>
+<span class="qanda">A.</span> The Mac delete key sends DEL by default, like Terminal.app. To send Backspace (BS) instead, turn "Backspace key" on or off in the <a href="../menu/setup-keyboard.html">[Setup] Keyboard</a> dialog box. For the forward delete (fn+delete) key, turn "Delete key" on (this may not work in some hosts).
+</p>
+
+<p>
+<span class="qanda">Q.</span> How to use numeric keys in normal way?<br>
+<span class="qanda">Q.</span> I can not enter "/", "*", "-" and "+" by using the numeric keypad.<br>
+<span class="qanda">A.</span> See <a href="../usage/tips/about_tenkey.html">"Numeric keypad"</a>.
+</p>
+
+<p>
+<span class="qanda">Q.</span> How to use F1-F4 keys as VT100 PF1-PF4 keys?<br>
+<span class="qanda">A.</span> See <a href="../usage/tips/pf1-pf4key_vt100.html">"PF1-PF4 keys of VT100"</a>.
+</p>
+
+<p>
+<span class="qanda">Q.</span> F1 (or whatever) key does not work. How to configure the keyboard?<br>
+<span class="qanda">A.</span> In most cases, I can not answer this kind of question because I don't know how the key works. If you know what character (string) should be sent or what function should be performed by pressing the key, you can make the key work by editing the keyboard setup file. Read <a href="../setup/keyboard.html">Keyboard setup file</a>.
+</p>
+
+<p>
+<span class="qanda">Q.</span> How to use the same keyboard shortcut for the <a href="../menu/edit.html">[Edit] Paste (Copy)</a> command as other applications?<br>
+<span class="qanda">A.</span> In Tera Term Mac, &#8984;V (&#8984;C) is the shortcut for [Edit] &gt; [Paste] ([Copy]), the same as other Mac applications.<br>
+Control+V and Control+C are sent to the host as ^V and ^C.
+</p>
+
+
+<h2>[SSH]</h2>
+<p id="ssh_C-v">
+  <span class="qanda">Q.</span> I can not paste into a password or passphrase input box.<br>
+  <span class="qanda">A.</span> In Tera Term Mac, you can paste into dialog input boxes with &#8984;V.<br>
+  SSH authentication is done by macOS OpenSSH (the ssh command). You can also paste with &#8984;V when it asks for a password in the terminal.
+</p>
+
+<p id="ssh_SCP_dir">
+  <span class="qanda">Q.</span> I sent a file by SCP without specifying destination folder, but file was not saved to shell current directory.<br>
+  <span class="qanda">A.</span> SCP can not save to shell current directory.<br>
+Terminal emulator does not know shell current directory of remote side. If prompt indicate current directory, a text from remote side is only displaying. Current directory is not shown always, in some shell or setting. User is able to understand current directory because he construct in his head from prompt text, result of `cmd' command or result of `cd' command.
+</p>
+
+
+<h2>[Miscellaneous]</h2>
+<p id="dec_special_graphic">
+<span class="qanda">Q.</span> DEC Special Graphics (like Box-drawing characters) are not displayed properly.<br>
+<span class="qanda">A.</span> Refer to <a href="emulations_dec_special.html">DEC Special Graphics</a><br>
+The app draws box-drawing characters by itself.<br>
+If they are not displayed properly, check that the character code settings of the host and Tera Term Mac match.
+</p>
+
+<p>
+<span class="qanda">Q.</span> When Box-drawing characters in DEC Special Graphics are displayed, a "line" character does not match with an "angle" character smoothly.<br>
+<span class="qanda">A.</span> Refer to <a href="emulations_dec_special.html">DEC Special Graphics</a><br>
+Tera Term Mac draws the main box-drawing characters (such as &#9472; &#9474; &#9484; &#9488; &#9492; &#9496; &#9500; &#9508; &#9516; &#9524; &#9532;) as lines filling the whole character cell, so gaps rarely appear. If you still see them, try changing the font, its size or the character spacing in <a href="../menu/setup-font.html">[Setup] Font</a>.
+</p>
+
+<p>
+<span class="qanda">Q.</span> Why number of fonts in the list of <a href="../menu/setup-font.html">[Setup] Font</a> dialog box is so small?<br>
+<span class="qanda">Q.</span> Why I can not select the "Times" font at the <a href="../menu/setup-font.html">[Setup] Font</a> dialog box?<br>
+<span class="qanda">A.</span> In Tera Term Mac, you choose the font in the macOS Fonts panel. Characters must be displayed with equal spacing to emulate the VT terminal properly, so choose a fixed-pitch font such as "Menlo", "SF Mono" or "Courier".<br>
+If you choose a proportional font such as "Times", the characters are not evenly spaced and are not displayed properly.
+</p>
+
+<p>
+<span class="qanda">Q.</span> How to change the behavior of text selection by mouse double clicking?<br>
+<span class="qanda">A.</span> See <A HREF="../setup/teraterm-win.html">"Delimiters of a word selected by double clicking"</a>.
+</p>
+
+<p>
+<span class="qanda">Q.</span> The window title can not change by using the <a href="../commandline/teraterm.html#w">/W=</a> of the command line option and the <a href="../macro/command/settitle.html">settitle</a> macro command.<br>
+
+<span class="qanda">A.</span> Some Linux distributions overwrite the window title after the current users' changing. To prevent this behavior, try either one of the following two methods:
+</p>
+
+<ul>
+  <li>A user configures the user's shell settings to disable sending the control sequence for the window title changing.</li>
+  <li>A user turns off the "Accept Window Title Change Request" on the General tab of the <a href="../menu/setup-additional-general.html">[Setup]Additional Setting "General" tab</a>.</li>
+</ul>
+
+<p id="window_resize_clear">
+  <span class="qanda">Q.</span> Window content is cleared when window is resized.<br>
+  <span class="qanda">A.</span> To prevent this behavior, turn off <a href="../menu/setup-additional-general.html#ClearOnResize">[Setup]-[Additional settings]-[General]-[Clear display when window resized]</a>.
+</p>
+
+<p id="logfile_garbled">
+  <span class="qanda">Q.</span> Content of log file is not same as displayed in VTWindow. Character that is not able to displayed is outputted.<br>
+  <span class="qanda">A.</span> VTWindow displays result of received data which is parsed by control sequence. On the other hand, log file is a record of received data.<br>
+  Therefore "content of log file" is not become same as "displayed content in VTWindow." It is similar to the difference between opening a Word document in Word and opening it in a text editor.
+</p>
+
+<div>
+Example:
+</div>
+
+keyboard input
+<div style="border: 1px solid #666666; color:#000000; background-color:#ffffff; padding:0.2ex;">
+type `l'<br>
+type `s'<br>
+type ENTER
+</div>
+
+display to VTWindow
+<div style="border: 1px solid #666666; color:#ffffff; background-color:#333333; padding:0.2ex;">
+ls<br>
+<span style="color:#00ff00;">256colors2.pl</span>&nbsp;&nbsp;<span style="color:#00ff00;">ansi.sh</span>&nbsp;&nbsp;<span style="color:#00ff00;">bcetest.sh</span>&nbsp;&nbsp;<span style="color:#00ff00;">color-sgr-decscnm.pl</span>&nbsp;&nbsp;<span style="color:#00ff00;">colortable16.sh</span>&nbsp;&nbsp;<span style="color:#8080ff;">data</span><br>
+% 
+</div>
+
+Text log
+<div style="border: 1px solid #666666; color:#000000; background-color:#ffffff; padding:0.2ex;">
+lls<br>
+
+256colors2.pl&nbsp;&nbsp;ansi.sh&nbsp;&nbsp;bcetest.sh&nbsp;&nbsp;color-sgr-decscnm.pl&nbsp;&nbsp;colortable16.sh&nbsp;&nbsp;data<br>
+%
+</div>
+
+Binary log
+<div style="border: 1px solid #666666; color:#000000; background-color:#ffffff; padding:0.2ex;">
+l<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-BS.png" style="width:0.8em; height:1em;">ls<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[?2004l<br>
+<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32m256colors2.pl<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32mansi.sh<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32mbcetest.sh<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32mcolor-sgr-decscnm.pl<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;32mcolortable16.sh<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m&nbsp;&nbsp;<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[01;34mdata<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m<br>
+<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[0m<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[27m<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[24m<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[J% <img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[K<img src="https://teratermproject.github.io/manual/5/en/about/image/icon-ESC.png" style="width:0.8em; height:1em;">[?2004h
+</div>
+
+<p>
+If you are using Bash, you can reduce redraws and help prevent log corruption by disabling the line-editing as follows.<br>
+Instead, you will no longer be able to use key cursor operations.
+</p>
+
+<div style="border: 1px solid #666666; color:#000000; background-color:#ffffff; padding:0.2ex;">
+set +o emacs<br>
+set +o vi
+</div>
+
+<p id="selected_highlight">
+<span class="qanda">Q.</span> I selected a range, but it isn't highlighted. The color doesn't change.<br>
+<span class="qanda">A.</span>
+In the <a href="../menu/setup-additional-window.html">Window</a>, select "Reverse" for Attribute and click the "Swap colors" button.<br>
+This occurs because the Normal attribute and Reverse attribute have the same color settings. When text with the Normal attribute is selected, <a href="./emulations.html#reverse">the colors of the Reverse attribute are applied</a>.<br>
+The "Swap colors" button swaps the text and background colors of only the currently active character attribute. If you swap the Normal attribute colors, the Reverse attribute colors remain unchanged.
+</p>
+
+<h2>[Migrating from Windows Tera Term]</h2>
+
+<p>
+<span class="qanda">Q.</span> Can I use the configuration file (TERATERM.INI) of Tera Term for Windows?<br>
+<span class="qanda">A.</span>
+You can read a Windows TERATERM.INI with <a href="../menu/setup-restore.html">[Setup] Restore setup</a>.
+Terminal size, character codes, new-line codes, colors, font, serial settings, the host history and more are applied.
+Both UTF-16 (Tera Term 5) and Shift_JIS etc. (Tera Term 4) files can be read.<br>
+Settings that do not apply to the Mac as they are, such as fonts not on the Mac or Windows folder paths, are not applied.<br>
+TeraTerm Menu entries can be read from ttpmenu.ini with "ttpmenu.ini" &gt; "Import&hellip;" in the list settings.<br>
+For details, see <a href="../usage/migrate_to_5.html">Migrating from Windows Tera Term</a>.
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../setup/teraterm-win.html">‹ INI: Window</a><a href="../index.html">Contents</a><a class="ttw-next" href="../usage/tips/index.html">Tips ›</a></nav>
+</body>
+</HTML>

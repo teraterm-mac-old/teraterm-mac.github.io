@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>strcompare</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>strcompare</span><a class="ttw-lang" href="../../../en/macro/command/strcompare.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>strcompare</h1>
+
+<p>
+文字列を比較する。
+</p>
+
+<h2>形式</h2>
+
+<pre class="macro-syntax">
+strcompare &lt;string1&gt; &lt;string2&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+2つの文字列 &lt;string1&gt;, &lt;string2&gt; を比較し、結果をシステム変数 result に代入する。<br>
+文字列の文字コード表現を符号なし整数(最初の文字が最上位バイト)とみなし、2つの文字列に対応する整数値の大小関係を求め、それに応じて以下のようにresult の値が決定される。
+</p>
+
+<table>
+ <tr>
+  <th>大小関係</th>
+  <th>resultの値</th>
+ </tr>
+ <tr>
+  <td>&lt;string1&gt; &lt; &lt;string2&gt;</td>
+  <td>-1</td>
+ </tr>
+ <tr>
+  <td>&lt;string1&gt; = &lt;string2&gt;</td>
+  <td>0</td>
+ </tr>
+ <tr>
+  <td>&lt;string1&gt; &gt; &lt;string2&gt;</td>
+  <td>1</td>
+ </tr>
+</table>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; result = -1
+strcompare 'abc' 'def'
+
+strcompare command 'next'
+if result=0 goto label
+strcompare command 'end'
+if result=0 end
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/str2int.html">‹ str2int</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/strconcat.html">strconcat ›</a></nav>
+</body>
+</html>

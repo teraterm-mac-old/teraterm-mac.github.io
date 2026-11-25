@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>xmodemsend</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>xmodemsend</span><a class="ttw-lang" href="../../../en/macro/command/xmodemsend.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>xmodemsend</h1>
+
+<p>
+XMODEM プロトコルでファイルを送信する。
+</p>
+
+<pre class="macro-syntax">
+xmodemsend &lt;filename&gt; &lt;option&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+XMODEM プロトコルでファイル &lt;filename&gt; を送信する。送信が終わるまで次のコマンドは実行されない。<br>
+ファイルが正しく転送された場合、システム変数 result に 1 が格納される。それ以外の場合、 result に 0 が格納される。
+</p>
+
+<p>
+&lt;filename&gt; が相対パスの時、<a href="../../setup/folder.html#FileDir">ファイル転送用ディレクトリ</a>相対として扱う。
+</p>
+
+<p>
+&lt;option&gt; によって、XMODEM のオプション(パケットサイズ)を指定する。<br>
+エラー検出の種類(Checksum/CRC)は受信側でのみ指定できる。
+</p>
+
+<table>
+ <tr>
+  <th>&lt;option&gt;</th>
+  <th>意味</th>
+ </tr>
+ <tr>
+  <td>1</td>
+  <td>標準(128バイト)</td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>標準(128バイト)</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>1K</td>
+ </tr>
+ <tr>
+  <td>それ以外</td>
+  <td>標準(128バイト)</td>
+ </tr>
+</table>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+<code>; XMODEM send, default packet size
+xmodemsend 'readme.txt' 1
+
+; XMODEM send, 1K
+xmodemsend 'readme.txt' 3
+</code></pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="changedir.html">changedir</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/xmodemrecv.html">‹ xmodemrecv</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/yesnobox.html">yesnobox ›</a></nav>
+</body>
+</html>

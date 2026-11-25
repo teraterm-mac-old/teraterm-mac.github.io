@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>strinsert</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../">Tera Term Mac</a> › <a href="../../index.html">ドキュメント</a> › <span>strinsert</span><a class="ttw-lang" href="../../../en/macro/command/strinsert.html">English</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>strinsert</h1>
+
+<p>
+文字列を挿入する。
+</p>
+
+<h2>形式</h2>
+
+<pre class="macro-syntax">
+strinsert &lt;strvar&gt; &lt;index&gt; &lt;string&gt;
+</pre>
+
+<h2>解説</h2>
+
+<p>
+文字列変数 &lt;strvar&gt; の &lt;index&gt; 位置（1オリジン）に、文字列 &lt;string&gt; を挿入する。
+</p>
+
+<h2>例</h2>
+
+<pre class="macro-example">
+s='abc'
+strinsert s 3 'XYZ'  ; 'abXYZc'
+messagebox s s
+
+s='abc'
+strinsert s 1 'XYZ'  ; 'XYZabc'
+messagebox s s
+
+s='abc'
+strinsert s -1 'XYZ'  ; シンタックスエラー
+messagebox s s
+
+s='abc'
+strinsert s 0 'XYZ'  ; シンタックスエラー
+messagebox s s
+
+s='abc'
+strinsert s 4 'XYZ'  ; 'abcXYZ'
+messagebox s s
+
+s='abc'
+strinsert s 5 'XYZ'  ; シンタックスエラー
+messagebox s s
+</pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="strmatch.html">strmatch</a></li>
+  <li><a href="strreplace.html">strreplace</a></li>
+  <li><a href="strremove.html">strremove</a></li>
+</ul>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/strdim.html">‹ strdim</a><a href="../../index.html">目次</a><a class="ttw-next" href="../../macro/command/strjoin.html">strjoin ›</a></nav>
+</body>
+</html>

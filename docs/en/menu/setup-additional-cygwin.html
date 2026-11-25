@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <TITLE>Additional settings / "Local Shell" Tab ([Setup] Menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Local shell settings</span><a class="ttw-lang" href="../../ja/menu/setup-additional-cygwin.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Local Shell" Tab ([Setup] Menu)</h1>
+
+    <p>
+      Configures the shell opened by [File] menu "Local Shell Connection" (&#x2318;G). Changes apply to shells opened afterwards.
+    </p>
+
+    <dl>
+      <dt id="CygTerm">Local shell</dt>
+      <dd>
+	Tera Term Mac starts a macOS shell directly in the terminal.
+	<dl>
+	  <dt>SHELL</dt>
+	  <dd>Path of the shell to start. Use the "..." button to choose one. If empty, the shell in the SHELL environment variable (or /bin/zsh) is used.</dd>
+	  <dt>TERM</dt>
+	  <dd>Value of the TERM environment variable passed to the shell. The default is xterm-256color.</dd>
+	  <dt>ENV_1, ENV_2</dt>
+	  <dd>Environment variables passed to the shell, written as "name=value".</dd>
+	  <dt>LOGIN_SHELL</dt>
+	  <dd>Starts the shell as a login shell.</dd>
+	  <dt>HOME_CHDIR</dt>
+	  <dd>Starts the shell in your home folder.</dd>
+	</dl>
+	<p>These settings are stored in the app's preferences.</p>
+      </dd>
+    </dl>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/cygwin.html">‹ Local shell</a><a href="../index.html">Contents</a><a class="ttw-next" href="../usage/proxy.html">Connecting through a proxy ›</a></nav>
+</body>
+</html>

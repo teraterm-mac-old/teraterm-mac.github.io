@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Connecting through Proxy</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Connecting through a proxy</span><a class="ttw-lang" href="../../ja/usage/proxy.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1>Connecting through Proxy</h1>
+
+    <p>
+      This page describes Proxy connections in Tera Term Mac.
+    </p>
+
+    <h2>Prerequisite</h2>
+
+    <p>
+      Proxy is a technology which can be used to connect to outside where Internet environment and LAN are separated as shown in the following figure. However, a user may be not able to connect to the outside network because your gateway can not support the NAT.
+    </p>
+    <div class="img"><img src="https://teratermproject.github.io/manual/5/en/image/connection.png" alt="Proxy connection"></div>
+    <p>
+      There are various types of Proxy for this purpose. Tera Term Mac supports the following types of Proxy:
+    </p>
+
+    <ul>
+      <li>HTTP <a href="#http_proxy">(*)</a></li>
+      <li>TELNET(for telnet)</li>
+      <li>SOCKS4 / SOCKS4a</li>
+      <li>SOCKS5</li>
+    </ul>
+
+    <h2>How to configure</h2>
+
+    <h3>Setup procedure</h3>
+
+    <p>
+      To configure, choose <a href="../menu/setup-proxy.html">[Setup] Proxy...</a>.
+    </p>
+    <p>
+      The Proxy setup dialog appears. Choose the type of proxy in [Type], enter the host name (or IP address) of the Proxy server in [Hostname] and its port number in [Port number], then click [OK]. Fill in [Username] and [Password] only when the Proxy requires authentication.
+    </p>
+    <p>
+      Now you are ready - connect as usual.
+    </p>
+
+    <h3>Connection types and the Proxy</h3>
+
+    <ul>
+      <li>Telnet and Other (raw TCP) connections go through the Proxy directly from Tera Term Mac.</li>
+      <li>SSH connections use the macOS ssh command. When a Proxy is set, Tera Term Mac itself relays the connection as ssh's ProxyCommand. So TELNET proxies and SOCKS5 / HTTP proxies that need a user name and password also work.</li>
+      <li>Serial connections and the local shell do not use the Proxy.</li>
+      <li>The settings are read and written with the same names as the [TTProxy] section of TERATERM.INI.</li>
+    </ul>
+    
+    <h2 id="http_proxy">Notice of HTTP proxy using</h2>
+    <p>
+    A user may be not able to connect the following type because basically the HTTP proxy server processes the HTTP request.
+    </p>
+    
+    <ul>
+      <li>No HTTP and HTTPS.</li>
+      <li>Port number is not 80 and 443.</li>
+      <li>Port number is not 443 by using CONNECT method.</li>
+    </ul>
+    
+    <p>
+    A use can not connect through the proxy to the TELNET and SSH server because these connections apply to above conditions.
+    </p>
+    
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-cygwin.html">‹ Local shell settings</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-proxy.html">Proxy settings ›</a></nav>
+</body>
+</html>

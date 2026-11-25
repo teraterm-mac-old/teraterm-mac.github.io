@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>TTSSH (Tera Term setup file)</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<BODY>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Log Level</span><a class="ttw-lang" href="../../ja/setup/teraterm-ssh.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<p>
+To use this item, edit TERATERM.INI and read it with [Setup]-[Restore setup...]. See "<a href="teraterm-ini.html#mac">How Tera Term Mac uses this file</a>".
+</p>
+
+<h1 id="LogLevel">Log Level</h1>
+
+<p>
+Specifies whether the SSH connection is logged to the TTSSH.LOG file, and how much is logged.
+</p>
+
+<pre>
+LogLevel=&lt;Value&gt;
+</pre>
+
+<p>
+SSH connections use the macOS ssh command. When the value is not 0, it is turned into an ssh LogLevel, and the log is written with <code>ssh -E</code> to TTSSH.LOG in the setup folder (<code>~/Library/Application Support/Tera Term Mac</code>).
+</p>
+
+<table>
+<thead>
+  <tr> <th>Value</th> <th>ssh LogLevel</th> </tr>
+</thead>
+<tbody>
+  <tr> <td>0</td>  <td>(no log)</td> </tr>
+  <tr> <td>1-24</td>  <td>INFO</td> </tr>
+  <tr> <td>25-49</td> <td>VERBOSE</td> </tr>
+  <tr> <td>50-74</td> <td>DEBUG1</td> </tr>
+  <tr> <td>75-99</td> <td>DEBUG2</td> </tr>
+  <tr> <td>100 or more</td><td>DEBUG3</td> </tr>
+</tbody>
+</table>
+
+<pre>
+Default:
+LogLevel=0
+</pre>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../setup/teraterm-prn.html">‹ INI: Printing</a><a href="../index.html">Contents</a><a class="ttw-next" href="../setup/teraterm-term.html">INI: Terminal ›</a></nav>
+</body>
+</HTML>

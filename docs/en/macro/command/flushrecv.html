@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>flushrecv</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../../docs.css">
+</head>
+
+<body>
+<nav class="ttw-bar"><a href="../../../../en/">Tera Term Mac</a> › <a href="../../index.html">Documentation</a> › <span>flushrecv</span><a class="ttw-lang" href="../../../ja/macro/command/flushrecv.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>flushrecv</h1>
+
+<p>
+Clears received characters in the buffer of the macro.
+</p>
+
+<pre class="macro-syntax">
+flushrecv
+</pre>
+
+<h2>Remarks</h2>
+
+<p>
+Characters received from the host are transferred to the macro. The macro stores the characters in the buffer.<br>
+Character-reading commands, such as the "<a href="wait.html">wait</a>" command, read out them from the buffer.<br>
+Characters in the buffer are kept until character-reading commands process them or the buffer overflows or the flushrecv command clears the buffer.<br>
+</p>
+
+<p>
+The "flushrecv" command can be used to avoid unexpected results of character-reading commands caused by old characters in the buffer.
+</p>
+
+
+<h2>See also</h2>
+<ul>
+  <li><a href="setsync.html">setsync</a></li>
+</ul>
+
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../../macro/command/findoperations.html">‹ findfirst</a><a href="../../index.html">Contents</a><a class="ttw-next" href="../../macro/command/foldercreate.html">foldercreate ›</a></nav>
+</body>
+</html>

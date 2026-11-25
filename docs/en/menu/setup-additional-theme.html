@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Theme" tab ([Setup] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Theme tab</span><a class="ttw-lang" href="../../ja/menu/setup-additional-theme.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Theme" tab ([Setup] menu)</h1>
+
+    <p>
+    [Setup] menu Theme... opens this tab.
+    </p>
+
+    <h2 id="theme">Theme</h2>
+
+    <p>
+    <a href="../usage/transparent.html#theme">Looks</a> of Tera Term Mac can be changed.<br>
+    It is not a macOS appearance (Dark Mode, etc.) setting.<br>
+    To change a theme, edit the theme file in a text editor (see <a href="setup-additional-visual-theme.html">Contents of a theme file</a>).
+
+    <dl>
+      <dt>Enable</dt>
+      <dd>The theme will be enabled.</dd>
+
+      <dt id="FastSizeMove">Disable theme when moving or resizing window</dt>
+      <dd>
+        Faster drawing by omitting drawing of the window background (BG theme)
+        during window resizing and moving.<br>
+        This can be used when using the BG theme.
+      </dd>
+
+      <dt>Startup</dt>
+      <dd>
+        Sets the theme to be used at startup.
+        <dl>
+          <dt>no use</dt>
+          <dd>No theme is used</dd>
+          <dt>Fixed theme file</dt>
+          <dd>
+            Loads a specific theme file.<br>
+            Pick a theme bundled with the app from the "Bundled Themes" pop-up, or choose a theme file (*.ini) with the "..." button.
+          </dd>
+          <dt>Random Theme file</dt>
+          <dd>
+            Randomly load themes from theme files folder.<br>
+            The theme folder is ~/Library/Application Support/Tera Term Mac/theme. If it has no *.ini files, a bundled theme is picked.
+          </dd>
+        </dl>
+      </dd>
+
+    </dl>
+
+    <h2>Color Scheme</h2>
+
+    <dl>
+      <dt>Color scheme</dt>
+      <dd>
+        Choose a preset scheme (Dark, White, Warm, Solarized, etc.) or the colors of a Terminal.app profile.<br>
+        Choosing a scheme sets the text, background, cursor and ANSI colors to that scheme. Press OK to keep it.
+      </dd>
+
+      <dt>Cursor color</dt>
+      <dd>
+        Selects the cursor color.
+      </dd>
+    </dl>
+
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-visual.html">‹ Visual tab</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-terminal.html">Terminal tab ›</a></nav>
+</body>
+</html>

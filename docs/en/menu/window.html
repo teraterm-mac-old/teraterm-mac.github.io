@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>[Window] menu</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Windows and tabs</span><a class="ttw-lang" href="../../ja/menu/window.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1>[Window] menu</h1>
+    <p>
+      You can activate one of existing Tera Term windows by selecting it
+      from the list in this menu. At most 9 windows can be listed in this
+      menu. If actual number of windows exceeds 9 and you want to activate
+      a window which is not in the list, use the Window command in this menu.<br>
+      The mark before each window name shows its state: + normal, - minimized in the Dock, @ zoomed, # hidden.
+    </p>
+
+    <dl>
+      <dt id="window"><a href="window-window.html">Window...</a></dt>
+      <dd>
+	Activates or closes a Tera Term window.
+      </dd>
+      <dt id="minimize">Minimize All</dt>
+      <dd>
+	Minimize all Tera Term window.
+      </dd>
+
+      <dt id="restore">Restore All</dt>
+      <dd>
+	Restore all Tera Term window.
+      </dd>
+
+      <dt id="cascade">Cascade</dt>
+      <dd>
+	Cascade, which puts windows in a single stack that has been fanned out so that the window title appear.
+      </dd>
+      
+      <dt id="stacked">Stacked</dt>
+      <dd>
+	Arranges the windows one above another, each as wide as the screen. Windows merged into tabs are split into separate windows first.
+      </dd>
+      
+      <dt id="sidebyside">Side By Side</dt>
+      <dd>
+	Arranges the windows side by side, each as tall as the screen. Windows merged into tabs are split into separate windows first.
+      </dd>
+
+      <dt id="undo">Undo - Cascade|Stacked|Side By Side</dt>
+      <dd>
+	Undo the Tera Term window position after arranging windows.
+      </dd>
+
+      <dt>Minimize</dt>
+      <dd>
+	Minimizes this window into the Dock (&#8984;M).
+      </dd>
+
+      <dt>Zoom</dt>
+      <dd>
+	Zooms this window, or returns it to its previous size.
+      </dd>
+
+      <dt>Show Previous Tab / Show Next Tab</dt>
+      <dd>
+	When windows are merged into tabs, switches to the previous tab (&#8984;{) or the next tab (&#8984;}).
+      </dd>
+
+      <dt>Show Menu Bar / Hide Menu Bar</dt>
+      <dd>
+	Shows or hides a menu bar inside the window, just below the title bar (PopupMenu in TERATERM.INI).
+	The macOS menu bar at the top of the screen is always available.<br>
+	While this menu bar is hidden, control-click (left button) in the window to pop up the menus.
+      </dd>
+
+      <dt id="ttmado">TTMado (tabs and split panes)</dt>
+      <dd>
+	TTMado is a built-in plugin of the Mac version that provides tabs and split panes.
+	Drag tabs or windows to place them inside one window, drag pane headers to rearrange panes or turn them back into tabs, extend a pane to an edge, and so on.
+	See <a href="../easy/mado.html">Show several sessions in one window</a> in the quick guide.<br>
+	[Window] &gt; [Stacked] and [Side By Side] show the tabs of a window as split panes.<br>
+	To stop using it, uncheck "TTMado" in the [Plugins] tab of [Setup] - [Additional settings...] and click OK.
+	It takes effect at once: split panes go back to tabs, and tabs work like normal macOS tabs.
+	Check it again to turn it back on.
+      </dd>
+      
+    </dl>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../usage/mouse.html">‹ Mouse</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/window-window.html">Window list ›</a></nav>
+</body>
+</html>

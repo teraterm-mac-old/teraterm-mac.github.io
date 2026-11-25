@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>For developers (Mac version) - Build, test and release</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Build, test and release</span><a class="ttw-lang" href="../../ja/reference/mac-develop-build.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+<h1>Build, test and release (Mac version)</h1>
+
+<ul>
+  <li><a href="mac-develop.html">Source layout</a></li>
+  <li>Build, test and release (this page)</li>
+  <li><a href="mac-develop-i18n.html">UI languages and help</a></li>
+</ul>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+  <li>A Mac with Xcode or its command line tools (Swift 5.5 or later; <code>Package.swift</code> uses swift-tools-version 5.5)</li>
+  <li>The resulting app runs on macOS 11 or later (the platforms in <code>Package.swift</code>, and LSMinimumSystemVersion 11.0 in Info.plist).</li>
+  <li>Sparkle is kept at 2.9.x so the app still runs on macOS 11 (2.10 requires macOS 12). The TeraMac target also defines <code>NS_SWIFT_SENDABLE</code> as empty for SDKs that lack it (it is only an annotation, so behavior does not change).</li>
+  <li>You need the whole repository, including the upstream files outside <code>macos/</code>: <code>scripts/bundle.sh</code> reads <code>../installer/release</code> and <code>../teraterm/common/helpid.h</code>.</li>
+</ul>
+
+<h2 id="build">Building and running</h2>
+
+<p>Run all commands in <code>macos/</code>.</p>
+
+<pre>
+cd macos
+swift build                        # debug build (.build/debug/TeraMac)
+./scripts/bundle.sh                # makes "build/Tera Term Mac.app" (for this Mac only; fast)
+open "build/Tera Term Mac.app"
+./scripts/bundle.sh --universal    # Apple Silicon and Intel
+./scripts/bundle.sh --dmg          # universal build, distribution DMG, notarization
+</pre>
+
+<p>
+When you run a plain <code>swift build</code> binary, UI languages and help are read from the source tree (<code>macos/Resources</code> and upstream <code>installer/release/lang_utf8</code>). Automatic updates only start when Info.plist has SUFeedURL (that is, in an app made by bundle.sh).
+</p>
+
+<h3 id="bundle">What bundle.sh does</h3>
+
+<ol>
+  <li>Builds with <code>swift build -c release</code> (with <code>--arch arm64 --arch x86_64</code> for <code>--universal</code> / <code>--dmg</code>) and shrinks the executable with <code>strip -x</code>.</li>
+  <li>Creates <code>build/Tera Term Mac.app</code> and copies in:
+    <ul>
+      <li>Sparkle.framework (without headers and XPC services)</li>
+      <li>the icon (Resources/AppIcon.icns) and LICENSE</li>
+      <li>upstream <code>installer/release/TERATERM.INI</code> (default settings)</li>
+      <li>upstream <code>installer/release/lang_utf8/*.lng</code> and <code>Resources/lang/mac_*.lng</code> (UI languages)</li>
+      <li>upstream <code>installer/release/theme</code> (sample themes)</li>
+      <li>the help in <code>Resources/help-mac/{ja,en}</code> (html/, teraterm.hhp, modern-toc.json) and upstream <code>teraterm/common/helpid.h</code>. Images (*.png) are left out (see <a href="mac-develop-i18n.html#images">help images</a>)</li>
+    </ul>
+  </li>
+  <li>Writes Info.plist. The version is <code>VERSION</code> in bundle.sh (it can also be set with the <code>VERSION</code> environment variable); the bundle ID can be changed with <code>BUNDLE_ID</code>. The .ttl document type and the Sparkle settings (SUFeedURL, public key and so on) are written here too.</li>
+  <li>Signs the app. If the keychain has a "Developer ID Application" certificate, it is used (Sparkle's parts first, with hardened runtime and timestamp); otherwise the app is ad-hoc signed. The <code>SIGN_ID</code> environment variable selects a certificate.</li>
+  <li>With <code>--dmg</code>, creates a DMG (<code>build/TeraTermMac-&lt;version&gt;.dmg</code>) containing the app and a link to Applications. The background is drawn by <code>scripts/make_dmg_bg.swift</code>, and Finder is scripted to set the window size and icon positions.</li>
+  <li>When signed with Developer ID, the DMG is signed as well, notarized with <code>xcrun notarytool</code> and stapled. Store notarytool credentials in the keychain beforehand with <code>xcrun notarytool store-credentials</code> and pass the profile name in the <code>NOTARY_PROFILE</code> environment variable. Notarization is skipped if no stored credentials are found or <code>SKIP_NOTARY=1</code> is set.</li>
+</ol>
+
+<h2 id="test">Tests</h2>
+
+<pre>
+swift test                                  # all tests
+swift test --filter TTLTests                # one test class
+swift test --filter TerminalTests/testXxx   # one test
+</pre>
+
+<p>
+The tests are in <code>Tests/TeraCoreTests</code> and cover TeraCore (terminal emulator, TTL macros, file transfer, TEK, key maps, INI files, connection settings and more).
+</p>
+
+<ul>
+  <li><code>TTLUpstreamTests</code> runs upstream <code>tests/*.ttl</code> without a window and lists which line failed with which error. Many of those macros need interaction or a connection, so it only runs when <code>TERAMAC_UPSTREAM_REPORT</code> names a report file.
+<pre>TERAMAC_UPSTREAM_REPORT=report.txt swift test --filter TTLUpstreamTests</pre></li>
+  <li><code>TTLBenchTests</code> measures macro speed. It is skipped in debug builds; run it with a release build.
+<pre>swift build -c release -Xswiftc -enable-testing --build-tests</pre></li>
+</ul>
+
+<h2 id="selftest">Self-test environment variables</h2>
+
+<p>
+Starting the app executable (<code>"build/Tera Term Mac.app/Contents/MacOS/TeraMac"</code>) with these environment variables makes it check its own appearance or behavior.
+</p>
+
+<table border="1">
+<tr><th>Variable</th><th>Behavior</th></tr>
+<tr><td>TERAMAC_SNAPSHOT=&lt;folder&gt;</td><td>Writes windows and dialogs as PNG files and quits (term.png, about.png, credits.png, connect.png, setup.png, schemes.png, menu_editor.png, menu_details.png and others). Along the way it runs a macro (test.ttl) that connects to the local shell and writes the screen text to shell.txt. The TeraTerm Menu windows are captured with sample entries, and the user's entries are restored at the end. Automatic updates and the offer to move to Applications are suppressed</td></tr>
+<tr><td>TERAMAC_TCPPORT=&lt;port&gt;</td><td>In the TERAMAC_SNAPSHOT macro, connects to that port on 127.0.0.1 as raw TCP and checks that the sent text comes back (provide an echo server)</td></tr>
+<tr><td>TERAMAC_SERIAL=&lt;device&gt;</td><td>In the TERAMAC_SNAPSHOT macro, opens that serial port at 115200 bps, sends <code>serial-ping</code> and waits for <code>serial-pong</code></td></tr>
+<tr><td>TERAMAC_LOGINPORT=&lt;port&gt;</td><td>With TERAMAC_SNAPSHOT, actually runs a TeraTerm Menu auto login (connects to that port on 127.0.0.1 with /T=0) and writes the screen text to menu_login.txt</td></tr>
+<tr><td>TERAMAC_TABSNAP=1</td><td>Used with TERAMAC_SNAPSHOT. Opens two tabs and captures the whole window (tabs.png), the setup sheet, a live font preview and whether Cancel restores it</td></tr>
+<tr><td>TERAMAC_SETUP_SNAPSHOT=&lt;folder&gt;</td><td>When the Additional settings sheet opens, writes every tab as setup-&lt;number&gt;-&lt;name&gt;.png, plus the TTSSH / TTProxy dialogs</td></tr>
+<tr><td>TERAMAC_DEBUG_WINDOWS=&lt;file&gt;</td><td>Two seconds after launch, writes the visible windows (class, title, size) and the application menu items to the file</td></tr>
+<tr><td>TERAMAC_MENUBAR_TEST=&lt;log&gt;</td><td>Opens the in-window menu bar, moves the mouse to the next title and logs whether the menu switches</td></tr>
+<tr><td>TERAMAC_INI_DRYRUN=&lt;ini&gt;</td><td>Writes the result of importing a TERATERM.INI (applied and skipped settings, hosts, font and more) and quits, without changing settings. Output goes to TERAMAC_INI_OUT (default: standard output)</td></tr>
+<tr><td>TERAMAC_TTMENU_TEST=&lt;ttpmenu.ini&gt;</td><td>Reads ttpmenu.ini, writes it back (&lt;ini&gt;.written.ini), reads it again, writes the result to &lt;ini&gt;.out.txt and quits. Nothing is saved</td></tr>
+<tr><td>TERAMAC_FEED_URL=&lt;URL&gt;</td><td>Changes the appcast.xml that automatic updates check (file:// URLs work)</td></tr>
+<tr><td>TERAMAC_UPDATE_TEST=&lt;log&gt;</td><td>Without UI, checks for an update, downloads it and installs it, logging the steps</td></tr>
+</table>
+
+<p>
+In addition, <code>TERAMAC_PROXY_*</code> variables are how the app passes proxy settings to its ssh ProxyCommand (<code>TeraMac --proxy-connect &lt;host&gt; &lt;port&gt;</code>). <code>--purge-keychain</code> is an argument used by the uninstaller; it deletes saved passwords and quits.
+</p>
+
+<h2 id="generators">Generators</h2>
+
+<table border="1">
+<tr><th>Script</th><th>Output</th></tr>
+<tr><td>scripts/gen_charwidth_tables.py</td><td>Generates <code>Sources/TeraCore/CharWidthTables.swift</code> from upstream unicode_asian_width.tbl, unicode_combine.tbl and unicode_emoji.tbl in <code>teraterm/teraterm</code>.<br><code>python3 scripts/gen_charwidth_tables.py [teraterm/teraterm folder]</code></td></tr>
+<tr><td>scripts/gen_sbcs_tables.py</td><td>Generates <code>Sources/TeraCore/SBCSTables.swift</code> from upstream <code>teraterm/teraterm/mapping/*.map</code>.<br><code>python3 scripts/gen_sbcs_tables.py [mapping folder]</code></td></tr>
+<tr><td>scripts/notes2html.py</td><td>Converts release notes (the same Markdown as on GitHub Releases) into HTML for Sparkle's update window. Only paragraphs, headings, bullet lists, code, bold and links are supported. Called by appcast.sh.<br><code>python3 scripts/notes2html.py notes.md &gt; notes.html</code></td></tr>
+<tr><td>scripts/make_icon.swift</td><td>Makes AppIcon.iconset from the upstream icon (teraterm/common/teraterm.ico)</td></tr>
+<tr><td>scripts/make_dmg_bg.swift</td><td>Draws the DMG background (called by bundle.sh)</td></tr>
+</table>
+
+<p>
+Do not edit the generated .swift files by hand; run the scripts again instead.
+</p>
+
+<h2 id="release">Release flow</h2>
+
+<ol>
+  <li>Bump <code>VERSION</code> in <code>scripts/bundle.sh</code>.</li>
+  <li>Build the DMG with <code>./scripts/bundle.sh --dmg</code> (signed and notarized).</li>
+  <li>Create <code>v&lt;version&gt;</code> on GitHub Releases and upload <code>TeraTermMac-&lt;version&gt;.dmg</code>.</li>
+  <li>Run <code>./scripts/appcast.sh &lt;version&gt; build/TeraTermMac-&lt;version&gt;.dmg [notes.md]</code> to rewrite <code>macos/appcast.xml</code>, and push it to main. The app watches this appcast.xml (SUFeedURL in Info.plist) to find new versions.</li>
+</ol>
+
+<p>
+<code>appcast.sh</code> signs the DMG with an EdDSA (ed25519) signature using Sparkle's <code>sign_update</code> (default <code>tools/sparkle/sign_update</code>, taken from <code>bin/</code> of a Sparkle release; override with <code>SIGN_UPDATE</code>). The private key is read from a key file rather than the keychain; its location can be set with the <code>SPARKLE_KEY</code> environment variable. The matching public key is SUPublicEDKey in Info.plist, so losing the private key means updates can no longer be delivered to existing installs. Keep a safe backup.
+</p>
+
+<p>
+appcast.xml lists only the latest version. If release notes are given, they appear as the update's notes in the update window (.md is converted with notes2html.py; .html is used as is).
+</p>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../reference/mac-develop.html">‹ Source layout</a><a href="../index.html">Contents</a><a class="ttw-next" href="../reference/mac-develop-i18n.html">UI languages and help ›</a></nav>
+</body>
+</html>

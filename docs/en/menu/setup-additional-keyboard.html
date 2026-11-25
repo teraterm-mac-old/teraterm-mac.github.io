@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "Keyboard" tab ([Setup] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+
+  <body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>Keyboard tab</span><a class="ttw-lang" href="../../ja/menu/setup-additional-keyboard.html">日本語</a></nav>
+<main class="ttw-main">
+
+    <h1><a href="setup-additional.html">Additional settings</a> / "Keyboard" tab ([Setup] menu)</h1>
+
+    <dl>
+      <dt>Transmit DEL by:</dt>
+      <dd>
+	<dl>
+	  <dt id="BSKey">Backspace key</dt>
+	  <dd>
+	    If this option is checked, pressing the delete key sends
+	    the DEL character (ASCII 0x7F). If not checked, the BS character
+	    (ASCII 0x08) is sent. Even if this option is (not) checked,
+	    the BS (DEL) character can be sent by pressing
+	    Control+delete.
+	  </dd>
+
+	  <dt id="DeleteKey">Delete key</dt>
+	  <dd>
+	    If this option is checked, pressing the forward delete key
+	    (fn+delete, or &#x2326; on extended keyboards) sends the
+	    DEL character. If not checked, the function assigned for this
+	    key is determined by the
+	    <a href="../setup/keyboard.html">keyboard setupfile</a>.
+	  </dd>
+	</dl>
+      </dd>
+
+      <dt id="MetaKey">Meta key</dt>
+      <dd>
+	Uses the Option key as the meta key.
+	For example, the sequence ESC A is sent by pressing Option+A.<br>
+	"off" disables it, "on" uses both Option keys, "left" uses only the left Option key, and "right" uses only the right Option key.
+	The Option key that is not the meta key still types characters as usual (symbols entered with Option).<br>
+	Menu shortcuts use the &#x2318; key, so they keep working in meta-key mode.
+      </dd>
+
+      <dt>Disabled mode:</dt>
+      <dd>
+	<dl>
+	  <dt id="DisableAppKeypad">Application Keypad</dt>
+	  <dd>
+	    This option disables Application Keypad mode.<br>
+	    If this option is selected, you can prevent a problem of a
+	    numeric keypad from being unavailable due to an accidental
+	    transition to Application Keypad mode.<br>
+	    Note that some application which uses application keypad mode
+	    may encounter other problems when this option is selected.
+	  </dd>
+
+	  <dt id="DisableAppCursor">Application Cursor</dt>
+	  <dd>
+	    This option disables Application Cursor mode.
+	  </dd>
+	</dl>
+      </dd>
+    </dl>
+
+    <p>
+      You can modify key assignments by editing the
+      <a href="../setup/keyboard.html">keyboard setupfile</a>.
+    </p>
+  </main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../menu/setup-additional-ctrlseq.html">‹ Control sequence tab</a><a href="../index.html">Contents</a><a class="ttw-next" href="../menu/setup-additional-mouse.html">Mouse tab ›</a></nav>
+</body>
+</html>

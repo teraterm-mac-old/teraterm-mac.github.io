@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>TTSSH command line</title>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+<nav class="ttw-bar"><a href="../../../en/">Tera Term Mac</a> › <a href="../index.html">Documentation</a> › <span>SSH command line</span><a class="ttw-lang" href="../../ja/commandline/ttssh.html">日本語</a></nav>
+<main class="ttw-main">
+
+
+
+<h1>TTSSH command line</h1>
+
+<p>
+You can use the following command line parameters for SSH connections (TTSSH). SSH in Tera Term Mac is the macOS ssh command (OpenSSH). For how to start the app, see "<a href="teraterm.html">Tera Term Mac command line</a>".
+These options also work in the host field of the New connection dialog and with the connect macro command.<br>
+Port forwarding and X11 forwarding are set in [Setup]-[SSH Forwarding...]; agent forwarding and compression in [Setup]-[SSH...].
+</p>
+
+
+<h2>Options</h2>
+
+<dl>
+  <dt id="hostname">&lt;username&gt;@&lt;host&gt;[:&lt;#TCP port&gt;]</dt>
+  <dd>A user can specify the user name in front of at-mark.</dd>
+
+  <dt id="host-url">&lt;scheme&gt;://[&lt;username&gt;[:&lt;password&gt;]@]&lt;host&gt;[:&lt;TCP port&gt;][/]</dt>
+  <dd>The URL format is extended.<br>
+      &lt;scheme&gt; can be ssh, ssh2, slogin or slogin2.<br>
+      When the port number is omitted, 22 is used.<br>
+      Works as a command line argument (for example <code>open -a "Tera Term Mac" --args ssh://user@host</code>). Tera Term Mac is not registered as the handler of ssh:// URLs. A password in the URL is not used on the startup command line (it works with the connect macro command).</dd>
+
+  <dt id="t">/t=&lt;value&gt;</dt>
+  <dd><ul>
+        <li><span class="syntax">value=2</span> enable SSH</li>
+        <li><span class="syntax">other values</span> disable SSH</li>
+      </ul></dd>
+
+  <dt id="nossh">/nossh</dt>
+  <dd>Disable SSH</dd>
+
+  <dt id="telnet">/telnet</dt>
+  <dd>Disable SSH<br>
+      and use the Telnet protocol. Same as <a href="./teraterm.html#t">/T=1 of Tera Term</a>.</dd>
+
+  <dt id="2">/2</dt>
+  <dd>Connect with SSH2</dd>
+
+  <dt id="ssh2">/ssh2</dt>
+  <dd>Connect with SSH2</dd>
+
+  <dt id="auth">/auth=&lt;mode&gt;</dt>
+  <dd>Try auto login with the authentication method given by &lt;mode&gt;
+      <ul>
+        <li><span class="syntax">password</span> password authentication</li>
+        <li><span class="syntax">publickey</span> public key authentication</li>
+        <li><span class="syntax">challenge</span> keyboard-interactive authentication</li>
+        <li><span class="syntax">keyboard-interactive</span> same as challenge</li>
+        <li><span class="syntax">pageant</span> public key authentication with an agent (ssh-agent)</li>
+      </ul>
+      Works with the connect macro command, turned into the ssh PreferredAuthentications option. Not used on the startup command line.</dd>
+
+  <dt id="user">/user=&lt;username&gt;</dt>
+  <dd>Specify the user name</dd>
+
+  <dt id="passwd">/passwd=&lt;password&gt;</dt>
+  <dd>
+    Specify the password<br>
+    Works with the connect macro command. Not used on the startup command line. With /auth=publickey it is used as the key passphrase.<br>
+    See <a href="#passwd_specify">Notes on Specifying a Password</a>.
+  </dd>
+
+  <dt id="keyfile">/keyfile=&lt;file&gt;</dt>
+  <dd>
+    Specify the private key<br>
+    Passed to ssh -i. Give an absolute path or a path starting with ~. Use an OpenSSH private key (PuTTY .ppk files cannot be used).
+  </dd>
+
+  <dt id="ask4passwd">/ask4passwd</dt>
+  <dd>
+    Ask for the password instead of logging in automatically<br>
+    /auth=&lt;mode&gt; then only means the authentication method.<br>
+    Works with the connect macro command.
+  </dd>
+
+</dl>
+
+<p>
+To include spaces or semicolons in a parameter value, enclose the whole value in `"'.<br />
+To include `"' in a value, write two `"' characters ("").
+</p>
+
+
+<h2 id="example1">Example</h2>
+
+<pre>
+open -a "Tera Term Mac" --args server1
+open -a "Tera Term Mac" --args server1:22 /ssh /user=guest
+open -a "Tera Term Mac" --args guest@server2
+open -a "Tera Term Mac" --args ssh://guest@server3:2222/
+open -a "Tera Term Mac" --args server4 /ssh /user=admin /keyfile=~/.ssh/id_ed25519
+</pre>
+
+<p>
+Examples of the connect macro command:
+</p>
+
+<pre>
+connect 'server3:22 /ssh /2 /auth=password /user=guest /passwd=guest'
+connect 'server4:22 /ssh /2 /auth=publickey /user=admin /keyfile=~/.ssh/id_ed25519 /ask4passwd'
+</pre>
+
+
+<h2 id="passwd_specify">Notes on Specifying a Password</h2>
+
+<p>
+A password written in command line arguments can be seen in the arguments of the running process (with the ps command and so on). In Tera Term Mac:
+</p>
+
+<dl>
+  <dt>Run with command line arguments</dt>
+  <dd>
+    /passwd= and a password in the URL are not used on the startup command line. Do not put passwords on the command line.
+  </dd>
+  <dt>Specify an argument of the connect macro command</dt>
+  <dd>
+    connect is handled inside the same process and does not start a new process. The password is not passed as an ssh argument; it is typed in when ssh asks for it.<br>
+    Instead of writing the password in the macro file, you can also use <a href="../macro/command/getpassword.html">getpassword</a> and similar commands.
+  </dd>
+  <dt>[File]-[Duplicate session] and TeraTerm Menu</dt>
+  <dd>
+    Neither starts a new process, so no password is passed in command line arguments.
+  </dd>
+</dl>
+
+
+<h2 id="example2">Example: using an agent</h2>
+
+<p>
+The agent is the macOS ssh-agent. Add your key to ssh-agent first (the passphrase can also be stored in the macOS keychain).
+</p>
+
+<pre>
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+</pre>
+
+<p>
+To connect from Tera Term Mac with public key authentication through the agent:
+</p>
+
+<pre>
+connect 'shell.example.com:22 /ssh /auth=pageant /user=yutaka'
+</pre>
+
+</main>
+<nav class="ttw-pager"><a class="ttw-prev" href="../commandline/teraterm.html">‹ Command line</a><a href="../index.html">Contents</a><a class="ttw-next" href="../commandline/ttproxy.html">Proxy command line ›</a></nav>
+</body>
+</html>

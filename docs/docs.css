@@ -35,3 +35,7 @@ a{color:#0a66d8}
 .rk h2{font-size:18px !important;margin:0 0 6px !important;padding:0 0 4px !important;color:#0a66d8;scroll-margin-top:60px}
 .rk ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2px 16px}
 .rk li a{text-decoration:none}.rk li a:hover{text-decoration:underline}
+.rk-wide ul{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.rk-head{font-size:20px !important;margin:30px 0 10px !important;scroll-margin-top:60px}
+.rk.rk-wide h2{color:#1d1d1f}
+.tg li.tref{margin-top:6px}

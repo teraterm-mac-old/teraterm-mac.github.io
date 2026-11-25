@@ -29,3 +29,9 @@ a{color:#0a66d8}
 .tg ul{list-style:none;margin:0;padding:0}
 .tg li{padding:2px 0;font-size:14.5px}
 .tg li a{text-decoration:none}.tg li a:hover{text-decoration:underline}
+.rk-letters{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 20px}
+.rk-letters a{display:inline-block;min-width:28px;text-align:center;padding:2px 6px;border:1px solid #e5e5ea;border-radius:6px;text-decoration:none;font-weight:600}
+.rk{margin:0 0 18px}
+.rk h2{font-size:18px !important;margin:0 0 6px !important;padding:0 0 4px !important;color:#0a66d8;scroll-margin-top:60px}
+.rk ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2px 16px}
+.rk li a{text-decoration:none}.rk li a:hover{text-decoration:underline}
